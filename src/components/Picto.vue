@@ -11,6 +11,7 @@ interface PictoItem {
 // Define the props with validation
 const props = defineProps<{
   picto: PictoItem;
+  searchQuery?: string;
 }>();
 
 // Compute the border color based on the picto type
@@ -24,6 +25,25 @@ const typeColor = computed(() => {
   return '#9e9e9e'; // Default gray
 });
 
+// Function to highlight matched text
+const highlightMatch = (text: string, query: string) => {
+  if (!query || query.trim() === '') return text;
+
+  const lowerText = text.toLowerCase();
+  const lowerQuery = query.toLowerCase().trim();
+
+  if (!lowerText.includes(lowerQuery)) return text;
+
+  const startIndex = lowerText.indexOf(lowerQuery);
+  const endIndex = startIndex + lowerQuery.length;
+
+  const before = text.substring(0, startIndex);
+  const match = text.substring(startIndex, endIndex);
+  const after = text.substring(endIndex);
+
+  return `${before}<span class="highlight">${match}</span>${after}`;
+};
+
 // Import necessary Vue functions
 import { computed } from 'vue';
 </script>
@@ -32,12 +52,12 @@ import { computed } from 'vue';
   <div class="picto-card" :style="{ borderColor: typeColor }">
     <div class="picto-header">
       <div class="picto-name-container">
-        <div class="picto-name">{{ picto.Pictos }}</div>
+        <div class="picto-name" v-html="highlightMatch(picto.Pictos, searchQuery || '')"></div>
         <div class="picto-type" v-if="picto.Type">{{ picto.Type }}</div>
       </div>
       <div class="picto-level">Lvl {{ picto.Level }}</div>
     </div>
-    <div class="picto-lumina">{{ picto.Lumina }}</div>
+    <div class="picto-lumina" v-html="highlightMatch(picto.Lumina, searchQuery || '')"></div>
     <div class="picto-stats">
       <div v-for="(stat, index) in picto['Stat Bonus']" :key="index" class="stat-item">{{ stat }}</div>
     </div>
@@ -107,5 +127,13 @@ import { computed } from 'vue';
   font-size: 0.75rem;
   color: #bbb;
   margin-right: 6px;
+}
+
+:deep(.highlight) {
+  background-color: rgba(255, 255, 0, 0.3);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 2px;
+  padding: 0 2px;
 }
 </style>

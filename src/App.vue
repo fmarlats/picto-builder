@@ -1,18 +1,40 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import pictosList from './assets/pictos_list.json'
 import Picto from './components/Picto.vue'
 
-const pictos = ref(pictosList)
+// Define the type for a picto item
+interface PictoItem {
+  Pictos: string;
+  Level: number | string;
+  Type: string;
+  Lumina: string;
+  "Stat Bonus": string[];
+  id?: string; // Optional unique ID
+}
+
+// Create reactive references
 const searchQuery = ref('')
 const selectedType = ref('all')
+const allPictos = ref<PictoItem[]>([])
+
+// Load data on component mount
+onMounted(() => {
+  // Make a deep copy of the data to avoid reference issues
+  const pictos = JSON.parse(JSON.stringify(pictosList))
+
+  // Add a unique ID to each picto
+  allPictos.value = pictos.map((picto: any, index: number) => ({
+    ...picto,
+    id: `picto-${index}`
+  }))
+})
 
 // Extract unique types from pictos list
 const pictoTypes = computed(() => {
-  const types = new Set<string>()
-  types.add('all')
+  const types = new Set<string>(['all'])
 
-  pictos.value.forEach(picto => {
+  allPictos.value.forEach(picto => {
     if (picto.Type) {
       types.add(picto.Type)
     }
@@ -21,41 +43,42 @@ const pictoTypes = computed(() => {
   return Array.from(types)
 })
 
-const filteredPictos = computed(() => {
-  let filtered = pictos.value
+// Computed property for total count
+const totalCount = computed(() => allPictos.value.length)
 
-  // Filter by type if not 'all'
+// Create a computed property for filtered pictos
+const filteredPictos = computed(() => {
+  // Start with all pictos
+  let result = [...allPictos.value]
+
+  // Apply type filter
   if (selectedType.value !== 'all') {
-    filtered = filtered.filter(picto =>
-      picto.Type === selectedType.value
-    )
+    result = result.filter(picto => picto.Type === selectedType.value)
   }
 
-  // Filter by search query if present
-  if (searchQuery.value) {
-    const query = searchQuery.value.toLowerCase()
-    filtered = filtered.filter(picto =>
+  // Apply search filter (only name or lumina)
+  const query = searchQuery.value.trim().toLowerCase()
+  if (query) {
+    result = result.filter(picto =>
       picto.Pictos.toLowerCase().includes(query) ||
-      (typeof picto.Level === 'string' ? picto.Level.toLowerCase().includes(query) : String(picto.Level).includes(query)) ||
-      picto.Type.toLowerCase().includes(query) ||
       picto.Lumina.toLowerCase().includes(query)
     )
   }
 
-  return filtered
+  return result
 })
 </script>
 
 <template>
   <div class="container">
-    <h1>Picto Builder</h1>
+    <h1 style="color:wheat">Picto & Lumina Builder</h1>
 
     <div class="filters-container">
       <div class="search-container">
         <input
           type="text"
           v-model="searchQuery"
-          placeholder="Search pictos..."
+          placeholder="Search by name or lumina..."
           class="search-input"
         />
       </div>
@@ -72,14 +95,20 @@ const filteredPictos = computed(() => {
     </div>
 
     <div class="results-info">
-      Showing {{ filteredPictos.length }} of {{ pictos.length }} pictos
+      <span v-if="filteredPictos.length === totalCount">
+        Showing all {{ totalCount }} pictos
+      </span>
+      <span v-else>
+        Showing {{ filteredPictos.length }} of {{ totalCount }} pictos
+      </span>
     </div>
 
     <div class="pictos-grid">
       <Picto
         v-for="picto in filteredPictos"
-        :key="picto.Pictos"
+        :key="picto.id"
         :picto="picto"
+        :searchQuery="searchQuery"
       />
     </div>
   </div>

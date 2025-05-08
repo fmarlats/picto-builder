@@ -4,1287 +4,1789 @@
     "Level": 1,
     "Type": "Support",
     "Lumina": "Gain 1 AP on Perfect Dodge. Once per turn.",
-    "Stat Bonus": ["12 Speed", "3% Crit Rate"]
+    "Stat Bonus": [
+      "12 Speed",
+      "3% Crit Rate"
+    ]
   },
   {
     "Pictos": "Critical Burn",
     "Level": 1,
     "Type": "Offensive",
     "Lumina": "25% increased Crit Chance on Burning enemies",
-    "Stat Bonus": ["8 Speed", "6% Crit Rate"]
+    "Stat Bonus": [
+      "8 Speed",
+      "6% Crit Rate"
+    ]
   },
   {
     "Pictos": "Augmented Attack",
     "Level": 2,
     "Type": "Offensive",
     "Lumina": "50% increased Base Attack damage",
-    "Stat Bonus": ["8 Defense", "10 Speed"]
+    "Stat Bonus": [
+      "8 Defense",
+      "10 Speed"
+    ]
   },
   {
     "Pictos": "Burning Shots",
     "Level": 1,
     "Type": "Support",
     "Lumina": "20% chance to Burn on Free Aim shot",
-    "Stat Bonus": ["15 Speed", "2% Crit Rate"]
+    "Stat Bonus": [
+      "15 Speed",
+      "2% Crit Rate"
+    ]
   },
   {
     "Pictos": "Dead Energy II",
     "Level": 1,
     "Type": "Support",
     "Lumina": "Plus 3 AP on killing an enemy",
-    "Stat Bonus": ["4 Speed", "9% Crit Rate"]
+    "Stat Bonus": [
+      "4 Speed",
+      "9% Crit Rate"
+    ]
   },
   {
     "Pictos": "Cleansing Tint",
     "Level": 1,
     "Type": "Support",
     "Lumina": "Healing Tints also remove all Status Effects from the target",
-    "Stat Bonus": ["35 Health", "6 Defense"]
+    "Stat Bonus": [
+      "35 Health",
+      "6 Defense"
+    ]
   },
   {
     "Pictos": "Empowering Attack",
     "Level": 1,
     "Type": "Support",
     "Lumina": "Gain Powerful for 1 turn on Base Attack",
-    "Stat Bonus": ["12 Speed", "3% Crit Rate"]
+    "Stat Bonus": [
+      "12 Speed",
+      "3% Crit Rate"
+    ]
   },
   {
     "Pictos": "SOS Shell",
     "Level": 3,
     "Type": "Defensive",
     "Lumina": "Apply Shell when falling below 50% health",
-    "Stat Bonus": ["13 Defense", "14 Speed"]
+    "Stat Bonus": [
+      "13 Defense",
+      "14 Speed"
+    ]
   },
   {
     "Pictos": "Marking Shots",
     "Level": 3,
     "Type": "Support",
     "Lumina": "20% chance to apply Mark on Free Aim shot",
-    "Stat Bonus": ["26 Speed", "2% Crit Rate"]
+    "Stat Bonus": [
+      "26 Speed",
+      "2% Crit Rate"
+    ]
   },
   {
     "Pictos": "Exposing Attack",
     "Level": 3,
     "Type": "Offensive",
     "Lumina": "Base Attack applies Defenceless for 1 turn",
-    "Stat Bonus": ["20 Speed", "4% Crit Rate"]
+    "Stat Bonus": [
+      "20 Speed",
+      "4% Crit Rate"
+    ]
   },
   {
     "Pictos": "Augmented Aim",
     "Level": 3,
     "Type": "Offensive",
     "Lumina": "50% increased Free Aim damage",
-    "Stat Bonus": ["21 Speed", "4% Crit Rate"]
+    "Stat Bonus": [
+      "21 Speed",
+      "4% Crit Rate"
+    ]
   },
   {
     "Pictos": "Staggering Attack",
     "Level": 3,
     "Type": "Offensive",
     "Lumina": "50% increased Break damage on Base Attack",
-    "Stat Bonus": ["21 Speed", "4% Crit Rate"]
+    "Stat Bonus": [
+      "21 Speed",
+      "4% Crit Rate"
+    ]
   },
   {
     "Pictos": "Rewarding Mark",
     "Level": 3,
     "Type": "Support",
     "Lumina": "Plus 2 AP on dealing damage to a Marked target. Once per turn",
-    "Stat Bonus": ["20 Defense", "7 Speed"]
+    "Stat Bonus": [
+      "20 Defense",
+      "7 Speed"
+    ]
   },
   {
     "Pictos": "Versatile",
     "Level": 3,
     "Type": "Offensive",
     "Lumina": "After a Free Aim hit, Base Attack damage is increased by 50% for 1 turn",
-    "Stat Bonus": ["21 Speed", "4% Crit Rate"]
+    "Stat Bonus": [
+      "21 Speed",
+      "4% Crit Rate"
+    ]
   },
   {
     "Pictos": "Energising Break",
     "Level": 3,
     "Type": "Support",
     "Lumina": "Plus 3 AP on Breaking a target",
-    "Stat Bonus": ["14 Speed", "7% Crit Rate"]
+    "Stat Bonus": [
+      "14 Speed",
+      "7% Crit Rate"
+    ]
   },
   {
     "Pictos": "First Offensive",
     "Level": 10,
     "Type": "Offensive",
     "Lumina": "First hit dealt and taken deals 50% more damage",
-    "Stat Bonus": ["75 Speed", "13% Crit Rate"]
+    "Stat Bonus": [
+      "75 Speed",
+      "13% Crit Rate"
+    ]
   },
   {
     "Pictos": "Energising Jump",
     "Level": 4,
     "Type": "Support",
     "Lumina": "Plus 1 AP on Jump Counterattack",
-    "Stat Bonus": ["44 Health", "29 Speed"]
+    "Stat Bonus": [
+      "44 Health",
+      "29 Speed"
+    ]
   },
   {
     "Pictos": "Burning Mark",
     "Level": 4,
     "Type": "Support",
     "Lumina": "Apply Burn on hitting a Marked enemy",
-    "Stat Bonus": ["44 Health", "32 Defense"]
+    "Stat Bonus": [
+      "44 Health",
+      "32 Defense"
+    ]
   },
   {
     "Pictos": "Attack Lifesteal",
     "Level": 4,
     "Type": "Defensive",
     "Lumina": "Recover 15% Health on Base Attack",
-    "Stat Bonus": ["88 Health", "8% Crit Rate"]
+    "Stat Bonus": [
+      "88 Health",
+      "8% Crit Rate"
+    ]
   },
   {
     "Pictos": "Energising Start II",
     "Level": 4,
     "Type": "Support",
     "Lumina": "Plus 1 AP on battle start",
-    "Stat Bonus": ["175 Health", "N/A"]
+    "Stat Bonus": [
+      "175 Health",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Breaker",
     "Level": 5,
     "Type": "Offensive",
     "Lumina": "25% increased Break damage",
-    "Stat Bonus": ["26 Speed", "9% Crit Rate"]
+    "Stat Bonus": [
+      "26 Speed",
+      "9% Crit Rate"
+    ]
   },
   {
     "Pictos": "Stun Boost",
     "Level": 4,
     "Type": "Offensive",
     "Lumina": "30% increased damage on Stunned targets",
-    "Stat Bonus": ["35 Speed", "2% Crit Rate"]
+    "Stat Bonus": [
+      "35 Speed",
+      "2% Crit Rate"
+    ]
   },
   {
     "Pictos": "Critical Moment",
     "Level": 5,
     "Type": "Offensive",
     "Lumina": "50% increased Critical Chance if Health is below 30%",
-    "Stat Bonus": ["26 Speed", "9% Crit Rate"]
+    "Stat Bonus": [
+      "26 Speed",
+      "9% Crit Rate"
+    ]
   },
   {
     "Pictos": "Healing Mark",
     "Level": 5,
     "Type": "Defensive/Support",
     "Lumina": "Recover 25% Health on hitting a Marked enemy. Once per turn.",
-    "Stat Bonus": ["65 Defense", "N/A"]
+    "Stat Bonus": [
+      "65 Defense",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Roulette",
     "Level": 5,
     "Type": "Offensive",
     "Lumina": "Every hit has a 50% chance to deal either 50% or 200% of its damage",
-    "Stat Bonus": ["34 Defense", "9% Crit Rate"]
+    "Stat Bonus": [
+      "34 Defense",
+      "9% Crit Rate"
+    ]
   },
   {
     "Pictos": "Last Stand Critical",
     "Level": 6,
     "Type": "Offensive",
     "Lumina": "100% Critical Chance when fighting alone",
-    "Stat Bonus": ["168 Health", "50 Defense"]
+    "Stat Bonus": [
+      "168 Health",
+      "50 Defense"
+    ]
   },
   {
     "Pictos": "Accelerating Last Stand",
     "Level": 6,
     "Type": "Support",
     "Lumina": "Gain Rush if fighting alone",
-    "Stat Bonus": ["168 Health", "34 Speed"]
+    "Stat Bonus": [
+      "168 Health",
+      "34 Speed"
+    ]
   },
   {
     "Pictos": "Protecting Last Stand",
     "Level": 6,
     "Type": "Support",
     "Lumina": "Gain Shell if fighting alone",
-    "Stat Bonus": ["168 Health", "50 Defense"]
+    "Stat Bonus": [
+      "168 Health",
+      "50 Defense"
+    ]
   },
   {
     "Pictos": "Empowering Last Stand",
     "Level": 6,
     "Type": "Support",
     "Lumina": "Gain Powerful if fighting alone",
-    "Stat Bonus": ["168 Health", "10% Crit Rate"]
+    "Stat Bonus": [
+      "168 Health",
+      "10% Crit Rate"
+    ]
   },
   {
     "Pictos": "Solo Fighter",
     "Level": 6,
     "Type": "Offensive",
     "Lumina": "Deal 50% more damage if fighting alone",
-    "Stat Bonus": ["168 Health", "50 Defense"]
+    "Stat Bonus": [
+      "168 Health",
+      "50 Defense"
+    ]
   },
   {
     "Pictos": "Powerful Revive",
     "Level": 8,
     "Type": "Offensive",
     "Lumina": "Apply Powerful for 3 turns when revived",
-    "Stat Bonus": ["54 Speed", "11% Crit Rate"]
+    "Stat Bonus": [
+      "54 Speed",
+      "11% Crit Rate"
+    ]
   },
   {
     "Pictos": "Augmented First Strike",
     "Level": 6,
     "Type": "Offensive",
     "Lumina": "50% increased damage on the first hit. Once per battle.",
-    "Stat Bonus": ["51 Speed", "5% Crit Rate"]
+    "Stat Bonus": [
+      "51 Speed",
+      "5% Crit Rate"
+    ]
   },
   {
     "Pictos": "Energising Start III",
     "Level": 6,
     "Type": "Support",
     "Lumina": "Plus 1 AP on battle start",
-    "Stat Bonus": ["320 Health", "N/A"]
+    "Stat Bonus": [
+      "320 Health",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Energising Start I",
     "Level": 6,
     "Type": "Support",
     "Lumina": "Plus 1 AP on battle start",
-    "Stat Bonus": ["320 Health", "N/A"]
+    "Stat Bonus": [
+      "320 Health",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Death Bomb",
     "Level": 7,
     "Type": "Offensive",
     "Lumina": "On Death, deal damage to all enemies",
-    "Stat Bonus": ["43 Speed", "10% Crit Rate"]
+    "Stat Bonus": [
+      "43 Speed",
+      "10% Crit Rate"
+    ]
   },
   {
     "Pictos": "Auto Death",
     "Level": 7,
     "Type": "Support",
     "Lumina": "Kills self on battle start",
-    "Stat Bonus": ["26% Crit Rate", "N/A"]
+    "Stat Bonus": [
+      "26% Crit Rate",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Teamwork",
     "Level": 7,
     "Type": "Offensive",
     "Lumina": "10% increased damage while all allies are alive",
-    "Stat Bonus": ["216 Health", "71 Defense"]
+    "Stat Bonus": [
+      "216 Health",
+      "71 Defense"
+    ]
   },
   {
     "Pictos": "Energising Attack I",
     "Level": 7,
     "Type": "Support",
     "Lumina": "Plus 1 AP on Base Attack",
-    "Stat Bonus": ["62 Speed", "5% Crit Rate"]
+    "Stat Bonus": [
+      "62 Speed",
+      "5% Crit Rate"
+    ]
   },
   {
     "Pictos": "Augmented Counter I",
     "Level": 8,
     "Type": "Offensive",
     "Lumina": "25% increased Counterattack damage",
-    "Stat Bonus": ["385 Health", "6% Crit Rate"]
+    "Stat Bonus": [
+      "385 Health",
+      "6% Crit Rate"
+    ]
   },
   {
     "Pictos": "Healing Parry",
     "Level": 5,
     "Type": "Defensive",
     "Lumina": "Recover 3% Health on Parry",
-    "Stat Bonus": ["127 Health", "34 Defense"]
+    "Stat Bonus": [
+      "127 Health",
+      "34 Defense"
+    ]
   },
   {
     "Pictos": "Breaking Counter",
     "Level": 7,
     "Type": "Offensive",
     "Lumina": "50% increased Break damage on Counterattack",
-    "Stat Bonus": ["43 Speed", "10% Crit Rate"]
+    "Stat Bonus": [
+      "43 Speed",
+      "10% Crit Rate"
+    ]
   },
   {
     "Pictos": "Confident",
     "Level": 7,
     "Type": "Defensive",
     "Lumina": "Take 50% less damage, but can't be healed",
-    "Stat Bonus": ["41 Speed", "10% Crit Rate"]
+    "Stat Bonus": [
+      "41 Speed",
+      "10% Crit Rate"
+    ]
   },
   {
     "Pictos": "Energising Pain",
     "Level": 7,
     "Type": "Support",
     "Lumina": "No longer gain AP on Parry. Plus 1 AP on getting hit",
-    "Stat Bonus": ["308 Health", "34 Defense"]
+    "Stat Bonus": [
+      "308 Health",
+      "34 Defense"
+    ]
   },
   {
     "Pictos": "First Strike",
     "Level": 7,
     "Type": "Support",
     "Lumina": "Play first",
-    "Stat Bonus": ["41 Speed", "10% Crit Rate"]
+    "Stat Bonus": [
+      "41 Speed",
+      "10% Crit Rate"
+    ]
   },
   {
     "Pictos": "SOS Power",
     "Level": 7,
     "Type": "Offensive",
     "Lumina": "Apply Powerful when falling below 50% Health",
-    "Stat Bonus": ["43 Speed", "10% Crit Rate"]
+    "Stat Bonus": [
+      "43 Speed",
+      "10% Crit Rate"
+    ]
   },
   {
     "Pictos": "Breaking Shots",
     "Level": 7,
     "Type": "Offensive",
     "Lumina": "50% increased Break damage with Free Aim shots",
-    "Stat Bonus": ["43 Speed", "10% Crit Rate"]
+    "Stat Bonus": [
+      "43 Speed",
+      "10% Crit Rate"
+    ]
   },
   {
     "Pictos": "Enfeebling Mark",
     "Level": 7,
     "Type": "Defensive",
     "Lumina": "Marked targets deal 30% less damage",
-    "Stat Bonus": ["102 Defense", "21 Speed"]
+    "Stat Bonus": [
+      "102 Defense",
+      "21 Speed"
+    ]
   },
   {
     "Pictos": "Healing Tint Energy",
     "Level": 7,
     "Type": "Support",
     "Lumina": "Healing Tints also give 1 AP",
-    "Stat Bonus": ["216 Health", "71 Defense"]
+    "Stat Bonus": [
+      "216 Health",
+      "71 Defense"
+    ]
   },
   {
     "Pictos": "Perilous Parry",
     "Level": 8,
     "Type": "Support",
     "Lumina": "Plus 1 AP on Parry, but damage received is doubled",
-    "Stat Bonus": ["54 Speed", "11% Crit Rate"]
+    "Stat Bonus": [
+      "54 Speed",
+      "11% Crit Rate"
+    ]
   },
   {
     "Pictos": "Auto Shell",
     "Level": 7,
     "Type": "Defensive",
     "Lumina": "Apply Shell for 3 turns on battle start",
-    "Stat Bonus": ["411 Health", "N/A"]
+    "Stat Bonus": [
+      "411 Health",
+      "N/A"
+    ]
   },
   {
     "Pictos": "At Death's Door",
     "Level": 8,
     "Type": "Offensive",
     "Lumina": "Deal 50% more damage if Health is below 10%",
-    "Stat Bonus": ["96 Defense", "11% Crit Rate"]
+    "Stat Bonus": [
+      "96 Defense",
+      "11% Crit Rate"
+    ]
   },
   {
     "Pictos": "Dead Energy I",
     "Level": 15,
     "Type": "Support",
     "Lumina": "Plus 3 AP on killing an enemy",
-    "Stat Bonus": ["162 Speed", "17% Crit Rate"]
+    "Stat Bonus": [
+      "162 Speed",
+      "17% Crit Rate"
+    ]
   },
   {
     "Pictos": "In Medias Res",
     "Level": 23,
     "Type": "Defensive",
     "Lumina": "Plus 3 Shield on Battle Start, but max Health is halved",
-    "Stat Bonus": ["1,310 Defense", "13% Crit Rate"]
+    "Stat Bonus": [
+      "1,310 Defense",
+      "13% Crit Rate"
+    ]
   },
   {
     "Pictos": "Exhausting Power",
     "Level": 8,
     "Type": "Offensive",
     "Lumina": "50% increased Damage if Exhausted",
-    "Stat Bonus": ["270 Health", "96 Defense"]
+    "Stat Bonus": [
+      "270 Health",
+      "96 Defense"
+    ]
   },
   {
     "Pictos": "Energising Heal",
     "Level": 7,
     "Type": "Support",
     "Lumina": "On Healing an ally, also give 2 AP",
-    "Stat Bonus": ["206 Health", "41 Speed"]
+    "Stat Bonus": [
+      "206 Health",
+      "41 Speed"
+    ]
   },
   {
     "Pictos": "Shared Care",
     "Level": 7,
     "Type": "Defensive",
     "Lumina": "When Healing an ally, also Heal self for 50% of that value",
-    "Stat Bonus": ["206 Health", "68 Defense"]
+    "Stat Bonus": [
+      "206 Health",
+      "68 Defense"
+    ]
   },
   {
     "Pictos": "Longer Shell",
     "Level": 8,
     "Type": "Support",
     "Lumina": "On applying Shell, its duration is increased by 2",
-    "Stat Bonus": ["257 Health", "92 Defense"]
+    "Stat Bonus": [
+      "257 Health",
+      "92 Defense"
+    ]
   },
   {
     "Pictos": "Energising Start IV",
     "Level": 8,
     "Type": "Support",
     "Lumina": "Plus 1 AP on battle start",
-    "Stat Bonus": ["513 Health", "N/A"]
+    "Stat Bonus": [
+      "513 Health",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Sweet Kill",
     "Level": 8,
     "Type": "Defensive",
     "Lumina": "Recover 50% Health on killing an enemy",
-    "Stat Bonus": ["54 Speed", "11% Crit Rate"]
+    "Stat Bonus": [
+      "54 Speed",
+      "11% Crit Rate"
+    ]
   },
   {
     "Pictos": "Healing Counter",
     "Level": 10,
     "Type": "Defensive",
     "Lumina": "Recover 25% Health on Counterattack",
-    "Stat Bonus": ["751 Health", "N/A"]
+    "Stat Bonus": [
+      "751 Health",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Auto Rush",
     "Level": 10,
     "Type": "Offensive",
     "Lumina": "Apply Rush for 3 turns on battle start",
-    "Stat Bonus": ["112 Speed", "7% Crit Rate"]
+    "Stat Bonus": [
+      "112 Speed",
+      "7% Crit Rate"
+    ]
   },
   {
     "Pictos": "Accelerating Heal",
     "Level": 9,
     "Type": "Support",
     "Lumina": "Healing an ally also applies Rush for 1 turn",
-    "Stat Bonus": ["329 Health", "65 Speed"]
+    "Stat Bonus": [
+      "329 Health",
+      "65 Speed"
+    ]
   },
   {
     "Pictos": "SOS Rush",
     "Level": 14,
     "Type": "Offensive",
     "Lumina": "Apply Rush when falling below 50% Health",
-    "Stat Bonus": ["288 Health", "142 Speed"]
+    "Stat Bonus": [
+      "288 Health",
+      "142 Speed"
+    ]
   },
   {
     "Pictos": "Beneficial Contamination",
     "Level": 14,
     "Type": "Support",
     "Lumina": "Plus 2 AP on applying a Status Effect. Once per turn.",
-    "Stat Bonus": ["274 Defense", "135 Speed"]
+    "Stat Bonus": [
+      "274 Defense",
+      "135 Speed"
+    ]
   },
   {
     "Pictos": "Critical Vulnerability",
     "Level": 9,
     "Type": "Offensive",
     "Lumina": "25% increased Critical Chance on Defenceless enemies",
-    "Stat Bonus": ["116 Defense", "62 Speed"]
+    "Stat Bonus": [
+      "116 Defense",
+      "62 Speed"
+    ]
   },
   {
     "Pictos": "Critical Break",
     "Level": 14,
     "Type": "Offensive",
     "Lumina": "25% increased Break damage on Critical hits",
-    "Stat Bonus": ["203 Speed", "8% Crit Rate"]
+    "Stat Bonus": [
+      "203 Speed",
+      "8% Crit Rate"
+    ]
   },
   {
     "Pictos": "Healing Share",
     "Level": 11,
     "Type": "Defensive",
     "Lumina": "Receive 15% of all Heals affecting other characters",
-    "Stat Bonus": ["467 Health", "14% Crit Rate"]
+    "Stat Bonus": [
+      "467 Health",
+      "14% Crit Rate"
+    ]
   },
   {
     "Pictos": "Powered Attack",
     "Level": 11,
     "Type": "Offensive",
     "Lumina": "On every damage dealt, try to consume 1 AP. If successful, increase damage by 20%",
-    "Stat Bonus": ["132 Speed", "7% Crit Rate"]
+    "Stat Bonus": [
+      "132 Speed",
+      "7% Crit Rate"
+    ]
   },
   {
     "Pictos": "Double Burn",
     "Level": 11,
     "Type": "Support",
     "Lumina": "On applying a Burn stack, apply a second one",
-    "Stat Bonus": ["132 Speed", "7% Crit Rate"]
+    "Stat Bonus": [
+      "132 Speed",
+      "7% Crit Rate"
+    ]
   },
   {
     "Pictos": "Glass Canon",
     "Level": 11,
     "Type": "Offensive",
     "Lumina": "Deal 25% more damage, but take 25% more damage",
-    "Stat Bonus": ["175 Speed", "N/A"]
+    "Stat Bonus": [
+      "175 Speed",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Augmented Counter II",
     "Level": 12,
     "Type": "Offensive",
     "Lumina": "50% increased Counterattack damage",
-    "Stat Bonus": ["208 Defense", "15% Crit Rate"]
+    "Stat Bonus": [
+      "208 Defense",
+      "15% Crit Rate"
+    ]
   },
   {
     "Pictos": "Immaculate",
     "Level": 12,
     "Type": "Offensive",
     "Lumina": "30% increased damage until a hit is received",
-    "Stat Bonus": ["103 Speed", "15% Crit Rate"]
+    "Stat Bonus": [
+      "103 Speed",
+      "15% Crit Rate"
+    ]
   },
   {
     "Pictos": "Shield Affinity",
     "Level": 13,
     "Type": "Offensive",
     "Lumina": "30% increased damage while having Shields, but receiving any damage always removes all Shields",
-    "Stat Bonus": ["118 Speed", "16% Crit Rate"]
+    "Stat Bonus": [
+      "118 Speed",
+      "16% Crit Rate"
+    ]
   },
   {
     "Pictos": "Greater Shell",
     "Level": 13,
     "Type": "Support",
     "Lumina": "Plus 10% to Shell damage reduction",
-    "Stat Bonus": ["599 Health", "240 Defense"]
+    "Stat Bonus": [
+      "599 Health",
+      "240 Defense"
+    ]
   },
   {
     "Pictos": "Effective Heal",
     "Level": 13,
     "Type": "Defensive",
     "Lumina": "Double all Heals received",
-    "Stat Bonus": ["284 Health", "341 Defense"]
+    "Stat Bonus": [
+      "284 Health",
+      "341 Defense"
+    ]
   },
   {
     "Pictos": "Auto Regen",
     "Level": 13,
     "Type": "Defensive",
     "Lumina": "Apply Regen for 3 turns on battle start",
-    "Stat Bonus": ["479 Defense", "N/A"]
+    "Stat Bonus": [
+      "479 Defense",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Powerful On Shell",
     "Level": 13,
     "Type": "Support",
     "Lumina": "Apply Powerful on applying Shell",
-    "Stat Bonus": ["240 Defense", "16% Crit Rate"]
+    "Stat Bonus": [
+      "240 Defense",
+      "16% Crit Rate"
+    ]
   },
   {
     "Pictos": "Protecting Death",
     "Level": 13,
     "Type": "Support",
     "Lumina": "On death, allies gain Shell",
-    "Stat Bonus": ["599 Health", "118 Speed"]
+    "Stat Bonus": [
+      "599 Health",
+      "118 Speed"
+    ]
   },
   {
     "Pictos": "Double Mark",
     "Level": 13,
     "Type": "Support",
     "Lumina": "Mark requires 1 more hit to be removed",
-    "Stat Bonus": ["236 Speed", "N/A"]
+    "Stat Bonus": [
+      "236 Speed",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Energising Attack II",
     "Level": 13,
     "Type": "Support",
     "Lumina": "Plus 1 AP on Base Attack",
-    "Stat Bonus": ["120 Defense", "177 Speed"]
+    "Stat Bonus": [
+      "120 Defense",
+      "177 Speed"
+    ]
   },
   {
     "Pictos": "Greater Powerful",
     "Level": 13,
     "Type": "Offensive/Support",
     "Lumina": "Plus 15% to Powerful damage increase",
-    "Stat Bonus": ["59 Speed", "23% Crit Rate"]
+    "Stat Bonus": [
+      "59 Speed",
+      "23% Crit Rate"
+    ]
   },
   {
     "Pictos": "Anti-Charm",
     "Level": 13,
     "Type": "Defensive",
     "Lumina": "Immune to Charm",
-    "Stat Bonus": ["599 Health", "240 Defense"]
+    "Stat Bonus": [
+      "599 Health",
+      "240 Defense"
+    ]
   },
   {
     "Pictos": "Energising Turn",
     "Level": 14,
     "Type": "Support",
     "Lumina": "Plus 1 AP on turn start",
-    "Stat Bonus": ["270 Speed", "N/A"]
+    "Stat Bonus": [
+      "270 Speed",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Solidifying",
     "Level": 9,
     "Type": "Defensive",
     "Lumina": "Plus 2 Shields when the character's Health falls below 50%. Once per battle",
-    "Stat Bonus": ["116 Defense", "62 Speed"]
+    "Stat Bonus": [
+      "116 Defense",
+      "62 Speed"
+    ]
   },
   {
     "Pictos": "Recovery",
     "Level": 20,
     "Type": "Defensive",
     "Lumina": "Recovers 10% Health on turn start",
-    "Stat Bonus": ["2,000 Health", "324 Defense"]
+    "Stat Bonus": [
+      "2,000 Health",
+      "324 Defense"
+    ]
   },
   {
     "Pictos": "Powerful Shots",
     "Level": 12,
     "Type": "Support",
     "Lumina": "20% chance to gain Powerful on Free Aim shot",
-    "Stat Bonus": ["983 Health", "44 Defense"]
+    "Stat Bonus": [
+      "983 Health",
+      "44 Defense"
+    ]
   },
   {
     "Pictos": "Energising Cleanse",
     "Level": 15,
     "Type": "Support",
     "Lumina": "Dispel the first negative Status Effect received and gain 2 AP",
-    "Stat Bonus": ["1,166 Health", "160 Defense"]
+    "Stat Bonus": [
+      "1,166 Health",
+      "160 Defense"
+    ]
   },
   {
     "Pictos": "Stay Marked",
     "Level": 15,
     "Type": "Support",
     "Lumina": "50% chance to apply Mark when attacking a Marked target",
-    "Stat Bonus": ["201 Speed", "12% Crit Rate"]
+    "Stat Bonus": [
+      "201 Speed",
+      "12% Crit Rate"
+    ]
   },
   {
     "Pictos": "Random Defense",
     "Level": 15,
     "Type": "Defensive",
     "Lumina": "Damage taken is randomly multiplied by a value between 50% and 200%",
-    "Stat Bonus": ["34% Crit Rate", "N/A"]
+    "Stat Bonus": [
+      "34% Crit Rate",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Weakness Gain",
     "Level": 15,
     "Type": "Support",
     "Lumina": "Plus 1 AP on hitting an enemy's Weakness. Once per turn.",
-    "Stat Bonus": ["162 Speed", "17% Crit Rate"]
+    "Stat Bonus": [
+      "162 Speed",
+      "17% Crit Rate"
+    ]
   },
   {
     "Pictos": "Greater Defenceless",
     "Level": 15,
     "Type": "Support",
     "Lumina": "Plus 15% to Defenceless damage amplification",
-    "Stat Bonus": ["154 Speed", "17% Crit Rate"]
+    "Stat Bonus": [
+      "154 Speed",
+      "17% Crit Rate"
+    ]
   },
   {
     "Pictos": "Enfeebling Attack",
     "Level": 15,
     "Type": "Defensive",
     "Lumina": "Base Attack applies Powerless for 1 turn",
-    "Stat Bonus": ["389 Health", "478 Defense"]
+    "Stat Bonus": [
+      "389 Health",
+      "478 Defense"
+    ]
   },
   {
     "Pictos": "Breaking Attack",
     "Level": 15,
     "Type": "Offensive",
     "Lumina": "Base Attack can Break",
-    "Stat Bonus": ["154 Speed", "17% Crit Rate"]
+    "Stat Bonus": [
+      "154 Speed",
+      "17% Crit Rate"
+    ]
   },
   {
     "Pictos": "Second Chance",
     "Level": 16,
     "Type": "Defensive",
     "Lumina": "Revive with 100% Health. Once per battle.",
-    "Stat Bonus": ["1,107 Health", "8% Crit Rate"]
+    "Stat Bonus": [
+      "1,107 Health",
+      "8% Crit Rate"
+    ]
   },
   {
     "Pictos": "Painted Power",
     "Level": 16,
     "Type": "Offensive",
     "Lumina": "Damage can exceed 9,999",
-    "Stat Bonus": ["1,844 Health", "N/A"]
+    "Stat Bonus": [
+      "1,844 Health",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Greater Slow",
     "Level": 20,
     "Type": "Support",
     "Lumina": "Plus 15% to Slow Speed reduction",
-    "Stat Bonus": ["647 Defense", "266 Speed"]
+    "Stat Bonus": [
+      "647 Defense",
+      "266 Speed"
+    ]
   },
   {
     "Pictos": "Sniper",
     "Level": 23,
     "Type": "Offensive",
     "Lumina": "First Free Aim shot each turn deals 200% increased damage and can Break",
-    "Stat Bonus": ["552 Speed", "13% Crit Rate"]
+    "Stat Bonus": [
+      "552 Speed",
+      "13% Crit Rate"
+    ]
   },
   {
     "Pictos": "Longer Rush",
     "Level": 15,
     "Type": "Support",
     "Lumina": "On applying Rush, its duration is increased by 2",
-    "Stat Bonus": ["778 Health", "154 Speed"]
+    "Stat Bonus": [
+      "778 Health",
+      "154 Speed"
+    ]
   },
   {
     "Pictos": "Fueling Break",
     "Level": 9,
     "Type": "Support",
     "Lumina": "Breaking a target doubles its Burn amount",
-    "Stat Bonus": ["65 Speed", "12% Crit Rate"]
+    "Stat Bonus": [
+      "65 Speed",
+      "12% Crit Rate"
+    ]
   },
   {
     "Pictos": "Burning Break",
     "Level": 21,
     "Type": "Support",
     "Lumina": "Apply 3 Burn stacks on Breaking a target",
-    "Stat Bonus": ["1,541 Health", "24% Crit Rate"]
+    "Stat Bonus": [
+      "1,541 Health",
+      "24% Crit Rate"
+    ]
   },
   {
     "Pictos": "Burn Affinity",
     "Level": 21,
     "Type": "Offensive",
     "Lumina": "25% increased damage on Burning targets",
-    "Stat Bonus": ["439 Speed", "12% Crit Rate"]
+    "Stat Bonus": [
+      "439 Speed",
+      "12% Crit Rate"
+    ]
   },
   {
     "Pictos": "Breaking Slow",
     "Level": 15,
     "Type": "Offensive",
     "Lumina": "25% increased Break damage against Slowed enemies",
-    "Stat Bonus": ["162 Speed", "17% Crit Rate"]
+    "Stat Bonus": [
+      "162 Speed",
+      "17% Crit Rate"
+    ]
   },
   {
     "Pictos": "Combo Attack III",
     "Level": 25,
     "Type": "Offensive",
     "Lumina": "Base Attack has 1 extra hit",
-    "Stat Bonus": ["619 Speed", "14% Crit Rate"]
+    "Stat Bonus": [
+      "619 Speed",
+      "14% Crit Rate"
+    ]
   },
   {
     "Pictos": "Warming Up",
     "Level": 15,
     "Type": "Offensive",
     "Lumina": "5% increased damage per turn. Can stack up to 5 times.",
-    "Stat Bonus": ["1,166 Health", "9% Crit Rate"]
+    "Stat Bonus": [
+      "1,166 Health",
+      "9% Crit Rate"
+    ]
   },
   {
     "Pictos": "Shielding Death",
     "Level": 22,
     "Type": "Defensive",
     "Lumina": "On death, allies gain 3 Shield points",
-    "Stat Bonus": ["801 Defense", "161 Speed"]
+    "Stat Bonus": [
+      "801 Defense",
+      "161 Speed"
+    ]
   },
   {
     "Pictos": "Base Shield",
     "Level": 20,
     "Type": "Defensive",
     "Lumina": "Plus 1 Shield if not affected by any Shield on turn start",
-    "Stat Bonus": ["378 Speed", "11% Crit Rate"]
+    "Stat Bonus": [
+      "378 Speed",
+      "11% Crit Rate"
+    ]
   },
   {
     "Pictos": "Empowering Break",
     "Level": 28,
     "Type": "Offensive",
     "Lumina": "Gain Powerful on Breaking a target",
-    "Stat Bonus": ["546 Speed", "32% Crit Rate"]
+    "Stat Bonus": [
+      "546 Speed",
+      "32% Crit Rate"
+    ]
   },
   {
     "Pictos": "Energising Shots",
     "Level": 28,
     "Type": "Support",
     "Lumina": "20% chance to gain 1 AP on Free Aim shot",
-    "Stat Bonus": ["779 Speed", "16% Crit Rate"]
+    "Stat Bonus": [
+      "779 Speed",
+      "16% Crit Rate"
+    ]
   },
   {
     "Pictos": "Charging Alteration",
     "Level": 28,
     "Type": "Support",
     "Lumina": "Plus 10% of a Gradient Charge on applying a Buff. Once per turn.",
-    "Stat Bonus": ["1,501 Defense", "546 Speed"]
+    "Stat Bonus": [
+      "1,501 Defense",
+      "546 Speed"
+    ]
   },
   {
     "Pictos": "Anti-Burn",
     "Level": 29,
     "Type": "Defensive",
     "Lumina": "Immune to Burn",
-    "Stat Bonus": ["2,757 Health", "1,572 Defense"]
+    "Stat Bonus": [
+      "2,757 Health",
+      "1,572 Defense"
+    ]
   },
   {
     "Pictos": "Empowering Dodge",
     "Level": 15,
     "Type": "Offensive",
     "Lumina": "5% increased damage for each consecutive successful Dodge. Can stack up to 10 times",
-    "Stat Bonus": ["162 Speed", "17% Crit Rate"]
+    "Stat Bonus": [
+      "162 Speed",
+      "17% Crit Rate"
+    ]
   },
   {
     "Pictos": "Gradient Break",
     "Level": 25,
     "Type": "Support",
     "Lumina": "Plus 50% of a Gradient Charge on Breaking a target",
-    "Stat Bonus": ["434 Speed", "28% Crit Rate"]
+    "Stat Bonus": [
+      "434 Speed",
+      "28% Crit Rate"
+    ]
   },
   {
     "Pictos": "Quick Break",
     "Level": 25,
     "Type": "Support",
     "Lumina": "Play again on Breaking a target",
-    "Stat Bonus": ["434 Speed", "28% Crit Rate"]
+    "Stat Bonus": [
+      "434 Speed",
+      "28% Crit Rate"
+    ]
   },
   {
     "Pictos": "Powerful Heal",
     "Level": 25,
     "Type": "Support",
     "Lumina": "Healing an ally also applies Powerful for 1 turn",
-    "Stat Bonus": ["2,162 Health", "434 Speed"]
+    "Stat Bonus": [
+      "2,162 Health",
+      "434 Speed"
+    ]
   },
   {
     "Pictos": "Powerful Shield",
     "Level": 25,
     "Type": "Offensive",
     "Lumina": "10% increased damage per Shield Point on self",
-    "Stat Bonus": ["651 Speed", "14% Crit Rate"]
+    "Stat Bonus": [
+      "651 Speed",
+      "14% Crit Rate"
+    ]
   },
   {
     "Pictos": "Protecting Attack",
     "Level": 25,
     "Type": "Defensive",
     "Lumina": "Gain Shell for 1 turn on Base Attack",
-    "Stat Bonus": ["3,081 Health", "524 Defense"]
+    "Stat Bonus": [
+      "3,081 Health",
+      "524 Defense"
+    ]
   },
   {
     "Pictos": "Charging Mark",
     "Level": 25,
     "Type": "Support",
     "Lumina": "Plus 20% of a Gradient Charge on hitting a Marked target. Once per turn.",
-    "Stat Bonus": ["413 Speed", "27% Crit Rate"]
+    "Stat Bonus": [
+      "413 Speed",
+      "27% Crit Rate"
+    ]
   },
   {
     "Pictos": "Accelerating Tint",
     "Level": 25,
     "Type": "Support",
     "Lumina": "Healing Tints also apply Rush",
-    "Stat Bonus": ["2,162 Health", "434 Speed"]
-  },
-  {
-    "Pictos": "Versatile",
-    "Level": 25,
-    "Type": "Offensive",
-    "Lumina": "After a Free Aim hit, Base Attack damage is increased by 50% for 1 turn",
-    "Stat Bonus": ["651 Speed", "14% Crit Rate"]
-  },
-  {
-    "Pictos": "Critical Burn",
-    "Level": 25,
-    "Type": "Offensive",
-    "Lumina": "25% increased Critical Chance on Burning enemies",
-    "Stat Bonus": ["413 Speed", "27% Crit Rate"]
+    "Stat Bonus": [
+      "2,162 Health",
+      "434 Speed"
+    ]
   },
   {
     "Pictos": "Marking Break",
     "Level": 25,
     "Type": "Support",
     "Lumina": "Apply Mark on Break",
-    "Stat Bonus": ["434 Speed", "28% Crit Rate"]
+    "Stat Bonus": [
+      "434 Speed",
+      "28% Crit Rate"
+    ]
   },
   {
     "Pictos": "Shell on Rush",
     "Level": 25,
     "Type": "Defensive",
     "Lumina": "Apply Shell on applying Rush",
-    "Stat Bonus": ["1,048 Defense", "413 Speed"]
+    "Stat Bonus": [
+      "1,048 Defense",
+      "413 Speed"
+    ]
   },
   {
     "Pictos": "Draining Cleanse",
     "Level": 20,
     "Type": "Support",
     "Lumina": "Consume 1 AP to prevent Status Effects application, if possible",
-    "Stat Bonus": ["2,000 Health", "324 Defense"]
+    "Stat Bonus": [
+      "2,000 Health",
+      "324 Defense"
+    ]
   },
   {
     "Pictos": "Charging Attack",
     "Level": 20,
     "Type": "Support",
     "Lumina": "Plus 15% of a Gradient Charge on Base Attack",
-    "Stat Bonus": ["266 Speed", "22% Crit Rate"]
+    "Stat Bonus": [
+      "266 Speed",
+      "22% Crit Rate"
+    ]
   },
   {
     "Pictos": "Charging Counter",
     "Level": 20,
     "Type": "Support",
     "Lumina": "Plus 10% of a Gradient Charge on Counterattack",
-    "Stat Bonus": ["1,333 Health", "647 Defense"]
+    "Stat Bonus": [
+      "1,333 Health",
+      "647 Defense"
+    ]
   },
   {
     "Pictos": "Protecting Tint",
     "Level": 20,
     "Type": "Defensive",
     "Lumina": "Healing Tints also apply Shell",
-    "Stat Bonus": ["1,403 Health", "681 Defense"]
+    "Stat Bonus": [
+      "1,403 Health",
+      "681 Defense"
+    ]
   },
   {
     "Pictos": "Anti-Blight",
     "Level": 20,
     "Type": "Defensive",
     "Lumina": "Immune to Blight",
-    "Stat Bonus": ["1,333 Health", "647 Defense"]
+    "Stat Bonus": [
+      "1,333 Health",
+      "647 Defense"
+    ]
   },
   {
     "Pictos": "Exposing Break",
     "Level": 20,
     "Type": "Offensive/Support",
     "Lumina": "Apply Defenceless on Break",
-    "Stat Bonus": ["681 Defense", "280 Speed"]
+    "Stat Bonus": [
+      "681 Defense",
+      "280 Speed"
+    ]
   },
   {
     "Pictos": "Charging Weakness",
     "Level": 20,
     "Type": "Support",
     "Lumina": "Plus 15% of a Gradient Charge on hitting a Weakness. Once per turn.",
-    "Stat Bonus": ["280 Speed", "23% Crit Rate"]
+    "Stat Bonus": [
+      "280 Speed",
+      "23% Crit Rate"
+    ]
   },
   {
     "Pictos": "Tainted",
     "Level": 20,
     "Type": "Offensive",
     "Lumina": "15% increased damage for each Status Effect on self",
-    "Stat Bonus": ["1,022 Defense", "12% Against"]
+    "Stat Bonus": [
+      "1,022 Defense",
+      "12% Against"
+    ]
   },
   {
     "Pictos": "Protecting Heal",
     "Level": 20,
     "Type": "Support",
     "Lumina": "Healing an ally also applies Shell for 1 turn",
-    "Stat Bonus": ["1,403 Health", "280 Speed"]
+    "Stat Bonus": [
+      "1,403 Health",
+      "280 Speed"
+    ]
   },
   {
     "Pictos": "Healing Boon",
     "Level": 20,
     "Type": "Defensive",
     "Lumina": "Heal 15% HP on applying a buff",
-    "Stat Bonus": ["647 Defense", "266 Speed"]
+    "Stat Bonus": [
+      "647 Defense",
+      "266 Speed"
+    ]
   },
   {
     "Pictos": "Shortcut",
     "Level": 31,
     "Type": "Support",
     "Lumina": "Immediately play when falling below 30% Health. Once per battle.",
-    "Stat Bonus": ["672 Speed", "36% Crit Rate"]
+    "Stat Bonus": [
+      "672 Speed",
+      "36% Crit Rate"
+    ]
   },
   {
     "Pictos": "Shielding Tint",
     "Level": 9,
     "Type": "Defensive/Support",
     "Lumina": "Healing Tints also add 2 Shields",
-    "Stat Bonus": ["313 Health", "116 Defense"]
-  },
-  {
-    "Pictos": "Greater Defenceless",
-    "Level": 21,
-    "Type": "Offensive",
-    "Lumina": "Plus 15% to Defenceless damage amplification",
-    "Stat Bonus": ["293 Health", "23% Crit Rate"]
+    "Stat Bonus": [
+      "313 Health",
+      "116 Defense"
+    ]
   },
   {
     "Pictos": "Energising Rush",
     "Level": 22,
     "Type": "Support",
     "Lumina": "Give 2 AP on applying Rush",
-    "Stat Bonus": ["801 Defense", "321 Speed"]
+    "Stat Bonus": [
+      "801 Defense",
+      "321 Speed"
+    ]
   },
   {
     "Pictos": "Time Tint",
     "Level": 24,
     "Type": "Support",
     "Lumina": "Energy Tints also apply Rush",
-    "Stat Bonus": ["1,897 Health", "949 Defense"]
+    "Stat Bonus": [
+      "1,897 Health",
+      "949 Defense"
+    ]
   },
   {
     "Pictos": "Charging Critical",
     "Level": 25,
     "Type": "Support",
     "Lumina": "Plus 20% of a Gradient Charge on Critical Hit. Once per turn.",
-    "Stat Bonus": ["1,048 Defense", "27% Crit Rate"]
+    "Stat Bonus": [
+      "1,048 Defense",
+      "27% Crit Rate"
+    ]
   },
   {
     "Pictos": "Critical Weakness",
     "Level": 26,
     "Type": "Offensive",
     "Lumina": "25% increased Critical Chance on Weakness",
-    "Stat Bonus": ["670 Speed", "14% Crit Rate"]
+    "Stat Bonus": [
+      "670 Speed",
+      "14% Crit Rate"
+    ]
   },
   {
     "Pictos": "Rush on Powerful",
     "Level": 29,
     "Type": "Support",
     "Lumina": "Apply Rush on applying Powerful",
-    "Stat Bonus": ["557 Speed", "32% Crit Rate"]
+    "Stat Bonus": [
+      "557 Speed",
+      "32% Crit Rate"
+    ]
   },
   {
     "Pictos": "Greater Powerless",
     "Level": 30,
     "Type": "Defensive",
     "Lumina": "Plus 15% to Powerless damage reduction",
-    "Stat Bonus": ["1,727 Defense", "597 Speed"]
+    "Stat Bonus": [
+      "1,727 Defense",
+      "597 Speed"
+    ]
   },
   {
     "Pictos": "Longer Burn",
     "Level": 27,
     "Type": "Support",
     "Lumina": "Burn duration is increased by 2",
-    "Stat Bonus": ["2,392 Health", "1,292 Defense"]
+    "Stat Bonus": [
+      "2,392 Health",
+      "1,292 Defense"
+    ]
   },
   {
     "Pictos": "Energising Shell",
     "Level": 15,
     "Type": "Support",
     "Lumina": "Give 2 AP on applying Shell",
-    "Stat Bonus": ["319 Defense", "154 Speed"]
+    "Stat Bonus": [
+      "319 Defense",
+      "154 Speed"
+    ]
   },
   {
     "Pictos": "Anti-Stun",
     "Level": 29,
     "Type": "Defensive",
     "Lumina": "Immune to Stun",
-    "Stat Bonus": ["2,757 Health", "1,572 Defense"]
-  },
-  {
-    "Pictos": "Anti-Blight",
-    "Level": 24,
-    "Type": "Defensive",
-    "Lumina": "Immune to Blight",
-    "Stat Bonus": ["1,897 Health", "949 Defense"]
+    "Stat Bonus": [
+      "2,757 Health",
+      "1,572 Defense"
+    ]
   },
   {
     "Pictos": "Breaking Death",
     "Level": 29,
     "Type": "Support",
     "Lumina": "Fully charge enemy's Break Bar on death",
-    "Stat Bonus": ["586 Speed", "33% Crit Rate"]
+    "Stat Bonus": [
+      "586 Speed",
+      "33% Crit Rate"
+    ]
   },
   {
     "Pictos": "Cheater",
     "Level": 24,
     "Type": "Support",
     "Lumina": "Always play twice in a row",
-    "Stat Bonus": ["1,198 Health", "400 Speed"]
+    "Stat Bonus": [
+      "1,198 Health",
+      "400 Speed"
+    ]
   },
   {
     "Pictos": "Energising Gradient",
     "Level": 17,
     "Type": "Support",
     "Lumina": "Plus 1 AP per Gradient Charge consumed",
-    "Stat Bonus": ["293 Speed", "10% Crit Rate"]
+    "Stat Bonus": [
+      "293 Speed",
+      "10% Crit Rate"
+    ]
   },
   {
     "Pictos": "Effective Support",
     "Level": 14,
     "Type": "Support",
     "Lumina": "Plus 2 AP on using an item",
-    "Stat Bonus": ["721 Health", "142 Speed"]
+    "Stat Bonus": [
+      "721 Health",
+      "142 Speed"
+    ]
   },
   {
     "Pictos": "Energy Master",
     "Level": 30,
     "Type": "Support",
     "Lumina": "Every AP gain is increased by 1",
-    "Stat Bonus": ["4,970 Health", "N/A"]
+    "Stat Bonus": [
+      "4,970 Health",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Pro Retreat",
     "Level": 30,
     "Type": "Support",
     "Lumina": "Allows Flee to be instantaneous",
-    "Stat Bonus": ["2,485 Health", "503 Speed"]
+    "Stat Bonus": [
+      "2,485 Health",
+      "503 Speed"
+    ]
   },
   {
     "Pictos": "Energising Burn",
     "Level": 22,
     "Type": "Support",
     "Lumina": "Plus 1 AP on applying Burn. Once per turn.",
-    "Stat Bonus": ["401 Defense", "321 Speed"]
+    "Stat Bonus": [
+      "401 Defense",
+      "321 Speed"
+    ]
   },
   {
     "Pictos": "Anti-Freeze",
     "Level": 21,
     "Type": "Defensive",
     "Lumina": "Immune to Freeze",
-    "Stat Bonus": ["1,464 Health", "733 Defense"]
+    "Stat Bonus": [
+      "1,464 Health",
+      "733 Defense"
+    ]
   },
   {
     "Pictos": "Survivor",
     "Level": 21,
     "Type": "Defensive",
     "Lumina": "Survive fatal damage with 1 Health. Once per battle.",
-    "Stat Bonus": ["439 Speed", "12% Crit Rate"]
+    "Stat Bonus": [
+      "439 Speed",
+      "12% Crit Rate"
+    ]
   },
   {
     "Pictos": "Energising Death",
     "Level": 21,
     "Type": "Support",
     "Lumina": "On death, +4 AP to allies",
-    "Stat Bonus": ["771 Defense", "308 Speed"]
+    "Stat Bonus": [
+      "771 Defense",
+      "308 Speed"
+    ]
   },
   {
     "Pictos": "Greater Rush",
     "Level": 21,
     "Type": "Support",
     "Lumina": "Plus 25% to Rush Speed increase",
-    "Stat Bonus": ["439 Speed", "12% Crit Rate"]
-  },
-  {
-    "Pictos": "Burning Shots",
-    "Level": 21,
-    "Type": "Support",
-    "Lumina": "20% chance to Burn on Free Aim Shot",
-    "Stat Bonus": ["555 Speed", "5% Crit Rate"]
+    "Stat Bonus": [
+      "439 Speed",
+      "12% Crit Rate"
+    ]
   },
   {
     "Pictos": "Energising Powerful",
     "Level": 16,
     "Type": "Support",
     "Lumina": "Give 2 AP on applying Powerful",
-    "Stat Bonus": ["373 Defense", "173 Speed"]
+    "Stat Bonus": [
+      "373 Defense",
+      "173 Speed"
+    ]
   },
   {
     "Pictos": "Charging Stun",
     "Level": 16,
     "Type": "Support",
     "Lumina": "Plus 5% of a Gradient Charge on hitting a Stunned enemy",
-    "Stat Bonus": ["922 Health", "182 Speed"]
+    "Stat Bonus": [
+      "922 Health",
+      "182 Speed"
+    ]
   },
   {
     "Pictos": "Augmented Counter III",
     "Level": 17,
     "Type": "Offensive",
     "Lumina": "75% increased Counterattack damage",
-    "Stat Bonus": ["432 Defense", "19% Crit Rate"]
+    "Stat Bonus": [
+      "432 Defense",
+      "19% Crit Rate"
+    ]
   },
   {
     "Pictos": "Healing Stun",
     "Level": 16,
     "Type": "Defensive",
     "Lumina": "Recover 5% Health on hitting a Stunned target",
-    "Stat Bonus": ["876 Health", "173 Speed"]
+    "Stat Bonus": [
+      "876 Health",
+      "173 Speed"
+    ]
   },
   {
     "Pictos": "Full Strength",
     "Level": 16,
     "Type": "Offensive",
     "Lumina": "25% increased damage on full Health",
-    "Stat Bonus": ["876 Health", "373 Defense"]
+    "Stat Bonus": [
+      "876 Health",
+      "373 Defense"
+    ]
   },
   {
     "Pictos": "Gradient Fighter",
     "Level": 16,
     "Type": "Offensive",
     "Lumina": "25% increased damage with Gradient Attacks",
-    "Stat Bonus": ["182 Speed", "18% Crit Rate"]
+    "Stat Bonus": [
+      "182 Speed",
+      "18% Crit Rate"
+    ]
   },
   {
     "Pictos": "Faster than Strong",
     "Level": 16,
     "Type": "Support",
     "Lumina": "Always play twice in a row, but deal 50% less damage",
-    "Stat Bonus": ["876 Health", "373 Defense"]
+    "Stat Bonus": [
+      "876 Health",
+      "373 Defense"
+    ]
   },
   {
     "Pictos": "Combo Attack II",
     "Level": 29,
     "Type": "Offensive",
     "Lumina": "Base Attack has 1 extra hit",
-    "Stat Bonus": ["836 Speed", "16% Crit Rate"]
+    "Stat Bonus": [
+      "836 Speed",
+      "16% Crit Rate"
+    ]
   },
   {
     "Pictos": "Aegis Revival",
     "Level": 12,
     "Type": "Defensive",
     "Lumina": "Plus 1 Shield on being revived",
-    "Stat Bonus": ["218 Defense", "108 Speed"]
+    "Stat Bonus": [
+      "218 Defense",
+      "108 Speed"
+    ]
   },
   {
     "Pictos": "The One",
     "Level": 31,
     "Type": "Support",
     "Lumina": "Max Health is reduced to 1",
-    "Stat Bonus": ["108% Crit Rate", "N/A"]
+    "Stat Bonus": [
+      "108% Crit Rate",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Energetic Healer",
     "Level": 28,
     "Type": "Support",
     "Lumina": "Plus 2 AP on Healing an ally. Once per turn.",
-    "Stat Bonus": ["1,426 Defense", "519 Speed"]
+    "Stat Bonus": [
+      "1,426 Defense",
+      "519 Speed"
+    ]
   },
   {
     "Pictos": "Energising Stun",
     "Level": 28,
     "Type": "Support",
     "Lumina": "Plus 1 AP on hitting a Stunned target with a Skill",
-    "Stat Bonus": ["519 Speed", "31% Crit Rate"]
+    "Stat Bonus": [
+      "519 Speed",
+      "31% Crit Rate"
+    ]
   },
   {
     "Pictos": "Clea's Life",
     "Level": 30,
     "Type": "Defensive",
     "Lumina": "On turn start, if no damage taken since last turn, recover 100% Health",
-    "Stat Bonus": ["5,591 Health", "N/A"]
+    "Stat Bonus": [
+      "5,591 Health",
+      "N/A"
+    ]
   },
   {
     "Pictos": "Charging Burn",
     "Level": 31,
     "Type": "Support",
     "Lumina": "Plus 20% of a Gradient Charge on applying Burn. Once per turn.",
-    "Stat Bonus": ["3,152 Health", "639 Speed"]
+    "Stat Bonus": [
+      "3,152 Health",
+      "639 Speed"
+    ]
   },
   {
     "Pictos": "Confident Fighter",
     "Level": 11,
     "Type": "Offensive",
     "Lumina": "30% increased damage, but can't be healed",
-    "Stat Bonus": ["222 Health", "20% Crit Rate"]
+    "Stat Bonus": [
+      "222 Health",
+      "20% Crit Rate"
+    ]
   },
   {
     "Pictos": "Healing Fire",
     "Level": 13,
     "Type": "Defensive",
     "Lumina": "Recover 25% Health when attacking a Burning target. Once per turn.",
-    "Stat Bonus": ["240 Defense", "118 Speed"]
+    "Stat Bonus": [
+      "240 Defense",
+      "118 Speed"
+    ]
   },
   {
     "Pictos": "Energising Revive",
     "Level": 8,
     "Type": "Support",
     "Lumina": "Plus 3 AP to all allies when revived",
-    "Stat Bonus": ["270 Health", "96 Defense"]
+    "Stat Bonus": [
+      "270 Health",
+      "96 Defense"
+    ]
   },
   {
     "Pictos": "Revive Paradox",
     "Level": 11,
     "Type": "Support",
     "Lumina": "Play immediately when revived",
-    "Stat Bonus": ["92 Speed", "14% Crit Rate"]
+    "Stat Bonus": [
+      "92 Speed",
+      "14% Crit Rate"
+    ]
   },
   {
     "Pictos": "Revive Tint Energy",
     "Level": 20,
     "Type": "?",
     "Lumina": "Revive Tints also give 3 AP",
-    "Stat Bonus": ["1,333 Health", "647 Defense"]
+    "Stat Bonus": [
+      "1,333 Health",
+      "647 Defense"
+    ]
   },
   {
     "Pictos": "Critical Stun",
     "Level": 20,
     "Type": "?",
     "Lumina": "100% Critical Chance on hitting a Stunned target",
-    "Stat Bonus": ["681 Defense", "23% Crit Rate"]
+    "Stat Bonus": [
+      "681 Defense",
+      "23% Crit Rate"
+    ]
   },
   {
     "Pictos": "Accelerating Shots",
     "Level": 28,
     "Type": "?",
     "Lumina": "20% chance to gain Rush on Free Aim shot",
-    "Stat Bonus": ["4,869 Health", "301 Defense"]
+    "Stat Bonus": [
+      "4,869 Health",
+      "301 Defense"
+    ]
   },
   {
     "Pictos": "Empowering Parry",
     "Level": 28,
     "Type": "?",
     "Lumina": "Each successful Parry increases damage by 5% until end of the following turn. Taking any damage removes this buff",
-    "Stat Bonus": ["546 Speed", "32% Crit Rate"]
+    "Stat Bonus": [
+      "546 Speed",
+      "32% Crit Rate"
+    ]
   },
   {
     "Pictos": "Gradient Breaker",
     "Level": 28,
     "Type": "?",
     "Lumina": "50% increased Break damage with Gradient Attacks",
-    "Stat Bonus": ["546 Speed", "32% Crit Rate"]
+    "Stat Bonus": [
+      "546 Speed",
+      "32% Crit Rate"
+    ]
   },
   {
     "Pictos": "Augmented Counter 1",
     "Level": 31,
     "Type": "?",
     "Lumina": "25% increased Counterattack damage",
-    "Stat Bonus": ["4,727 Health", "18% Crit Rate"]
+    "Stat Bonus": [
+      "4,727 Health",
+      "18% Crit Rate"
+    ]
   },
   {
     "Pictos": "Break Specialist",
     "Level": 28,
     "Type": "?",
     "Lumina": "Break damage is increased by 50%, but base damage is reduced by 20%",
-    "Stat Bonus": ["2,705 Health", "546 Speed"]
+    "Stat Bonus": [
+      "2,705 Health",
+      "546 Speed"
+    ]
   },
   {
     "Pictos": "Slowing Break",
     "Level": 28,
     "Type": "?",
     "Lumina": "Apply Slow on Break",
-    "Stat Bonus": ["1,501 Defense", "546 Speed"]
+    "Stat Bonus": [
+      "1,501 Defense",
+      "546 Speed"
+    ]
   },
   {
     "Pictos": "Energising Parry",
     "Level": 31,
     "Type": "?",
     "Lumina": "+1 AP on successful Parry",
-    "Stat Bonus": ["6,303 Health", "N/A"]
+    "Stat Bonus": [
+      "6,303 Health",
+      "N/A"
+    ]
   }
 ]

@@ -96,6 +96,7 @@ const selectedType = ref('all')
 const sortBy = ref('name') // Default sort by name
 const allPictos = ref<PictoItem[]>([])
 const selectedLevels = ref<Record<string, string>>({})
+const luminaSelectedPictos = ref<string[]>([]) // Array of picto IDs selected for lumina
 
 // Load data on component mount
 onMounted(() => {
@@ -129,6 +130,23 @@ watch(() => window.location.hash, () => {
   // Update the selected levels when the URL hash changes
   selectedLevels.value = decodeStateFromURL();
 });
+
+// Function to handle picto selection for lumina
+const toggleLuminaSelection = (pictoId: string) => {
+  // Check if the picto is already selected for lumina
+  const index = luminaSelectedPictos.value.indexOf(pictoId);
+
+  if (index === -1) {
+    // If not selected, add it to the lumina selection
+    luminaSelectedPictos.value.push(pictoId);
+  } else {
+    // If already selected, remove it from the lumina selection
+    luminaSelectedPictos.value.splice(index, 1);
+  }
+
+  // Log the current lumina selection to the console
+  console.log('Lumina Selected Pictos:', luminaSelectedPictos.value);
+};
 
 // Extract unique types from pictos list
 const pictoTypes = computed(() => {
@@ -277,7 +295,9 @@ const filteredPictos = computed(() => {
         :picto="picto"
         :searchQuery="searchQuery"
         :selectedLevel="selectedLevels[picto.id || '']"
+        :isLuminaSelected="luminaSelectedPictos.includes(picto.id || '')"
         @select-level="handleLevelSelect"
+        @toggle-selection="toggleLuminaSelection"
       />
     </div>
   </div>

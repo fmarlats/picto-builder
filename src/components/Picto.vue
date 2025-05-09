@@ -18,11 +18,13 @@ const props = defineProps<{
   picto: PictoItem;
   searchQuery?: string;
   selectedLevel?: string; // Add prop for selected level
+  isLuminaSelected?: boolean; // Whether this picto is selected for lumina
 }>();
 
 // Define emits
 const emit = defineEmits<{
   'select-level': [pictoId: string, level: string];
+  'toggle-selection': [pictoId: string]; // Event for toggling lumina selection
 }>();
 
 // Compute the border color based on the picto type
@@ -97,12 +99,29 @@ const currentAttributes = computed(() => {
   return levelData ? levelData.attributes : {};
 });
 
+// Function to handle picto selection
+const handleSelection = (event: Event) => {
+  // Stop event propagation to prevent modal from opening when clicking on the card
+  event.stopPropagation();
+  // Emit the toggle-selection event with the picto ID
+  emit('toggle-selection', props.picto.id || '');
+};
+
 // Import necessary Vue functions
 import { computed, ref } from 'vue';
 </script>
 
 <template>
-  <div class="picto-card" :style="{ borderColor: typeColor }">
+  <div
+    class="picto-card"
+    :class="{ 'lumina-selected': isLuminaSelected }"
+    :style="{ borderColor: typeColor }"
+    @click="handleSelection($event)"
+  >
+    <!-- Lumina selection overlay -->
+    <div v-if="isLuminaSelected" class="selection-overlay">
+      <div class="selection-indicator">Lumina Selected</div>
+    </div>
     <div class="picto-header">
       <div class="picto-name-container">
         <div class="picto-name" v-html="highlightMatch(picto.name, searchQuery || '')"></div>
@@ -116,7 +135,7 @@ import { computed, ref } from 'vue';
     <div
       class="picto-footer clickable"
       v-if="picto.attributes && picto.attributes.length > 0"
-      @click="toggleModal"
+      @click.stop="toggleModal"
     >
       <div class="picto-level">
         <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
@@ -136,18 +155,18 @@ import { computed, ref } from 'vue';
     </div>
 
     <!-- Modal for displaying all levels -->
-    <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
+    <div v-if="showModal" class="modal-overlay" @click.self.stop="closeModal">
       <div class="modal-content">
         <div class="modal-header">
           <h3>{{ picto.name }} - Levels</h3>
-          <button class="close-button" @click="closeModal">&times;</button>
+          <button class="close-button" @click.stop="closeModal">&times;</button>
         </div>
         <div class="modal-body">
           <div v-for="(levelData, index) in picto.attributes" :key="index" class="level-section">
             <div
               class="level-row clickable"
               :class="{ 'selected': levelData.level === currentLevel }"
-              @click="selectLevel(levelData.level)"
+              @click.stop="selectLevel(levelData.level)"
             >
               <div class="level-number">Level {{ levelData.level }}</div>
               <div class="level-attributes">
@@ -174,6 +193,16 @@ import { computed, ref } from 'vue';
   flex-direction: column;
   background-color: #222;
   color: #fff;
+  position: relative; /* For absolute positioning of the overlay */
+  cursor: pointer; /* Show pointer cursor to indicate clickability */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+/* Hover effect for the card */
+.picto-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  background-color: #2a2a2a;
 }
 
 .picto-header {
@@ -417,5 +446,42 @@ import { computed, ref } from 'vue';
 
 .level-row.clickable:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Lumina selection styles */
+.picto-card.lumina-selected {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3);
+  background-color: #2d3747; /* Slightly blue-tinted background to distinguish from hover */
+  transform: translateY(-2px); /* Keep the same lift effect as hover */
+}
+
+/* Ensure hover doesn't override the lumina selected state's background */
+.picto-card.lumina-selected:hover {
+  background-color: #2d3747;
+}
+
+.selection-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  border-radius: 2px;
+}
+
+.selection-indicator {
+  background-color: rgba(33, 150, 243, 0.8);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 </style>

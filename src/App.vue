@@ -11,11 +11,14 @@ interface PictoItem {
   Lumina: string;
   "Stat Bonus": string[];
   id?: string; // Optional unique ID
+  isAP?: boolean; // Flag for AP-related pictos
 }
 
 // Create reactive references
 const searchQuery = ref('')
 const selectedType = ref('all')
+const sortBy = ref('name') // Default sort by name
+const showOnlyAP = ref(false) // Filter for AP-related pictos
 const allPictos = ref<PictoItem[]>([])
 
 // Load data on component mount
@@ -51,6 +54,11 @@ const filteredPictos = computed(() => {
   // Start with all pictos
   let result = [...allPictos.value]
 
+  // Apply AP filter if enabled
+  if (showOnlyAP.value) {
+    result = result.filter(picto => picto.isAP === true)
+  }
+
   // Apply type filter
   if (selectedType.value !== 'all') {
     result = result.filter(picto => picto.Type === selectedType.value)
@@ -65,32 +73,74 @@ const filteredPictos = computed(() => {
     )
   }
 
+  // Apply sorting
+  if (sortBy.value === 'name') {
+    // Sort alphabetically by name (A-Z)
+    result.sort((a, b) => a.Pictos.localeCompare(b.Pictos))
+  } else if (sortBy.value === 'name-desc') {
+    // Sort alphabetically by name (Z-A)
+    result.sort((a, b) => b.Pictos.localeCompare(a.Pictos))
+  } else if (sortBy.value === 'level') {
+    // Sort by level (Low-High)
+    result.sort((a, b) => {
+      const levelA = typeof a.Level === 'string' ? parseInt(a.Level) : a.Level
+      const levelB = typeof b.Level === 'string' ? parseInt(b.Level) : b.Level
+      return levelA - levelB
+    })
+  } else if (sortBy.value === 'level-desc') {
+    // Sort by level (High-Low)
+    result.sort((a, b) => {
+      const levelA = typeof a.Level === 'string' ? parseInt(a.Level) : a.Level
+      const levelB = typeof b.Level === 'string' ? parseInt(b.Level) : b.Level
+      return levelB - levelA
+    })
+  }
+
   return result
 })
 </script>
 
 <template>
   <div class="container">
-    <h1 style="color:wheat">Picto & Lumina Builder</h1>
+    <h1>Picto & Lumina Builder</h1>
 
     <div class="filters-container">
       <div class="search-container">
         <input
           type="text"
           v-model="searchQuery"
-          placeholder="Search by name or lumina..."
+          placeholder="Search by name or description..."
           class="search-input"
         />
       </div>
 
-      <div class="type-filter">
-        <label for="type-select">Filter by Type:</label>
-        <select id="type-select" v-model="selectedType" class="type-select">
-          <option value="all">All Types</option>
-          <option v-for="type in pictoTypes.filter(t => t !== 'all')" :key="type" :value="type">
-            {{ type }}
-          </option>
-        </select>
+      <div class="filter-controls">
+        <div class="type-filter">
+          <label for="type-select">Filter by Type:</label>
+          <select id="type-select" v-model="selectedType" class="filter-select">
+            <option value="all">All Types</option>
+            <option v-for="type in pictoTypes.filter(t => t !== 'all')" :key="type" :value="type">
+              {{ type }}
+            </option>
+          </select>
+        </div>
+
+        <div class="sort-filter">
+          <label for="sort-select">Sort by:</label>
+          <select id="sort-select" v-model="sortBy" class="filter-select">
+            <option value="name">Name (A-Z)</option>
+            <option value="name-desc">Name (Z-A)</option>
+            <option value="level">Level (Low-High)</option>
+            <option value="level-desc">Level (High-Low)</option>
+          </select>
+        </div>
+
+        <div class="ap-filter">
+          <label for="ap-checkbox" class="ap-checkbox-label">
+            <input type="checkbox" id="ap-checkbox" v-model="showOnlyAP">
+            <span class="ap-label">Show only AP pictos</span>
+          </label>
+        </div>
       </div>
     </div>
 
@@ -121,10 +171,16 @@ const filteredPictos = computed(() => {
   padding: 20px;
 }
 
+:root {
+  background-color: #222;
+  color: #fff;
+}
+
 h1 {
   text-align: center;
   margin-bottom: 24px;
-  color: #333;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .filters-container {
@@ -147,30 +203,98 @@ h1 {
   width: 100%;
   max-width: 500px;
   padding: 10px 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   border-radius: 4px;
   font-size: 16px;
+  background-color: #333;
+  color: #fff;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.type-filter {
+.search-input::placeholder {
+  color: #aaa;
+}
+
+.search-input:focus {
+  border-color: #666;
+  box-shadow: 0 0 0 2px rgba(100, 100, 100, 0.5);
+}
+
+.filter-controls {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.type-filter, .sort-filter, .ap-filter {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.type-select {
+.type-filter label, .sort-filter label {
+  color: #ddd;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ap-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: #ddd;
+  font-weight: 500;
+}
+
+.ap-checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #ffeb3b;
+}
+
+.ap-label {
+  white-space: nowrap;
+}
+
+.filter-select {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   border-radius: 4px;
   font-size: 16px;
-  background-color: white;
+  background-color: #333;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  min-width: 140px;
+}
+
+.filter-select:hover {
+  background-color: #444;
+  border-color: #555;
+}
+
+.filter-select:focus {
+  border-color: #666;
+  box-shadow: 0 0 0 2px rgba(100, 100, 100, 0.5);
+}
+
+.filter-select option {
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
 }
 
 .results-info {
   text-align: center;
   margin-bottom: 16px;
-  color: #666;
+  color: #aaa;
   font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .pictos-grid {
@@ -197,12 +321,19 @@ h1 {
     min-width: auto;
   }
 
-  .type-filter {
+  .filter-controls {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
   }
 
-  .type-select {
+  .type-filter, .sort-filter {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .filter-select {
     width: 100%;
   }
 

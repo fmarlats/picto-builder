@@ -193,9 +193,10 @@ const filteredPictos = computed(() => {
   padding: 20px;
 }
 
-:root {
-  background-color: #222;
-  color: #fff;
+/* Ensure dark background */
+:root, html, body {
+  background-color: #222 !important;
+  color: #fff !important;
 }
 
 h1 {

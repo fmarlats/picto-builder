@@ -180,7 +180,7 @@ import { computed, ref } from 'vue';
 
 .picto-effect {
   margin: 3px 0;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   flex-grow: 1;
   color: #ddd;
 }

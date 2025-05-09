@@ -61,10 +61,32 @@ const highlightMatch = (text: string, query: string) => {
 
 // State for modal visibility
 const showModal = ref(false);
+// Flag to track if modal interaction is happening
+const isModalInteraction = ref(false);
 
 // Function to toggle modal visibility
-const toggleModal = () => {
+const toggleModal = (event?: Event) => {
+  // If an event was provided, stop it completely
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  // Set the modal interaction flag to prevent card selection
+  isModalInteraction.value = true;
+
+  // Toggle the modal
   showModal.value = !showModal.value;
+
+  // Trigger haptic feedback for modal toggle
+  hapticFeedback.patternVibration();
+
+  // Reset the flag after a short delay
+  setTimeout(() => {
+    isModalInteraction.value = false;
+  }, 300);
+
+  console.log('Modal toggled for:', props.picto.name);
 };
 
 // Function to close the modal
@@ -76,6 +98,10 @@ const closeModal = () => {
 const selectLevel = (level: string) => {
   // Emit event to parent component with picto ID and selected level
   emit('select-level', props.picto.id || '', level);
+
+  // Trigger haptic feedback for level selection
+  hapticFeedback.shortVibration();
+
   // Close the modal after selection
   closeModal();
 };
@@ -107,7 +133,7 @@ const longPressDelay = 200; // milliseconds to wait before treating as long pres
 const isLongPress = ref(false);
 const isPressing = ref(false); // Track if user is currently pressing
 
-// Function to handle mouse/touch down - start timer for long press
+// Function to handle mouse down - start timer for long press
 const handleMouseDown = (event: Event) => {
   // Stop event propagation
   event.stopPropagation();
@@ -125,13 +151,45 @@ const handleMouseDown = (event: Event) => {
     emit('toggle-picto-selection', props.picto.id || '');
     pressTimer.value = null;
 
+    // Trigger haptic feedback for picto selection
+    hapticFeedback.mediumVibration();
+
     // Keep pressing state active for visual feedback
     isPressing.value = false;
   }, longPressDelay);
 };
 
-// Alias for touch start - same behavior as mouse down
-const handleTouchStart = handleMouseDown;
+// Specific handler for touch start events
+const handleTouchStart = (event: TouchEvent) => {
+  // Prevent default to avoid any browser handling that might interfere
+  event.preventDefault();
+
+  // Stop event propagation
+  event.stopPropagation();
+
+  // Set pressing state for visual feedback
+  isPressing.value = true;
+
+  // Reset long press flag
+  isLongPress.value = false;
+
+  // Start timer for long press
+  pressTimer.value = window.setTimeout(() => {
+    // This is a long press
+    isLongPress.value = true;
+    emit('toggle-picto-selection', props.picto.id || '');
+    pressTimer.value = null;
+
+    // Trigger haptic feedback for picto selection
+    hapticFeedback.mediumVibration();
+
+    // Keep pressing state active for visual feedback
+    isPressing.value = false;
+  }, longPressDelay);
+
+  // Log for debugging
+  console.log('Touch start on picto:', props.picto.name);
+};
 
 // Function to handle mouse up - either trigger click or cancel long press
 const handleMouseUp = (event: Event) => {
@@ -147,20 +205,62 @@ const handleMouseUp = (event: Event) => {
     pressTimer.value = null;
   }
 
-  // If it wasn't a long press, treat as a normal click
-  if (!isLongPress.value) {
+  // If it wasn't a long press and not a modal interaction, treat as a normal click
+  if (!isLongPress.value && !isModalInteraction.value) {
     emit('toggle-selection', props.picto.id || '');
+    // Trigger haptic feedback for lumina selection
+    hapticFeedback.shortVibration();
   }
 
   // Reset long press flag
   isLongPress.value = false;
 };
 
-// Alias for touch end - same behavior as mouse up
-const handleTouchEnd = handleMouseUp;
+// Specific handler for touch end events
+const handleTouchEnd = (event: TouchEvent) => {
+  // Prevent default to avoid any browser handling that might interfere
+  event.preventDefault();
 
-// Function to handle touch cancel - same as mouse leave
-const handleTouchCancel = () => {
+  // Stop event propagation
+  event.stopPropagation();
+
+  // Reset pressing state
+  isPressing.value = false;
+
+  // Store the current long press state
+  const wasLongPress = isLongPress.value;
+  // Store the current modal interaction state
+  const wasModalInteraction = isModalInteraction.value;
+
+  // Use a small delay to ensure the event is processed correctly
+  setTimeout(() => {
+    // Clear the timer
+    if (pressTimer.value !== null) {
+      clearTimeout(pressTimer.value);
+      pressTimer.value = null;
+    }
+
+    // If it wasn't a long press and not a modal interaction, treat as a normal click
+    if (!wasLongPress && !wasModalInteraction) {
+      emit('toggle-selection', props.picto.id || '');
+      // Trigger haptic feedback for lumina selection
+      hapticFeedback.shortVibration();
+      console.log('Lumina selection toggled for:', props.picto.name);
+    }
+
+    // Reset long press flag
+    isLongPress.value = false;
+  }, 10); // Small delay to ensure proper event handling
+
+  // Log for debugging
+  console.log('Touch end on picto:', props.picto.name, 'Long press:', wasLongPress, 'Modal interaction:', wasModalInteraction);
+};
+
+// Function to handle touch cancel
+const handleTouchCancel = (event: TouchEvent) => {
+  // Prevent default
+  event.preventDefault();
+
   // Reset pressing state
   isPressing.value = false;
 
@@ -172,10 +272,16 @@ const handleTouchCancel = () => {
 
   // Reset long press flag
   isLongPress.value = false;
+
+  // Log for debugging
+  console.log('Touch cancelled on picto:', props.picto.name);
 };
 
 // Function to handle mouse leave - cancel long press
-const handleMouseLeave = () => {
+const handleMouseLeave = (event: Event) => {
+  // Stop event propagation
+  event.stopPropagation();
+
   // Reset pressing state
   isPressing.value = false;
 
@@ -191,6 +297,35 @@ const handleMouseLeave = () => {
 
 // Import necessary Vue functions
 import { computed, ref } from 'vue';
+
+// Haptic feedback utility
+const hapticFeedback = {
+  // Check if vibration is supported
+  isSupported: () => {
+    return 'vibrate' in navigator;
+  },
+
+  // Short vibration for simple selection (lumina)
+  shortVibration: () => {
+    if (hapticFeedback.isSupported()) {
+      navigator.vibrate(40);
+    }
+  },
+
+  // Medium vibration for picto selection (long press)
+  mediumVibration: () => {
+    if (hapticFeedback.isSupported()) {
+      navigator.vibrate(80);
+    }
+  },
+
+  // Pattern vibration for modal opening
+  patternVibration: () => {
+    if (hapticFeedback.isSupported()) {
+      navigator.vibrate([20, 30, 20]);
+    }
+  }
+};
 </script>
 
 <template>
@@ -204,10 +339,10 @@ import { computed, ref } from 'vue';
     :style="{ borderColor: typeColor }"
     @mousedown="handleMouseDown($event)"
     @mouseup="handleMouseUp($event)"
-    @mouseleave="handleMouseLeave()"
+    @mouseleave="handleMouseLeave($event)"
     @touchstart="handleTouchStart($event)"
     @touchend="handleTouchEnd($event)"
-    @touchcancel="handleTouchCancel()"
+    @touchcancel="handleTouchCancel($event)"
   >
     <!-- Selection overlays -->
     <div v-if="isPictoSelected" class="selection-overlay picto-selection-overlay">
@@ -227,9 +362,10 @@ import { computed, ref } from 'vue';
     </div>
     <div class="picto-effect" v-html="highlightMatch(picto.effect, searchQuery || '')"></div>
     <div
-      class="picto-footer clickable"
+      class="picto-footer clickable modal-trigger"
       v-if="picto.attributes && picto.attributes.length > 0"
-      @click.stop="toggleModal"
+      @click.stop.prevent="toggleModal($event)"
+      @touchstart.stop.prevent="toggleModal($event)"
     >
       <div class="picto-level">
         <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
@@ -292,6 +428,8 @@ import { computed, ref } from 'vue';
   position: relative; /* For absolute positioning of the overlay */
   cursor: pointer; /* Show pointer cursor to indicate clickability */
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  touch-action: manipulation; /* Improve touch handling on mobile */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
 /* Hover effect for the card */
@@ -359,8 +497,23 @@ import { computed, ref } from 'vue';
   margin-top: 3px;
   display: flex;
   justify-content: space-between;
-  border-top: 1px dotted #444;
+  border-top: 1px solid #444;
   padding-top: 3px;
+  position: relative;
+}
+
+/* Add a visual indicator that this is a separate clickable area */
+.picto-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background-color: #555;
+  border-radius: 1.5px;
+  margin-top: -1px;
 }
 
 .clickable {
@@ -370,6 +523,16 @@ import { computed, ref } from 'vue';
 
 .clickable:hover {
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Special styling for the modal trigger */
+.modal-trigger {
+  position: relative;
+  z-index: 5; /* Higher than the card but lower than the overlay */
+}
+
+.modal-trigger:active {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .picto-level {
@@ -624,5 +787,36 @@ import { computed, ref } from 'vue';
 
 .picto-indicator {
   background-color: rgba(76, 175, 80, 0.8); /* Green for picto */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .picto-card {
+    /* Increase touch target size on mobile */
+    padding: 8px;
+    /* Ensure no text selection on mobile */
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* Make the effect text slightly smaller on mobile */
+  .picto-effect {
+    font-size: 1rem;
+  }
+
+  /* Ensure the footer is clearly tappable */
+  .picto-footer.clickable {
+    padding: 8px 0 4px;
+    margin-top: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 0 0 3px 3px;
+  }
+
+  /* Make the footer indicator more visible on mobile */
+  .picto-footer::before {
+    width: 40px;
+    height: 4px;
+    background-color: #666;
+  }
 }
 </style>

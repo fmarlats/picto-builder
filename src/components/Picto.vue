@@ -132,6 +132,7 @@ const pressTimer = ref<number | null>(null);
 const longPressDelay = 200; // milliseconds to wait before treating as long press
 const isLongPress = ref(false);
 const isPressing = ref(false); // Track if user is currently pressing
+const isDragging = ref(false);
 
 // Function to handle mouse down - start timer for long press
 const handleMouseDown = (event: Event) => {
@@ -162,16 +163,18 @@ const handleMouseDown = (event: Event) => {
 // Specific handler for touch start events
 const handleTouchStart = (event: TouchEvent) => {
   // Prevent default to avoid any browser handling that might interfere
-  event.preventDefault();
+  // event.preventDefault();
 
   // Stop event propagation
-  event.stopPropagation();
+  // event.stopPropagation();
 
   // Set pressing state for visual feedback
   isPressing.value = true;
 
   // Reset long press flag
   isLongPress.value = false;
+
+  isDragging.value = false;
 
   // Start timer for long press
   pressTimer.value = window.setTimeout(() => {
@@ -189,6 +192,20 @@ const handleTouchStart = (event: TouchEvent) => {
 
   // Log for debugging
   console.log('Touch start on picto:', props.picto.name);
+};
+
+const handleTouchMove = (event: TouchEvent) => {
+  // Prevent default to avoid any browser handling that might interfere
+  // event.preventDefault();
+
+  // // Stop event propagation
+  // event.stopPropagation();
+
+  // Set dragging state
+  isDragging.value = true;
+
+  // Log for debugging
+  console.log('Touch move on picto:', props.picto.name);
 };
 
 // Function to handle mouse up - either trigger click or cancel long press
@@ -232,8 +249,6 @@ const handleTouchEnd = (event: TouchEvent) => {
   // Store the current modal interaction state
   const wasModalInteraction = isModalInteraction.value;
 
-  // Use a small delay to ensure the event is processed correctly
-  setTimeout(() => {
     // Clear the timer
     if (pressTimer.value !== null) {
       clearTimeout(pressTimer.value);
@@ -241,7 +256,7 @@ const handleTouchEnd = (event: TouchEvent) => {
     }
 
     // If it wasn't a long press and not a modal interaction, treat as a normal click
-    if (!wasLongPress && !wasModalInteraction) {
+    if (!wasLongPress && !wasModalInteraction && !isDragging.value) {
       emit('toggle-selection', props.picto.id || '');
       // Trigger haptic feedback for lumina selection
       hapticFeedback.shortVibration();
@@ -250,7 +265,6 @@ const handleTouchEnd = (event: TouchEvent) => {
 
     // Reset long press flag
     isLongPress.value = false;
-  }, 10); // Small delay to ensure proper event handling
 
   // Log for debugging
   console.log('Touch end on picto:', props.picto.name, 'Long press:', wasLongPress, 'Modal interaction:', wasModalInteraction);
@@ -341,6 +355,7 @@ const hapticFeedback = {
     @mouseup="handleMouseUp($event)"
     @mouseleave="handleMouseLeave($event)"
     @touchstart="handleTouchStart($event)"
+    @touchmove="handleTouchMove($event)"
     @touchend="handleTouchEnd($event)"
     @touchcancel="handleTouchCancel($event)"
   >

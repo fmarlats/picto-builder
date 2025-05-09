@@ -12,6 +12,7 @@ interface AppState {
   selectedLevels: Record<string, string>;
   luminaSelectedPictos: string[];
   pictoSelectedPictos: string[];
+  comment?: string; // Optional comment about the build
 }
 
 /**
@@ -23,8 +24,9 @@ const encodeStateToURL = (state: AppState): string => {
   const hasLevels = Object.keys(state.selectedLevels).length > 0;
   const hasLuminaSelected = state.luminaSelectedPictos.length > 0;
   const hasPictoSelected = state.pictoSelectedPictos.length > 0;
+  const hasComment = state.comment && state.comment.trim() !== '';
 
-  if (!hasLevels && !hasLuminaSelected && !hasPictoSelected) {
+  if (!hasLevels && !hasLuminaSelected && !hasPictoSelected && !hasComment) {
     return '';
   }
 
@@ -56,6 +58,11 @@ const encodeStateToURL = (state: AppState): string => {
     }).join(',');
   }
 
+  // Add comment if any
+  if (hasComment) {
+    stateObj.c = state.comment;
+  }
+
   // Convert to JSON and then to base64
   return btoa(JSON.stringify(stateObj));
 };
@@ -68,7 +75,8 @@ const decodeStateFromURL = (): AppState => {
   const emptyState: AppState = {
     selectedLevels: {},
     luminaSelectedPictos: [],
-    pictoSelectedPictos: []
+    pictoSelectedPictos: [],
+    comment: ''
   };
 
   // Get the current URL hash (without the # symbol)
@@ -115,6 +123,11 @@ const decodeStateFromURL = (): AppState => {
       );
     }
 
+    // Parse comment if present
+    if (stateObj.c) {
+      result.comment = stateObj.c;
+    }
+
     return result;
   } catch (error) {
     console.error('Error decoding state from URL:', error);
@@ -158,6 +171,7 @@ const luminaSelectedPictos = ref<string[]>([]) // Array of picto IDs selected fo
 const pictoSelectedPictos = ref<string[]>([]) // Array of picto IDs selected as pictos
 const isPanelVisible = ref(false) // Track if the side panel is visible on mobile
 const showOnlySelected = ref(false) // Track if we should show only selected elements
+const comment = ref('') // Comment about the build
 
 // Function to toggle the panel visibility
 const togglePanelVisibility = () => {
@@ -169,7 +183,8 @@ const saveStateToURL = () => {
   const state: AppState = {
     selectedLevels: selectedLevels.value,
     luminaSelectedPictos: luminaSelectedPictos.value,
-    pictoSelectedPictos: pictoSelectedPictos.value
+    pictoSelectedPictos: pictoSelectedPictos.value,
+    comment: comment.value
   };
   updateURL(state);
 };
@@ -183,11 +198,20 @@ const resetAll = () => {
   luminaSelectedPictos.value = [];
   pictoSelectedPictos.value = [];
 
+  // Clear comment
+  comment.value = '';
+
   // Update the URL to reflect the empty state
   saveStateToURL();
 
   // Log the reset action
-  console.log('All selections and levels have been reset');
+  console.log('All selections, levels, and comments have been reset');
+};
+
+// Function to update the comment
+const updateComment = (newComment: string) => {
+  comment.value = newComment;
+  saveStateToURL();
 };
 
 // Load data on component mount
@@ -206,6 +230,7 @@ onMounted(() => {
   selectedLevels.value = savedState.selectedLevels;
   luminaSelectedPictos.value = savedState.luminaSelectedPictos;
   pictoSelectedPictos.value = savedState.pictoSelectedPictos;
+  comment.value = savedState.comment || '';
 })
 
 // Function to handle level selection from a picto
@@ -227,6 +252,7 @@ watch(() => window.location.hash, () => {
   selectedLevels.value = savedState.selectedLevels;
   luminaSelectedPictos.value = savedState.luminaSelectedPictos;
   pictoSelectedPictos.value = savedState.pictoSelectedPictos;
+  comment.value = savedState.comment || '';
 });
 
 // Function to handle picto selection for lumina
@@ -477,7 +503,9 @@ const filteredPictos = computed(() => {
           :pictoSelectedPictos="pictoSelectedPictos"
           :luminaSelectedPictos="luminaSelectedPictos"
           :selectedLevels="selectedLevels"
+          :comment="comment"
           @reset-all="resetAll"
+          @update-comment="updateComment"
         />
       </div>
     </div>

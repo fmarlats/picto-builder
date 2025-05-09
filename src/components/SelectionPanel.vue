@@ -43,10 +43,11 @@ const props = defineProps<{
   pictoSelectedPictos: string[];
   luminaSelectedPictos: string[];
   selectedLevels: Record<string, string>;
+  comment?: string;
 }>();
 
 // Define emits
-const emit = defineEmits(['reset-all']);
+const emit = defineEmits(['reset-all', 'update-comment']);
 
 // Reset button state
 const isResetting = ref(false);
@@ -214,11 +215,38 @@ const getPictoLevel = (picto: PictoItem) => {
   return props.selectedLevels[picto.id || ''] ||
     picto.attributes[picto.attributes.length - 1].level;
 };
+
+// Comment modal state
+const showCommentModal = ref(false);
+const commentText = ref('');
+
+// Function to open the comment modal
+const openCommentModal = () => {
+  commentText.value = props.comment || '';
+  showCommentModal.value = true;
+
+  // Provide haptic feedback
+  hapticFeedback.progressVibration();
+};
+
+// Function to close the comment modal
+const closeCommentModal = () => {
+  showCommentModal.value = false;
+};
+
+// Function to save the comment
+const saveComment = () => {
+  emit('update-comment', commentText.value);
+  closeCommentModal();
+
+  // Provide haptic feedback for save action
+  hapticFeedback.strongVibration();
+};
 </script>
 
 <template>
   <div class="selection-panel">
-    <div class="reset-container">
+    <div class="buttons-container">
       <button
         class="reset-button"
         :class="{ 'resetting': isResetting, 'reset-complete': isResetComplete }"
@@ -237,6 +265,15 @@ const getPictoLevel = (picto: PictoItem) => {
           <span>{{ isResetting ? 'Hold to Reset...' : 'Reset All Selections' }}</span>
         </div>
         <div class="reset-progress" :style="{ width: resetProgress + '%' }"></div>
+      </button>
+
+      <button class="comment-button" @click="openCommentModal">
+        <div class="comment-button-content">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+          <span>{{ props.comment ? 'Edit Comment' : 'Add Comment' }}</span>
+        </div>
       </button>
     </div>
     <!-- Picto Selected Section -->
@@ -314,6 +351,29 @@ const getPictoLevel = (picto: PictoItem) => {
         </div>
       </div>
     </div>
+
+    <!-- Comment Modal -->
+    <teleport to="body">
+      <div v-if="showCommentModal" class="modal-overlay" @click.self="closeCommentModal">
+        <div class="comment-modal">
+          <div class="modal-header">
+            <h3>Add Comment</h3>
+            <button class="close-button" @click="closeCommentModal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <textarea
+              v-model="commentText"
+              class="comment-textarea"
+              placeholder="Which character is it for... which weapon to use..."
+              rows="5"
+            ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button class="save-button" @click="saveComment">Save</button>
+          </div>
+        </div>
+      </div>
+    </teleport>
   </div>
 </template>
 
@@ -329,10 +389,11 @@ const getPictoLevel = (picto: PictoItem) => {
   flex: 1;
 }
 
-.reset-container {
+.buttons-container {
   display: flex;
-  justify-content: center;
-  margin-bottom: 8px;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .reset-button {
@@ -361,7 +422,33 @@ const getPictoLevel = (picto: PictoItem) => {
   -webkit-tap-highlight-color: transparent;
 }
 
-.reset-button-content {
+.comment-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  overflow: hidden;
+  height: 40px;
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.reset-button-content, .comment-button-content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -395,28 +482,33 @@ const getPictoLevel = (picto: PictoItem) => {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
+.comment-button:hover {
+  background-color: #1976d2;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
 .reset-button.resetting {
   background-color: #c62828;
 }
 
 /* No visual change for reset-complete state */
 
-.reset-button:active {
+.reset-button:active, .comment-button:active {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Mobile-specific styles */
 @media (max-width: 768px) {
-  .reset-button {
+  .reset-button, .comment-button {
     height: 48px; /* Larger touch target on mobile */
     font-size: 16px;
   }
 
-  .reset-button-content {
+  .reset-button-content, .comment-button-content {
     gap: 8px;
   }
 
-  .reset-button-content svg {
+  .reset-button-content svg, .comment-button-content svg {
     width: 18px;
     height: 18px;
   }
@@ -619,6 +711,118 @@ const getPictoLevel = (picto: PictoItem) => {
 
 .selection-panel::-webkit-scrollbar-thumb:hover {
   background: #666;
+}
+
+/* Comment Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.comment-modal {
+  background-color: #333;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid #555;
+  animation: modal-appear 0.2s ease-out;
+  overflow: hidden;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #444;
+  background-color: #2a2a2a;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.close-button:hover {
+  color: #fff;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.comment-textarea {
+  width: 100%;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  padding: 16px;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.comment-textarea:focus {
+  outline: none;
+  background-color: #1e1e1e;
+}
+
+.modal-footer {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #444;
+  background-color: #2a2a2a;
+}
+
+.save-button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-button:hover {
+  background-color: #1976d2;
 }
 
 </style>

@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import pictosList from './assets/pictos_list.json'
 import Picto from './components/Picto.vue'
+import SelectionPanel from './components/SelectionPanel.vue'
 
 // URL handling utilities with compact encoding
 
@@ -209,18 +210,23 @@ const toggleLuminaSelection = (pictoId: string) => {
   // Check if the picto is already selected for lumina
   const index = luminaSelectedPictos.value.indexOf(pictoId);
 
+  // Check if the picto is in the picto selected list
+  const pictoIndex = pictoSelectedPictos.value.indexOf(pictoId);
+
+  // If it's in the picto list, unselect it from the picto list
+  if (pictoIndex !== -1) {
+    pictoSelectedPictos.value.splice(pictoIndex, 1);
+    // Save state to URL
+    saveStateToURL();
+    return;
+  }
+
   if (index === -1) {
     // If not selected, add it to the lumina selection
     luminaSelectedPictos.value.push(pictoId);
   } else {
     // If already selected, remove it from the lumina selection
     luminaSelectedPictos.value.splice(index, 1);
-
-    // If this picto was also picto-selected, remove it from that list too
-    const pictoIndex = pictoSelectedPictos.value.indexOf(pictoId);
-    if (pictoIndex !== -1) {
-      pictoSelectedPictos.value.splice(pictoIndex, 1);
-    }
   }
 
   // Log the current selections to the console
@@ -236,23 +242,20 @@ const togglePictoSelection = (pictoId: string) => {
   // Check if the picto is already selected as a picto
   const index = pictoSelectedPictos.value.indexOf(pictoId);
 
+  // Check if the picto is in the lumina selected list
+  const luminaIndex = luminaSelectedPictos.value.indexOf(pictoId);
+
   if (index === -1) {
     // If not selected, add it to the picto selection
     pictoSelectedPictos.value.push(pictoId);
 
-    // Also add to lumina selection if not already there
-    if (!luminaSelectedPictos.value.includes(pictoId)) {
-      luminaSelectedPictos.value.push(pictoId);
-    }
-  } else {
-    // If already selected, remove it from both selections
-    pictoSelectedPictos.value.splice(index, 1);
-
-    // Also remove from lumina selection
-    const luminaIndex = luminaSelectedPictos.value.indexOf(pictoId);
+    // If it was in the lumina list, remove it
     if (luminaIndex !== -1) {
       luminaSelectedPictos.value.splice(luminaIndex, 1);
     }
+  } else {
+    // If already selected, remove it from the picto selection
+    pictoSelectedPictos.value.splice(index, 1);
   }
 
   // Log the current selections to the console
@@ -389,8 +392,6 @@ const filteredPictos = computed(() => {
             <option value="level-desc">Level (High-Low)</option>
           </select>
         </div>
-
-
       </div>
     </div>
 
@@ -403,26 +404,37 @@ const filteredPictos = computed(() => {
       </span>
     </div>
 
-    <div class="pictos-grid">
-      <Picto
-        v-for="picto in filteredPictos"
-        :key="picto.id"
-        :picto="picto"
-        :searchQuery="searchQuery"
-        :selectedLevel="selectedLevels[picto.id || '']"
-        :isLuminaSelected="luminaSelectedPictos.includes(picto.id || '')"
-        :isPictoSelected="pictoSelectedPictos.includes(picto.id || '')"
-        @select-level="handleLevelSelect"
-        @toggle-selection="toggleLuminaSelection"
-        @toggle-picto-selection="togglePictoSelection"
-      />
+    <div class="main-content">
+      <div class="pictos-grid">
+        <Picto
+          v-for="picto in filteredPictos"
+          :key="picto.id"
+          :picto="picto"
+          :searchQuery="searchQuery"
+          :selectedLevel="selectedLevels[picto.id || '']"
+          :isLuminaSelected="luminaSelectedPictos.includes(picto.id || '')"
+          :isPictoSelected="pictoSelectedPictos.includes(picto.id || '')"
+          @select-level="handleLevelSelect"
+          @toggle-selection="toggleLuminaSelection"
+          @toggle-picto-selection="togglePictoSelection"
+        />
+      </div>
+
+      <div class="selection-panel-container">
+        <SelectionPanel
+          :allPictos="allPictos"
+          :pictoSelectedPictos="pictoSelectedPictos"
+          :luminaSelectedPictos="luminaSelectedPictos"
+          :selectedLevels="selectedLevels"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -536,17 +548,54 @@ h1 {
   font-weight: 500;
 }
 
+.main-content {
+  display: flex;
+  gap: 24px;
+}
+
 .pictos-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 8px;
   row-gap: 28px;
+  flex: 1;
 }
 
-@media (max-width: 1024px) {
+.selection-panel-container {
+  width: 320px;
+  min-width: 320px;
+  max-height: calc(100vh - 180px);
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1200px) {
   .pictos-grid {
     grid-template-columns: repeat(3, 1fr);
     row-gap: 28px;
+  }
+
+  .selection-panel-container {
+    width: 280px;
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+  }
+
+  .selection-panel-container {
+    width: 100%;
+    min-width: 100%;
+    max-height: none;
+    position: static;
+    margin-top: 30px;
+    border-top: 1px solid #444;
+    padding-top: 20px;
   }
 }
 

@@ -64,8 +64,19 @@ import { computed } from 'vue';
       </div>
     </div>
     <div class="picto-effect" v-html="highlightMatch(picto.effect, searchQuery || '')"></div>
-    <div class="picto-level" v-if="picto.attributes && picto.attributes.length > 0">
-      Level {{ picto.attributes[picto.attributes.length - 1].level }}
+    <div class="picto-footer" v-if="picto.attributes && picto.attributes.length > 0">
+      <div class="picto-level">
+        Level {{ picto.attributes[picto.attributes.length - 1].level }}
+      </div>
+      <div class="picto-attributes">
+        <span
+          v-for="(value, key) in picto.attributes[picto.attributes.length - 1].attributes"
+          :key="key"
+          class="attribute-item"
+        >
+          <span class="attribute-name">{{ key }}:</span> {{ value }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -73,6 +84,7 @@ import { computed } from 'vue';
 <style scoped>
 .picto-card {
   border: 4px solid;
+  border-radius: 5px;
   padding: 6px;
   height: 100%;
   font-size: 0.85rem;
@@ -131,13 +143,43 @@ import { computed } from 'vue';
   color: #ddd;
 }
 
-.picto-level {
+.picto-footer {
   margin-top: 3px;
-  font-size: 0.8rem;
-  color: #bbb;
+  display: flex;
+  justify-content: space-between;
   border-top: 1px dotted #444;
   padding-top: 3px;
+}
+
+.picto-level {
+  font-size: 0.8rem;
+  color: #bbb;
+  text-align: left;
+  font-weight: bold;
+}
+
+.picto-attributes {
+  font-size: 0.75rem;
+  color: #aaa;
   text-align: right;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
+  max-width: 70%;
+}
+
+.attribute-item {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1px 4px;
+  border-radius: 3px;
+  margin-left: 2px;
+}
+
+.attribute-name {
+  font-weight: bold;
+  color: #ccc;
 }
 
 :deep(.highlight) {

@@ -249,30 +249,32 @@ import { computed, ref } from 'vue';
     </div>
 
     <!-- Modal for displaying all levels -->
-    <div v-if="showModal" class="modal-overlay" @click.self.stop="closeModal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>{{ picto.name }} - Levels</h3>
-          <button class="close-button" @click.stop="closeModal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div v-for="(levelData, index) in picto.attributes" :key="index" class="level-section">
-            <div
-              class="level-row clickable"
-              :class="{ 'selected': levelData.level === currentLevel }"
-              @click.stop="selectLevel(levelData.level)"
-            >
-              <div class="level-number">Level {{ levelData.level }}</div>
-              <div class="level-attributes">
-                <div v-for="(value, key) in levelData.attributes" :key="key" class="level-attribute-item">
-                  <span class="attribute-name">{{ key }}:</span> {{ value }}
+    <teleport to="body">
+      <div v-if="showModal" class="modal-overlay" @click.self.stop="closeModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>{{ picto.name }} - Levels</h3>
+            <button class="close-button" @click.stop="closeModal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div v-for="(levelData, index) in picto.attributes" :key="index" class="level-section">
+              <div
+                class="level-row clickable"
+                :class="{ 'selected': levelData.level === currentLevel }"
+                @click.stop="selectLevel(levelData.level)"
+              >
+                <div class="level-number">Level {{ levelData.level }}</div>
+                <div class="level-attributes">
+                  <div v-for="(value, key) in levelData.attributes" :key="key" class="level-attribute-item">
+                    <span class="attribute-name">{{ key }}:</span> {{ value }}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </teleport>
   </div>
 </template>
 
@@ -433,18 +435,30 @@ import { computed, ref } from 'vue';
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .modal-content {
   background-color: #333;
   border-radius: 8px;
   width: 90%;
-  max-width: 500px;
+  max-width: 600px;
   max-height: 80vh;
   overflow-y: auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   border: 1px solid #555;
+  animation: modal-appear 0.2s ease-out;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .modal-header {
@@ -479,12 +493,14 @@ import { computed, ref } from 'vue';
 }
 
 .modal-body {
-  padding: 8px;
+  padding: 16px;
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
 .level-section {
-  margin-bottom: 8px;
-  padding-bottom: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
   border-bottom: 1px solid #444;
 }
 
@@ -496,16 +512,19 @@ import { computed, ref } from 'vue';
 
 .level-row {
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 6px;
 }
 
 .level-number {
   font-weight: bold;
   font-size: 1rem;
   color: #fff;
-  min-width: 80px;
-  padding: 4px 8px;
+  min-width: 90px;
+  padding: 6px 10px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
   text-align: center;
@@ -520,26 +539,28 @@ import { computed, ref } from 'vue';
 
 .level-attribute-item {
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 4px 8px;
+  padding: 6px 10px;
   border-radius: 4px;
   font-size: 0.9rem;
 }
 
 /* Selected level styles */
 .level-row.selected {
-  background-color: rgba(33, 150, 243, 0.2);
-  border-radius: 4px;
+  background-color: rgba(33, 150, 243, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(33, 150, 243, 0.5);
 }
 
 .level-row.clickable {
   cursor: pointer;
-  transition: background-color 0.2s;
-  padding: 4px;
-  border-radius: 4px;
+  transition: all 0.2s ease;
+  border-radius: 6px;
 }
 
 .level-row.clickable:hover {
   background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Lumina selection styles */

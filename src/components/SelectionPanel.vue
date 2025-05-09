@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 // Define the props for the component
 interface PictoItem {
@@ -22,6 +22,67 @@ const props = defineProps<{
   luminaSelectedPictos: string[];
   selectedLevels: Record<string, string>;
 }>();
+
+// Define emits
+const emit = defineEmits(['reset-all']);
+
+// Reset button state
+const isResetting = ref(false);
+const resetProgress = ref(0);
+const resetTimer = ref<number | null>(null);
+const resetDuration = 500; // milliseconds
+const resetInterval = 10; // update progress every 10ms
+
+// Function to handle reset button press
+const startReset = () => {
+  isResetting.value = true;
+  resetProgress.value = 0;
+
+  // Clear any existing timer
+  if (resetTimer.value !== null) {
+    clearInterval(resetTimer.value);
+  }
+
+  // Start a new timer to update progress
+  resetTimer.value = setInterval(() => {
+    resetProgress.value += (resetInterval / resetDuration) * 100;
+
+    // If we've reached 100%, trigger the reset
+    if (resetProgress.value >= 100) {
+      completeReset();
+    }
+  }, resetInterval);
+};
+
+// Function to handle reset button release
+const cancelReset = () => {
+  isResetting.value = false;
+  resetProgress.value = 0;
+
+  // Clear the timer
+  if (resetTimer.value !== null) {
+    clearInterval(resetTimer.value);
+    resetTimer.value = null;
+  }
+};
+
+// Function to complete the reset
+const completeReset = () => {
+  // Clear the timer
+  if (resetTimer.value !== null) {
+    clearInterval(resetTimer.value);
+    resetTimer.value = null;
+  }
+
+  // Emit the reset event
+  emit('reset-all');
+
+  // Reset the button state
+  setTimeout(() => {
+    isResetting.value = false;
+    resetProgress.value = 0;
+  }, 200); // Short delay to show the completed state
+};
 
 // Get the selected pictos objects from their IDs
 const selectedPictos = computed(() => {
@@ -97,6 +158,27 @@ const getPictoLevel = (picto: PictoItem) => {
 
 <template>
   <div class="selection-panel">
+    <div class="reset-container">
+      <button
+        class="reset-button"
+        :class="{ 'resetting': isResetting }"
+        @mousedown="startReset"
+        @mouseup="cancelReset"
+        @mouseleave="cancelReset"
+        @touchstart="startReset"
+        @touchend="cancelReset"
+        @touchcancel="cancelReset"
+      >
+        <div class="reset-button-content">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+          </svg>
+          <span>{{ isResetting ? 'Hold to Reset...' : 'Reset All Selections' }}</span>
+        </div>
+        <div class="reset-progress" :style="{ width: resetProgress + '%' }"></div>
+      </button>
+    </div>
     <!-- Picto Selected Section -->
     <div class="panel-section">
       <h2 class="section-title">Picto Selected ({{ selectedPictos.length }})</h2>
@@ -185,6 +267,67 @@ const getPictoLevel = (picto: PictoItem) => {
   gap: 16px;
   overflow-y: auto;
   flex: 1;
+}
+
+.reset-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.reset-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  overflow: hidden;
+  height: 40px;
+}
+
+.reset-button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.reset-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: width 0.01s linear;
+  z-index: 1;
+}
+
+.reset-button:hover {
+  background-color: #f44336;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.reset-button.resetting {
+  background-color: #c62828;
+}
+
+.reset-button:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .panel-section {

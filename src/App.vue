@@ -1,7 +1,80 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import pictosList from './assets/pictos_list.json'
 import Picto from './components/Picto.vue'
+
+// URL handling utilities with compact encoding
+
+/**
+ * Encodes the selected levels into a compact URL-friendly string
+ * Format: pictoId1:level1,pictoId2:level2,...
+ * Then converts to base64 for even more compactness
+ */
+const encodeStateToURL = (selectedLevels: Record<string, string>) => {
+  // Only include in URL if we have selections
+  if (Object.keys(selectedLevels).length === 0) return '';
+
+  // Convert the state object to a compact string format
+  // Format: pictoId1:level1,pictoId2:level2,...
+  const pairs = Object.entries(selectedLevels).map(([id, level]) => {
+    // Extract the numeric part from the picto ID (e.g., "picto-42" -> "42")
+    const idNumber = id.split('-')[1] || id;
+    return `${idNumber}:${level}`;
+  });
+
+  // Join all pairs with commas
+  const compactString = pairs.join(',');
+
+  // Convert to base64 for even more compactness
+  // Using btoa for browser compatibility
+  return btoa(compactString);
+};
+
+/**
+ * Decodes a compact URL-friendly string back into the selected levels object
+ */
+const decodeStateFromURL = (): Record<string, string> => {
+  // Get the current URL hash (without the # symbol)
+  const hash = window.location.hash.substring(1);
+
+  if (!hash) return {};
+
+  try {
+    // Decode from base64
+    const compactString = atob(hash);
+
+    // Split by commas to get individual pairs
+    const pairs = compactString.split(',');
+
+    // Convert pairs back to an object
+    const result: Record<string, string> = {};
+    pairs.forEach(pair => {
+      const [idNumber, level] = pair.split(':');
+      if (idNumber && level) {
+        // Reconstruct the full picto ID
+        const pictoId = `picto-${idNumber}`;
+        result[pictoId] = level;
+      }
+    });
+
+    return result;
+  } catch (error) {
+    console.error('Error decoding state from URL:', error);
+    return {};
+  }
+};
+
+// Update URL without page reload
+const updateURL = (state: Record<string, string>) => {
+  const encodedState = encodeStateToURL(state);
+  // Only update if there's something to encode
+  if (encodedState) {
+    window.location.hash = encodedState;
+  } else if (window.location.hash) {
+    // Clear hash if no state
+    history.pushState('', document.title, window.location.pathname + window.location.search);
+  }
+};
 
 // Define the type for a picto item
 interface PictoItem {
@@ -22,6 +95,7 @@ const searchQuery = ref('')
 const selectedType = ref('all')
 const sortBy = ref('name') // Default sort by name
 const allPictos = ref<PictoItem[]>([])
+const selectedLevels = ref<Record<string, string>>({})
 
 // Load data on component mount
 onMounted(() => {
@@ -33,7 +107,28 @@ onMounted(() => {
     ...picto,
     id: `picto-${index}`
   }))
+
+  // Load any saved state from URL
+  selectedLevels.value = decodeStateFromURL();
 })
+
+// Function to handle level selection from a picto
+const handleLevelSelect = (pictoId: string, level: string) => {
+  // Update the selected level for this picto
+  selectedLevels.value = {
+    ...selectedLevels.value,
+    [pictoId]: level
+  };
+
+  // Update the URL with the new state
+  updateURL(selectedLevels.value);
+};
+
+// Watch for changes in the URL hash
+watch(() => window.location.hash, () => {
+  // Update the selected levels when the URL hash changes
+  selectedLevels.value = decodeStateFromURL();
+});
 
 // Extract unique types from pictos list
 const pictoTypes = computed(() => {
@@ -181,6 +276,8 @@ const filteredPictos = computed(() => {
         :key="picto.id"
         :picto="picto"
         :searchQuery="searchQuery"
+        :selectedLevel="selectedLevels[picto.id || '']"
+        @select-level="handleLevelSelect"
       />
     </div>
   </div>

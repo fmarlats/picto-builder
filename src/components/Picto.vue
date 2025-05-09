@@ -10,12 +10,19 @@ interface PictoItem {
     level: string;
     attributes: Record<string, string>;
   }>;
+  id?: string; // Optional unique ID
 }
 
 // Define the props with validation
 const props = defineProps<{
   picto: PictoItem;
   searchQuery?: string;
+  selectedLevel?: string; // Add prop for selected level
+}>();
+
+// Define emits
+const emit = defineEmits<{
+  'select-level': [pictoId: string, level: string];
 }>();
 
 // Compute the border color based on the picto type
@@ -61,6 +68,35 @@ const closeModal = () => {
   showModal.value = false;
 };
 
+// Function to handle level selection
+const selectLevel = (level: string) => {
+  // Emit event to parent component with picto ID and selected level
+  emit('select-level', props.picto.id || '', level);
+  // Close the modal after selection
+  closeModal();
+};
+
+// Compute the current level to display
+const currentLevel = computed(() => {
+  // If a level is selected via props, use it
+  if (props.selectedLevel) {
+    // Find the level data that matches the selected level
+    const levelData = props.picto.attributes.find(attr => attr.level === props.selectedLevel);
+    // If found, return the level, otherwise use the highest level
+    return levelData ? props.selectedLevel : props.picto.attributes[props.picto.attributes.length - 1].level;
+  }
+  // Default to highest level
+  return props.picto.attributes[props.picto.attributes.length - 1].level;
+});
+
+// Compute the attributes to display based on the current level
+const currentAttributes = computed(() => {
+  // Find the level data that matches the current level
+  const levelData = props.picto.attributes.find(attr => attr.level === currentLevel.value);
+  // Return the attributes if found, otherwise empty object
+  return levelData ? levelData.attributes : {};
+});
+
 // Import necessary Vue functions
 import { computed, ref } from 'vue';
 </script>
@@ -86,11 +122,11 @@ import { computed, ref } from 'vue';
         <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
           <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
         </svg>
-        Level {{ picto.attributes[picto.attributes.length - 1].level }}
+        Level {{ currentLevel }}
       </div>
       <div class="picto-attributes">
         <span
-          v-for="(value, key) in picto.attributes[picto.attributes.length - 1].attributes"
+          v-for="(value, key) in currentAttributes"
           :key="key"
           class="attribute-item"
         >
@@ -108,7 +144,11 @@ import { computed, ref } from 'vue';
         </div>
         <div class="modal-body">
           <div v-for="(levelData, index) in picto.attributes" :key="index" class="level-section">
-            <div class="level-row">
+            <div
+              class="level-row clickable"
+              :class="{ 'selected': levelData.level === currentLevel }"
+              @click="selectLevel(levelData.level)"
+            >
               <div class="level-number">Level {{ levelData.level }}</div>
               <div class="level-attributes">
                 <div v-for="(value, key) in levelData.attributes" :key="key" class="level-attribute-item">
@@ -316,12 +356,12 @@ import { computed, ref } from 'vue';
 }
 
 .modal-body {
-  padding: 16px;
+  padding: 8px;
 }
 
 .level-section {
-  margin-bottom: 16px;
-  padding-bottom: 16px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
   border-bottom: 1px solid #444;
 }
 
@@ -334,7 +374,7 @@ import { computed, ref } from 'vue';
 .level-row {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
+  gap: 8px;
 }
 
 .level-number {
@@ -360,5 +400,22 @@ import { computed, ref } from 'vue';
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 0.9rem;
+}
+
+/* Selected level styles */
+.level-row.selected {
+  background-color: rgba(33, 150, 243, 0.2);
+  border-radius: 4px;
+}
+
+.level-row.clickable {
+  cursor: pointer;
+  transition: background-color 0.2s;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.level-row.clickable:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 </style>

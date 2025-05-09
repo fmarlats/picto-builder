@@ -3,6 +3,7 @@ import { ref, computed, onMounted, watch } from 'vue'
 import pictosList from './assets/pictos_list.json'
 import Picto from './components/Picto.vue'
 import SelectionPanel from './components/SelectionPanel.vue'
+import PanelToggleButton from './components/PanelToggleButton.vue'
 
 // URL handling utilities with compact encoding
 
@@ -155,6 +156,12 @@ const allPictos = ref<PictoItem[]>([])
 const selectedLevels = ref<Record<string, string>>({})
 const luminaSelectedPictos = ref<string[]>([]) // Array of picto IDs selected for lumina
 const pictoSelectedPictos = ref<string[]>([]) // Array of picto IDs selected as pictos
+const isPanelVisible = ref(false) // Track if the side panel is visible on mobile
+
+// Function to toggle the panel visibility
+const togglePanelVisibility = () => {
+  isPanelVisible.value = !isPanelVisible.value;
+}
 
 // Function to save the current state to the URL
 const saveStateToURL = () => {
@@ -378,7 +385,7 @@ const filteredPictos = computed(() => {
   <div class="container">
     <h1>Picto & Lumina Builder</h1>
 
-    <div class="filters-container">
+    <div class="filters-container" :class="{ 'hidden-on-mobile': isPanelVisible }">
       <div class="search-container">
         <input
           type="text"
@@ -411,7 +418,7 @@ const filteredPictos = computed(() => {
       </div>
     </div>
 
-    <div class="results-info">
+    <div class="results-info" :class="{ 'hidden-on-mobile': isPanelVisible }">
       <span v-if="filteredPictos.length === totalCount">
         Showing all {{ totalCount }} pictos
       </span>
@@ -420,8 +427,8 @@ const filteredPictos = computed(() => {
       </span>
     </div>
 
-    <div class="main-content">
-      <div class="pictos-grid">
+    <div class="main-content" :class="{ 'panel-mode': isPanelVisible }">
+      <div class="pictos-grid" :class="{ 'hidden-on-mobile': isPanelVisible }">
         <Picto
           v-for="picto in filteredPictos"
           :key="picto.id"
@@ -436,7 +443,7 @@ const filteredPictos = computed(() => {
         />
       </div>
 
-      <div class="selection-panel-container">
+      <div class="selection-panel-container" :class="{ 'visible-on-mobile': isPanelVisible }">
         <SelectionPanel
           :allPictos="allPictos"
           :pictoSelectedPictos="pictoSelectedPictos"
@@ -446,6 +453,12 @@ const filteredPictos = computed(() => {
         />
       </div>
     </div>
+
+    <!-- Panel toggle button (only visible on mobile) -->
+    <PanelToggleButton
+      :isPanelVisible="isPanelVisible"
+      @toggle-panel="togglePanelVisibility"
+    />
   </div>
 </template>
 
@@ -603,6 +616,8 @@ h1 {
 @media (max-width: 1024px) {
   .main-content {
     flex-direction: column;
+    position: relative;
+    min-height: 300px; /* Ensure there's space for content */
   }
 
   .selection-panel-container {
@@ -613,6 +628,49 @@ h1 {
     margin-top: 30px;
     border-top: 1px solid #444;
     padding-top: 20px;
+  }
+
+  /* Mobile panel toggle styles */
+  .filters-container, .results-info, .pictos-grid {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .hidden-on-mobile {
+    display: none !important;
+  }
+
+  .pictos-grid.hidden-on-mobile {
+    display: none;
+  }
+
+  .selection-panel-container {
+    display: none; /* Hide by default on mobile */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .selection-panel-container.visible-on-mobile {
+    display: block; /* Show when toggled */
+    animation: fadeIn 0.3s ease;
+    margin-top: 20px; /* Add some space below the title */
+    border-top: none;
+    padding-top: 0;
+    padding-bottom: 80px; /* Add padding at the bottom to avoid the toggle button overlapping content */
+  }
+
+  /* Ensure the title is always visible */
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 

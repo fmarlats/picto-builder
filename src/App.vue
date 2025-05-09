@@ -5,67 +5,123 @@ import Picto from './components/Picto.vue'
 
 // URL handling utilities with compact encoding
 
+// Define interface for the complete app state
+interface AppState {
+  selectedLevels: Record<string, string>;
+  luminaSelectedPictos: string[];
+  pictoSelectedPictos: string[];
+}
+
 /**
- * Encodes the selected levels into a compact URL-friendly string
- * Format: pictoId1:level1,pictoId2:level2,...
+ * Encodes the complete app state into a compact URL-friendly string
  * Then converts to base64 for even more compactness
  */
-const encodeStateToURL = (selectedLevels: Record<string, string>) => {
-  // Only include in URL if we have selections
-  if (Object.keys(selectedLevels).length === 0) return '';
+const encodeStateToURL = (state: AppState): string => {
+  // Check if there's any state to encode
+  const hasLevels = Object.keys(state.selectedLevels).length > 0;
+  const hasLuminaSelected = state.luminaSelectedPictos.length > 0;
+  const hasPictoSelected = state.pictoSelectedPictos.length > 0;
 
-  // Convert the state object to a compact string format
-  // Format: pictoId1:level1,pictoId2:level2,...
-  const pairs = Object.entries(selectedLevels).map(([id, level]) => {
-    // Extract the numeric part from the picto ID (e.g., "picto-42" -> "42")
-    const idNumber = id.split('-')[1] || id;
-    return `${idNumber}:${level}`;
-  });
+  if (!hasLevels && !hasLuminaSelected && !hasPictoSelected) {
+    return '';
+  }
 
-  // Join all pairs with commas
-  const compactString = pairs.join(',');
+  // Create a compact representation of the state
+  const stateObj: Record<string, any> = {};
 
-  // Convert to base64 for even more compactness
-  // Using btoa for browser compatibility
-  return btoa(compactString);
+  // Add selected levels if any
+  if (hasLevels) {
+    stateObj.l = Object.entries(state.selectedLevels).map(([id, level]) => {
+      // Extract the numeric part from the picto ID (e.g., "picto-42" -> "42")
+      const idNumber = id.split('-')[1] || id;
+      return `${idNumber}:${level}`;
+    }).join(',');
+  }
+
+  // Add lumina selected pictos if any
+  if (hasLuminaSelected) {
+    stateObj.ls = state.luminaSelectedPictos.map(id => {
+      // Extract the numeric part from the picto ID
+      return id.split('-')[1] || id;
+    }).join(',');
+  }
+
+  // Add picto selected pictos if any
+  if (hasPictoSelected) {
+    stateObj.ps = state.pictoSelectedPictos.map(id => {
+      // Extract the numeric part from the picto ID
+      return id.split('-')[1] || id;
+    }).join(',');
+  }
+
+  // Convert to JSON and then to base64
+  return btoa(JSON.stringify(stateObj));
 };
 
 /**
- * Decodes a compact URL-friendly string back into the selected levels object
+ * Decodes a compact URL-friendly string back into the complete app state
  */
-const decodeStateFromURL = (): Record<string, string> => {
+const decodeStateFromURL = (): AppState => {
+  // Default empty state
+  const emptyState: AppState = {
+    selectedLevels: {},
+    luminaSelectedPictos: [],
+    pictoSelectedPictos: []
+  };
+
   // Get the current URL hash (without the # symbol)
   const hash = window.location.hash.substring(1);
 
-  if (!hash) return {};
+  if (!hash) return emptyState;
 
   try {
     // Decode from base64
-    const compactString = atob(hash);
+    const jsonString = atob(hash);
 
-    // Split by commas to get individual pairs
-    const pairs = compactString.split(',');
+    // Parse the JSON
+    const stateObj = JSON.parse(jsonString);
 
-    // Convert pairs back to an object
-    const result: Record<string, string> = {};
-    pairs.forEach(pair => {
-      const [idNumber, level] = pair.split(':');
-      if (idNumber && level) {
-        // Reconstruct the full picto ID
-        const pictoId = `picto-${idNumber}`;
-        result[pictoId] = level;
-      }
-    });
+    // Initialize result with empty state
+    const result: AppState = { ...emptyState };
+
+    // Parse selected levels if present
+    if (stateObj.l) {
+      const levelPairs = stateObj.l.split(',');
+      levelPairs.forEach((pair: string) => {
+        const [idNumber, level] = pair.split(':');
+        if (idNumber && level) {
+          // Reconstruct the full picto ID
+          const pictoId = `picto-${idNumber}`;
+          result.selectedLevels[pictoId] = level;
+        }
+      });
+    }
+
+    // Parse lumina selected pictos if present
+    if (stateObj.ls) {
+      const idNumbers = stateObj.ls.split(',');
+      result.luminaSelectedPictos = idNumbers.map((idNumber: string) =>
+        `picto-${idNumber}`
+      );
+    }
+
+    // Parse picto selected pictos if present
+    if (stateObj.ps) {
+      const idNumbers = stateObj.ps.split(',');
+      result.pictoSelectedPictos = idNumbers.map((idNumber: string) =>
+        `picto-${idNumber}`
+      );
+    }
 
     return result;
   } catch (error) {
     console.error('Error decoding state from URL:', error);
-    return {};
+    return emptyState;
   }
 };
 
 // Update URL without page reload
-const updateURL = (state: Record<string, string>) => {
+const updateURL = (state: AppState) => {
   const encodedState = encodeStateToURL(state);
   // Only update if there's something to encode
   if (encodedState) {
@@ -99,6 +155,16 @@ const selectedLevels = ref<Record<string, string>>({})
 const luminaSelectedPictos = ref<string[]>([]) // Array of picto IDs selected for lumina
 const pictoSelectedPictos = ref<string[]>([]) // Array of picto IDs selected as pictos
 
+// Function to save the current state to the URL
+const saveStateToURL = () => {
+  const state: AppState = {
+    selectedLevels: selectedLevels.value,
+    luminaSelectedPictos: luminaSelectedPictos.value,
+    pictoSelectedPictos: pictoSelectedPictos.value
+  };
+  updateURL(state);
+};
+
 // Load data on component mount
 onMounted(() => {
   // Make a deep copy of the data to avoid reference issues
@@ -111,7 +177,10 @@ onMounted(() => {
   }))
 
   // Load any saved state from URL
-  selectedLevels.value = decodeStateFromURL();
+  const savedState = decodeStateFromURL();
+  selectedLevels.value = savedState.selectedLevels;
+  luminaSelectedPictos.value = savedState.luminaSelectedPictos;
+  pictoSelectedPictos.value = savedState.pictoSelectedPictos;
 })
 
 // Function to handle level selection from a picto
@@ -123,13 +192,16 @@ const handleLevelSelect = (pictoId: string, level: string) => {
   };
 
   // Update the URL with the new state
-  updateURL(selectedLevels.value);
+  saveStateToURL();
 };
 
 // Watch for changes in the URL hash
 watch(() => window.location.hash, () => {
-  // Update the selected levels when the URL hash changes
-  selectedLevels.value = decodeStateFromURL();
+  // Update all state when the URL hash changes
+  const savedState = decodeStateFromURL();
+  selectedLevels.value = savedState.selectedLevels;
+  luminaSelectedPictos.value = savedState.luminaSelectedPictos;
+  pictoSelectedPictos.value = savedState.pictoSelectedPictos;
 });
 
 // Function to handle picto selection for lumina
@@ -154,6 +226,9 @@ const toggleLuminaSelection = (pictoId: string) => {
   // Log the current selections to the console
   console.log('Lumina Selected Pictos:', luminaSelectedPictos.value);
   console.log('Picto Selected Pictos:', pictoSelectedPictos.value);
+
+  // Save state to URL
+  saveStateToURL();
 };
 
 // Function to handle picto selection via long press (200ms)
@@ -183,6 +258,9 @@ const togglePictoSelection = (pictoId: string) => {
   // Log the current selections to the console
   console.log('Lumina Selected Pictos:', luminaSelectedPictos.value);
   console.log('Picto Selected Pictos:', pictoSelectedPictos.value);
+
+  // Save state to URL
+  saveStateToURL();
 };
 
 // Extract unique types from pictos list

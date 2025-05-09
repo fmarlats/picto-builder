@@ -1,12 +1,15 @@
 <script setup lang="ts">
 // Define the props for the component
 interface PictoItem {
-  Pictos: string;
-  Level: number | string;
-  Type: string;
-  Lumina: string;
-  "Stat Bonus": string[];
-  isAP?: boolean;
+  full_url: string;
+  name: string;
+  type: string;
+  effect: string;
+  cost: number;
+  attributes: Array<{
+    level: string;
+    attributes: Record<string, string>;
+  }>;
 }
 
 // Define the props with validation
@@ -17,7 +20,7 @@ const props = defineProps<{
 
 // Compute the border color based on the picto type
 const typeColor = computed(() => {
-  const type = props.picto.Type.toLowerCase();
+  const type = props.picto.type.toLowerCase();
 
   if (type.includes('offensive')) return '#ff5252'; // Vibrant red
   if (type.includes('defensive')) return '#4caf50'; // Vibrant green
@@ -53,21 +56,23 @@ import { computed } from 'vue';
   <div class="picto-card" :style="{ borderColor: typeColor }">
     <div class="picto-header">
       <div class="picto-name-container">
-        <div class="picto-name" v-html="highlightMatch(picto.Pictos, searchQuery || '')"></div>
-        <div class="picto-type" v-if="picto.Type">{{ picto.Type }}</div>
+        <div class="picto-name" v-html="highlightMatch(picto.name, searchQuery || '')"></div>
+        <div class="picto-type" v-if="picto.type">{{ picto.type }}</div>
       </div>
-      <div class="picto-level">Lvl {{ picto.Level }}</div>
+      <div class="picto-cost">
+        <img src="../assets/lumina.png" alt="Lumina" class="lumina-icon" /> {{ picto.cost }}
+      </div>
     </div>
-    <div class="picto-lumina" v-html="highlightMatch(picto.Lumina, searchQuery || '')"></div>
-    <div class="picto-stats">
-      <div v-for="(stat, index) in picto['Stat Bonus']" :key="index" class="stat-item">{{ stat }}</div>
+    <div class="picto-effect" v-html="highlightMatch(picto.effect, searchQuery || '')"></div>
+    <div class="picto-level" v-if="picto.attributes && picto.attributes.length > 0">
+      Level {{ picto.attributes[picto.attributes.length - 1].level }}
     </div>
   </div>
 </template>
 
 <style scoped>
 .picto-card {
-  border: 3px solid #ddd;
+  border: 4px solid;
   padding: 6px;
   height: 100%;
   font-size: 0.85rem;
@@ -96,9 +101,20 @@ import { computed } from 'vue';
   margin-bottom: 1px;
 }
 
-.picto-level {
+.picto-cost {
   color: #ccc;
   font-size: 0.8rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lumina-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: -5px;
 }
 
 .picto-type {
@@ -108,26 +124,20 @@ import { computed } from 'vue';
   text-align: left;
 }
 
-.picto-lumina {
+.picto-effect {
   margin: 3px 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
   flex-grow: 1;
   color: #ddd;
 }
 
-.picto-stats {
+.picto-level {
   margin-top: 3px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
+  font-size: 0.8rem;
+  color: #bbb;
   border-top: 1px dotted #444;
   padding-top: 3px;
-}
-
-.stat-item {
-  font-size: 0.75rem;
-  color: #bbb;
-  margin-right: 6px;
+  text-align: right;
 }
 
 :deep(.highlight) {

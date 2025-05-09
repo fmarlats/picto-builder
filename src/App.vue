@@ -416,7 +416,7 @@ const filteredPictos = computed(() => {
 
 <template>
   <div class="container">
-    <h1>Picto & Lumina Builder</h1>
+    <h1>Expedition 33 Builds</h1>
 
     <div class="filters-container" :class="{ 'hidden-on-mobile': isPanelVisible }">
       <div class="search-container">

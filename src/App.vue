@@ -37,13 +37,29 @@ onMounted(() => {
 
 // Extract unique types from pictos list
 const pictoTypes = computed(() => {
-  const types = new Set<string>(['all'])
+  // Start with 'all' and add the three basic types
+  const types = new Set<string>(['all', 'Offensive', 'Defensive', 'Support'])
 
+  // Extract all unique types for reference
+  const allUniqueTypes = new Set<string>()
   allPictos.value.forEach(picto => {
     if (picto.type) {
-      types.add(picto.type)
+      allUniqueTypes.add(picto.type)
     }
   })
+
+  // Make sure we have at least one picto of each basic type before adding it to the options
+  const hasOffensive = Array.from(allUniqueTypes).some(type =>
+    type.toLowerCase().includes('offensive'))
+  const hasDefensive = Array.from(allUniqueTypes).some(type =>
+    type.toLowerCase().includes('defensive'))
+  const hasSupport = Array.from(allUniqueTypes).some(type =>
+    type.toLowerCase().includes('support'))
+
+  // Only include types that exist in the data
+  if (!hasOffensive) types.delete('Offensive')
+  if (!hasDefensive) types.delete('Defensive')
+  if (!hasSupport) types.delete('Support')
 
   return Array.from(types)
 })
@@ -58,7 +74,13 @@ const filteredPictos = computed(() => {
 
   // Apply type filter
   if (selectedType.value !== 'all') {
-    result = result.filter(picto => picto.type === selectedType.value)
+    result = result.filter(picto => {
+      if (!picto.type) return false;
+
+      // Check if the picto type contains the selected type
+      // This will match both exact types and combined types (e.g., "offensive / support")
+      return picto.type.toLowerCase().includes(selectedType.value.toLowerCase());
+    })
   }
 
   // Apply search filter (only name or effect)

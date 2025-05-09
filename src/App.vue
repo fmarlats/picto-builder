@@ -18,7 +18,6 @@ interface PictoItem {
 const searchQuery = ref('')
 const selectedType = ref('all')
 const sortBy = ref('name') // Default sort by name
-const showOnlyAP = ref(false) // Filter for AP-related pictos
 const allPictos = ref<PictoItem[]>([])
 
 // Load data on component mount
@@ -53,11 +52,6 @@ const totalCount = computed(() => allPictos.value.length)
 const filteredPictos = computed(() => {
   // Start with all pictos
   let result = [...allPictos.value]
-
-  // Apply AP filter if enabled
-  if (showOnlyAP.value) {
-    result = result.filter(picto => picto.isAP === true)
-  }
 
   // Apply type filter
   if (selectedType.value !== 'all') {
@@ -135,12 +129,7 @@ const filteredPictos = computed(() => {
           </select>
         </div>
 
-        <div class="ap-filter">
-          <label for="ap-checkbox" class="ap-checkbox-label">
-            <input type="checkbox" id="ap-checkbox" v-model="showOnlyAP">
-            <span class="ap-label">Show only AP pictos</span>
-          </label>
-        </div>
+
       </div>
     </div>
 
@@ -227,7 +216,7 @@ h1 {
   flex-wrap: wrap;
 }
 
-.type-filter, .sort-filter, .ap-filter {
+.type-filter, .sort-filter {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -236,26 +225,6 @@ h1 {
 .type-filter label, .sort-filter label {
   color: #ddd;
   font-weight: 500;
-  white-space: nowrap;
-}
-
-.ap-checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  color: #ddd;
-  font-weight: 500;
-}
-
-.ap-checkbox-label input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-  accent-color: #ffeb3b;
-}
-
-.ap-label {
   white-space: nowrap;
 }
 

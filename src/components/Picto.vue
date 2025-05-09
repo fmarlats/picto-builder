@@ -53,10 +53,7 @@ import { computed } from 'vue';
   <div class="picto-card" :style="{ borderColor: typeColor }">
     <div class="picto-header">
       <div class="picto-name-container">
-        <div class="picto-name-row">
-          <div class="picto-name" v-html="highlightMatch(picto.Pictos, searchQuery || '')"></div>
-          <div v-if="picto.isAP" class="ap-badge">AP</div>
-        </div>
+        <div class="picto-name" v-html="highlightMatch(picto.Pictos, searchQuery || '')"></div>
         <div class="picto-type" v-if="picto.Type">{{ picto.Type }}</div>
       </div>
       <div class="picto-level">Lvl {{ picto.Level }}</div>
@@ -92,27 +89,11 @@ import { computed } from 'vue';
   flex-direction: column;
 }
 
-.picto-name-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
 .picto-name {
   font-weight: bold;
   color: #fff;
   font-size: 0.9rem;
   margin-bottom: 1px;
-}
-
-.ap-badge {
-  background-color: #ffeb3b;
-  color: #000;
-  font-size: 0.7rem;
-  font-weight: bold;
-  padding: 1px 4px;
-  border-radius: 3px;
-  display: inline-block;
 }
 
 .picto-level {

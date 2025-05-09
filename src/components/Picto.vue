@@ -179,10 +179,15 @@ import { computed, ref } from 'vue';
 }
 
 .picto-effect {
-  margin: 3px 0;
+  margin: 0;
   font-size: 1.1rem;
   flex-grow: 1;
   color: #ddd;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
 }
 
 .picto-footer {

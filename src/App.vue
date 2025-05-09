@@ -211,15 +211,16 @@ h1 {
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 24px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .search-container {
   flex: 1;
   min-width: 300px;
+  max-width: 500px;
   display: flex;
-  justify-content: center;
 }
 
 .search-input {
@@ -247,7 +248,8 @@ h1 {
 .filter-controls {
   display: flex;
   gap: 16px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
 }
 
 .type-filter, .sort-filter {
@@ -314,26 +316,38 @@ h1 {
   }
 }
 
+@media (max-width: 900px) {
+  .filters-container {
+    justify-content: center;
+  }
+
+  .filter-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 768px) {
   .filters-container {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
   }
 
   .search-container {
     min-width: auto;
+    width: 100%;
   }
 
   .filter-controls {
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: row;
+    gap: 16px;
     width: 100%;
+    justify-content: center;
   }
 
   .type-filter, .sort-filter {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
+    flex: 1;
+    max-width: 250px;
   }
 
   .filter-select {
@@ -343,6 +357,20 @@ h1 {
   .pictos-grid {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .type-filter, .sort-filter {
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: none;
+    width: 100%;
   }
 }
 

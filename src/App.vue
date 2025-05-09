@@ -157,6 +157,7 @@ const selectedLevels = ref<Record<string, string>>({})
 const luminaSelectedPictos = ref<string[]>([]) // Array of picto IDs selected for lumina
 const pictoSelectedPictos = ref<string[]>([]) // Array of picto IDs selected as pictos
 const isPanelVisible = ref(false) // Track if the side panel is visible on mobile
+const showOnlySelected = ref(false) // Track if we should show only selected elements
 
 // Function to toggle the panel visibility
 const togglePanelVisibility = () => {
@@ -326,6 +327,12 @@ const filteredPictos = computed(() => {
   // Start with all pictos
   let result = [...allPictos.value]
 
+  // Apply selected elements filter if enabled
+  if (showOnlySelected.value) {
+    const selectedIds = [...luminaSelectedPictos.value, ...pictoSelectedPictos.value];
+    result = result.filter(picto => selectedIds.includes(picto.id || ''));
+  }
+
   // Apply type filter
   if (selectedType.value !== 'all') {
     result = result.filter(picto => {
@@ -415,11 +422,32 @@ const filteredPictos = computed(() => {
             <option value="level-desc">Level (High-Low)</option>
           </select>
         </div>
+
+        <div class="selected-filter">
+          <label for="selected-toggle" class="toggle-label">
+            <span>Show Selected Only</span>
+            <div class="toggle-switch">
+              <input
+                type="checkbox"
+                id="selected-toggle"
+                v-model="showOnlySelected"
+                class="toggle-input"
+              />
+              <span class="toggle-slider"></span>
+            </div>
+          </label>
+        </div>
       </div>
     </div>
 
     <div class="results-info" :class="{ 'hidden-on-mobile': isPanelVisible }">
-      <span v-if="filteredPictos.length === totalCount">
+      <span v-if="showOnlySelected">
+        Showing {{ filteredPictos.length }} selected pictos
+        <span class="selected-count">
+          ({{ luminaSelectedPictos.length }} lumina, {{ pictoSelectedPictos.length }} picto)
+        </span>
+      </span>
+      <span v-else-if="filteredPictos.length === totalCount">
         Showing all {{ totalCount }} pictos
       </span>
       <span v-else>
@@ -528,16 +556,74 @@ h1 {
   justify-content: flex-end;
 }
 
-.type-filter, .sort-filter, .reset-container {
+.type-filter, .sort-filter, .selected-filter, .reset-container {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.type-filter label, .sort-filter label {
+.type-filter label, .sort-filter label, .selected-filter label {
   color: #ddd;
   font-weight: 500;
   white-space: nowrap;
+}
+
+/* Toggle switch styles */
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #444;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.toggle-input:checked + .toggle-slider {
+  background-color: #2196F3;
+}
+
+.toggle-input:focus + .toggle-slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+.toggle-input:checked + .toggle-slider:before {
+  transform: translateX(24px);
 }
 
 .filter-select {
@@ -576,6 +662,12 @@ h1 {
   color: #aaa;
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+.selected-count {
+  color: #2196F3;
+  font-weight: 600;
+  margin-left: 4px;
 }
 
 .main-content {
@@ -722,13 +814,19 @@ h1 {
   .filter-controls {
     flex-direction: column;
     align-items: stretch;
+    gap: 16px;
   }
 
-  .type-filter, .sort-filter {
+  .type-filter, .sort-filter, .selected-filter {
     flex-direction: column;
     align-items: flex-start;
     max-width: none;
     width: 100%;
+  }
+
+  .toggle-label {
+    width: 100%;
+    justify-content: space-between;
   }
 }
 

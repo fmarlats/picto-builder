@@ -166,6 +166,22 @@ const saveStateToURL = () => {
   updateURL(state);
 };
 
+// Function to reset all selections and levels
+const resetAll = () => {
+  // Clear all selected levels
+  selectedLevels.value = {};
+
+  // Clear all selected pictos
+  luminaSelectedPictos.value = [];
+  pictoSelectedPictos.value = [];
+
+  // Update the URL to reflect the empty state
+  saveStateToURL();
+
+  // Log the reset action
+  console.log('All selections and levels have been reset');
+};
+
 // Load data on component mount
 onMounted(() => {
   // Make a deep copy of the data to avoid reference issues
@@ -426,6 +442,7 @@ const filteredPictos = computed(() => {
           :pictoSelectedPictos="pictoSelectedPictos"
           :luminaSelectedPictos="luminaSelectedPictos"
           :selectedLevels="selectedLevels"
+          @reset-all="resetAll"
         />
       </div>
     </div>
@@ -498,7 +515,7 @@ h1 {
   justify-content: flex-end;
 }
 
-.type-filter, .sort-filter {
+.type-filter, .sort-filter, .reset-container {
   display: flex;
   align-items: center;
   gap: 8px;

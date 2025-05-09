@@ -19,12 +19,14 @@ const props = defineProps<{
   searchQuery?: string;
   selectedLevel?: string; // Add prop for selected level
   isLuminaSelected?: boolean; // Whether this picto is selected for lumina
+  isPictoSelected?: boolean; // Whether this picto is selected as a picto
 }>();
 
 // Define emits
 const emit = defineEmits<{
   'select-level': [pictoId: string, level: string];
   'toggle-selection': [pictoId: string]; // Event for toggling lumina selection
+  'toggle-picto-selection': [pictoId: string]; // Event for toggling picto selection
 }>();
 
 // Compute the border color based on the picto type
@@ -99,12 +101,92 @@ const currentAttributes = computed(() => {
   return levelData ? levelData.attributes : {};
 });
 
-// Function to handle picto selection
-const handleSelection = (event: Event) => {
-  // Stop event propagation to prevent modal from opening when clicking on the card
+// Track press timing for long press detection
+const pressTimer = ref<number | null>(null);
+const longPressDelay = 200; // milliseconds to wait before treating as long press
+const isLongPress = ref(false);
+const isPressing = ref(false); // Track if user is currently pressing
+
+// Function to handle mouse/touch down - start timer for long press
+const handleMouseDown = (event: Event) => {
+  // Stop event propagation
   event.stopPropagation();
-  // Emit the toggle-selection event with the picto ID
-  emit('toggle-selection', props.picto.id || '');
+
+  // Set pressing state for visual feedback
+  isPressing.value = true;
+
+  // Reset long press flag
+  isLongPress.value = false;
+
+  // Start timer for long press
+  pressTimer.value = window.setTimeout(() => {
+    // This is a long press
+    isLongPress.value = true;
+    emit('toggle-picto-selection', props.picto.id || '');
+    pressTimer.value = null;
+
+    // Keep pressing state active for visual feedback
+    isPressing.value = false;
+  }, longPressDelay);
+};
+
+// Alias for touch start - same behavior as mouse down
+const handleTouchStart = handleMouseDown;
+
+// Function to handle mouse up - either trigger click or cancel long press
+const handleMouseUp = (event: Event) => {
+  // Stop event propagation
+  event.stopPropagation();
+
+  // Reset pressing state
+  isPressing.value = false;
+
+  // Clear the timer
+  if (pressTimer.value !== null) {
+    clearTimeout(pressTimer.value);
+    pressTimer.value = null;
+  }
+
+  // If it wasn't a long press, treat as a normal click
+  if (!isLongPress.value) {
+    emit('toggle-selection', props.picto.id || '');
+  }
+
+  // Reset long press flag
+  isLongPress.value = false;
+};
+
+// Alias for touch end - same behavior as mouse up
+const handleTouchEnd = handleMouseUp;
+
+// Function to handle touch cancel - same as mouse leave
+const handleTouchCancel = () => {
+  // Reset pressing state
+  isPressing.value = false;
+
+  // Clear the timer if touch is canceled
+  if (pressTimer.value !== null) {
+    clearTimeout(pressTimer.value);
+    pressTimer.value = null;
+  }
+
+  // Reset long press flag
+  isLongPress.value = false;
+};
+
+// Function to handle mouse leave - cancel long press
+const handleMouseLeave = () => {
+  // Reset pressing state
+  isPressing.value = false;
+
+  // Clear the timer if mouse leaves the element
+  if (pressTimer.value !== null) {
+    clearTimeout(pressTimer.value);
+    pressTimer.value = null;
+  }
+
+  // Reset long press flag
+  isLongPress.value = false;
 };
 
 // Import necessary Vue functions
@@ -114,13 +196,25 @@ import { computed, ref } from 'vue';
 <template>
   <div
     class="picto-card"
-    :class="{ 'lumina-selected': isLuminaSelected }"
+    :class="{
+      'lumina-selected': isLuminaSelected,
+      'picto-selected': isPictoSelected,
+      'pressing': isPressing
+    }"
     :style="{ borderColor: typeColor }"
-    @click="handleSelection($event)"
+    @mousedown="handleMouseDown($event)"
+    @mouseup="handleMouseUp($event)"
+    @mouseleave="handleMouseLeave()"
+    @touchstart="handleTouchStart($event)"
+    @touchend="handleTouchEnd($event)"
+    @touchcancel="handleTouchCancel()"
   >
-    <!-- Lumina selection overlay -->
-    <div v-if="isLuminaSelected" class="selection-overlay">
-      <div class="selection-indicator">Lumina Selected</div>
+    <!-- Selection overlays -->
+    <div v-if="isPictoSelected" class="selection-overlay picto-selection-overlay">
+      <div class="selection-indicator picto-indicator">Picto Selected</div>
+    </div>
+    <div v-else-if="isLuminaSelected" class="selection-overlay lumina-selection-overlay">
+      <div class="selection-indicator lumina-indicator">Lumina Selected</div>
     </div>
     <div class="picto-header">
       <div class="picto-name-container">
@@ -450,7 +544,7 @@ import { computed, ref } from 'vue';
 
 /* Lumina selection styles */
 .picto-card.lumina-selected {
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3);
   background-color: #2d3747; /* Slightly blue-tinted background to distinguish from hover */
   transform: translateY(-2px); /* Keep the same lift effect as hover */
 }
@@ -458,6 +552,25 @@ import { computed, ref } from 'vue';
 /* Ensure hover doesn't override the lumina selected state's background */
 .picto-card.lumina-selected:hover {
   background-color: #2d3747;
+}
+
+/* Picto selection styles */
+.picto-card.picto-selected {
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3);
+  background-color: #2d4732; /* Green-tinted background */
+  transform: translateY(-2px);
+}
+
+/* Ensure hover doesn't override the picto selected state's background */
+.picto-card.picto-selected:hover {
+  background-color: #2d4732;
+}
+
+/* Pressing state for visual feedback during long press */
+.picto-card.pressing {
+  transform: scale(0.98);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3), 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .selection-overlay {
@@ -475,7 +588,6 @@ import { computed, ref } from 'vue';
 }
 
 .selection-indicator {
-  background-color: rgba(33, 150, 243, 0.8);
   color: white;
   padding: 4px 12px;
   border-radius: 4px;
@@ -483,5 +595,13 @@ import { computed, ref } from 'vue';
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.lumina-indicator {
+  background-color: rgba(33, 150, 243, 0.8); /* Blue for lumina */
+}
+
+.picto-indicator {
+  background-color: rgba(76, 175, 80, 0.8); /* Green for picto */
 }
 </style>

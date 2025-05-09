@@ -97,6 +97,7 @@ const sortBy = ref('name') // Default sort by name
 const allPictos = ref<PictoItem[]>([])
 const selectedLevels = ref<Record<string, string>>({})
 const luminaSelectedPictos = ref<string[]>([]) // Array of picto IDs selected for lumina
+const pictoSelectedPictos = ref<string[]>([]) // Array of picto IDs selected as pictos
 
 // Load data on component mount
 onMounted(() => {
@@ -142,10 +143,46 @@ const toggleLuminaSelection = (pictoId: string) => {
   } else {
     // If already selected, remove it from the lumina selection
     luminaSelectedPictos.value.splice(index, 1);
+
+    // If this picto was also picto-selected, remove it from that list too
+    const pictoIndex = pictoSelectedPictos.value.indexOf(pictoId);
+    if (pictoIndex !== -1) {
+      pictoSelectedPictos.value.splice(pictoIndex, 1);
+    }
   }
 
-  // Log the current lumina selection to the console
+  // Log the current selections to the console
   console.log('Lumina Selected Pictos:', luminaSelectedPictos.value);
+  console.log('Picto Selected Pictos:', pictoSelectedPictos.value);
+};
+
+// Function to handle picto selection via long press (200ms)
+const togglePictoSelection = (pictoId: string) => {
+  // Check if the picto is already selected as a picto
+  const index = pictoSelectedPictos.value.indexOf(pictoId);
+
+  if (index === -1) {
+    // If not selected, add it to the picto selection
+    pictoSelectedPictos.value.push(pictoId);
+
+    // Also add to lumina selection if not already there
+    if (!luminaSelectedPictos.value.includes(pictoId)) {
+      luminaSelectedPictos.value.push(pictoId);
+    }
+  } else {
+    // If already selected, remove it from both selections
+    pictoSelectedPictos.value.splice(index, 1);
+
+    // Also remove from lumina selection
+    const luminaIndex = luminaSelectedPictos.value.indexOf(pictoId);
+    if (luminaIndex !== -1) {
+      luminaSelectedPictos.value.splice(luminaIndex, 1);
+    }
+  }
+
+  // Log the current selections to the console
+  console.log('Lumina Selected Pictos:', luminaSelectedPictos.value);
+  console.log('Picto Selected Pictos:', pictoSelectedPictos.value);
 };
 
 // Extract unique types from pictos list
@@ -296,8 +333,10 @@ const filteredPictos = computed(() => {
         :searchQuery="searchQuery"
         :selectedLevel="selectedLevels[picto.id || '']"
         :isLuminaSelected="luminaSelectedPictos.includes(picto.id || '')"
+        :isPictoSelected="pictoSelectedPictos.includes(picto.id || '')"
         @select-level="handleLevelSelect"
         @toggle-selection="toggleLuminaSelection"
+        @toggle-picto-selection="togglePictoSelection"
       />
     </div>
   </div>

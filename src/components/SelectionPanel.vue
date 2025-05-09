@@ -1,6 +1,28 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 
+// Haptic feedback utility
+const hapticFeedback = {
+  // Check if vibration is supported
+  isSupported: () => {
+    return 'vibrate' in navigator;
+  },
+
+  // Strong vibration for reset action
+  strongVibration: () => {
+    if (hapticFeedback.isSupported()) {
+      navigator.vibrate(100);
+    }
+  },
+
+  // Progress vibration for reset progress
+  progressVibration: () => {
+    if (hapticFeedback.isSupported()) {
+      navigator.vibrate(10);
+    }
+  }
+};
+
 // Define the props for the component
 interface PictoItem {
   full_url: string;
@@ -32,11 +54,22 @@ const resetProgress = ref(0);
 const resetTimer = ref<number | null>(null);
 const resetDuration = 500; // milliseconds
 const resetInterval = 10; // update progress every 10ms
+const isResetComplete = ref(false); // Track if reset was completed
+const lastProgressVibration = ref(0); // Track last vibration time
 
 // Function to handle reset button press
-const startReset = () => {
+const startReset = (event: Event) => {
+  // Prevent default behavior to avoid text selection
+  event.preventDefault();
+
+  // If reset was just completed, ignore new presses for a short time
+  if (isResetComplete.value) {
+    return;
+  }
+
   isResetting.value = true;
   resetProgress.value = 0;
+  lastProgressVibration.value = 0;
 
   // Clear any existing timer
   if (resetTimer.value !== null) {
@@ -47,6 +80,17 @@ const startReset = () => {
   resetTimer.value = setInterval(() => {
     resetProgress.value += (resetInterval / resetDuration) * 100;
 
+    // Provide haptic feedback at 25%, 50%, 75% progress points
+    const progressMilestones = [25, 50, 75];
+    const currentProgress = Math.floor(resetProgress.value);
+
+    // Check if we've hit a milestone and haven't vibrated recently
+    if (progressMilestones.includes(currentProgress) &&
+        currentProgress > lastProgressVibration.value) {
+      hapticFeedback.progressVibration();
+      lastProgressVibration.value = currentProgress;
+    }
+
     // If we've reached 100%, trigger the reset
     if (resetProgress.value >= 100) {
       completeReset();
@@ -56,6 +100,11 @@ const startReset = () => {
 
 // Function to handle reset button release
 const cancelReset = () => {
+  // If reset was just completed, don't cancel
+  if (isResetComplete.value) {
+    return;
+  }
+
   isResetting.value = false;
   resetProgress.value = 0;
 
@@ -74,13 +123,24 @@ const completeReset = () => {
     resetTimer.value = null;
   }
 
+  // Set the complete flag to prevent immediate re-triggering
+  isResetComplete.value = true;
+
+  // Provide strong haptic feedback for reset completion
+  hapticFeedback.strongVibration();
+
   // Emit the reset event
   emit('reset-all');
 
-  // Reset the button state
+  // Reset the button state after a delay
   setTimeout(() => {
     isResetting.value = false;
     resetProgress.value = 0;
+
+    // Allow new reset after a short delay
+    setTimeout(() => {
+      isResetComplete.value = false;
+    }, 300);
   }, 200); // Short delay to show the completed state
 };
 
@@ -161,11 +221,11 @@ const getPictoLevel = (picto: PictoItem) => {
     <div class="reset-container">
       <button
         class="reset-button"
-        :class="{ 'resetting': isResetting }"
-        @mousedown="startReset"
+        :class="{ 'resetting': isResetting, 'reset-complete': isResetComplete }"
+        @mousedown.prevent="startReset($event)"
         @mouseup="cancelReset"
         @mouseleave="cancelReset"
-        @touchstart="startReset"
+        @touchstart.prevent="startReset($event)"
         @touchend="cancelReset"
         @touchcancel="cancelReset"
       >
@@ -292,6 +352,13 @@ const getPictoLevel = (picto: PictoItem) => {
   width: 100%;
   overflow: hidden;
   height: 40px;
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .reset-button-content {
@@ -304,6 +371,12 @@ const getPictoLevel = (picto: PictoItem) => {
   padding: 0 12px;
   position: relative;
   z-index: 2;
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none; /* This prevents text selection but allows button clicks */
 }
 
 .reset-progress {
@@ -326,8 +399,27 @@ const getPictoLevel = (picto: PictoItem) => {
   background-color: #c62828;
 }
 
+/* No visual change for reset-complete state */
+
 .reset-button:active {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .reset-button {
+    height: 48px; /* Larger touch target on mobile */
+    font-size: 16px;
+  }
+
+  .reset-button-content {
+    gap: 8px;
+  }
+
+  .reset-button-content svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .panel-section {

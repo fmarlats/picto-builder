@@ -5,13 +5,16 @@ import Picto from './components/Picto.vue'
 
 // Define the type for a picto item
 interface PictoItem {
-  Pictos: string;
-  Level: number | string;
-  Type: string;
-  Lumina: string;
-  "Stat Bonus": string[];
+  full_url: string;
+  name: string;
+  type: string;
+  effect: string;
+  cost: number;
+  attributes: Array<{
+    level: string;
+    attributes: Record<string, string>;
+  }>;
   id?: string; // Optional unique ID
-  isAP?: boolean; // Flag for AP-related pictos
 }
 
 // Create reactive references
@@ -37,8 +40,8 @@ const pictoTypes = computed(() => {
   const types = new Set<string>(['all'])
 
   allPictos.value.forEach(picto => {
-    if (picto.Type) {
-      types.add(picto.Type)
+    if (picto.type) {
+      types.add(picto.type)
     }
   })
 
@@ -55,38 +58,46 @@ const filteredPictos = computed(() => {
 
   // Apply type filter
   if (selectedType.value !== 'all') {
-    result = result.filter(picto => picto.Type === selectedType.value)
+    result = result.filter(picto => picto.type === selectedType.value)
   }
 
-  // Apply search filter (only name or lumina)
+  // Apply search filter (only name or effect)
   const query = searchQuery.value.trim().toLowerCase()
   if (query) {
     result = result.filter(picto =>
-      picto.Pictos.toLowerCase().includes(query) ||
-      picto.Lumina.toLowerCase().includes(query)
+      picto.name.toLowerCase().includes(query) ||
+      picto.effect.toLowerCase().includes(query)
     )
   }
 
   // Apply sorting
   if (sortBy.value === 'name') {
     // Sort alphabetically by name (A-Z)
-    result.sort((a, b) => a.Pictos.localeCompare(b.Pictos))
+    result.sort((a, b) => a.name.localeCompare(b.name))
   } else if (sortBy.value === 'name-desc') {
     // Sort alphabetically by name (Z-A)
-    result.sort((a, b) => b.Pictos.localeCompare(a.Pictos))
+    result.sort((a, b) => b.name.localeCompare(a.name))
   } else if (sortBy.value === 'level') {
     // Sort by level (Low-High)
     result.sort((a, b) => {
-      const levelA = typeof a.Level === 'string' ? parseInt(a.Level) : a.Level
-      const levelB = typeof b.Level === 'string' ? parseInt(b.Level) : b.Level
-      return levelA - levelB
+      // Get the highest level from attributes array
+      const getMaxLevel = (picto: PictoItem) => {
+        if (!picto.attributes || picto.attributes.length === 0) return 0;
+        return parseInt(picto.attributes[picto.attributes.length - 1].level);
+      };
+
+      return getMaxLevel(a) - getMaxLevel(b);
     })
   } else if (sortBy.value === 'level-desc') {
     // Sort by level (High-Low)
     result.sort((a, b) => {
-      const levelA = typeof a.Level === 'string' ? parseInt(a.Level) : a.Level
-      const levelB = typeof b.Level === 'string' ? parseInt(b.Level) : b.Level
-      return levelB - levelA
+      // Get the highest level from attributes array
+      const getMaxLevel = (picto: PictoItem) => {
+        if (!picto.attributes || picto.attributes.length === 0) return 0;
+        return parseInt(picto.attributes[picto.attributes.length - 1].level);
+      };
+
+      return getMaxLevel(b) - getMaxLevel(a);
     })
   }
 
@@ -103,7 +114,7 @@ const filteredPictos = computed(() => {
         <input
           type="text"
           v-model="searchQuery"
-          placeholder="Search by name or description..."
+          placeholder="Search by name or effect..."
           class="search-input"
         />
       </div>

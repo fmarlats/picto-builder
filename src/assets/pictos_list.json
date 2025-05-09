@@ -1,7 +1,7 @@
 [
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/accelerating-shots",
-    "name": "Accelerating Shots  Support",
+    "name": "Accelerating Shots",
     "type": "Support",
     "effect": "20% chance to gain Rush on Free Aim shot.",
     "cost": 3,
@@ -241,7 +241,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/accelerating-heal",
-    "name": "Accelerating Heal  Support",
+    "name": "Accelerating Heal",
     "type": "Support",
     "effect": "Healing an ally also applies Rush for 1 turn.",
     "cost": 5,
@@ -481,7 +481,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/accelerating-last-stand",
-    "name": "Accelerating Last Stand  Support",
+    "name": "Accelerating Last Stand",
     "type": "Support",
     "effect": "Gain Rush if fighting alone.",
     "cost": 3,
@@ -721,7 +721,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/accelerating-tint",
-    "name": "Accelerating Tint  Support",
+    "name": "Accelerating Tint",
     "type": "Support",
     "effect": "Healing Tints also apply Rush.",
     "cost": 5,
@@ -961,7 +961,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/aegis-revival",
-    "name": "Aegis Revival  Defensive",
+    "name": "Aegis Revival",
     "type": "Defensive",
     "effect": "+1 Shield on being revived.",
     "cost": 5,
@@ -1201,7 +1201,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/anti-blight",
-    "name": "Anti-Blight  Defensive",
+    "name": "Anti-Blight",
     "type": "Defensive",
     "effect": "Immune to Blight.",
     "cost": 10,
@@ -1441,7 +1441,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/anti-burn",
-    "name": "Anti-Burn  Defensive",
+    "name": "Anti-Burn",
     "type": "Defensive",
     "effect": "Immune to Burn.",
     "cost": 15,
@@ -1681,7 +1681,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/anti-freeze",
-    "name": "Anti-Freeze  Defensive",
+    "name": "Anti-Freeze",
     "type": "Defensive",
     "effect": "Immune to Freeze.",
     "cost": 15,
@@ -1921,7 +1921,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/anti-charm",
-    "name": "Anti-Charm  Defensive",
+    "name": "Anti-Charm",
     "type": "Defensive",
     "effect": "Immune to Charm.",
     "cost": 10,
@@ -2161,7 +2161,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/at-deaths-door",
-    "name": "At Death's Door  Offensive",
+    "name": "At Death's Door",
     "type": "Offensive",
     "effect": "Deal 50% more damage if Health is below 10%.",
     "cost": 5,
@@ -2401,7 +2401,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/anti-stun",
-    "name": "Anti-Stun  Defensive",
+    "name": "Anti-Stun",
     "type": "Defensive",
     "effect": "Immune to Stun.",
     "cost": 5,
@@ -2641,7 +2641,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/attack-lifesteal",
-    "name": "Attack Lifesteal  Defensive",
+    "name": "Attack Lifesteal",
     "type": "Defensive",
     "effect": "Recover 15% Health on Base Attack.",
     "cost": 15,
@@ -2881,7 +2881,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/augmented-attack",
-    "name": "Augmented Attack  Offensive",
+    "name": "Augmented Attack",
     "type": "Offensive",
     "effect": "50% increased Base Attack damage.",
     "cost": 7,
@@ -3121,7 +3121,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/augmented-aim",
-    "name": "Augmented Aim  Offensive",
+    "name": "Augmented Aim",
     "type": "Offensive",
     "effect": "50% increased Free Aim damage.",
     "cost": 3,
@@ -3361,7 +3361,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/augmented-counter-i",
-    "name": "Augmented Counter I  Offensive",
+    "name": "Augmented Counter I",
     "type": "Offensive",
     "effect": "25% increased Counterattack damage.",
     "cost": 3,
@@ -3601,7 +3601,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/augmented-counter-iii",
-    "name": "Augmented Counter III  Offensive",
+    "name": "Augmented Counter III",
     "type": "Offensive",
     "effect": "75% increased Counterattack damage.",
     "cost": 7,
@@ -3841,7 +3841,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/augmented-first-strike",
-    "name": "Augmented First Strike  Offensive",
+    "name": "Augmented First Strike",
     "type": "Offensive",
     "effect": "50% increased damage on the first hit. Once per battle.",
     "cost": 5,
@@ -4081,7 +4081,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/augmented-counter-ii",
-    "name": "Augmented Counter II  Offensive",
+    "name": "Augmented Counter II",
     "type": "Offensive",
     "effect": "50% increased Counterattack damage.",
     "cost": 5,
@@ -4321,7 +4321,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/auto-powerful",
-    "name": "Auto Powerful  Offensive / Support",
+    "name": "Auto Powerful",
     "type": "Offensive / Support",
     "effect": "Apply Powerful for 3 turns on battle start.",
     "cost": 10,
@@ -4561,7 +4561,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/auto-1-hp",
-    "name": "Auto 1 HP  Support",
+    "name": "Auto 1 HP",
     "type": "Support",
     "effect": "Start battle with 1 Health.",
     "cost": 1,
@@ -4801,7 +4801,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/auto-death",
-    "name": "Auto Death  Support",
+    "name": "Auto Death",
     "type": "Support",
     "effect": "Kill self on battle start.",
     "cost": 1,
@@ -5008,7 +5008,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/auto-shell",
-    "name": "Auto Shell  Defensive / Support",
+    "name": "Auto Shell",
     "type": "Defensive / Support",
     "effect": "Apply Shell for 3 turns on battle start.",
     "cost": 10,
@@ -5215,7 +5215,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/auto-regen",
-    "name": "Auto Regen  Defensive / Support",
+    "name": "Auto Regen",
     "type": "Defensive / Support",
     "effect": "Apply Regen for 3 turns on battle start.",
     "cost": 10,
@@ -5422,7 +5422,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/auto-rush",
-    "name": "Auto Rush  Offensive / Support",
+    "name": "Auto Rush",
     "type": "Offensive / Support",
     "effect": "Apply Rush for 3 turns on battle start.",
     "cost": 10,
@@ -5662,7 +5662,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/base-shield",
-    "name": "Base Shield  Defensive",
+    "name": "Base Shield",
     "type": "Defensive",
     "effect": "+1 Shield if not affected by any Shield on turn start.",
     "cost": 20,
@@ -5902,7 +5902,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/beneficial-contamination",
-    "name": "Beneficial Contamination  Support",
+    "name": "Beneficial Contamination",
     "type": "Support",
     "effect": "+2 AP on applying a Status Effect. Once per turn.",
     "cost": 15,
@@ -6142,7 +6142,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/better-healing-tint",
-    "name": "Better Healing Tint  Support",
+    "name": "Better Healing Tint",
     "type": "Support",
     "effect": "Healing Tints have double the Healing effect.",
     "cost": 10,
@@ -6382,7 +6382,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/bloody-bullet",
-    "name": "Bloody Bullet  Support",
+    "name": "Bloody Bullet",
     "type": "Support",
     "effect": "+1 AP on Weak Point hit.",
     "cost": 0,
@@ -6622,7 +6622,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/break-specialist",
-    "name": "Break Specialist  Support",
+    "name": "Break Specialist",
     "type": "Support",
     "effect": "Break damage is increased by 50%, but base damage is reduced by 20%.",
     "cost": 1,
@@ -6862,7 +6862,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/breaker",
-    "name": "Breaker  Offensive",
+    "name": "Breaker",
     "type": "Offensive",
     "effect": "25% increased Break damage.",
     "cost": 10,
@@ -7102,7 +7102,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/breaking-burn",
-    "name": "Breaking Burn  Offensive",
+    "name": "Breaking Burn",
     "type": "Offensive",
     "effect": "25% increased Break damage on Burning enemies.",
     "cost": 5,
@@ -7342,7 +7342,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/breaking-counter",
-    "name": "Breaking Counter  Offensive",
+    "name": "Breaking Counter",
     "type": "Offensive",
     "effect": "50% increased Break damage on Counterattack.",
     "cost": 3,
@@ -7582,7 +7582,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/breaking-attack",
-    "name": "Breaking Attack  Offensive",
+    "name": "Breaking Attack",
     "type": "Offensive",
     "effect": "Base Attack can Break.",
     "cost": 10,
@@ -7822,7 +7822,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/breaking-death",
-    "name": "Breaking Death  Support",
+    "name": "Breaking Death",
     "type": "Support",
     "effect": "Fully charge enemy’s Break Bar on death.",
     "cost": 5,
@@ -8062,7 +8062,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/breaking-slow",
-    "name": "Breaking Slow  Offensive",
+    "name": "Breaking Slow",
     "type": "Offensive",
     "effect": "25% increased Break damage against Slowed enemies.",
     "cost": 5,
@@ -8302,7 +8302,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/breaking-shots",
-    "name": "Breaking Shots  Offensive",
+    "name": "Breaking Shots",
     "type": "Offensive",
     "effect": "50% increased Break damage with Free Aim shots.",
     "cost": 1,
@@ -8542,7 +8542,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/burning-break",
-    "name": "Burning Break  Support",
+    "name": "Burning Break",
     "type": "Support",
     "effect": "Apply 3 Burn stacks on Breaking a target.",
     "cost": 3,
@@ -8782,7 +8782,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/burn-affinity",
-    "name": "Burn Affinity  Offensive",
+    "name": "Burn Affinity",
     "type": "Offensive",
     "effect": "25% increased damage on Burning targets.",
     "cost": 10,
@@ -9022,7 +9022,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/burning-death",
-    "name": "Burning Death  Support",
+    "name": "Burning Death",
     "type": "Support",
     "effect": "Apply 3 Burn to all enemies on Death.",
     "cost": 5,
@@ -9262,7 +9262,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/burning-mark",
-    "name": "Burning Mark  Support",
+    "name": "Burning Mark",
     "type": "Support",
     "effect": "Apply Burn on hitting a Marked enemy.",
     "cost": 15,
@@ -9502,7 +9502,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-alteration",
-    "name": "Charging Alteration  Support",
+    "name": "Charging Alteration",
     "type": "Support",
     "effect": "+10% of a Gradient Charge on applying a Buff. Once per turn.",
     "cost": 10,
@@ -9742,7 +9742,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/burning-shots",
-    "name": "Burning Shots  Support",
+    "name": "Burning Shots",
     "type": "Support",
     "effect": "20% chance to Burn on Free Aim shot.",
     "cost": 3,
@@ -9982,7 +9982,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-attack",
-    "name": "Charging Attack  Support",
+    "name": "Charging Attack",
     "type": "Support",
     "effect": "+15% of a Gradient Charge on Base Attack.",
     "cost": 7,
@@ -10222,7 +10222,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-burn",
-    "name": "Charging Burn  Support",
+    "name": "Charging Burn",
     "type": "Support",
     "effect": "+20% of a Gradient Charge on applying Burn. Once per turn.",
     "cost": 10,
@@ -10462,7 +10462,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-counter",
-    "name": "Charging Counter  Support",
+    "name": "Charging Counter",
     "type": "Support",
     "effect": "+10% of a Gradient Charge on Counterattack.",
     "cost": 10,
@@ -10702,7 +10702,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-recovery",
-    "name": "Charging Recovery  Support",
+    "name": "Charging Recovery",
     "type": "Support",
     "effect": "50% increased Gradient Generation with Healing Skills.",
     "cost": 5,
@@ -10942,7 +10942,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-mark",
-    "name": "Charging Mark  Support",
+    "name": "Charging Mark",
     "type": "Support",
     "effect": "+20% of a Gradient Charge on hitting a Marked target. Once per turn.",
     "cost": 10,
@@ -11182,7 +11182,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-critical",
-    "name": "Charging Critical  Support",
+    "name": "Charging Critical",
     "type": "Support",
     "effect": "+20% of a Gradient Charge on Critical Hit. Once per turn.",
     "cost": 10,
@@ -11422,7 +11422,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-stun",
-    "name": "Charging Stun  Support",
+    "name": "Charging Stun",
     "type": "Support",
     "effect": "+5% of a Gradient Charge on hitting a Stunned enemy.",
     "cost": 5,
@@ -11662,7 +11662,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-tint",
-    "name": "Charging Tint  Support",
+    "name": "Charging Tint",
     "type": "Support",
     "effect": "+5% of a Gradient Charge on using an item.",
     "cost": 2,
@@ -11902,7 +11902,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-weakness",
-    "name": "Charging Weakness  Support",
+    "name": "Charging Weakness",
     "type": "Support",
     "effect": "+15% of a Gradient Charge on hitting a Weakness. Once per turn.",
     "cost": 5,
@@ -12142,7 +12142,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/cleas-life",
-    "name": "Clea's Life  Defensive",
+    "name": "Clea's Life",
     "type": "Defensive",
     "effect": "On turn start, if no damage taken since last turn, recover 100% Health.“",
     "cost": 30,
@@ -12349,7 +12349,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charybde-to-scylla",
-    "name": "Charybde To Scylla  Support",
+    "name": "Charybde To Scylla",
     "type": "Support",
     "effect": "Apply Mark on Stun removed.",
     "cost": 0,
@@ -12589,7 +12589,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/cheater",
-    "name": "Cheater  Support",
+    "name": "Cheater",
     "type": "Support",
     "effect": "Always play twice in a row.",
     "cost": 40,
@@ -12829,7 +12829,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/cleansing-tint",
-    "name": "Cleansing Tint  Support",
+    "name": "Cleansing Tint",
     "type": "Support",
     "effect": "Healing Tints also remove all Status Effects from the target.",
     "cost": 5,
@@ -13069,7 +13069,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/combo-attack-ii",
-    "name": "Combo Attack II  Offensive",
+    "name": "Combo Attack II",
     "type": "Offensive",
     "effect": "Base Attack has 1 extra hit.",
     "cost": 20,
@@ -13309,7 +13309,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/combo-attack-i",
-    "name": "Combo Attack I  Offensive",
+    "name": "Combo Attack I",
     "type": "Offensive",
     "effect": "Base Attack has 1 extra hit.",
     "cost": 10,
@@ -13549,7 +13549,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/combo-attack-iii",
-    "name": "Combo Attack III  Offensive",
+    "name": "Combo Attack III",
     "type": "Offensive",
     "effect": "Base Attack has 1 extra hit.",
     "cost": 30,
@@ -13789,7 +13789,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/confident",
-    "name": "Confident  Defensive",
+    "name": "Confident",
     "type": "Defensive",
     "effect": "Take 50% less damage, but can’t be Healed.",
     "cost": 20,
@@ -14029,7 +14029,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/confident-fighter",
-    "name": "Confident Fighter  Offensive",
+    "name": "Confident Fighter",
     "type": "Offensive",
     "effect": "30% increased damage, but can’t be Healed.",
     "cost": 15,
@@ -14269,7 +14269,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-burn",
-    "name": "Critical Burn  Offensive",
+    "name": "Critical Burn",
     "type": "Offensive",
     "effect": "25% increased Critical Chance on Burning enemies.",
     "cost": 5,
@@ -14509,7 +14509,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-break",
-    "name": "Critical Break  Offensive",
+    "name": "Critical Break",
     "type": "Offensive",
     "effect": "25% increased Break damage on Critical hits.",
     "cost": 5,
@@ -14749,7 +14749,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-moment",
-    "name": "Critical Moment  Offensive",
+    "name": "Critical Moment",
     "type": "Offensive",
     "effect": "50% increased Critical Chance if Health is below 30%.",
     "cost": 5,
@@ -14989,7 +14989,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-stun",
-    "name": "Critical Stun  Offensive",
+    "name": "Critical Stun",
     "type": "Offensive",
     "effect": "100% Critical Chance on hitting a Stunned target.",
     "cost": 5,
@@ -15229,7 +15229,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-stun-2",
-    "name": "Critical Stun (2)  Offensive",
+    "name": "Critical Stun (2)",
     "type": "Offensive",
     "effect": "100% Critical Chance on hitting a Stunned target.",
     "cost": 1,
@@ -15469,7 +15469,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-vulnerability",
-    "name": "Critical Vulnerability  Offensive",
+    "name": "Critical Vulnerability",
     "type": "Offensive",
     "effect": "25% increased Critical Chance on Defenceless enemies.",
     "cost": 5,
@@ -15709,7 +15709,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/cursed-power",
-    "name": "Cursed Power  Offensive",
+    "name": "Cursed Power",
     "type": "Offensive",
     "effect": "30% increased damage while Cursed.",
     "cost": 1,
@@ -15949,7 +15949,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/dead-energy-i",
-    "name": "Dead Energy I  Support",
+    "name": "Dead Energy I",
     "type": "Support",
     "effect": "+3 AP on killing an enemy.",
     "cost": 2,
@@ -16189,7 +16189,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-weakness",
-    "name": "Critical Weakness  Offensive",
+    "name": "Critical Weakness",
     "type": "Offensive",
     "effect": "25% increased Critical Chance on Weakness.",
     "cost": 5,
@@ -16429,7 +16429,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/dead-energy-ii",
-    "name": "Dead Energy II  Support",
+    "name": "Dead Energy II",
     "type": "Support",
     "effect": "+3 AP on killing an enemy.",
     "cost": 2,
@@ -16669,7 +16669,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/death-bomb",
-    "name": "Death Bomb  Offensive",
+    "name": "Death Bomb",
     "type": "Offensive",
     "effect": "On Death, deal damage to all enemies.",
     "cost": 5,
@@ -16909,7 +16909,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/defensive-mode",
-    "name": "Defensive Mode  Defensive",
+    "name": "Defensive Mode",
     "type": "Defensive",
     "effect": "On receiving damage, consume 1 AP to take 30% less damage, if possible.",
     "cost": 1,
@@ -17149,7 +17149,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/dodger",
-    "name": "Dodger  Support",
+    "name": "Dodger",
     "type": "Support",
     "effect": "Gain 1 AP on Perfect Dodge. Once per turn.",
     "cost": 1,
@@ -17389,7 +17389,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/dodge-specialist",
-    "name": "Dodge Specialist  Support",
+    "name": "Dodge Specialist",
     "type": "Support",
     "effect": "25% reduced Dodge window, but 50% chance to gain 1 AP on successful Dodge.",
     "cost": 15,
@@ -17629,7 +17629,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/dodge-helper",
-    "name": "Dodge Helper  Support",
+    "name": "Dodge Helper",
     "type": "Support",
     "effect": "25% increased Dodge window.",
     "cost": 15,
@@ -17869,7 +17869,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/double-burn",
-    "name": "Double Burn  Offensive / Support",
+    "name": "Double Burn",
     "type": "Offensive / Support",
     "effect": "On applying a Burn stack, apply a second one.",
     "cost": 30,
@@ -18109,7 +18109,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/draining-cleanse",
-    "name": "Draining Cleanse  Support",
+    "name": "Draining Cleanse",
     "type": "Support",
     "effect": "Consume 1 AP to prevent Status Effects application, if possible.",
     "cost": 15,
@@ -18349,7 +18349,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/double-mark",
-    "name": "Double Mark  Support",
+    "name": "Double Mark",
     "type": "Support",
     "effect": "Mark requires 1 more hit to be removed.",
     "cost": 20,
@@ -18556,7 +18556,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/empowering-attack",
-    "name": "Empowering Attack  Offensive / Support",
+    "name": "Empowering Attack",
     "type": "Offensive / Support",
     "effect": "Gain Powerful for 1 turn on Base Attack.",
     "cost": 10,
@@ -18796,7 +18796,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/effective-support",
-    "name": "Effective Support  Support",
+    "name": "Effective Support",
     "type": "Support",
     "effect": "+2 AP on using an item.",
     "cost": 5,
@@ -19036,7 +19036,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/effective-heal",
-    "name": "Effective Heal  Defensive",
+    "name": "Effective Heal",
     "type": "Defensive",
     "effect": "Double all Heals received.",
     "cost": 30,
@@ -19276,7 +19276,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/empowering-break",
-    "name": "Empowering Break  Offensive / Support",
+    "name": "Empowering Break",
     "type": "Offensive / Support",
     "effect": "Gain Powerful on Breaking a target.",
     "cost": 3,
@@ -19516,7 +19516,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/empowering-dodge",
-    "name": "Empowering Dodge  Offensive",
+    "name": "Empowering Dodge",
     "type": "Offensive",
     "effect": "5% increased damage for each consecutive successful Dodge. Can stack up to 10 times.",
     "cost": 5,
@@ -19756,7 +19756,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/empowering-last-stand",
-    "name": "Empowering Last Stand  Offensive / Support",
+    "name": "Empowering Last Stand",
     "type": "Offensive / Support",
     "effect": "Gain Powerful if fighting alone.",
     "cost": 3,
@@ -19996,7 +19996,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energetic-healer",
-    "name": "Energetic Healer  Support",
+    "name": "Energetic Healer",
     "type": "Support",
     "effect": "+2 AP on Healing an ally. Once per turn.",
     "cost": 10,
@@ -20236,7 +20236,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/empowering-tint",
-    "name": "Empowering Tint  Offensive / Support",
+    "name": "Empowering Tint",
     "type": "Offensive / Support",
     "effect": "Healing Tints also apply Powerful.",
     "cost": 5,
@@ -20476,7 +20476,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/empowering-parry",
-    "name": "Empowering Parry  Offensive",
+    "name": "Empowering Parry",
     "type": "Offensive",
     "effect": "Each successful Parry increases damage by 5% until end of the following turn. Taking any damage removes this buff.",
     "cost": 5,
@@ -20716,7 +20716,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-attack-i",
-    "name": "Energising Attack I  Support",
+    "name": "Energising Attack I",
     "type": "Support",
     "effect": "+1 AP on Base Attack.",
     "cost": 10,
@@ -20956,7 +20956,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-break",
-    "name": "Energising Break  Support",
+    "name": "Energising Break",
     "type": "Support",
     "effect": "+3 AP on Breaking a target.",
     "cost": 3,
@@ -21196,7 +21196,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-attack-ii",
-    "name": "Energising Attack II  Support",
+    "name": "Energising Attack II",
     "type": "Support",
     "effect": "+1 AP on Base Attack.",
     "cost": 15,
@@ -21436,7 +21436,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-burn",
-    "name": "Energising Burn  Support",
+    "name": "Energising Burn",
     "type": "Support",
     "effect": "+1 AP on applying Burn. Once per turn.",
     "cost": 10,
@@ -21676,7 +21676,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-cleanse",
-    "name": "Energising Cleanse  Support",
+    "name": "Energising Cleanse",
     "type": "Support",
     "effect": "Dispel the first negative Status Effect received and gain 2 AP.",
     "cost": 10,
@@ -21916,7 +21916,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-death",
-    "name": "Energising Death  Support",
+    "name": "Energising Death",
     "type": "Support",
     "effect": "On death, +4 AP to allies.",
     "cost": 5,
@@ -22156,7 +22156,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-heal",
-    "name": "Energising Heal  Support",
+    "name": "Energising Heal",
     "type": "Support",
     "effect": "On Healing an ally, also give 2 AP.",
     "cost": 10,
@@ -22396,7 +22396,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-gradient",
-    "name": "Energising Gradient  Support",
+    "name": "Energising Gradient",
     "type": "Support",
     "effect": "+1 AP per Gradient Charge consumed.",
     "cost": 0,
@@ -22404,7 +22404,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-jump",
-    "name": "Energising Jump  Support",
+    "name": "Energising Jump",
     "type": "Support",
     "effect": "+1 AP on Jump Counterattack.",
     "cost": 5,
@@ -22644,7 +22644,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-parry",
-    "name": "Energising Parry  Support",
+    "name": "Energising Parry",
     "type": "Support",
     "effect": "+1 AP on successful Parry.",
     "cost": 15,
@@ -22851,7 +22851,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-pain",
-    "name": "Energising Pain  Support",
+    "name": "Energising Pain",
     "type": "Support",
     "effect": "No longer gain AP on Parry. +1 AP on getting hit.",
     "cost": 10,
@@ -23091,7 +23091,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-powerful",
-    "name": "Energising Powerful  Support",
+    "name": "Energising Powerful",
     "type": "Support",
     "effect": "Give 2 AP on applying Powerful.",
     "cost": 10,
@@ -23331,7 +23331,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-rush",
-    "name": "Energising Rush  Support",
+    "name": "Energising Rush",
     "type": "Support",
     "effect": "Give 2 AP on applying Rush.",
     "cost": 10,
@@ -23571,7 +23571,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-revive",
-    "name": "Energising Revive  Support",
+    "name": "Energising Revive",
     "type": "Support",
     "effect": "+3 AP to all allies when revived.",
     "cost": 5,
@@ -23811,7 +23811,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-shell",
-    "name": "Energising Shell  Support",
+    "name": "Energising Shell",
     "type": "Support",
     "effect": "Give 2 AP on applying Shell.",
     "cost": 10,
@@ -24051,7 +24051,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-shots",
-    "name": "Energising Shots  Support",
+    "name": "Energising Shots",
     "type": "Support",
     "effect": "20% chance to gain 1 AP on Free Aim shot.",
     "cost": 10,
@@ -24291,7 +24291,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-start-ii",
-    "name": "Energising Start II  Support",
+    "name": "Energising Start II",
     "type": "Support",
     "effect": "+1 AP on battle start.",
     "cost": 10,
@@ -24498,7 +24498,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-start-i",
-    "name": "Energising Start I  Support",
+    "name": "Energising Start I",
     "type": "Support",
     "effect": "+1 AP on battle start.",
     "cost": 5,
@@ -24705,7 +24705,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-stun",
-    "name": "Energising Stun  Support",
+    "name": "Energising Stun",
     "type": "Support",
     "effect": "+1 AP on hitting a Stunned target with a Skill.",
     "cost": 10,
@@ -24945,7 +24945,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-start-iv",
-    "name": "Energising Start IV  Support",
+    "name": "Energising Start IV",
     "type": "Support",
     "effect": "+1 AP on battle start.",
     "cost": 20,
@@ -25152,7 +25152,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-start-iii",
-    "name": "Energising Start III  Support",
+    "name": "Energising Start III",
     "type": "Support",
     "effect": "+1 AP on battle start.",
     "cost": 15,
@@ -25359,7 +25359,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/enfeebling-attack",
-    "name": "Enfeebling Attack  Defensive / Support",
+    "name": "Enfeebling Attack",
     "type": "Defensive / Support",
     "effect": "Base Attack applies Powerless for 1 turn.",
     "cost": 10,
@@ -25599,7 +25599,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-turn",
-    "name": "Energising Turn  Support",
+    "name": "Energising Turn",
     "type": "Support",
     "effect": "+1 AP on turn start.",
     "cost": 20,
@@ -25806,7 +25806,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energy-master",
-    "name": "Energy Master  Support",
+    "name": "Energy Master",
     "type": "Support",
     "effect": "Every AP gain is increased by 1.",
     "cost": 40,
@@ -26013,7 +26013,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/evasive-healer",
-    "name": "Evasive Healer  Support",
+    "name": "Evasive Healer",
     "type": "Support",
     "effect": "Heals provided are doubled until any damage is taken.",
     "cost": 10,
@@ -26253,7 +26253,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/exhausting-power",
-    "name": "Exhausting Power  Offensive",
+    "name": "Exhausting Power",
     "type": "Offensive",
     "effect": "50% increased damage if Exhausted.",
     "cost": 2,
@@ -26493,7 +26493,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/enfeebling-mark",
-    "name": "Enfeebling Mark  Defensive / Support",
+    "name": "Enfeebling Mark",
     "type": "Defensive / Support",
     "effect": "Marked targets deal 30% less damage.",
     "cost": 10,
@@ -26733,7 +26733,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/faster-than-strong",
-    "name": "Faster Than Strong  Support",
+    "name": "Faster Than Strong",
     "type": "Support",
     "effect": "Always play twice in a row, but deal 50% less damage.",
     "cost": 10,
@@ -26973,7 +26973,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/exposing-attack",
-    "name": "Exposing Attack  Offensive / Support",
+    "name": "Exposing Attack",
     "type": "Offensive / Support",
     "effect": "Base Attack applies Defenceless for 1 turn.",
     "cost": 10,
@@ -27213,7 +27213,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/exposing-break",
-    "name": "Exposing Break  Offensive / Support",
+    "name": "Exposing Break",
     "type": "Offensive / Support",
     "effect": "Apply Defenceless on Break.",
     "cost": 5,
@@ -27453,7 +27453,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/first-offensive",
-    "name": "First Offensive  Offensive",
+    "name": "First Offensive",
     "type": "Offensive",
     "effect": "First hit dealt and taken deals 50% more damage.",
     "cost": 5,
@@ -27693,7 +27693,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/free-aim-inverted-shot",
-    "name": "Free Aim Inverted Shot  Support",
+    "name": "Free Aim Inverted Shot",
     "type": "Support",
     "effect": "Free Aim shots can apply Inverted.",
     "cost": 1,
@@ -27933,7 +27933,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/first-strike",
-    "name": "First Strike  Support",
+    "name": "First Strike",
     "type": "Support",
     "effect": "Play first.",
     "cost": 10,
@@ -28173,7 +28173,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/frozen-affinity",
-    "name": "Frozen Affinity  Offensive",
+    "name": "Frozen Affinity",
     "type": "Offensive",
     "effect": "25% increased damage on Frozen targets.",
     "cost": 1,
@@ -28413,7 +28413,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/full-strength",
-    "name": "Full Strength  Offensive",
+    "name": "Full Strength",
     "type": "Offensive",
     "effect": "25% increased damage on full Health.",
     "cost": 15,
@@ -28653,7 +28653,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/fueling-break",
-    "name": "Fueling Break  Support",
+    "name": "Fueling Break",
     "type": "Support",
     "effect": "Breaking a target doubles its Burn amount.",
     "cost": 5,
@@ -28893,7 +28893,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/gradient-break",
-    "name": "Gradient Break  Support",
+    "name": "Gradient Break",
     "type": "Support",
     "effect": "+50% of a Gradient Charge on Breaking a target.",
     "cost": 5,
@@ -29133,7 +29133,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/glass-canon",
-    "name": "Glass Canon  Offensive",
+    "name": "Glass Canon",
     "type": "Offensive",
     "effect": "Deal 25% more damage, but take 25% more damage.",
     "cost": 10,
@@ -29340,7 +29340,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/gradient-breaker",
-    "name": "Gradient Breaker  Offensive",
+    "name": "Gradient Breaker",
     "type": "Offensive",
     "effect": "50% increased Break damage with Gradient Attacks.",
     "cost": 5,
@@ -29580,7 +29580,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/gradient-fighter",
-    "name": "Gradient Fighter  Offensive",
+    "name": "Gradient Fighter",
     "type": "Offensive",
     "effect": "25% increased damage with Gradient Attacks.",
     "cost": 5,
@@ -29820,7 +29820,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/great-energy-tint",
-    "name": "Great Energy Tint  Support",
+    "name": "Great Energy Tint",
     "type": "Support",
     "effect": "Energy Tints now affect the whole Expedition.",
     "cost": 20,
@@ -30060,7 +30060,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/gradient-recovery",
-    "name": "Gradient Recovery  Defensive",
+    "name": "Gradient Recovery",
     "type": "Defensive",
     "effect": "Recover 10% Health on using a Gradient Charge.",
     "cost": 5,
@@ -30300,7 +30300,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/great-healing-tint",
-    "name": "Great Healing Tint  Support",
+    "name": "Great Healing Tint",
     "type": "Support",
     "effect": "Healing Tints now affect the whole Expedition.",
     "cost": 20,
@@ -30540,7 +30540,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/greater-defenceless",
-    "name": "Greater Defenceless  Offensive / Support",
+    "name": "Greater Defenceless",
     "type": "Offensive / Support",
     "effect": "+15% to Defenceless damage amplification.",
     "cost": 15,
@@ -30780,7 +30780,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/greater-powerful",
-    "name": "Greater Powerful  Offensive / Support",
+    "name": "Greater Powerful",
     "type": "Offensive / Support",
     "effect": "+15% to Powerful damage increase.",
     "cost": 10,
@@ -31020,7 +31020,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/greater-rush",
-    "name": "Greater Rush  Support",
+    "name": "Greater Rush",
     "type": "Support",
     "effect": "+25% to Rush Speed increase.",
     "cost": 10,
@@ -31260,7 +31260,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/greater-powerless",
-    "name": "Greater Powerless  Defensive / Support",
+    "name": "Greater Powerless",
     "type": "Defensive / Support",
     "effect": "+15% to Powerless damage reduction.",
     "cost": 15,
@@ -31500,7 +31500,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/greater-shell",
-    "name": "Greater Shell  Defensive / Support",
+    "name": "Greater Shell",
     "type": "Defensive / Support",
     "effect": "+10% to Shell damage reduction.",
     "cost": 10,
@@ -31740,7 +31740,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/greater-slow",
-    "name": "Greater Slow  Support",
+    "name": "Greater Slow",
     "type": "Support",
     "effect": "+15% to Slow Speed reduction.",
     "cost": 15,
@@ -31980,7 +31980,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/healing-boon",
-    "name": "Healing Boon  Defensive / Support",
+    "name": "Healing Boon",
     "type": "Defensive / Support",
     "effect": "Heal 15% HP on applying a buff.",
     "cost": 10,
@@ -32220,7 +32220,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/healing-counter",
-    "name": "Healing Counter  Defensive",
+    "name": "Healing Counter",
     "type": "Defensive",
     "effect": "Recover 25% Health on Counterattack.",
     "cost": 10,
@@ -32427,7 +32427,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/healing-death",
-    "name": "Healing Death  Defensive / Support",
+    "name": "Healing Death",
     "type": "Defensive / Support",
     "effect": "On death, the rest of the Expedition recover all Health.",
     "cost": 5,
@@ -32667,7 +32667,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/healing-fire",
-    "name": "Healing Fire  Defensive",
+    "name": "Healing Fire",
     "type": "Defensive",
     "effect": "Recover 25% Health when attacking a Burning target. Once per turn.",
     "cost": 10,
@@ -32907,7 +32907,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/healing-mark",
-    "name": "Healing Mark  Defensive / Support",
+    "name": "Healing Mark",
     "type": "Defensive / Support",
     "effect": "Recover 25% Health on hitting a Marked enemy. Once per turn.",
     "cost": 20,
@@ -33114,7 +33114,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/healing-share",
-    "name": "Healing Share  Defensive",
+    "name": "Healing Share",
     "type": "Defensive",
     "effect": "Receive 15% of all Heals affecting other characters.",
     "cost": 5,
@@ -33354,7 +33354,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/healing-parry",
-    "name": "Healing Parry  Defensive",
+    "name": "Healing Parry",
     "type": "Defensive",
     "effect": "Recover 3% Health on Parry.",
     "cost": 5,
@@ -33594,7 +33594,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/healing-stun",
-    "name": "Healing Stun  Defensive",
+    "name": "Healing Stun",
     "type": "Defensive",
     "effect": "Recover 5% Health on hitting a Stunned target.",
     "cost": 10,
@@ -33834,7 +33834,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/healing-tint-energy",
-    "name": "Healing Tint Energy  Support",
+    "name": "Healing Tint Energy",
     "type": "Support",
     "effect": "Healing Tints also give 1 AP.",
     "cost": 1,
@@ -34074,7 +34074,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/immaculate",
-    "name": "Immaculate  Offensive",
+    "name": "Immaculate",
     "type": "Offensive",
     "effect": "30% increased damage until a hit is received.",
     "cost": 10,
@@ -34314,7 +34314,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/in-medias-res",
-    "name": "In Medias Res  Defensive",
+    "name": "In Medias Res",
     "type": "Defensive",
     "effect": "+3 Shields on Battle Start, but max Health is halved.",
     "cost": 10,
@@ -34554,7 +34554,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/inverted-affinity",
-    "name": "Inverted Affinity  Offensive",
+    "name": "Inverted Affinity",
     "type": "Offensive",
     "effect": "Apply Inverted on self for 3 turns on battle start. 50% increased damage while Inverted.",
     "cost": 5,
@@ -34794,7 +34794,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/last-stand-critical",
-    "name": "Last Stand Critical  Offensive",
+    "name": "Last Stand Critical",
     "type": "Offensive",
     "effect": "100% Critical Chance while fighting alone.",
     "cost": 3,
@@ -35034,7 +35034,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/longer-burn",
-    "name": "Longer Burn  Support",
+    "name": "Longer Burn",
     "type": "Support",
     "effect": "Burn duration is increased by 2.",
     "cost": 15,
@@ -35274,7 +35274,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/longer-powerful",
-    "name": "Longer Powerful  Offensive / Support",
+    "name": "Longer Powerful",
     "type": "Offensive / Support",
     "effect": "On applying Powerful, its duration is increased by 2.",
     "cost": 10,
@@ -35514,7 +35514,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/longer-shell",
-    "name": "Longer Shell  Defensive / Support",
+    "name": "Longer Shell",
     "type": "Defensive / Support",
     "effect": "On applying Shell, its duration is increased by 2.",
     "cost": 10,
@@ -35754,7 +35754,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/longer-rush",
-    "name": "Longer Rush  Support",
+    "name": "Longer Rush",
     "type": "Support",
     "effect": "On applying Rush, its duration is increased by 2.",
     "cost": 10,
@@ -35994,7 +35994,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/marking-break",
-    "name": "Marking Break  Offensive",
+    "name": "Marking Break",
     "type": "Offensive",
     "effect": "25% increased Critical Chance on Burning enemies.",
     "cost": 5,
@@ -36002,7 +36002,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/painted-power",
-    "name": "Painted Power  Offensive",
+    "name": "Painted Power",
     "type": "Offensive",
     "effect": "Damage can exceed 9,999. The only item in the game that allows you to break through the damage cap. The only way to obtain it is to defeat the boss at the end of Act 2. Check the Interactive Map Location below for full details of how to find it and break the damage cap.",
     "cost": 5,
@@ -36209,7 +36209,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/marking-shots",
-    "name": "Marking Shots  Support",
+    "name": "Marking Shots",
     "type": "Support",
     "effect": "20% chance to apply Mark on Free Aim shot.",
     "cost": 3,
@@ -36449,7 +36449,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/passive-defense",
-    "name": "Passive Defense  Defensive",
+    "name": "Passive Defense",
     "type": "Defensive",
     "effect": "Reduce damage taken by 50%, but can’t Parry or Dodge.",
     "cost": 1,
@@ -36689,7 +36689,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/parry-specialist",
-    "name": "Parry Specialist  Offensive",
+    "name": "Parry Specialist",
     "type": "Offensive",
     "effect": "25% reduced Parry window but double Counterattack damage.",
     "cost": 15,
@@ -36929,7 +36929,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/painter",
-    "name": "Painter  Offensive",
+    "name": "Painter",
     "type": "Offensive",
     "effect": "Convert all Physical damage to Void damage.",
     "cost": 10,
@@ -37169,7 +37169,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/piercing-shot",
-    "name": "Piercing Shot  Offensive",
+    "name": "Piercing Shot",
     "type": "Offensive",
     "effect": "25% increased Free Aim damage. Free Aim shots ignore Shields.",
     "cost": 2,
@@ -37409,7 +37409,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/perilous-parry",
-    "name": "Perilous Parry  Support",
+    "name": "Perilous Parry",
     "type": "Support",
     "effect": "+1 AP on Parry, but damage received is doubled.",
     "cost": 5,
@@ -37649,7 +37649,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/physical-fighter",
-    "name": "Physical Fighter  Offensive",
+    "name": "Physical Fighter",
     "type": "Offensive",
     "effect": "Convert all Skill damage to Physical damage.",
     "cost": 0,
@@ -37889,7 +37889,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/powerful-mark",
-    "name": "Powerful Mark  Offensive / Support",
+    "name": "Powerful Mark",
     "type": "Offensive / Support",
     "effect": "Gain Powerful on hitting a Marked enemy.",
     "cost": 5,
@@ -38129,7 +38129,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/powerful-heal",
-    "name": "Powerful Heal  Support",
+    "name": "Powerful Heal",
     "type": "Support",
     "effect": "Healing an ally also applies Powerful for 1 turn.",
     "cost": 5,
@@ -38369,7 +38369,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/powered-attack",
-    "name": "Powered Attack  Offensive",
+    "name": "Powered Attack",
     "type": "Offensive",
     "effect": "On every damage dealt, try to consume 1 AP. If successful, increase damage by 20%.",
     "cost": 10,
@@ -38609,7 +38609,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/powerful-on-shell",
-    "name": "Powerful On Shell  Offensive / Support",
+    "name": "Powerful On Shell",
     "type": "Offensive / Support",
     "effect": "Apply Powerful on applying Shell.",
     "cost": 10,
@@ -38849,7 +38849,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/powerful-revive",
-    "name": "Powerful Revive  Offensive / Support",
+    "name": "Powerful Revive",
     "type": "Offensive / Support",
     "effect": "Apply Powerful for 3 turns when revived.",
     "cost": 3,
@@ -39089,7 +39089,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/powerful-shield",
-    "name": "Powerful Shield  Offensive",
+    "name": "Powerful Shield",
     "type": "Offensive",
     "effect": "10% increased damage per Shield Point on self.",
     "cost": 5,
@@ -39329,7 +39329,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/powerful-shots",
-    "name": "Powerful Shots  Support",
+    "name": "Powerful Shots",
     "type": "Support",
     "effect": "20% chance to gain Powerful on Free Aim shot.",
     "cost": 3,
@@ -39569,7 +39569,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/protecting-attack",
-    "name": "Protecting Attack  Defensive / Support",
+    "name": "Protecting Attack",
     "type": "Defensive / Support",
     "effect": "Gain Shell for 1 turn on Base Attack.",
     "cost": 10,
@@ -39809,7 +39809,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/pro-retreat",
-    "name": "Pro Retreat  Support",
+    "name": "Pro Retreat",
     "type": "Support",
     "effect": "Allows Flee to be instantaneous.",
     "cost": 40,
@@ -40049,7 +40049,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/protecting-death",
-    "name": "Protecting Death  Defensive / Support",
+    "name": "Protecting Death",
     "type": "Defensive / Support",
     "effect": "On death, allies gain Shell.",
     "cost": 5,
@@ -40289,7 +40289,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/protecting-heal",
-    "name": "Protecting Heal  Support",
+    "name": "Protecting Heal",
     "type": "Support",
     "effect": "Healing an ally also applies Shell for 1 turn.",
     "cost": 5,
@@ -40529,7 +40529,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/protecting-last-stand",
-    "name": "Protecting Last Stand  Defensive / Support",
+    "name": "Protecting Last Stand",
     "type": "Defensive / Support",
     "effect": "Gain Shell if fighting alone.",
     "cost": 3,
@@ -40769,7 +40769,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/quick-break",
-    "name": "Quick Break  Support",
+    "name": "Quick Break",
     "type": "Support",
     "effect": "Play again on Breaking a target.",
     "cost": 3,
@@ -41009,7 +41009,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/protecting-tint",
-    "name": "Protecting Tint  Defensive / Support",
+    "name": "Protecting Tint",
     "type": "Defensive / Support",
     "effect": "Healing Tints also apply Shell.",
     "cost": 5,
@@ -41249,7 +41249,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/protecting-shots",
-    "name": "Protecting Shots  Support",
+    "name": "Protecting Shots",
     "type": "Support",
     "effect": "20% chance to gain Shell on Free Aim shot.",
     "cost": 3,
@@ -41489,7 +41489,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/random-defense",
-    "name": "Random Defense  Defensive",
+    "name": "Random Defense",
     "type": "Defensive",
     "effect": "Damage taken is randomly multiplied by a value between 50% and 200%.",
     "cost": 5,
@@ -41696,7 +41696,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/recovery",
-    "name": "Recovery  Defensive",
+    "name": "Recovery",
     "type": "Defensive",
     "effect": "Recovers 10% Health on turn start.",
     "cost": 10,
@@ -41936,7 +41936,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/rejuvenating-revive",
-    "name": "Rejuvenating Revive  Defensive / Support",
+    "name": "Rejuvenating Revive",
     "type": "Defensive / Support",
     "effect": "Apply Regen for 3 turns when revived.",
     "cost": 3,
@@ -42176,7 +42176,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/revive-paradox",
-    "name": "Revive Paradox  Support",
+    "name": "Revive Paradox",
     "type": "Support",
     "effect": "Play immediately when revived.",
     "cost": 5,
@@ -42416,7 +42416,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/rewarding-mark",
-    "name": "Rewarding Mark  Support",
+    "name": "Rewarding Mark",
     "type": "Support",
     "effect": "+2 AP on dealing damage to a Marked target. Once per turn.",
     "cost": 5,
@@ -42656,7 +42656,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/revive-tint-energy",
-    "name": "Revive Tint Energy  Support",
+    "name": "Revive Tint Energy",
     "type": "Support",
     "effect": "Revive Tints also give 3 AP.",
     "cost": 10,
@@ -42896,7 +42896,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/roulette",
-    "name": "Roulette  Offensive",
+    "name": "Roulette",
     "type": "Offensive",
     "effect": "Every hit has a 50% chance to deal either 50% or 200% of its damage.",
     "cost": 5,
@@ -43136,7 +43136,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/rush-on-powerful",
-    "name": "Rush On Powerful  Support",
+    "name": "Rush On Powerful",
     "type": "Support",
     "effect": "Apply Rush on applying Powerful.",
     "cost": 10,
@@ -43376,7 +43376,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/second-chance",
-    "name": "Second Chance  Defensive",
+    "name": "Second Chance",
     "type": "Defensive",
     "effect": "Revive with 100% Health. Once per battle.",
     "cost": 40,
@@ -43616,7 +43616,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/shared-care",
-    "name": "Shared Care  Defensive",
+    "name": "Shared Care",
     "type": "Defensive",
     "effect": "When Healing an ally, also Heal self for 50% of that value.",
     "cost": 10,
@@ -43856,7 +43856,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/shell-on-rush",
-    "name": "Shell On Rush  Defensive / Support",
+    "name": "Shell On Rush",
     "type": "Defensive / Support",
     "effect": "Apply Shell on applying Rush.",
     "cost": 10,
@@ -44096,7 +44096,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/shield-affinity",
-    "name": "Shield Affinity  Offensive",
+    "name": "Shield Affinity",
     "type": "Offensive",
     "effect": "30% increased damage while having Shields, but receiving any damage always removes all Shields.",
     "cost": 15,
@@ -44336,7 +44336,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/shield-breaker",
-    "name": "Shield Breaker  Offensive",
+    "name": "Shield Breaker",
     "type": "Offensive",
     "effect": "All hits break 1 more Shield.",
     "cost": 10,
@@ -44576,7 +44576,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/shielding-death",
-    "name": "Shielding Death  Defensive / Support",
+    "name": "Shielding Death",
     "type": "Defensive / Support",
     "effect": "On death, allies gain 3 Shield points.",
     "cost": 10,
@@ -44816,7 +44816,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/shielding-tint",
-    "name": "Shielding Tint  Defensive / Support",
+    "name": "Shielding Tint",
     "type": "Defensive / Support",
     "effect": "Healing Tints also add 2 Shields.",
     "cost": 10,
@@ -45056,7 +45056,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/shortcut",
-    "name": "Shortcut  Support",
+    "name": "Shortcut",
     "type": "Support",
     "effect": "Immediately play when falling below 30% Health. Once per battle.",
     "cost": 5,
@@ -45296,7 +45296,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/sniper",
-    "name": "Sniper  Offensive",
+    "name": "Sniper",
     "type": "Offensive",
     "effect": "First Free Aim shot each turn deals 200% increased damage and can Break.",
     "cost": 15,
@@ -45536,7 +45536,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/slowing-break",
-    "name": "Slowing Break  Support",
+    "name": "Slowing Break",
     "type": "Support",
     "effect": "Apply Slow on Break.",
     "cost": 5,
@@ -45776,7 +45776,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/solidifying",
-    "name": "Solidifying  Defensive",
+    "name": "Solidifying",
     "type": "Defensive",
     "effect": "+2 Shields when the character’s Health falls below 50%. Once per battle.",
     "cost": 10,
@@ -46016,7 +46016,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/solo-fighter",
-    "name": "Solo Fighter  Offensive",
+    "name": "Solo Fighter",
     "type": "Offensive",
     "effect": "Deal 50% more damage if fighting alone.",
     "cost": 1,
@@ -46256,7 +46256,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/solidifying-meditation",
-    "name": "Solidifying Meditation  Defensive",
+    "name": "Solidifying Meditation",
     "type": "Defensive",
     "effect": "+1 Shield when passing turn.",
     "cost": 3,
@@ -46496,7 +46496,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/sos-rush",
-    "name": "SOS Rush  Offensive / Support",
+    "name": "SOS Rush",
     "type": "Offensive / Support",
     "effect": "Apply Rush when falling below 50% Health.",
     "cost": 5,
@@ -46736,7 +46736,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/sos-power",
-    "name": "SOS Power  Offensive",
+    "name": "SOS Power",
     "type": "Offensive",
     "effect": "Apply Powerful when falling below 50% Health.",
     "cost": 5,
@@ -46976,7 +46976,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/sos-shell",
-    "name": "SOS Shell  Defensive",
+    "name": "SOS Shell",
     "type": "Defensive",
     "effect": "Apply Shell when falling below 50% Health.",
     "cost": 5,
@@ -47216,7 +47216,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/soul-eater",
-    "name": "Soul Eater  Offensive",
+    "name": "Soul Eater",
     "type": "Offensive",
     "effect": "Deal 30% more damage, but lose 20% Health per turn.",
     "cost": 5,
@@ -47423,7 +47423,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/staggering-attack",
-    "name": "Staggering Attack  Offensive",
+    "name": "Staggering Attack",
     "type": "Offensive",
     "effect": "50% increased Break damage on Base Attack.",
     "cost": 1,
@@ -47663,7 +47663,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/stay-marked",
-    "name": "Stay Marked  Support",
+    "name": "Stay Marked",
     "type": "Support",
     "effect": "50% chance to apply Mark when attacking a Marked target.",
     "cost": 10,
@@ -47903,7 +47903,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/stun-boost",
-    "name": "Stun Boost  Offensive",
+    "name": "Stun Boost",
     "type": "Offensive",
     "effect": "30% increased damage on Stunned targets.",
     "cost": 10,
@@ -48143,7 +48143,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/survivor",
-    "name": "Survivor  Defensive",
+    "name": "Survivor",
     "type": "Defensive",
     "effect": "Survive fatal damage with 1 Health. Once per battle.",
     "cost": 20,
@@ -48383,7 +48383,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/successive-parry",
-    "name": "Successive Parry  Offensive",
+    "name": "Successive Parry",
     "type": "Offensive",
     "effect": "Can’t Dodge. +5% increased damage per Parry until damage taken.",
     "cost": 5,
@@ -48623,7 +48623,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/teamwork",
-    "name": "Teamwork  Offensive",
+    "name": "Teamwork",
     "type": "Offensive",
     "effect": "10% increased damage while all allies are alive.",
     "cost": 5,
@@ -48863,7 +48863,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/tainted",
-    "name": "Tainted  Offensive",
+    "name": "Tainted",
     "type": "Offensive",
     "effect": "15% increased damage for each Status Effect on self.",
     "cost": 3,
@@ -49103,7 +49103,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/sweet-kill",
-    "name": "Sweet Kill  Defensive",
+    "name": "Sweet Kill",
     "type": "Defensive",
     "effect": "Recover 50% Health on killing an enemy.",
     "cost": 5,
@@ -49343,7 +49343,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/the-one",
-    "name": "The One  Support",
+    "name": "The One",
     "type": "Support",
     "effect": "Max Health is reduced to 1.",
     "cost": 1,
@@ -49550,7 +49550,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/the-best-defense",
-    "name": "The Best Defense  Offensive",
+    "name": "The Best Defense",
     "type": "Offensive",
     "effect": "Deal 50% more damage, but can’t Parry or Dodge.",
     "cost": 5,
@@ -49757,7 +49757,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/time-tint",
-    "name": "Time Tint  Support",
+    "name": "Time Tint",
     "type": "Support",
     "effect": "Energy Tints also apply Rush.",
     "cost": 10,
@@ -49997,7 +49997,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/warming-up",
-    "name": "Warming Up  Offensive",
+    "name": "Warming Up",
     "type": "Offensive",
     "effect": "5% increased damage per turn. Can stack up to 5 times.",
     "cost": 15,
@@ -50237,7 +50237,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/versatile",
-    "name": "Versatile  Offensive",
+    "name": "Versatile",
     "type": "Offensive",
     "effect": "After a Free Aim hit, Base Attack damage is increased by 50% for 1 turn.",
     "cost": 5,
@@ -50477,7 +50477,7 @@
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/weakness-gain",
-    "name": "Weakness Gain  Support",
+    "name": "Weakness Gain",
     "type": "Support",
     "effect": "+1 AP on hitting an enemy’s Weakness. Once per turn.",
     "cost": 3,

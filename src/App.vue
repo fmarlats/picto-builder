@@ -184,13 +184,19 @@ const selectedLevels = ref<Record<string, string>>({})
 const luminaSelectedPictos = ref<string[]>([]) // Array of picto IDs selected for lumina
 const pictoSelectedPictos = ref<string[]>([]) // Array of picto IDs selected as pictos
 const isPanelVisible = ref(false) // Track if the side panel is visible on mobile
+const isFullWidthPanel = ref(false) // Track if the side panel is in full-width mode on desktop
 const showOnlySelected = ref(false) // Track if we should show only selected elements
 const comment = ref('') // Comment about the build
 const buildTitle = ref('') // Title for the build
 
-// Function to toggle the panel visibility
+// Function to toggle the panel visibility on mobile
 const togglePanelVisibility = () => {
   isPanelVisible.value = !isPanelVisible.value;
+}
+
+// Function to toggle the full-width panel mode on desktop
+const toggleFullWidthPanel = () => {
+  isFullWidthPanel.value = !isFullWidthPanel.value;
 }
 
 // Function to save the current state to the URL
@@ -530,8 +536,8 @@ const filteredPictos = computed(() => {
       </span>
     </div>
 
-    <div class="main-content" :class="{ 'panel-mode': isPanelVisible }">
-      <div class="pictos-grid" :class="{ 'hidden-on-mobile': isPanelVisible }">
+    <div class="main-content" :class="{ 'panel-mode': isPanelVisible, 'full-width-panel': isFullWidthPanel }">
+      <div class="pictos-grid" :class="{ 'hidden-on-mobile': isPanelVisible, 'hidden': isFullWidthPanel }">
         <Picto
           v-for="picto in filteredPictos"
           :key="picto.id"
@@ -546,7 +552,7 @@ const filteredPictos = computed(() => {
         />
       </div>
 
-      <div class="selection-panel-container" :class="{ 'visible-on-mobile': isPanelVisible }">
+      <div class="selection-panel-container" :class="{ 'visible-on-mobile': isPanelVisible, 'full-width': isFullWidthPanel }">
         <SelectionPanel
           :allPictos="allPictos"
           :pictoSelectedPictos="pictoSelectedPictos"
@@ -554,8 +560,10 @@ const filteredPictos = computed(() => {
           :selectedLevels="selectedLevels"
           :comment="comment"
           :buildTitle="buildTitle"
+          :isFullWidthPanel="isFullWidthPanel"
           @reset-all="resetAll"
           @update-comment-and-title="updateCommentAndTitle"
+          @toggle-full-width="toggleFullWidthPanel"
         />
       </div>
     </div>
@@ -751,6 +759,91 @@ h1 {
 .main-content {
   display: flex;
   gap: 24px;
+  transition: all 0.3s ease;
+}
+
+/* Full-width panel mode */
+.main-content.full-width-panel {
+  flex-direction: column;
+}
+
+.pictos-grid.hidden {
+  display: none;
+}
+
+.selection-panel-container.full-width {
+  width: 100%;
+  min-width: 100%;
+}
+
+/* Style for selected items in full-width mode */
+.selection-panel-container.full-width :deep(.selected-items) {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* Responsive adjustments for the grid in full-width mode */
+@media (max-width: 1200px) {
+  .selection-panel-container.full-width :deep(.selected-items) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .selection-panel-container.full-width :deep(.selected-items) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .selection-panel-container.full-width :deep(.selected-items) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel-header {
+  display: flex;
+  justify-content: flex-start; /* Changed from flex-end to flex-start */
+  margin-bottom: 12px;
+}
+
+.full-width-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+}
+
+.expand-button {
+  background-color: #2196f3;
+}
+
+.expand-button:hover {
+  background-color: #1976d2;
+}
+
+.collapse-button {
+  background-color: #ff9800;
+}
+
+.collapse-button:hover {
+  background-color: #f57c00;
+}
+
+.full-width-toggle svg {
+  transition: transform 0.2s ease;
+}
+
+.full-width-toggle:hover svg {
+  transform: scale(1.1);
 }
 
 .pictos-grid {
@@ -798,6 +891,11 @@ h1 {
     margin-top: 30px;
     border-top: 1px solid #444;
     padding-top: 20px;
+  }
+
+  /* Hide the full-width toggle on mobile */
+  .panel-header {
+    display: none;
   }
 
   /* Mobile panel toggle styles */

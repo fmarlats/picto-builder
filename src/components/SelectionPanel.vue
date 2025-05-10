@@ -224,6 +224,11 @@ const showCommentModal = ref(false);
 const commentText = ref('');
 const buildTitleText = ref('');
 
+// Share modal state
+const showShareModal = ref(false);
+const isCopied = ref(false);
+const copyTimeout = ref<number | null>(null);
+
 // Function to open the comment modal
 const openCommentModal = () => {
   commentText.value = props.comment || '';
@@ -246,6 +251,55 @@ const saveComment = () => {
 
   // Provide haptic feedback for save action
   hapticFeedback.strongVibration();
+};
+
+// Function to open the share modal
+const openShareModal = () => {
+  showShareModal.value = true;
+
+  // Reset copy state
+  isCopied.value = false;
+
+  // Provide haptic feedback
+  hapticFeedback.progressVibration();
+};
+
+// Function to close the share modal
+const closeShareModal = () => {
+  showShareModal.value = false;
+};
+
+// Get the current URL for sharing
+const getCurrentUrl = (): string => {
+  return window.location.href;
+};
+
+// Function to copy URL to clipboard
+const copyToClipboard = () => {
+  // Get the current URL
+  const url = getCurrentUrl();
+
+  // Copy to clipboard
+  navigator.clipboard.writeText(url).then(() => {
+    // Show success message
+    isCopied.value = true;
+
+    // Provide haptic feedback for copy action
+    hapticFeedback.strongVibration();
+
+    // Clear any existing timeout
+    if (copyTimeout.value !== null) {
+      clearTimeout(copyTimeout.value);
+    }
+
+    // Reset the copied state after 3 seconds
+    copyTimeout.value = setTimeout(() => {
+      isCopied.value = false;
+      copyTimeout.value = null;
+    }, 3000);
+  }).catch(err => {
+    console.error('Could not copy text: ', err);
+  });
 };
 
 // Function to toggle full-width panel mode
@@ -286,6 +340,20 @@ const toggleFullWidth = () => {
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
           </svg>
           <span>{{ props.buildTitle || props.comment ? 'Edit Build Details' : 'Add Build Details' }}</span>
+        </div>
+      </button>
+
+      <!-- Share button -->
+      <button class="share-button" @click="openShareModal">
+        <div class="share-button-content">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          <span>Share Build</span>
         </div>
       </button>
 
@@ -449,6 +517,44 @@ const toggleFullWidth = () => {
         </div>
       </div>
     </teleport>
+
+    <!-- Share Modal -->
+    <teleport to="body">
+      <div v-if="showShareModal" class="modal-overlay" @click.self="closeShareModal">
+        <div class="share-modal">
+          <div class="modal-header">
+            <h3>Share Build</h3>
+            <button class="close-button" @click="closeShareModal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="share-instructions">
+              <p>Copy this link to share your build with others:</p>
+            </div>
+            <div class="share-url-container">
+              <input
+                type="text"
+                readonly
+                :value="getCurrentUrl()"
+                class="share-url-input"
+                @click="($event.target as HTMLInputElement).select()"
+              />
+              <button
+                class="copy-button"
+                @click="copyToClipboard"
+                :class="{ 'copied': isCopied }"
+              >
+                <span v-if="!isCopied">Copy</span>
+                <span v-else>Copied!</span>
+              </button>
+            </div>
+            <div class="share-tips">
+              <p>This link contains all your selected pictos, luminas, levels, and build details.</p>
+              <p>Anyone with this link can view your build exactly as you've created it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </teleport>
   </div>
 </template>
 
@@ -520,7 +626,7 @@ const toggleFullWidth = () => {
   -webkit-tap-highlight-color: transparent;
 }
 
-.comment-button {
+.comment-button, .share-button {
   position: relative;
   display: flex;
   align-items: center;
@@ -546,7 +652,16 @@ const toggleFullWidth = () => {
   -webkit-tap-highlight-color: transparent;
 }
 
-.reset-button-content, .comment-button-content, .full-width-button-content {
+.share-button {
+  background-color: #4caf50; /* Green color for share button */
+}
+
+.share-button:hover {
+  background-color: #388e3c;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.reset-button-content, .comment-button-content, .share-button-content, .full-width-button-content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -640,16 +755,16 @@ const toggleFullWidth = () => {
 
 /* Mobile-specific styles */
 @media (max-width: 768px) {
-  .reset-button, .comment-button, .full-width-toggle {
+  .reset-button, .comment-button, .share-button, .full-width-toggle {
     height: 48px; /* Larger touch target on mobile */
     font-size: 16px;
   }
 
-  .reset-button-content, .comment-button-content, .full-width-button-content {
+  .reset-button-content, .comment-button-content, .share-button-content, .full-width-button-content {
     gap: 8px;
   }
 
-  .reset-button-content svg, .comment-button-content svg, .full-width-button-content svg {
+  .reset-button-content svg, .comment-button-content svg, .share-button-content svg, .full-width-button-content svg {
     width: 18px;
     height: 18px;
   }
@@ -946,7 +1061,7 @@ const toggleFullWidth = () => {
   z-index: 9999;
 }
 
-.comment-modal {
+.comment-modal, .share-modal {
   background-color: #333;
   border-radius: 8px;
   width: 90%;
@@ -1076,6 +1191,95 @@ const toggleFullWidth = () => {
 
 .save-button:hover {
   background-color: #1976d2;
+}
+
+/* Share Modal Styles */
+.share-instructions {
+  margin-bottom: 16px;
+}
+
+.share-instructions p {
+  margin: 0;
+  color: #ddd;
+  font-size: 0.95rem;
+}
+
+.share-url-container {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.share-url-input {
+  flex: 1;
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 4px 0 0 4px;
+  padding: 12px;
+  font-size: 0.9rem;
+  font-family: monospace;
+  outline: none;
+}
+
+.share-url-input:focus {
+  border-color: #2196f3;
+}
+
+.copy-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  padding: 0 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 80px;
+}
+
+.copy-button:hover {
+  background-color: #388e3c;
+}
+
+.copy-button.copied {
+  background-color: #2196f3;
+}
+
+.share-tips {
+  background-color: rgba(33, 150, 243, 0.1);
+  border-radius: 4px;
+  padding: 12px;
+  border-left: 3px solid #2196f3;
+}
+
+.share-tips p {
+  margin: 0 0 8px 0;
+  color: #bbb;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.share-tips p:last-child {
+  margin-bottom: 0;
+}
+
+/* Mobile-specific styles for share modal */
+@media (max-width: 768px) {
+  .share-url-container {
+    flex-direction: column;
+  }
+
+  .share-url-input {
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .copy-button {
+    border-radius: 4px;
+    width: 100%;
+    height: 40px;
+  }
 }
 
 </style>

@@ -486,7 +486,7 @@ const filteredPictos = computed(() => {
   <div class="container">
     <h1>Expedition 33 Builds</h1>
 
-    <div class="filters-container" :class="{ 'hidden-on-mobile': isPanelVisible }">
+    <div class="filters-container" :class="{ 'hidden-on-mobile': isPanelVisible, 'hidden': isFullWidthPanel }">
       <div class="search-container">
         <input
           type="text"
@@ -534,7 +534,7 @@ const filteredPictos = computed(() => {
       </div>
     </div>
 
-    <div class="results-info" :class="{ 'hidden-on-mobile': isPanelVisible }">
+    <div class="results-info" :class="{ 'hidden-on-mobile': isPanelVisible, 'hidden': isFullWidthPanel }">
       <span v-if="showOnlySelected">
         Showing {{ filteredPictos.length }} selected pictos
         <span class="selected-count">
@@ -778,6 +778,10 @@ h1 {
 /* Full-width panel mode */
 .main-content.full-width-panel {
   flex-direction: column;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .pictos-grid.hidden {

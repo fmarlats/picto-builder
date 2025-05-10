@@ -263,13 +263,19 @@ onMounted(() => {
   comment.value = savedState.comment || '';
   buildTitle.value = savedState.buildTitle || '';
 
-  // Check if we should show the panel view on mobile
-  // If there are any selected pictos or luminas, show the panel view
-  if (luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0) {
+  // Check if there are any selections
+  const hasSelections = luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0;
+
+  if (hasSelections) {
     // Check if we're on mobile (screen width <= 768px)
     const isMobile = window.innerWidth <= 768;
+
     if (isMobile) {
+      // Show the panel view on mobile
       isPanelVisible.value = true;
+    } else {
+      // On desktop, show the expanded view when there are selections
+      isFullWidthPanel.value = true;
     }
   }
 })
@@ -296,17 +302,24 @@ watch(() => window.location.hash, () => {
   comment.value = savedState.comment || '';
   buildTitle.value = savedState.buildTitle || '';
 
-  // Check if we should show the panel view on mobile
-  // If there are any selected pictos or luminas, show the panel view
-  if (luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0) {
+  // Check if there are any selections
+  const hasSelections = luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0;
+
+  if (hasSelections) {
     // Check if we're on mobile (screen width <= 768px)
     const isMobile = window.innerWidth <= 768;
+
     if (isMobile) {
+      // Show the panel view on mobile
       isPanelVisible.value = true;
+    } else {
+      // On desktop, show the expanded view when there are selections
+      isFullWidthPanel.value = true;
     }
   } else {
-    // If there are no selections, show the grid view
+    // If there are no selections, reset to default views
     isPanelVisible.value = false;
+    isFullWidthPanel.value = false;
   }
 });
 

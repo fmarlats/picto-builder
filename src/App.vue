@@ -594,6 +594,12 @@ const filteredPictos = computed(() => {
       <p>Expedition 33 Builds - Picto Builder Tool</p>
       <p>A fan-made tool for creating and sharing character builds</p>
       <p>Made in Paris "la Ville Lumière", France 🇫🇷</p>
+      <p class="error-report">
+        Found an error? Contact
+        <a href="mailto:expedition33builds@outlook.com?subject=Error%20Report%20-%20Picto%20Builder&body=I%20found%20an%20error%20on%20the%20Picto%20Builder%20website%3A%0A%0ADescription%20of%20the%20error%3A%0A%0ASteps%20to%20reproduce%3A%0A%0ABrowser%20and%20device%3A" target="_blank" rel="noopener noreferrer">
+          expedition33builds@outlook.com
+        </a>
+      </p>
     </footer>
   </div>
 </template>
@@ -640,6 +646,35 @@ h1 {
 
 .site-footer p {
   margin: 5px 0;
+}
+
+.error-report {
+  margin-top: 15px !important;
+  font-size: 0.85rem;
+}
+
+.error-report {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.error-report::before {
+  content: "⚠️";
+  font-size: 1rem;
+}
+
+.error-report a {
+  color: #2196f3;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+
+.error-report a:hover {
+  color: #64b5f6;
+  text-decoration: underline;
 }
 
 .filters-container {

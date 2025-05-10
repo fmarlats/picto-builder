@@ -237,7 +237,8 @@
           "Defense": "497"
         }
       }
-    ]
+    ],
+    "id": 1
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/accelerating-heal",
@@ -477,7 +478,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 2
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/accelerating-last-stand",
@@ -717,7 +719,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 3
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/accelerating-tint",
@@ -957,7 +960,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 4
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/aegis-revival",
@@ -1197,7 +1201,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 5
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/anti-blight",
@@ -1437,7 +1442,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 6
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/anti-burn",
@@ -1677,7 +1683,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 7
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/anti-freeze",
@@ -1917,7 +1924,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 8
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/anti-charm",
@@ -2157,7 +2165,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 9
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/at-deaths-door",
@@ -2397,7 +2406,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 10
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/anti-stun",
@@ -2637,7 +2647,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 11
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/attack-lifesteal",
@@ -2877,7 +2888,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 12
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/augmented-attack",
@@ -3117,7 +3129,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 13
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/augmented-aim",
@@ -3357,7 +3370,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 14
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/augmented-counter-i",
@@ -3597,7 +3611,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 15
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/augmented-counter-iii",
@@ -3837,7 +3852,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 16
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/augmented-first-strike",
@@ -4077,7 +4093,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 17
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/augmented-counter-ii",
@@ -4317,7 +4334,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 18
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/auto-powerful",
@@ -4557,7 +4575,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 19
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/auto-1-hp",
@@ -4797,7 +4816,8 @@
           "Critical Rate": "12%"
         }
       }
-    ]
+    ],
+    "id": 20
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/auto-death",
@@ -5004,7 +5024,8 @@
           "Critical Rate": "99%"
         }
       }
-    ]
+    ],
+    "id": 21
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/auto-shell",
@@ -5211,7 +5232,8 @@
           "Health": "7154"
         }
       }
-    ]
+    ],
+    "id": 22
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/auto-regen",
@@ -5418,7 +5440,8 @@
           "Defense": "4722"
         }
       }
-    ]
+    ],
+    "id": 23
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/auto-rush",
@@ -5658,7 +5681,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 24
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/base-shield",
@@ -5898,7 +5922,8 @@
           "Critical Rate": "18%"
         }
       }
-    ]
+    ],
+    "id": 25
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/beneficial-contamination",
@@ -6138,7 +6163,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 26
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/better-healing-tint",
@@ -6378,7 +6404,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 27
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/bloody-bullet",
@@ -6618,7 +6645,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 28
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/break-specialist",
@@ -6858,7 +6886,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 29
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/breaker",
@@ -7098,7 +7127,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 30
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/breaking-burn",
@@ -7338,7 +7368,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 31
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/breaking-counter",
@@ -7578,7 +7609,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 32
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/breaking-attack",
@@ -7818,7 +7850,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 33
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/breaking-death",
@@ -8058,7 +8091,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 34
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/breaking-slow",
@@ -8298,7 +8332,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 35
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/breaking-shots",
@@ -8538,7 +8573,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 36
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/burning-break",
@@ -8778,7 +8814,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 37
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/burn-affinity",
@@ -9018,7 +9055,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 38
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/burning-death",
@@ -9258,7 +9296,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 39
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/burning-mark",
@@ -9498,7 +9537,8 @@
           "Defense": "3542"
         }
       }
-    ]
+    ],
+    "id": 40
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-alteration",
@@ -9738,7 +9778,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 41
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/burning-shots",
@@ -9978,7 +10019,8 @@
           "Critical Rate": "8%"
         }
       }
-    ]
+    ],
+    "id": 42
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-attack",
@@ -10218,7 +10260,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 43
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-burn",
@@ -10458,7 +10501,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 44
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-counter",
@@ -10698,7 +10742,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 45
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-recovery",
@@ -10938,7 +10983,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 46
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-mark",
@@ -11178,7 +11224,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 47
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-critical",
@@ -11418,7 +11465,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 48
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-stun",
@@ -11658,7 +11706,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 49
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-tint",
@@ -11898,7 +11947,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 50
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charging-weakness",
@@ -12138,7 +12188,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 51
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/cleas-life",
@@ -12345,7 +12396,8 @@
           "Health": "6777"
         }
       }
-    ]
+    ],
+    "id": 52
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/charybde-to-scylla",
@@ -12585,7 +12637,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 53
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/cheater",
@@ -12825,7 +12878,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 54
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/cleansing-tint",
@@ -13065,7 +13119,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 55
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/combo-attack-ii",
@@ -13305,7 +13360,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 56
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/combo-attack-i",
@@ -13545,7 +13601,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 57
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/combo-attack-iii",
@@ -13785,7 +13842,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 58
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/confident",
@@ -14025,7 +14083,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 59
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/confident-fighter",
@@ -14265,7 +14324,8 @@
           "Critical Rate": "55%"
         }
       }
-    ]
+    ],
+    "id": 60
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-burn",
@@ -14505,7 +14565,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 61
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-break",
@@ -14745,7 +14806,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 62
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-moment",
@@ -14985,7 +15047,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 63
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-stun",
@@ -15225,7 +15288,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 64
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-stun-2",
@@ -15465,7 +15529,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 65
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-vulnerability",
@@ -15705,7 +15770,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 66
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/cursed-power",
@@ -15945,7 +16011,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 67
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/dead-energy-i",
@@ -16185,7 +16252,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 68
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/critical-weakness",
@@ -16425,7 +16493,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 69
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/dead-energy-ii",
@@ -16665,7 +16734,8 @@
           "Critical Rate": "57%"
         }
       }
-    ]
+    ],
+    "id": 70
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/death-bomb",
@@ -16905,7 +16975,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 71
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/defensive-mode",
@@ -17145,7 +17216,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 72
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/dodger",
@@ -17385,7 +17457,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 73
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/dodge-specialist",
@@ -17625,7 +17698,8 @@
           "Defense": "1181"
         }
       }
-    ]
+    ],
+    "id": 74
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/dodge-helper",
@@ -17865,7 +17939,8 @@
           "Defense": "1181"
         }
       }
-    ]
+    ],
+    "id": 75
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/double-burn",
@@ -18105,7 +18180,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 76
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/draining-cleanse",
@@ -18345,7 +18421,8 @@
           "Defense": "1181"
         }
       }
-    ]
+    ],
+    "id": 77
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/double-mark",
@@ -18552,7 +18629,8 @@
           "Speed": "1452"
         }
       }
-    ]
+    ],
+    "id": 78
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/empowering-attack",
@@ -18792,7 +18870,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 79
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/effective-support",
@@ -19032,7 +19111,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 80
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/effective-heal",
@@ -19272,7 +19352,8 @@
           "Defense": "3355"
         }
       }
-    ]
+    ],
+    "id": 81
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/empowering-break",
@@ -19512,7 +19593,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 82
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/empowering-dodge",
@@ -19752,7 +19834,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 83
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/empowering-last-stand",
@@ -19992,7 +20075,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 84
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energetic-healer",
@@ -20232,7 +20316,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 85
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/empowering-tint",
@@ -20472,7 +20557,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 86
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/empowering-parry",
@@ -20712,7 +20798,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 87
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-attack-i",
@@ -20952,7 +21039,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 88
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-break",
@@ -21192,7 +21280,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 89
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-attack-ii",
@@ -21432,7 +21521,8 @@
           "Speed": "1089"
         }
       }
-    ]
+    ],
+    "id": 90
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-burn",
@@ -21672,7 +21762,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 91
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-cleanse",
@@ -21912,7 +22003,8 @@
           "Defense": "1181"
         }
       }
-    ]
+    ],
+    "id": 92
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-death",
@@ -22152,7 +22244,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 93
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-heal",
@@ -22392,7 +22485,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 94
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-gradient",
@@ -22400,7 +22494,8 @@
     "type": "Support",
     "effect": "+1 AP per Gradient Charge consumed.",
     "cost": 0,
-    "attributes": []
+    "attributes": [],
+    "id": 95
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-jump",
@@ -22640,7 +22735,8 @@
           "Speed": "1089"
         }
       }
-    ]
+    ],
+    "id": 96
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-parry",
@@ -22847,7 +22943,8 @@
           "Health": "7154"
         }
       }
-    ]
+    ],
+    "id": 97
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-pain",
@@ -23087,7 +23184,8 @@
           "Defense": "1181"
         }
       }
-    ]
+    ],
+    "id": 98
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-powerful",
@@ -23327,7 +23425,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 99
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-rush",
@@ -23567,7 +23666,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 100
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-revive",
@@ -23807,7 +23907,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 101
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-shell",
@@ -24047,7 +24148,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 102
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-shots",
@@ -24287,7 +24389,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 103
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-start-ii",
@@ -24494,7 +24597,8 @@
           "Health": "7154"
         }
       }
-    ]
+    ],
+    "id": 104
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-start-i",
@@ -24701,7 +24805,8 @@
           "Health": "7154"
         }
       }
-    ]
+    ],
+    "id": 105
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-stun",
@@ -24941,7 +25046,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 106
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-start-iv",
@@ -25148,7 +25254,8 @@
           "Health": "7154"
         }
       }
-    ]
+    ],
+    "id": 107
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-start-iii",
@@ -25355,7 +25462,8 @@
           "Health": "7154"
         }
       }
-    ]
+    ],
+    "id": 108
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/enfeebling-attack",
@@ -25595,7 +25703,8 @@
           "Defense": "3542"
         }
       }
-    ]
+    ],
+    "id": 109
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energising-turn",
@@ -25802,7 +25911,8 @@
           "Speed": "1452"
         }
       }
-    ]
+    ],
+    "id": 110
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/energy-master",
@@ -26009,7 +26119,8 @@
           "Health": "6024"
         }
       }
-    ]
+    ],
+    "id": 111
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/evasive-healer",
@@ -26249,7 +26360,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 112
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/exhausting-power",
@@ -26489,7 +26601,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 113
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/enfeebling-mark",
@@ -26729,7 +26842,8 @@
           "Speed": "363"
         }
       }
-    ]
+    ],
+    "id": 114
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/faster-than-strong",
@@ -26969,7 +27083,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 115
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/exposing-attack",
@@ -27209,7 +27324,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 116
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/exposing-break",
@@ -27449,7 +27565,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 117
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/first-offensive",
@@ -27689,7 +27806,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 118
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/free-aim-inverted-shot",
@@ -27929,7 +28047,8 @@
           "Critical Rate": "8%"
         }
       }
-    ]
+    ],
+    "id": 119
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/first-strike",
@@ -28169,7 +28288,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 120
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/frozen-affinity",
@@ -28409,7 +28529,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 121
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/full-strength",
@@ -28649,7 +28770,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 122
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/fueling-break",
@@ -28889,7 +29011,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 123
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/gradient-break",
@@ -29129,7 +29252,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 124
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/glass-canon",
@@ -29336,7 +29460,8 @@
           "Speed": "1452"
         }
       }
-    ]
+    ],
+    "id": 125
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/gradient-breaker",
@@ -29576,7 +29701,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 126
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/gradient-fighter",
@@ -29816,7 +29942,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 127
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/great-energy-tint",
@@ -30056,7 +30183,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 128
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/gradient-recovery",
@@ -30296,7 +30424,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 129
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/great-healing-tint",
@@ -30536,7 +30665,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 130
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/greater-defenceless",
@@ -30776,7 +30906,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 131
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/greater-powerful",
@@ -31016,7 +31147,8 @@
           "Critical Rate": "55%"
         }
       }
-    ]
+    ],
+    "id": 132
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/greater-rush",
@@ -31256,7 +31388,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 133
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/greater-powerless",
@@ -31496,7 +31629,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 134
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/greater-shell",
@@ -31736,7 +31870,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 135
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/greater-slow",
@@ -31976,7 +32111,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 136
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/healing-boon",
@@ -32216,7 +32352,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 137
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/healing-counter",
@@ -32423,7 +32560,8 @@
           "Health": "7154"
         }
       }
-    ]
+    ],
+    "id": 138
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/healing-death",
@@ -32663,7 +32801,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 139
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/healing-fire",
@@ -32903,7 +33042,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 140
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/healing-mark",
@@ -33110,7 +33250,8 @@
           "Defense": "4722"
         }
       }
-    ]
+    ],
+    "id": 141
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/healing-share",
@@ -33350,7 +33491,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 142
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/healing-parry",
@@ -33590,7 +33732,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 143
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/healing-stun",
@@ -33830,7 +33973,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 144
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/healing-tint-energy",
@@ -34070,7 +34214,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 145
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/immaculate",
@@ -34310,7 +34455,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 146
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/in-medias-res",
@@ -34550,7 +34696,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 147
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/inverted-affinity",
@@ -34790,7 +34937,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 148
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/last-stand-critical",
@@ -35030,7 +35178,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 149
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/longer-burn",
@@ -35270,7 +35419,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 150
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/longer-powerful",
@@ -35510,7 +35660,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 151
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/longer-shell",
@@ -35750,7 +35901,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 152
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/longer-rush",
@@ -35990,7 +36142,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 153
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/marking-break",
@@ -35998,7 +36151,8 @@
     "type": "Offensive",
     "effect": "25% increased Critical Chance on Burning enemies.",
     "cost": 5,
-    "attributes": []
+    "attributes": [],
+    "id": 154
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/painted-power",
@@ -36205,7 +36359,8 @@
           "Health": "7530"
         }
       }
-    ]
+    ],
+    "id": 155
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/marking-shots",
@@ -36445,7 +36600,8 @@
           "Critical Rate": "8%"
         }
       }
-    ]
+    ],
+    "id": 156
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/passive-defense",
@@ -36685,7 +36841,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 157
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/parry-specialist",
@@ -36925,7 +37082,8 @@
           "Speed": "363"
         }
       }
-    ]
+    ],
+    "id": 158
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/painter",
@@ -37165,7 +37323,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 159
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/piercing-shot",
@@ -37405,7 +37564,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 160
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/perilous-parry",
@@ -37645,7 +37805,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 161
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/physical-fighter",
@@ -37885,7 +38046,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 162
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/powerful-mark",
@@ -38125,7 +38287,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 163
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/powerful-heal",
@@ -38365,7 +38528,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 164
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/powered-attack",
@@ -38605,7 +38769,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 165
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/powerful-on-shell",
@@ -38845,7 +39010,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 166
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/powerful-revive",
@@ -39085,7 +39251,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 167
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/powerful-shield",
@@ -39325,7 +39492,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 168
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/powerful-shots",
@@ -39565,7 +39733,8 @@
           "Defense": "497"
         }
       }
-    ]
+    ],
+    "id": 169
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/protecting-attack",
@@ -39805,7 +39974,8 @@
           "Defense": "1181"
         }
       }
-    ]
+    ],
+    "id": 170
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/pro-retreat",
@@ -40045,7 +40215,8 @@
           "Speed": "612"
         }
       }
-    ]
+    ],
+    "id": 171
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/protecting-death",
@@ -40285,7 +40456,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 172
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/protecting-heal",
@@ -40525,7 +40697,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 173
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/protecting-last-stand",
@@ -40765,7 +40938,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 174
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/quick-break",
@@ -41005,7 +41179,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 175
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/protecting-tint",
@@ -41245,7 +41420,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 176
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/protecting-shots",
@@ -41485,7 +41661,8 @@
           "Defense": "497"
         }
       }
-    ]
+    ],
+    "id": 177
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/random-defense",
@@ -41692,7 +41869,8 @@
           "Critical Rate": "76%"
         }
       }
-    ]
+    ],
+    "id": 178
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/recovery",
@@ -41932,7 +42110,8 @@
           "Defense": "1181"
         }
       }
-    ]
+    ],
+    "id": 179
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/rejuvenating-revive",
@@ -42172,7 +42351,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 180
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/revive-paradox",
@@ -42412,7 +42592,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 181
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/rewarding-mark",
@@ -42652,7 +42833,8 @@
           "Speed": "382"
         }
       }
-    ]
+    ],
+    "id": 182
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/revive-tint-energy",
@@ -42892,7 +43074,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 183
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/roulette",
@@ -43132,7 +43315,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 184
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/rush-on-powerful",
@@ -43372,7 +43556,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 185
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/second-chance",
@@ -43612,7 +43797,8 @@
           "Critical Rate": "16%"
         }
       }
-    ]
+    ],
+    "id": 186
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/shared-care",
@@ -43852,7 +44038,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 187
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/shell-on-rush",
@@ -44092,7 +44279,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 188
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/shield-affinity",
@@ -44332,7 +44520,8 @@
           "Critical Rate": "37%"
         }
       }
-    ]
+    ],
+    "id": 189
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/shield-breaker",
@@ -44572,7 +44761,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 190
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/shielding-death",
@@ -44812,7 +45002,8 @@
           "Speed": "363"
         }
       }
-    ]
+    ],
+    "id": 191
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive-support/shielding-tint",
@@ -45052,7 +45243,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 192
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/shortcut",
@@ -45292,7 +45484,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 193
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/sniper",
@@ -45532,7 +45725,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 194
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/slowing-break",
@@ -45772,7 +45966,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 195
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/solidifying",
@@ -46012,7 +46207,8 @@
           "Speed": "726"
         }
       }
-    ]
+    ],
+    "id": 196
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/solo-fighter",
@@ -46252,7 +46448,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 197
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/solidifying-meditation",
@@ -46492,7 +46689,8 @@
           "Defense": "1243"
         }
       }
-    ]
+    ],
+    "id": 198
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive-support/sos-rush",
@@ -46732,7 +46930,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 199
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/sos-power",
@@ -46972,7 +47171,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 200
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/sos-shell",
@@ -47212,7 +47412,8 @@
           "Speed": "764"
         }
       }
-    ]
+    ],
+    "id": 201
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/soul-eater",
@@ -47419,7 +47620,8 @@
           "Critical Rate": "76%"
         }
       }
-    ]
+    ],
+    "id": 202
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/staggering-attack",
@@ -47659,7 +47861,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 203
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/stay-marked",
@@ -47899,7 +48102,8 @@
           "Critical Rate": "26%"
         }
       }
-    ]
+    ],
+    "id": 204
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/stun-boost",
@@ -48139,7 +48343,8 @@
           "Critical Rate": "8%"
         }
       }
-    ]
+    ],
+    "id": 205
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/survivor",
@@ -48379,7 +48584,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 206
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/successive-parry",
@@ -48619,7 +48825,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 207
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/teamwork",
@@ -48859,7 +49066,8 @@
           "Defense": "2485"
         }
       }
-    ]
+    ],
+    "id": 208
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/tainted",
@@ -49099,7 +49307,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 209
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/defensive/sweet-kill",
@@ -49339,7 +49548,8 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 210
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/the-one",
@@ -49546,7 +49756,8 @@
           "Critical Rate": "114%"
         }
       }
-    ]
+    ],
+    "id": 211
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/the-best-defense",
@@ -49753,7 +49964,8 @@
           "Defense": "4722"
         }
       }
-    ]
+    ],
+    "id": 212
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/time-tint",
@@ -49993,7 +50205,8 @@
           "Defense": "2361"
         }
       }
-    ]
+    ],
+    "id": 213
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/warming-up",
@@ -50233,7 +50446,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 214
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/offensive/versatile",
@@ -50473,7 +50687,8 @@
           "Critical Rate": "19%"
         }
       }
-    ]
+    ],
+    "id": 215
   },
   {
     "full_url": "https://www.gamerguides.com/clair-obscur-expedition-33/database/pictos/support/weakness-gain",
@@ -50713,6 +50928,7 @@
           "Critical Rate": "38%"
         }
       }
-    ]
+    ],
+    "id": 216
   }
 ]

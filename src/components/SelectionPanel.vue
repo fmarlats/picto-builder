@@ -286,7 +286,17 @@ const saveComment = () => {
     </div>
     <!-- Picto Selected Section -->
     <div class="panel-section">
-      <h2 class="section-title">Picto Selected ({{ selectedPictos.length }})</h2>
+      <h2 class="section-title">
+        Picto Selected ({{ selectedPictos.length }})
+        <span v-if="selectedPictos.length > 3" class="warning-icon" title="Picto selected should not exceed 3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <span class="warning-tooltip">Picto selected should not exceed 3</span>
+        </span>
+      </h2>
 
       <div v-if="selectedPictos.length === 0" class="empty-message">
         <div class="empty-icon">👆</div>
@@ -586,6 +596,57 @@ const saveComment = () => {
   background-color: #555;
   margin-right: 8px;
   border-radius: 2px;
+}
+
+.warning-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+  color: #ff9800;
+  position: relative;
+  cursor: pointer;
+}
+
+.warning-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.warning-tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  z-index: 10;
+  pointer-events: none;
+  margin-top: 8px;
+  border: 1px solid #444;
+}
+
+.warning-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #444 transparent;
+}
+
+.warning-icon:hover .warning-tooltip {
+  opacity: 1;
+  visibility: visible;
 }
 
 .empty-message {

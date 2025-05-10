@@ -45,10 +45,11 @@ const props = defineProps<{
   luminaSelectedPictos: string[];
   selectedLevels: Record<string, string>;
   comment?: string;
+  buildTitle?: string;
 }>();
 
 // Define emits
-const emit = defineEmits(['reset-all', 'update-comment']);
+const emit = defineEmits(['reset-all', 'update-comment-and-title']);
 
 // Reset button state
 const isResetting = ref(false);
@@ -220,10 +221,12 @@ const getPictoLevel = (picto: PictoItem) => {
 // Comment modal state
 const showCommentModal = ref(false);
 const commentText = ref('');
+const buildTitleText = ref('');
 
 // Function to open the comment modal
 const openCommentModal = () => {
   commentText.value = props.comment || '';
+  buildTitleText.value = props.buildTitle || '';
   showCommentModal.value = true;
 
   // Provide haptic feedback
@@ -235,9 +238,9 @@ const closeCommentModal = () => {
   showCommentModal.value = false;
 };
 
-// Function to save the comment
+// Function to save the comment and build title
 const saveComment = () => {
-  emit('update-comment', commentText.value);
+  emit('update-comment-and-title', commentText.value, buildTitleText.value);
   closeCommentModal();
 
   // Provide haptic feedback for save action
@@ -273,9 +276,13 @@ const saveComment = () => {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
           </svg>
-          <span>{{ props.comment ? 'Edit Comment' : 'Add Comment' }}</span>
+          <span>{{ props.buildTitle || props.comment ? 'Edit Build Details' : 'Add Build Details' }}</span>
         </div>
       </button>
+    </div>
+    <!-- Build Title Display (if exists) -->
+    <div v-if="props.buildTitle" class="build-title-display">
+      <h1 class="build-title-text">{{ props.buildTitle }}</h1>
     </div>
     <!-- Picto Selected Section -->
     <div class="panel-section">
@@ -358,16 +365,30 @@ const saveComment = () => {
       <div v-if="showCommentModal" class="modal-overlay" @click.self="closeCommentModal">
         <div class="comment-modal">
           <div class="modal-header">
-            <h3>Add Comment</h3>
+            <h3>Build Details</h3>
             <button class="close-button" @click="closeCommentModal">&times;</button>
           </div>
           <div class="modal-body">
-            <textarea
-              v-model="commentText"
-              class="comment-textarea"
-              placeholder="Which character is it for... which weapon to use..."
-              rows="5"
-            ></textarea>
+            <div class="input-group">
+              <label for="build-title">Build Title</label>
+              <input
+                type="text"
+                id="build-title"
+                v-model="buildTitleText"
+                class="build-title-input"
+                placeholder="Enter a title for your build..."
+              />
+            </div>
+            <div class="input-group">
+              <label for="build-comment">Comment</label>
+              <textarea
+                id="build-comment"
+                v-model="commentText"
+                class="comment-textarea"
+                placeholder="Which character is it for... which weapon to use..."
+                rows="5"
+              ></textarea>
+            </div>
           </div>
           <div class="modal-footer">
             <button class="save-button" @click="saveComment">Save</button>
@@ -395,6 +416,21 @@ const saveComment = () => {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 16px;
+}
+
+.build-title-display {
+  padding: 8px 12px;
+  background-color: rgba(33, 150, 243, 0.1);
+  border-radius: 4px;
+  border-left: 3px solid #2196f3;
+}
+
+.build-title-text {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
 }
 
 .reset-button {
@@ -781,7 +817,40 @@ const saveComment = () => {
 }
 
 .modal-body {
-  padding: 0;
+  padding: 16px;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-group:last-child {
+  margin-bottom: 0;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #ddd;
+  font-size: 0.9rem;
+}
+
+.build-title-input {
+  width: 100%;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 4px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.build-title-input:focus {
+  outline: none;
+  background-color: #1e1e1e;
 }
 
 .comment-textarea {
@@ -789,12 +858,13 @@ const saveComment = () => {
   background-color: #222;
   color: #fff;
   border: none;
-  padding: 16px;
+  padding: 12px;
   font-size: 1rem;
   resize: vertical;
   min-height: 120px;
   font-family: inherit;
   box-sizing: border-box;
+  border-radius: 4px;
 }
 
 .comment-textarea:focus {

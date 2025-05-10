@@ -868,9 +868,11 @@ h1 {
 .pictos-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 8px;
+  column-gap: 16px; /* Increased from 8px for better spacing */
   row-gap: 28px;
   flex: 1;
+  align-items: stretch; /* Ensure cards stretch to fill their grid cells */
+  grid-auto-rows: minmax(200px, auto); /* Set minimum row height */
 }
 
 .selection-panel-container {

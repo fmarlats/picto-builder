@@ -437,6 +437,8 @@ const hapticFeedback = {
   border-radius: 5px;
   padding: 6px;
   height: 100%;
+  min-height: 200px; /* Add min-height for consistency */
+  max-height: 300px; /* Add max-height to prevent excessive vertical stretching */
   font-size: 0.85rem;
   display: flex;
   flex-direction: column;
@@ -509,6 +511,8 @@ const hapticFeedback = {
   /* Use grid instead of flex for better text handling */
   display: grid;
   place-items: center;
+  overflow-y: auto; /* Add scrolling for overflow content */
+  max-height: 200px; /* Limit height to prevent excessive stretching */
 }
 
 .picto-footer {

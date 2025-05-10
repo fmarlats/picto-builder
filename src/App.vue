@@ -13,6 +13,7 @@ interface AppState {
   luminaSelectedPictos: string[];
   pictoSelectedPictos: string[];
   comment?: string; // Optional comment about the build
+  buildTitle?: string; // Optional title for the build
 }
 
 /**
@@ -25,8 +26,9 @@ const encodeStateToURL = (state: AppState): string => {
   const hasLuminaSelected = state.luminaSelectedPictos.length > 0;
   const hasPictoSelected = state.pictoSelectedPictos.length > 0;
   const hasComment = state.comment && state.comment.trim() !== '';
+  const hasBuildTitle = state.buildTitle && state.buildTitle.trim() !== '';
 
-  if (!hasLevels && !hasLuminaSelected && !hasPictoSelected && !hasComment) {
+  if (!hasLevels && !hasLuminaSelected && !hasPictoSelected && !hasComment && !hasBuildTitle) {
     return '';
   }
 
@@ -63,6 +65,11 @@ const encodeStateToURL = (state: AppState): string => {
     stateObj.c = state.comment;
   }
 
+  // Add build title if any
+  if (hasBuildTitle) {
+    stateObj.t = state.buildTitle;
+  }
+
   // Convert to JSON and then to base64
   return btoa(JSON.stringify(stateObj));
 };
@@ -76,7 +83,8 @@ const decodeStateFromURL = (): AppState => {
     selectedLevels: {},
     luminaSelectedPictos: [],
     pictoSelectedPictos: [],
-    comment: ''
+    comment: '',
+    buildTitle: ''
   };
 
   // Get the current URL hash (without the # symbol)
@@ -128,6 +136,11 @@ const decodeStateFromURL = (): AppState => {
       result.comment = stateObj.c;
     }
 
+    // Parse build title if present
+    if (stateObj.t) {
+      result.buildTitle = stateObj.t;
+    }
+
     return result;
   } catch (error) {
     console.error('Error decoding state from URL:', error);
@@ -173,6 +186,7 @@ const pictoSelectedPictos = ref<string[]>([]) // Array of picto IDs selected as 
 const isPanelVisible = ref(false) // Track if the side panel is visible on mobile
 const showOnlySelected = ref(false) // Track if we should show only selected elements
 const comment = ref('') // Comment about the build
+const buildTitle = ref('') // Title for the build
 
 // Function to toggle the panel visibility
 const togglePanelVisibility = () => {
@@ -185,7 +199,8 @@ const saveStateToURL = () => {
     selectedLevels: selectedLevels.value,
     luminaSelectedPictos: luminaSelectedPictos.value,
     pictoSelectedPictos: pictoSelectedPictos.value,
-    comment: comment.value
+    comment: comment.value,
+    buildTitle: buildTitle.value
   };
   updateURL(state);
 };
@@ -199,19 +214,21 @@ const resetAll = () => {
   luminaSelectedPictos.value = [];
   pictoSelectedPictos.value = [];
 
-  // Clear comment
+  // Clear comment and build title
   comment.value = '';
+  buildTitle.value = '';
 
   // Update the URL to reflect the empty state
   saveStateToURL();
 
   // Log the reset action
-  console.log('All selections, levels, and comments have been reset');
+  console.log('All selections, levels, comments, and build title have been reset');
 };
 
-// Function to update the comment
-const updateComment = (newComment: string) => {
+// Function to update the comment and build title
+const updateCommentAndTitle = (newComment: string, newBuildTitle: string) => {
   comment.value = newComment;
+  buildTitle.value = newBuildTitle;
   saveStateToURL();
 };
 
@@ -238,6 +255,17 @@ onMounted(() => {
   luminaSelectedPictos.value = savedState.luminaSelectedPictos;
   pictoSelectedPictos.value = savedState.pictoSelectedPictos;
   comment.value = savedState.comment || '';
+  buildTitle.value = savedState.buildTitle || '';
+
+  // Check if we should show the panel view on mobile
+  // If there are any selected pictos or luminas, show the panel view
+  if (luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0) {
+    // Check if we're on mobile (screen width <= 768px)
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      isPanelVisible.value = true;
+    }
+  }
 })
 
 // Function to handle level selection from a picto
@@ -260,6 +288,20 @@ watch(() => window.location.hash, () => {
   luminaSelectedPictos.value = savedState.luminaSelectedPictos;
   pictoSelectedPictos.value = savedState.pictoSelectedPictos;
   comment.value = savedState.comment || '';
+  buildTitle.value = savedState.buildTitle || '';
+
+  // Check if we should show the panel view on mobile
+  // If there are any selected pictos or luminas, show the panel view
+  if (luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0) {
+    // Check if we're on mobile (screen width <= 768px)
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      isPanelVisible.value = true;
+    }
+  } else {
+    // If there are no selections, show the grid view
+    isPanelVisible.value = false;
+  }
 });
 
 // Function to handle picto selection for lumina
@@ -511,8 +553,9 @@ const filteredPictos = computed(() => {
           :luminaSelectedPictos="luminaSelectedPictos"
           :selectedLevels="selectedLevels"
           :comment="comment"
+          :buildTitle="buildTitle"
           @reset-all="resetAll"
-          @update-comment="updateComment"
+          @update-comment-and-title="updateCommentAndTitle"
         />
       </div>
     </div>

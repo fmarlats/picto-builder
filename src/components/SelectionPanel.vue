@@ -46,10 +46,11 @@ const props = defineProps<{
   selectedLevels: Record<string, string>;
   comment?: string;
   buildTitle?: string;
+  isFullWidthPanel?: boolean;
 }>();
 
 // Define emits
-const emit = defineEmits(['reset-all', 'update-comment-and-title']);
+const emit = defineEmits(['reset-all', 'update-comment-and-title', 'toggle-full-width']);
 
 // Reset button state
 const isResetting = ref(false);
@@ -246,6 +247,14 @@ const saveComment = () => {
   // Provide haptic feedback for save action
   hapticFeedback.strongVibration();
 };
+
+// Function to toggle full-width panel mode
+const toggleFullWidth = () => {
+  emit('toggle-full-width');
+
+  // Provide haptic feedback
+  hapticFeedback.progressVibration();
+};
 </script>
 
 <template>
@@ -277,6 +286,40 @@ const saveComment = () => {
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
           </svg>
           <span>{{ props.buildTitle || props.comment ? 'Edit Build Details' : 'Add Build Details' }}</span>
+        </div>
+      </button>
+
+      <!-- Full-width toggle button (only visible on desktop) -->
+      <button
+        v-if="!props.isFullWidthPanel"
+        class="full-width-toggle expand-button"
+        @click="toggleFullWidth"
+        title="Expand panel to full width"
+      >
+        <div class="full-width-button-content">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <polyline points="9 21 3 21 3 15"></polyline>
+            <line x1="21" y1="3" x2="14" y2="10"></line>
+            <line x1="3" y1="21" x2="10" y2="14"></line>
+          </svg>
+          <span>Expand</span>
+        </div>
+      </button>
+      <button
+        v-else
+        class="full-width-toggle collapse-button"
+        @click="toggleFullWidth"
+        title="Collapse panel to normal width"
+      >
+        <div class="full-width-button-content">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 14 10 14 10 20"></polyline>
+            <polyline points="20 10 14 10 14 4"></polyline>
+            <line x1="14" y1="10" x2="21" y2="3"></line>
+            <line x1="3" y1="21" x2="10" y2="14"></line>
+          </svg>
+          <span>Collapse</span>
         </div>
       </button>
     </div>
@@ -495,7 +538,7 @@ const saveComment = () => {
   -webkit-tap-highlight-color: transparent;
 }
 
-.reset-button-content, .comment-button-content {
+.reset-button-content, .comment-button-content, .full-width-button-content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -540,24 +583,72 @@ const saveComment = () => {
 
 /* No visual change for reset-complete state */
 
-.reset-button:active, .comment-button:active {
+.reset-button:active, .comment-button:active, .full-width-toggle:active {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.full-width-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  overflow: hidden;
+  height: 40px;
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.expand-button {
+  background-color: #2196f3;
+}
+
+.expand-button:hover {
+  background-color: #1976d2;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.collapse-button {
+  background-color: #ff9800;
+}
+
+.collapse-button:hover {
+  background-color: #f57c00;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 /* Mobile-specific styles */
 @media (max-width: 768px) {
-  .reset-button, .comment-button {
+  .reset-button, .comment-button, .full-width-toggle {
     height: 48px; /* Larger touch target on mobile */
     font-size: 16px;
   }
 
-  .reset-button-content, .comment-button-content {
+  .reset-button-content, .comment-button-content, .full-width-button-content {
     gap: 8px;
   }
 
-  .reset-button-content svg, .comment-button-content svg {
+  .reset-button-content svg, .comment-button-content svg, .full-width-button-content svg {
     width: 18px;
     height: 18px;
+  }
+
+  /* Hide the full-width toggle on mobile */
+  .full-width-toggle {
+    display: none;
   }
 }
 
@@ -754,6 +845,11 @@ const saveComment = () => {
   height: 16px;
 }
 
+.total-cost .lumina-icon {
+  width: 24px;
+  height: 24px;
+}
+
 .total-section {
   margin-top: 16px;
   padding-top: 12px;
@@ -787,10 +883,12 @@ const saveComment = () => {
 .total-cost {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 1.2rem;
-  font-weight: 600;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1.6rem;
+  font-weight: 700;
   color: #ffcc00;
+  padding: 8px 0;
 }
 
 /* Scrollbar styling */

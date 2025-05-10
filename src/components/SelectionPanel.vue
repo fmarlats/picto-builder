@@ -258,7 +258,7 @@ const toggleFullWidth = () => {
 </script>
 
 <template>
-  <div class="selection-panel">
+  <div class="selection-panel" :class="{ 'full-width-panel': props.isFullWidthPanel }">
     <div class="buttons-container">
       <button
         class="reset-button"
@@ -462,6 +462,14 @@ const toggleFullWidth = () => {
   gap: 16px;
   overflow-y: auto;
   flex: 1;
+  max-height: 100%;
+}
+
+/* When in full-width mode, adjust scrolling behavior */
+.selection-panel.full-width-panel {
+  max-height: none;
+  overflow-y: visible;
+  height: auto;
 }
 
 .buttons-container {
@@ -657,6 +665,7 @@ const toggleFullWidth = () => {
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
+  min-height: min-content; /* Ensure sections take at least their content height */
 }
 
 .panel-section:first-child {
@@ -665,9 +674,18 @@ const toggleFullWidth = () => {
   overflow: visible;
 }
 
+/* Adjust panel sections in full-width mode */
+.full-width-panel .panel-section {
+  overflow: visible;
+}
+
+.full-width-panel .panel-section:first-child {
+  flex: 0 0 auto;
+}
+
 .panel-section:last-child {
   border-bottom: none;
-  padding-bottom: 0;
+  padding-bottom: 20px; /* Add padding to ensure total cost is visible */
 }
 
 .section-title {
@@ -774,6 +792,11 @@ const toggleFullWidth = () => {
   gap: 12px;
   margin-bottom: 16px;
   flex: 1;
+}
+
+/* Adjust selected items in full-width mode */
+.full-width-panel .selected-items {
+  flex: 0 0 auto;
 }
 
 .selected-item {

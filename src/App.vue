@@ -774,6 +774,8 @@ h1 {
 .selection-panel-container.full-width {
   width: 100%;
   min-width: 100%;
+  height: auto;
+  overflow: visible;
 }
 
 /* Style for selected items in full-width mode */
@@ -857,11 +859,12 @@ h1 {
 .selection-panel-container {
   width: 320px;
   min-width: 320px;
-  max-height: calc(100vh - 180px);
+  height: calc(100vh - 200px);
   position: sticky;
   top: 20px;
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* Prevent container overflow */
 }
 
 @media (max-width: 1200px) {
@@ -886,11 +889,13 @@ h1 {
   .selection-panel-container {
     width: 100%;
     min-width: 100%;
+    height: auto;
     max-height: none;
     position: static;
     margin-top: 30px;
     border-top: 1px solid #444;
     padding-top: 20px;
+    overflow: visible;
   }
 
   /* Hide the full-width toggle on mobile */

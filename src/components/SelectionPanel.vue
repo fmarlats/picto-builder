@@ -391,9 +391,10 @@ const toggleFullWidth = () => {
         </div>
       </button>
     </div>
-    <!-- Build Title Display (if exists) -->
-    <div v-if="props.buildTitle" class="build-title-display">
-      <h1 class="build-title-text">{{ props.buildTitle }}</h1>
+    <!-- Build Title and Comment Display (if exists) -->
+    <div v-if="props.buildTitle || props.comment" class="build-title-display">
+      <h1 v-if="props.buildTitle" class="build-title-text">{{ props.buildTitle }}</h1>
+      <p v-if="props.comment" class="build-comment-text">{{ props.comment }}</p>
     </div>
     <!-- Picto Selected Section -->
     <div class="panel-section">
@@ -586,18 +587,28 @@ const toggleFullWidth = () => {
 }
 
 .build-title-display {
-  padding: 8px 12px;
+  padding: 12px 16px;
   background-color: rgba(33, 150, 243, 0.1);
   border-radius: 4px;
   border-left: 3px solid #2196f3;
+  margin-bottom: 16px;
 }
 
 .build-title-text {
-  margin: 0;
+  margin: 0 0 8px 0;
   font-size: 1.2rem;
   font-weight: 600;
   color: #fff;
   text-align: center;
+}
+
+.build-comment-text {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #ccc;
+  text-align: center;
+  line-height: 1.4;
+  white-space: pre-line; /* Preserve line breaks in the comment */
 }
 
 .reset-button {

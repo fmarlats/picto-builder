@@ -10,7 +10,8 @@ interface PictoItem {
     level: string;
     attributes: Record<string, string>;
   }>;
-  id?: string; // Optional unique ID
+  id?: string; // Unique ID (e.g., "picto-1")
+  numeric_id?: number; // The numeric ID from the JSON file
 }
 
 // Define the props with validation
@@ -162,12 +163,12 @@ const handleMouseDown = (event: Event) => {
 };
 
 // Specific handler for touch start events
-const handleTouchStart = (event: TouchEvent) => {
+const handleTouchStart = (_event: TouchEvent) => {
   // Prevent default to avoid any browser handling that might interfere
-  // event.preventDefault();
+  // _event.preventDefault();
 
   // Stop event propagation
-  // event.stopPropagation();
+  // _event.stopPropagation();
 
   // Set pressing state for visual feedback
   isPressing.value = true;
@@ -195,12 +196,12 @@ const handleTouchStart = (event: TouchEvent) => {
   console.log('Touch start on picto:', props.picto.name);
 };
 
-const handleTouchMove = (event: TouchEvent) => {
+const handleTouchMove = (_event: TouchEvent) => {
   // Prevent default to avoid any browser handling that might interfere
-  // event.preventDefault();
+  // _event.preventDefault();
 
   // // Stop event propagation
-  // event.stopPropagation();
+  // _event.stopPropagation();
 
   // Set dragging state
   isDragging.value = true;

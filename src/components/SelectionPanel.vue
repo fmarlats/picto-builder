@@ -34,7 +34,8 @@ interface PictoItem {
     level: string;
     attributes: Record<string, string>;
   }>;
-  id?: string; // Optional unique ID
+  id?: string; // Unique ID (e.g., "picto-1")
+  numeric_id?: number; // The numeric ID from the JSON file
 }
 
 // Define the props with validation

@@ -158,7 +158,8 @@ interface PictoItem {
     level: string;
     attributes: Record<string, string>;
   }>;
-  id?: string; // Optional unique ID
+  id?: string; // Unique ID (e.g., "picto-1")
+  numeric_id?: number; // The numeric ID from the JSON file
 }
 
 // Create reactive references
@@ -219,11 +220,17 @@ onMounted(() => {
   // Make a deep copy of the data to avoid reference issues
   const pictos = JSON.parse(JSON.stringify(pictosList))
 
-  // Add a unique ID to each picto
-  allPictos.value = pictos.map((picto: any, index: number) => ({
-    ...picto,
-    id: `picto-${index}`
-  }))
+  // Use the existing IDs from the JSON file
+  allPictos.value = pictos.map((picto: any) => {
+    // Store the numeric ID from the JSON file
+    const numericId = picto.id;
+
+    return {
+      ...picto,
+      numeric_id: numericId, // Store the numeric ID
+      id: `picto-${numericId}` // Create the string ID for UI references
+    };
+  })
 
   // Load any saved state from URL
   const savedState = decodeStateFromURL();

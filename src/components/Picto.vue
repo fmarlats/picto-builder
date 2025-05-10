@@ -56,7 +56,8 @@ const highlightMatch = (text: string, query: string) => {
   const match = text.substring(startIndex, endIndex);
   const after = text.substring(endIndex);
 
-  return `${before}<span class="highlight">${match}</span>${after}`;
+  // Wrap the entire text in a span to maintain layout
+  return `<span class="text-wrapper">${before}<span class="highlight">${match}</span>${after}</span>`;
 };
 
 // State for modal visibility
@@ -471,6 +472,7 @@ const hapticFeedback = {
   color: #fff;
   font-size: 0.9rem;
   margin-bottom: 1px;
+  display: block; /* Ensure it takes full width */
 }
 
 .picto-cost {
@@ -502,10 +504,10 @@ const hapticFeedback = {
   flex-grow: 1;
   color: #ddd;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 8px 4px;
+  /* Use grid instead of flex for better text handling */
+  display: grid;
+  place-items: center;
 }
 
 .picto-footer {
@@ -594,12 +596,17 @@ const hapticFeedback = {
   color: #ccc;
 }
 
+:deep(.text-wrapper) {
+  display: inline;
+}
+
 :deep(.highlight) {
   background-color: rgba(255, 255, 0, 0.3);
   color: #fff;
   font-weight: bold;
   border-radius: 2px;
   padding: 0 2px;
+  display: inline;
 }
 
 /* Modal styles */

@@ -484,9 +484,12 @@ const filteredPictos = computed(() => {
 
 <template>
   <div class="container">
-    <h1>Expedition 33 Builds</h1>
+    <header>
+      <h1>Expedition 33 Builds</h1>
+      <p class="site-description">Create, customize, and share your Expedition 33 character builds with Pictos and Luminas</p>
+    </header>
 
-    <div class="filters-container" :class="{ 'hidden-on-mobile': isPanelVisible, 'hidden': isFullWidthPanel }">
+    <nav class="filters-container" :class="{ 'hidden-on-mobile': isPanelVisible, 'hidden': isFullWidthPanel }" aria-label="Picto filters">
       <div class="search-container">
         <input
           type="text"
@@ -532,7 +535,7 @@ const filteredPictos = computed(() => {
           </label>
         </div>
       </div>
-    </div>
+    </nav>
 
     <div class="results-info" :class="{ 'hidden-on-mobile': isPanelVisible, 'hidden': isFullWidthPanel }">
       <span v-if="showOnlySelected">
@@ -549,8 +552,8 @@ const filteredPictos = computed(() => {
       </span>
     </div>
 
-    <div class="main-content" :class="{ 'panel-mode': isPanelVisible, 'full-width-panel': isFullWidthPanel }">
-      <div class="pictos-grid" :class="{ 'hidden-on-mobile': isPanelVisible, 'hidden': isFullWidthPanel }">
+    <main class="main-content" :class="{ 'panel-mode': isPanelVisible, 'full-width-panel': isFullWidthPanel }">
+      <section class="pictos-grid" :class="{ 'hidden-on-mobile': isPanelVisible, 'hidden': isFullWidthPanel }" aria-label="Picto cards">
         <Picto
           v-for="picto in filteredPictos"
           :key="picto.id"
@@ -563,9 +566,9 @@ const filteredPictos = computed(() => {
           @toggle-selection="toggleLuminaSelection"
           @toggle-picto-selection="togglePictoSelection"
         />
-      </div>
+      </section>
 
-      <div class="selection-panel-container" :class="{ 'visible-on-mobile': isPanelVisible, 'full-width': isFullWidthPanel }">
+      <aside class="selection-panel-container" :class="{ 'visible-on-mobile': isPanelVisible, 'full-width': isFullWidthPanel }" aria-label="Selected items panel">
         <SelectionPanel
           :allPictos="allPictos"
           :pictoSelectedPictos="pictoSelectedPictos"
@@ -578,14 +581,20 @@ const filteredPictos = computed(() => {
           @update-comment-and-title="updateCommentAndTitle"
           @toggle-full-width="toggleFullWidthPanel"
         />
-      </div>
-    </div>
+      </aside>
+    </main>
 
     <!-- Panel toggle button (only visible on mobile) -->
     <PanelToggleButton
       :isPanelVisible="isPanelVisible"
       @toggle-panel="togglePanelVisibility"
     />
+
+    <footer class="site-footer">
+      <p>Expedition 33 Builds - Picto Builder Tool</p>
+      <p>A fan-made tool for creating and sharing character builds</p>
+      <p>Made in Paris "la Ville Lumière", France 🇫🇷</p>
+    </footer>
   </div>
 </template>
 
@@ -602,11 +611,35 @@ const filteredPictos = computed(() => {
   color: #fff !important;
 }
 
-h1 {
+header {
   text-align: center;
   margin-bottom: 24px;
+}
+
+h1 {
+  margin-bottom: 8px;
   color: #fff;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.site-description {
+  color: #aaa;
+  font-size: 1.1rem;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.site-footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #444;
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.site-footer p {
+  margin: 5px 0;
 }
 
 .filters-container {

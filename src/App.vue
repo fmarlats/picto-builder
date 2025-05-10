@@ -596,8 +596,8 @@ const filteredPictos = computed(() => {
       <p>Made in Paris "la Ville Lumière", France 🇫🇷</p>
       <p class="error-report">
         Found an error? Contact
-        <a href="mailto:expedition33builds@outlook.com?subject=Error%20Report%20-%20Picto%20Builder&body=I%20found%20an%20error%20on%20the%20Picto%20Builder%20website%3A%0A%0ADescription%20of%20the%20error%3A%0A%0ASteps%20to%20reproduce%3A%0A%0ABrowser%20and%20device%3A" target="_blank" rel="noopener noreferrer">
-          expedition33builds@outlook.com
+        <a href="mailto:expedition33builds@proton.me?subject=Error%20Report%20-%20Picto%20Builder&body=I%20found%20an%20error%20on%20the%20Picto%20Builder%20website%3A%0A%0ADescription%20of%20the%20error%3A%0A%0ASteps%20to%20reproduce%3A%0A%0ABrowser%20and%20device%3A" target="_blank" rel="noopener noreferrer">
+          expedition33builds@proton.me
         </a>
       </p>
     </footer>

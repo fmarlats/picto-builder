@@ -4,6 +4,7 @@ import pictosList from './assets/pictos_list.json'
 import Picto from './components/Picto.vue'
 import SelectionPanel from './components/SelectionPanel.vue'
 import PanelToggleButton from './components/PanelToggleButton.vue'
+import HowToUse from './components/HowToUse.vue'
 import type { AppState, PictoItem } from './types'
 
 // URL handling utilities with compact encoding
@@ -167,6 +168,7 @@ const isFullWidthPanel = ref(false) // Track if the side panel is in full-width 
 const showOnlySelected = ref(false) // Track if we should show only selected elements
 const comment = ref('') // Comment about the build
 const buildTitle = ref('') // Title for the build
+const showHowToUse = ref(false) // Track if the how to use modal is visible
 
 // Function to toggle the panel visibility on mobile
 const togglePanelVisibility = () => {
@@ -176,6 +178,11 @@ const togglePanelVisibility = () => {
 // Function to toggle the full-width panel mode on desktop
 const toggleFullWidthPanel = () => {
   isFullWidthPanel.value = !isFullWidthPanel.value;
+}
+
+// Function to toggle the how to use modal
+const toggleHowToUse = () => {
+  showHowToUse.value = !showHowToUse.value;
 }
 
 // Function to save the current state to the URL
@@ -466,6 +473,14 @@ const filteredPictos = computed(() => {
     <header>
       <h1>Expedition 33 Builds</h1>
       <p class="site-description">Create, customize, and share your Expedition 33 character builds with Pictos and Luminas</p>
+      <button class="how-to-use-button" @click="toggleHowToUse">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        How to Use
+      </button>
     </header>
 
     <nav class="filters-container" :class="{ 'hidden-on-mobile': isPanelVisible, 'hidden': isFullWidthPanel }" aria-label="Picto filters">
@@ -580,6 +595,21 @@ const filteredPictos = computed(() => {
         </a>
       </p>
     </footer>
+
+    <!-- How To Use Modal -->
+    <teleport to="body">
+      <div v-if="showHowToUse" class="modal-overlay" @click.self="toggleHowToUse">
+        <div class="how-to-use-modal">
+          <div class="modal-header">
+            <h3>How to Use the Expedition 33 Builder</h3>
+            <button class="close-button" @click="toggleHowToUse">&times;</button>
+          </div>
+          <div class="modal-body">
+            <HowToUse />
+          </div>
+        </div>
+      </div>
+    </teleport>
   </div>
 </template>
 
@@ -595,6 +625,7 @@ const filteredPictos = computed(() => {
 header {
   text-align: center;
   margin-bottom: 24px;
+  position: relative;
 }
 
 h1 {
@@ -608,6 +639,97 @@ h1 {
   font-size: 1.1rem;
   margin-top: 0;
   margin-bottom: 24px;
+}
+
+.how-to-use-button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 auto;
+}
+
+.how-to-use-button:hover {
+  background-color: #1976d2;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.how-to-use-modal {
+  background-color: #333;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid #555;
+  animation: modal-appear 0.2s ease-out;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #444;
+  background-color: #2a2a2a;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.close-button:hover {
+  color: #fff;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .site-footer {

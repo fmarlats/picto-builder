@@ -611,11 +611,7 @@ const filteredPictos = computed(() => {
   padding: 20px;
 }
 
-/* Ensure dark background */
-:root, html, body {
-  background-color: #222 !important;
-  color: #fff !important;
-}
+/* Background color already set in style.css */
 
 header {
   text-align: center;
@@ -889,49 +885,7 @@ h1 {
   }
 }
 
-.panel-header {
-  display: flex;
-  justify-content: flex-start; /* Changed from flex-end to flex-start */
-  margin-bottom: 12px;
-}
-
-.full-width-toggle {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  color: white;
-}
-
-.expand-button {
-  background-color: #2196f3;
-}
-
-.expand-button:hover {
-  background-color: #1976d2;
-}
-
-.collapse-button {
-  background-color: #ff9800;
-}
-
-.collapse-button:hover {
-  background-color: #f57c00;
-}
-
-.full-width-toggle svg {
-  transition: transform 0.2s ease;
-}
-
-.full-width-toggle:hover svg {
-  transform: scale(1.1);
-}
+/* Panel header and toggle styles moved to SelectionPanel.vue */
 
 .pictos-grid {
   display: grid;
@@ -970,7 +924,7 @@ h1 {
   .main-content {
     flex-direction: column;
     position: relative;
-    min-height: 300px; /* Ensure there's space for content */
+    min-height: 300px;
   }
 
   .selection-panel-container {
@@ -983,6 +937,8 @@ h1 {
     border-top: 1px solid #444;
     padding-top: 20px;
     overflow: visible;
+    display: none; /* Hide by default on mobile */
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
   /* Hide the full-width toggle on mobile */
@@ -999,22 +955,13 @@ h1 {
     display: none !important;
   }
 
-  .pictos-grid.hidden-on-mobile {
-    display: none;
-  }
-
-  .selection-panel-container {
-    display: none; /* Hide by default on mobile */
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
   .selection-panel-container.visible-on-mobile {
     display: block; /* Show when toggled */
     animation: fadeIn 0.3s ease;
-    margin-top: 20px; /* Add some space below the title */
+    margin-top: 20px;
     border-top: none;
     padding-top: 0;
-    padding-bottom: 80px; /* Add padding at the bottom to avoid the toggle button overlapping content */
+    padding-bottom: 80px;
   }
 
   /* Ensure the title is always visible */

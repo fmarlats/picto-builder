@@ -96,10 +96,7 @@ const ariaLabel = computed(() => {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* No color change for panel-visible state, just keep the same blue color */
-.panel-toggle-button.panel-visible {
-  transform: rotate(0deg); /* Reset any rotation */
-}
+/* No specific styles needed for panel-visible state */
 
 /* Pulse animation */
 @keyframes pulse {

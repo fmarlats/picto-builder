@@ -437,18 +437,18 @@ const hapticFeedback = {
   border-radius: 5px;
   padding: 6px;
   height: 100%;
-  min-height: 200px; /* Add min-height for consistency */
-  max-height: 300px; /* Add max-height to prevent excessive vertical stretching */
+  min-height: 200px;
+  max-height: 300px;
   font-size: 0.85rem;
   display: flex;
   flex-direction: column;
   background-color: #222;
   color: #fff;
-  position: relative; /* For absolute positioning of the overlay */
-  cursor: pointer; /* Show pointer cursor to indicate clickability */
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-  touch-action: manipulation; /* Improve touch handling on mobile */
-  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Hover effect for the card */
@@ -781,7 +781,6 @@ const hapticFeedback = {
 .picto-card.pressing {
   transform: scale(0.98);
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3), 0 2px 8px rgba(0, 0, 0, 0.5);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .selection-overlay {

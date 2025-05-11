@@ -682,11 +682,6 @@ const toggleFullWidth = () => {
   padding: 0 12px;
   position: relative;
   z-index: 2;
-  /* Prevent text selection */
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   pointer-events: none; /* This prevents text selection but allows button clicks */
 }
 

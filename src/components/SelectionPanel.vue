@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted } from 'vue';
+import { highlightPictoNames } from '../utils/commentHighlighter';
+import PictoPopover from './PictoPopover.vue';
+import type { PictoItem } from '../types';
 
 // Haptic feedback utility
 const hapticFeedback = {
@@ -23,21 +26,6 @@ const hapticFeedback = {
   }
 };
 
-// Define the props for the component
-interface PictoItem {
-  full_url: string;
-  name: string;
-  type: string;
-  effect: string;
-  cost: number;
-  attributes: Array<{
-    level: string;
-    attributes: Record<string, string>;
-  }>;
-  id?: string; // Unique ID (e.g., "picto-1")
-  numeric_id?: number; // The numeric ID from the JSON file
-}
-
 // Define the props with validation
 const props = defineProps<{
   allPictos: PictoItem[];
@@ -51,6 +39,67 @@ const props = defineProps<{
 
 // Define emits
 const emit = defineEmits(['reset-all', 'update-comment-and-title', 'toggle-full-width']);
+
+// Popover state
+const showPopover = ref(false);
+const hoveredPicto = ref<PictoItem | null>(null);
+const popoverPosition = ref({ x: 0, y: 0 });
+
+// Function to handle mouseover events on highlighted picto names
+const handlePictoNameHover = (event: MouseEvent) => {
+  // Check if we're hovering over a highlighted picto name
+  let target = event.target as HTMLElement;
+
+  // If the target itself isn't a highlight, check if any parent is
+  // This handles cases where the highlight contains nested elements
+  while (target && !target.classList.contains('picto-highlight')) {
+    if (target.parentElement === null || target.classList.contains('build-comment-text')) {
+      // We've reached the comment container or the root without finding a highlight
+      showPopover.value = false;
+      return;
+    }
+    target = target.parentElement;
+  }
+
+  // If we didn't find a highlighted element, exit
+  if (!target || !target.classList.contains('picto-highlight')) {
+    showPopover.value = false;
+    return;
+  }
+
+  const pictoId = target.getAttribute('data-picto-id');
+  if (!pictoId) {
+    showPopover.value = false;
+    return;
+  }
+
+  // Find the picto in the allPictos array
+  const picto = props.allPictos.find(p => p.id === pictoId);
+  if (!picto) {
+    showPopover.value = false;
+    return;
+  }
+
+  // Set the hovered picto and show the popover
+  hoveredPicto.value = picto;
+  popoverPosition.value = {
+    x: event.clientX,
+    y: event.clientY
+  };
+  showPopover.value = true;
+};
+
+// Function to handle mouse leave on highlighted picto name
+const handlePictoNameLeave = () => {
+  // Hide the popover immediately
+  showPopover.value = false;
+};
+
+// Function to highlight picto names in comment text
+const highlightedComment = computed(() => {
+  if (!props.comment) return '';
+  return highlightPictoNames(props.comment, props.allPictos);
+});
 
 // Reset button state
 const isResetting = ref(false);
@@ -394,8 +443,23 @@ const toggleFullWidth = () => {
     <!-- Build Title and Comment Display (if exists) -->
     <div v-if="props.buildTitle || props.comment" class="build-title-display">
       <h1 v-if="props.buildTitle" class="build-title-text">{{ props.buildTitle }}</h1>
-      <p v-if="props.comment" class="build-comment-text">{{ props.comment }}</p>
+      <p
+        v-if="props.comment"
+        class="build-comment-text"
+        v-html="highlightedComment"
+        @mouseover="handlePictoNameHover"
+        @mouseleave="handlePictoNameLeave"
+      ></p>
     </div>
+
+    <!-- Picto Popover -->
+    <teleport to="body">
+      <PictoPopover
+        v-if="showPopover && hoveredPicto"
+        :picto="hoveredPicto"
+        :position="popoverPosition"
+      />
+    </teleport>
     <!-- Picto Selected Section -->
     <div class="panel-section">
       <h2 class="section-title">
@@ -641,6 +705,20 @@ const toggleFullWidth = () => {
   text-align: center;
   line-height: 1.4;
   white-space: pre-line; /* Preserve line breaks in the comment */
+}
+
+/* Styles for highlighted picto names */
+:deep(.picto-highlight) {
+  color: #2196f3;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 1px dotted #2196f3;
+  transition: all 0.2s ease;
+}
+
+:deep(.picto-highlight:hover) {
+  color: #64b5f6;
+  border-bottom-color: #64b5f6;
 }
 
 .reset-button {

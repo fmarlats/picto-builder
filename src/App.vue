@@ -4,17 +4,9 @@ import pictosList from './assets/pictos_list.json'
 import Picto from './components/Picto.vue'
 import SelectionPanel from './components/SelectionPanel.vue'
 import PanelToggleButton from './components/PanelToggleButton.vue'
+import type { AppState, PictoItem } from './types'
 
 // URL handling utilities with compact encoding
-
-// Define interface for the complete app state
-interface AppState {
-  selectedLevels: Record<string, string>;
-  luminaSelectedPictos: string[];
-  pictoSelectedPictos: string[];
-  comment?: string; // Optional comment about the build
-  buildTitle?: string; // Optional title for the build
-}
 
 /**
  * Encodes the complete app state into a compact URL-friendly string
@@ -160,20 +152,7 @@ const updateURL = (state: AppState) => {
   }
 };
 
-// Define the type for a picto item
-interface PictoItem {
-  full_url: string;
-  name: string;
-  type: string;
-  effect: string;
-  cost: number;
-  attributes: Array<{
-    level: string;
-    attributes: Record<string, string>;
-  }>;
-  id?: string; // Unique ID (e.g., "picto-1")
-  numeric_id?: number; // The numeric ID from the JSON file
-}
+// PictoItem interface is already imported at the top of the file
 
 // Create reactive references
 const searchQuery = ref('')

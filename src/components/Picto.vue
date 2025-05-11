@@ -1,18 +1,5 @@
 <script setup lang="ts">
-// Define the props for the component
-interface PictoItem {
-  full_url: string;
-  name: string;
-  type: string;
-  effect: string;
-  cost: number;
-  attributes: Array<{
-    level: string;
-    attributes: Record<string, string>;
-  }>;
-  id?: string; // Unique ID (e.g., "picto-1")
-  numeric_id?: number; // The numeric ID from the JSON file
-}
+import type { PictoItem } from '../types';
 
 // Define the props with validation
 const props = defineProps<{

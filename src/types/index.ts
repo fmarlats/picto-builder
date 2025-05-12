@@ -20,6 +20,26 @@ export interface PictoItem {
 }
 
 /**
+ * Interface for a skill item
+ */
+export interface SkillItem {
+  full_url: string;
+  name: string;
+  effect: string;
+  cost: number;
+  id: number; // Unique ID for the skill
+}
+
+/**
+ * Interface for a character
+ */
+export interface Character {
+  name: string;
+  id: number;
+  skills: SkillItem[];
+}
+
+/**
  * Interface for the complete app state
  */
 export interface AppState {
@@ -28,4 +48,6 @@ export interface AppState {
   pictoSelectedPictos: string[];
   comment?: string; // Optional comment about the build
   buildTitle?: string; // Optional title for the build
+  selectedCharacterId?: number; // ID of the selected character
+  selectedSkillIds?: number[]; // IDs of the selected skills
 }

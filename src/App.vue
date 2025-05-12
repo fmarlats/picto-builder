@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import pictosList from './assets/pictos_list.json'
+import charactersList from './assets/characters.json'
 import Picto from './components/Picto.vue'
 import SelectionPanel from './components/SelectionPanel.vue'
 import PanelToggleButton from './components/PanelToggleButton.vue'
 import HowToUse from './components/HowToUse.vue'
-import type { AppState, PictoItem } from './types'
+import CharacterSelector from './components/CharacterSelector.vue'
+import SkillSelector from './components/SkillSelector.vue'
+import CharacterSkillsPanel from './components/CharacterSkillsPanel.vue'
+import TabNavigation from './components/TabNavigation.vue'
+import type { AppState, PictoItem, Character } from './types'
 
 // URL handling utilities with compact encoding
 
@@ -20,8 +25,10 @@ const encodeStateToURL = (state: AppState): string => {
   const hasPictoSelected = state.pictoSelectedPictos.length > 0;
   const hasComment = state.comment && state.comment.trim() !== '';
   const hasBuildTitle = state.buildTitle && state.buildTitle.trim() !== '';
+  const hasCharacter = state.selectedCharacterId !== undefined;
+  const hasSkills = state.selectedSkillIds && state.selectedSkillIds.length > 0;
 
-  if (!hasLevels && !hasLuminaSelected && !hasPictoSelected && !hasComment && !hasBuildTitle) {
+  if (!hasLevels && !hasLuminaSelected && !hasPictoSelected && !hasComment && !hasBuildTitle && !hasCharacter && !hasSkills) {
     return '';
   }
 
@@ -53,6 +60,16 @@ const encodeStateToURL = (state: AppState): string => {
     }).join(',');
   }
 
+  // Add selected character ID if any
+  if (hasCharacter) {
+    stateObj.ch = state.selectedCharacterId;
+  }
+
+  // Add selected skill IDs if any
+  if (hasSkills && state.selectedSkillIds) {
+    stateObj.sk = state.selectedSkillIds.join(',');
+  }
+
   // Add comment if any
   if (hasComment) {
     stateObj.c = state.comment;
@@ -77,7 +94,9 @@ const decodeStateFromURL = (): AppState => {
     luminaSelectedPictos: [],
     pictoSelectedPictos: [],
     comment: '',
-    buildTitle: ''
+    buildTitle: '',
+    selectedCharacterId: undefined,
+    selectedSkillIds: []
   };
 
   // Get the current URL hash (without the # symbol)
@@ -124,6 +143,16 @@ const decodeStateFromURL = (): AppState => {
       );
     }
 
+    // Parse selected character ID if present
+    if (stateObj.ch !== undefined) {
+      result.selectedCharacterId = Number(stateObj.ch);
+    }
+
+    // Parse selected skill IDs if present
+    if (stateObj.sk) {
+      result.selectedSkillIds = stateObj.sk.split(',').map((id: string) => Number(id));
+    }
+
     // Parse comment if present
     if (stateObj.c) {
       result.comment = stateObj.c;
@@ -160,29 +189,64 @@ const searchQuery = ref('')
 const selectedType = ref('all')
 const sortBy = ref('name') // Default sort by name
 const allPictos = ref<PictoItem[]>([])
+const allCharacters = ref<Character[]>([])
 const selectedLevels = ref<Record<string, string>>({})
 const luminaSelectedPictos = ref<string[]>([]) // Array of picto IDs selected for lumina
 const pictoSelectedPictos = ref<string[]>([]) // Array of picto IDs selected as pictos
+const selectedCharacterId = ref<number | undefined>(undefined) // ID of the selected character
+const selectedSkillIds = ref<number[]>([]) // Array of skill IDs selected for the character
 const isPanelVisible = ref(false) // Track if the side panel is visible on mobile
-const isFullWidthPanel = ref(false) // Track if the side panel is in full-width mode on desktop
 const showOnlySelected = ref(false) // Track if we should show only selected elements
 const comment = ref('') // Comment about the build
 const buildTitle = ref('') // Title for the build
 const showHowToUse = ref(false) // Track if the how to use modal is visible
+const activeTab = ref('character') // Track the active tab: 'character', 'picto', or 'summary'
 
 // Function to toggle the panel visibility on mobile
 const togglePanelVisibility = () => {
   isPanelVisible.value = !isPanelVisible.value;
 }
 
-// Function to toggle the full-width panel mode on desktop
-const toggleFullWidthPanel = () => {
-  isFullWidthPanel.value = !isFullWidthPanel.value;
-}
-
 // Function to toggle the how to use modal
 const toggleHowToUse = () => {
   showHowToUse.value = !showHowToUse.value;
+}
+
+// Function to handle tab changes
+const handleTabChange = (tabId: string) => {
+  activeTab.value = tabId;
+}
+
+// Function to handle character selection
+const handleCharacterSelect = (characterId: number) => {
+  // If the same character is selected, deselect it
+  if (selectedCharacterId.value === characterId) {
+    selectedCharacterId.value = undefined;
+    selectedSkillIds.value = [];
+  } else {
+    selectedCharacterId.value = characterId;
+    // Clear selected skills when changing character
+    selectedSkillIds.value = [];
+  }
+
+  // Update the URL with the new state
+  saveStateToURL();
+}
+
+// Function to toggle skill selection
+const toggleSkillSelection = (skillId: number) => {
+  const index = selectedSkillIds.value.indexOf(skillId);
+
+  if (index !== -1) {
+    // Remove the skill if it's already selected
+    selectedSkillIds.value.splice(index, 1);
+  } else {
+    // Add the skill if it's not already selected
+    selectedSkillIds.value.push(skillId);
+  }
+
+  // Update the URL with the new state
+  saveStateToURL();
 }
 
 // Function to save the current state to the URL
@@ -192,7 +256,9 @@ const saveStateToURL = () => {
     luminaSelectedPictos: luminaSelectedPictos.value,
     pictoSelectedPictos: pictoSelectedPictos.value,
     comment: comment.value,
-    buildTitle: buildTitle.value
+    buildTitle: buildTitle.value,
+    selectedCharacterId: selectedCharacterId.value,
+    selectedSkillIds: selectedSkillIds.value
   };
   updateURL(state);
 };
@@ -205,6 +271,10 @@ const resetAll = () => {
   // Clear all selected pictos
   luminaSelectedPictos.value = [];
   pictoSelectedPictos.value = [];
+
+  // Clear character and skill selections
+  selectedCharacterId.value = undefined;
+  selectedSkillIds.value = [];
 
   // Clear comment and build title
   comment.value = '';
@@ -226,7 +296,7 @@ const updateCommentAndTitle = (newComment: string, newBuildTitle: string) => {
 
 // Load data on component mount
 onMounted(() => {
-  // Make a deep copy of the data to avoid reference issues
+  // Make a deep copy of the pictos data to avoid reference issues
   const pictos = JSON.parse(JSON.stringify(pictosList))
 
   // Use the existing IDs from the JSON file
@@ -241,6 +311,9 @@ onMounted(() => {
     };
   })
 
+  // Load characters data
+  allCharacters.value = JSON.parse(JSON.stringify(charactersList));
+
   // Load any saved state from URL
   const savedState = decodeStateFromURL();
   selectedLevels.value = savedState.selectedLevels;
@@ -249,19 +322,39 @@ onMounted(() => {
   comment.value = savedState.comment || '';
   buildTitle.value = savedState.buildTitle || '';
 
+  // Load character and skill selections if present
+  if (savedState.selectedCharacterId !== undefined) {
+    selectedCharacterId.value = savedState.selectedCharacterId;
+    // Set active tab to character if a character is selected
+    activeTab.value = 'character';
+  }
+
+  if (savedState.selectedSkillIds && savedState.selectedSkillIds.length > 0) {
+    selectedSkillIds.value = savedState.selectedSkillIds;
+  }
+
   // Check if there are any selections
-  const hasSelections = luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0;
+  const hasSelections = luminaSelectedPictos.value.length > 0 ||
+                        pictoSelectedPictos.value.length > 0 ||
+                        selectedCharacterId.value !== undefined ||
+                        selectedSkillIds.value.length > 0;
 
   if (hasSelections) {
+    // Set the active tab based on what's selected
+    if (selectedCharacterId.value !== undefined) {
+      activeTab.value = 'character';
+    } else if (luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0) {
+      activeTab.value = 'picto';
+    } else {
+      activeTab.value = 'summary';
+    }
+
     // Check if we're on mobile (screen width <= 768px)
     const isMobile = window.innerWidth <= 768;
 
-    if (isMobile) {
-      // Show the panel view on mobile
+    if (isMobile && activeTab.value === 'picto') {
+      // Show the panel view on mobile only in picto tab
       isPanelVisible.value = true;
-    } else {
-      // On desktop, show the expanded view when there are selections
-      isFullWidthPanel.value = true;
     }
   }
 })
@@ -288,24 +381,36 @@ watch(() => window.location.hash, () => {
   comment.value = savedState.comment || '';
   buildTitle.value = savedState.buildTitle || '';
 
+  // Update character and skill selections
+  selectedCharacterId.value = savedState.selectedCharacterId;
+  selectedSkillIds.value = savedState.selectedSkillIds || [];
+
+  // Set active tab based on selections
+  if (savedState.selectedCharacterId !== undefined) {
+    activeTab.value = 'character';
+  } else if (luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0) {
+    activeTab.value = 'picto';
+  } else {
+    activeTab.value = 'summary';
+  }
+
   // Check if there are any selections
-  const hasSelections = luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0;
+  const hasSelections = luminaSelectedPictos.value.length > 0 ||
+                        pictoSelectedPictos.value.length > 0 ||
+                        selectedCharacterId.value !== undefined ||
+                        selectedSkillIds.value.length > 0;
 
   if (hasSelections) {
     // Check if we're on mobile (screen width <= 768px)
     const isMobile = window.innerWidth <= 768;
 
-    if (isMobile) {
-      // Show the panel view on mobile
+    if (isMobile && activeTab.value === 'picto') {
+      // Show the panel view on mobile only in picto tab
       isPanelVisible.value = true;
-    } else {
-      // On desktop, show the expanded view when there are selections
-      isFullWidthPanel.value = true;
     }
   } else {
     // If there are no selections, reset to default views
     isPanelVisible.value = false;
-    isFullWidthPanel.value = false;
   }
 });
 
@@ -483,71 +588,99 @@ const filteredPictos = computed(() => {
       </button>
     </header>
 
-    <nav class="filters-container" :class="{ 'hidden-on-mobile': isPanelVisible, 'hidden': isFullWidthPanel }" aria-label="Picto filters">
-      <div class="search-container">
-        <input
-          type="text"
-          v-model="searchQuery"
-          placeholder="Search by name or effect..."
-          class="search-input"
-        />
-      </div>
+    <!-- Tab Navigation -->
+    <TabNavigation
+      :activeTab="activeTab"
+      :tabs="[
+        { id: 'character', label: 'Character', icon: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2 M12 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z' },
+        { id: 'picto', label: 'Pictos', icon: 'M4 3h16a2 2 0 0 1 2 2v6a10 10 0 0 1-10 10A10 10 0 0 1 2 11V5a2 2 0 0 1 2-2z M8 10h.01 M12 10h.01 M16 10h.01' },
+        { id: 'summary', label: 'Summary', icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8' }
+      ]"
+      @change-tab="handleTabChange"
+    />
 
-      <div class="filter-controls">
-        <div class="type-filter">
-          <label for="type-select">Filter by Type:</label>
-          <select id="type-select" v-model="selectedType" class="filter-select">
-            <option value="all">All Types</option>
-            <option v-for="type in pictoTypes.filter(t => t !== 'all')" :key="type" :value="type">
-              {{ type }}
-            </option>
-          </select>
-        </div>
+    <!-- Character Tab -->
+    <div v-if="activeTab === 'character'" class="tab-content character-tab">
+      <CharacterSelector
+        :characters="allCharacters"
+        :selectedCharacterId="selectedCharacterId"
+        @select-character="handleCharacterSelect"
+      />
 
-        <div class="sort-filter">
-          <label for="sort-select">Sort by:</label>
-          <select id="sort-select" v-model="sortBy" class="filter-select">
-            <option value="name">Name (A-Z)</option>
-            <option value="name-desc">Name (Z-A)</option>
-            <option value="level">Level (Low-High)</option>
-            <option value="level-desc">Level (High-Low)</option>
-          </select>
-        </div>
-
-        <div class="selected-filter">
-          <label for="selected-toggle" class="toggle-label">
-            <span>Show Selected Only</span>
-            <div class="toggle-switch">
-              <input
-                type="checkbox"
-                id="selected-toggle"
-                v-model="showOnlySelected"
-                class="toggle-input"
-              />
-              <span class="toggle-slider"></span>
-            </div>
-          </label>
-        </div>
-      </div>
-    </nav>
-
-    <div class="results-info" :class="{ 'hidden-on-mobile': isPanelVisible, 'hidden': isFullWidthPanel }">
-      <span v-if="showOnlySelected">
-        Showing {{ filteredPictos.length }} selected pictos
-        <span class="selected-count">
-          ({{ luminaSelectedPictos.length }} lumina, {{ pictoSelectedPictos.length }} picto)
-        </span>
-      </span>
-      <span v-else-if="filteredPictos.length === totalCount">
-        Showing all {{ totalCount }} pictos
-      </span>
-      <span v-else>
-        Showing {{ filteredPictos.length }} of {{ totalCount }} pictos
-      </span>
+      <SkillSelector
+        :character="selectedCharacterId ? allCharacters.find(c => c.id === selectedCharacterId) : null"
+        :selectedSkillIds="selectedSkillIds"
+        :maxSkills="6"
+        @toggle-skill="toggleSkillSelection"
+      />
     </div>
 
-    <main class="main-content" :class="{ 'panel-mode': isPanelVisible, 'full-width-panel': isFullWidthPanel }">
-      <section class="pictos-grid" :class="{ 'hidden-on-mobile': isPanelVisible, 'hidden': isFullWidthPanel }" aria-label="Picto cards">
+    <!-- Picto Tab -->
+    <div v-if="activeTab === 'picto'" class="tab-content picto-tab">
+      <nav class="filters-container" :class="{ 'hidden-on-mobile': isPanelVisible }" aria-label="Picto filters">
+        <div class="search-container">
+          <input
+            type="text"
+            v-model="searchQuery"
+            placeholder="Search by name or effect..."
+            class="search-input"
+          />
+        </div>
+
+        <div class="filter-controls">
+          <div class="type-filter">
+            <label for="type-select">Filter by Type:</label>
+            <select id="type-select" v-model="selectedType" class="filter-select">
+              <option value="all">All Types</option>
+              <option v-for="type in pictoTypes.filter(t => t !== 'all')" :key="type" :value="type">
+                {{ type }}
+              </option>
+            </select>
+          </div>
+
+          <div class="sort-filter">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select" v-model="sortBy" class="filter-select">
+              <option value="name">Name (A-Z)</option>
+              <option value="name-desc">Name (Z-A)</option>
+              <option value="level">Level (Low-High)</option>
+              <option value="level-desc">Level (High-Low)</option>
+            </select>
+          </div>
+
+          <div class="selected-filter">
+            <label for="selected-toggle" class="toggle-label">
+              <span>Show Selected Only</span>
+              <div class="toggle-switch">
+                <input
+                  type="checkbox"
+                  id="selected-toggle"
+                  v-model="showOnlySelected"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </nav>
+
+      <div class="results-info" :class="{ 'hidden-on-mobile': isPanelVisible }">
+        <span v-if="showOnlySelected">
+          Showing {{ filteredPictos.length }} selected pictos
+          <span class="selected-count">
+            ({{ luminaSelectedPictos.length }} lumina, {{ pictoSelectedPictos.length }} picto)
+          </span>
+        </span>
+        <span v-else-if="filteredPictos.length === totalCount">
+          Showing all {{ totalCount }} pictos
+        </span>
+        <span v-else>
+          Showing {{ filteredPictos.length }} of {{ totalCount }} pictos
+        </span>
+      </div>
+
+      <div class="pictos-grid" :class="{ 'hidden-on-mobile': isPanelVisible }" aria-label="Picto cards">
         <Picto
           v-for="picto in filteredPictos"
           :key="picto.id"
@@ -560,9 +693,12 @@ const filteredPictos = computed(() => {
           @toggle-selection="toggleLuminaSelection"
           @toggle-picto-selection="togglePictoSelection"
         />
-      </section>
+      </div>
+    </div>
 
-      <aside class="selection-panel-container" :class="{ 'visible-on-mobile': isPanelVisible, 'full-width': isFullWidthPanel }" aria-label="Selected items panel">
+    <!-- Summary Tab -->
+    <div v-if="activeTab === 'summary'" class="tab-content summary-tab">
+      <div class="summary-container">
         <SelectionPanel
           :allPictos="allPictos"
           :pictoSelectedPictos="pictoSelectedPictos"
@@ -570,16 +706,23 @@ const filteredPictos = computed(() => {
           :selectedLevels="selectedLevels"
           :comment="comment"
           :buildTitle="buildTitle"
-          :isFullWidthPanel="isFullWidthPanel"
           @reset-all="resetAll"
           @update-comment-and-title="updateCommentAndTitle"
-          @toggle-full-width="toggleFullWidthPanel"
         />
-      </aside>
-    </main>
 
-    <!-- Panel toggle button (only visible on mobile) -->
+        <CharacterSkillsPanel
+          v-if="selectedCharacterId !== undefined"
+          :characters="allCharacters"
+          :selectedCharacterId="selectedCharacterId"
+          :selectedSkillIds="selectedSkillIds"
+          @remove-skill="toggleSkillSelection"
+        />
+      </div>
+    </div>
+
+    <!-- Mobile Panel Toggle Button (only visible on picto tab) -->
     <PanelToggleButton
+      v-if="activeTab === 'picto'"
       :isPanelVisible="isPanelVisible"
       @toggle-panel="togglePanelVisibility"
     />
@@ -755,6 +898,65 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 5px;
+}
+
+/* Character section styles */
+/* Tab content styles */
+.tab-content {
+  margin-bottom: 24px;
+}
+
+.character-tab,
+.picto-tab,
+.summary-tab {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Summary tab styles */
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Picto grid styles for tab layout */
+.pictos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 16px;
+  row-gap: 28px;
+  margin-top: 16px;
+}
+
+@media (max-width: 1200px) {
+  .pictos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .pictos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .pictos-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .error-report::before {
@@ -940,50 +1142,8 @@ h1 {
   transition: all 0.3s ease;
 }
 
-/* Full-width panel mode */
-.main-content.full-width-panel {
-  flex-direction: column;
-}
-
 .hidden {
   display: none !important;
-}
-
-.pictos-grid.hidden {
-  display: none;
-}
-
-.selection-panel-container.full-width {
-  width: 100%;
-  min-width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-/* Style for selected items in full-width mode */
-.selection-panel-container.full-width :deep(.selected-items) {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-/* Responsive adjustments for the grid in full-width mode */
-@media (max-width: 1200px) {
-  .selection-panel-container.full-width :deep(.selected-items) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
-  .selection-panel-container.full-width :deep(.selected-items) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .selection-panel-container.full-width :deep(.selected-items) {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* Panel header and toggle styles moved to SelectionPanel.vue */

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="how-to-use-container">    
+  <div class="how-to-use-container">
     <div class="section">
       <h3>Selecting Pictos & Luminas</h3>
       <ul>
@@ -11,10 +11,30 @@
         <li><strong>Press and hold</strong> on a picto card to select it as a <strong>Picto</strong></li>
         <li>Selected items appear in the right panel</li>
         <li>Click on the <strong>level section</strong> at the bottom of a picto to change it</li>
-
       </ul>
     </div>
-    
+
+    <div class="section">
+      <h3>Navigation</h3>
+      <ul>
+        <li>Use the <strong>tabs</strong> at the top to switch between Character, Pictos, and Summary views</li>
+        <li>The <strong>Character</strong> tab lets you select a character and their skills</li>
+        <li>The <strong>Pictos</strong> tab lets you select pictos and luminas</li>
+        <li>The <strong>Summary</strong> tab shows your complete build with all selections</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Character & Skills</h3>
+      <ul>
+        <li>Go to the <strong>Character</strong> tab to select a character</li>
+        <li>Select a character to view their available skills</li>
+        <li>Select up to <strong>6 skills</strong> for your character</li>
+        <li>Selected character and skills appear in the Summary tab</li>
+        <li>Click on a skill to remove it</li>
+      </ul>
+    </div>
+
     <div class="section">
       <h3>Filtering and Sorting</h3>
       <ul>
@@ -22,24 +42,24 @@
         <li>Additional filters and sorting options are available next to the search box</li>
       </ul>
     </div>
-    
+
     <div class="section">
       <h3>Build Details</h3>
       <ul>
         <li>Click <strong>Add Build Details</strong> to add a title and instructions to your build</li>
-        <li>In comments, if you refer to a by name, it will be automatically highlighted!</li>
+        <li>In comments, if you refer to a picto by name, it will be automatically highlighted!</li>
       </ul>
     </div>
-    
+
     <div class="section">
       <h3>Sharing</h3>
       <ul>
         <li>Click <strong>Share Build</strong> to get a URL that includes all your selections</li>
         <li>Anyone with this URL can view your exact build</li>
-        <li>All your selections, levels, and comments are encoded in the URL</li>
+        <li>All your selections, levels, character, skills, and comments are encoded in the URL</li>
       </ul>
     </div>
-    
+
     <div class="section">
       <h3>Mobile View</h3>
       <ul>
@@ -47,7 +67,7 @@
         <li>On smaller screens, the panel view and list view are separate</li>
       </ul>
     </div>
-    
+
     <div class="section">
       <h3>Resetting</h3>
       <ul>
@@ -133,15 +153,15 @@ strong {
     padding: 16px;
     margin: 0 10px;
   }
-  
+
   h2 {
     font-size: 1.3rem;
   }
-  
+
   h3 {
     font-size: 1.1rem;
   }
-  
+
   li {
     font-size: 0.95rem;
   }

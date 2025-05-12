@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, onMounted } from 'vue';
+import { computed, ref } from 'vue';
 import { highlightPictoNames } from '../utils/commentHighlighter';
 import PictoPopover from './PictoPopover.vue';
 import type { PictoItem } from '../types';
@@ -34,11 +34,11 @@ const props = defineProps<{
   selectedLevels: Record<string, string>;
   comment?: string;
   buildTitle?: string;
-  isFullWidthPanel?: boolean;
+
 }>();
 
 // Define emits
-const emit = defineEmits(['reset-all', 'update-comment-and-title', 'toggle-full-width']);
+const emit = defineEmits(['reset-all', 'update-comment-and-title']);
 
 // Popover state
 const showPopover = ref(false);
@@ -351,17 +351,11 @@ const copyToClipboard = () => {
   });
 };
 
-// Function to toggle full-width panel mode
-const toggleFullWidth = () => {
-  emit('toggle-full-width');
 
-  // Provide haptic feedback
-  hapticFeedback.progressVibration();
-};
 </script>
 
 <template>
-  <div class="selection-panel" :class="{ 'full-width-panel': props.isFullWidthPanel }">
+  <div class="selection-panel">
     <div class="buttons-container">
       <button
         class="reset-button"
@@ -406,39 +400,7 @@ const toggleFullWidth = () => {
         </div>
       </button>
 
-      <!-- Full-width toggle button (only visible on desktop) -->
-      <button
-        v-if="!props.isFullWidthPanel"
-        class="full-width-toggle expand-button"
-        @click="toggleFullWidth"
-        title="Expand panel to full width"
-      >
-        <div class="full-width-button-content">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <polyline points="9 21 3 21 3 15"></polyline>
-            <line x1="21" y1="3" x2="14" y2="10"></line>
-            <line x1="3" y1="21" x2="10" y2="14"></line>
-          </svg>
-          <span>Expand</span>
-        </div>
-      </button>
-      <button
-        v-else
-        class="full-width-toggle collapse-button"
-        @click="toggleFullWidth"
-        title="Collapse panel to normal width"
-      >
-        <div class="full-width-button-content">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="4 14 10 14 10 20"></polyline>
-            <polyline points="20 10 14 10 14 4"></polyline>
-            <line x1="14" y1="10" x2="21" y2="3"></line>
-            <line x1="3" y1="21" x2="10" y2="14"></line>
-          </svg>
-          <span>Collapse</span>
-        </div>
-      </button>
+
     </div>
     <!-- Build Title and Comment Display (if exists) -->
     <div v-if="props.buildTitle || props.comment" class="build-title-display">

@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Gustave",
+        "id": 1,
+        "skills": []
+    },
+    {
+        "name": "Maelle",
+        "id": 2,
+        "skills": []
+    },
+    {
+        "name": "Sciel",
+        "id": 3,
+        "skills": []
+    },
+    {
+        "name": "Lune",
+        "id": 4,
+        "skills": []
+    },
+    {
+        "name": "Monoco",
+        "id": 5,
+        "skills": []
+    },
+    {
+        "name": "Verso",
+        "id": 6,
+        "skills": []
+    }
+]

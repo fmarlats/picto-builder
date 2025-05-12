@@ -38,14 +38,14 @@ const searchQuery = ref('');
 // Filtered skills based on search query
 const filteredSkills = computed(() => {
   if (!props.character) return [];
-  
+
   if (!searchQuery.value.trim()) {
     return props.character.skills;
   }
-  
+
   const query = searchQuery.value.toLowerCase().trim();
-  return props.character.skills.filter(skill => 
-    skill.name.toLowerCase().includes(query) || 
+  return props.character.skills.filter(skill =>
+    skill.name.toLowerCase().includes(query) ||
     skill.effect.toLowerCase().includes(query)
   );
 });
@@ -58,13 +58,13 @@ const toggleSkill = (skillId: number) => {
     hapticFeedback.shortVibration();
     return;
   }
-  
+
   // If max skills are already selected, don't allow more
   if (props.selectedSkillIds.length >= maxSkillsCount) {
     alert(`You can only select up to ${maxSkillsCount} skills.`);
     return;
   }
-  
+
   // Otherwise, add the skill
   emit('toggle-skill', skillId);
   hapticFeedback.shortVibration();
@@ -73,7 +73,7 @@ const toggleSkill = (skillId: number) => {
 // Function to highlight search matches
 const highlightMatch = (text: string, query: string): string => {
   if (!query.trim()) return text;
-  
+
   const regex = new RegExp(`(${query.trim()})`, 'gi');
   return text.replace(regex, '<span class="highlight">$1</span>');
 };
@@ -94,20 +94,20 @@ const highlightMatch = (text: string, query: string): string => {
           <span class="warning-tooltip">Skill selected should not exceed {{ maxSkillsCount }}</span>
         </span>
       </h2>
-      
+
       <div class="search-container">
-        <input 
-          type="text" 
-          v-model="searchQuery" 
-          placeholder="Search skills by name or effect..." 
+        <input
+          type="text"
+          v-model="searchQuery"
+          placeholder="Search skills by name or effect..."
           class="search-input"
         />
       </div>
-      
+
       <div class="skills-grid">
-        <div 
-          v-for="skill in filteredSkills" 
-          :key="skill.id" 
+        <div
+          v-for="skill in filteredSkills"
+          :key="skill.id"
           class="skill-card"
           :class="{ 'selected': selectedSkillIds.includes(skill.id) }"
           @click="toggleSkill(skill.id)"
@@ -122,7 +122,7 @@ const highlightMatch = (text: string, query: string): string => {
         </div>
       </div>
     </div>
-    
+
     <div v-else class="no-character-message">
       <p>Please select a character first to view their skills.</p>
     </div>
@@ -132,6 +132,17 @@ const highlightMatch = (text: string, query: string): string => {
 <style scoped>
 .skill-selector {
   margin-bottom: 24px;
+  width: 100%;
+  max-width: 1000px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.skill-selector-content {
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .section-title {
@@ -182,6 +193,8 @@ const highlightMatch = (text: string, query: string): string => {
 
 .search-container {
   margin-bottom: 16px;
+  width: 100%;
+  max-width: 1000px;
 }
 
 .search-input {
@@ -202,8 +215,12 @@ const highlightMatch = (text: string, query: string): string => {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 300px);
   gap: 16px;
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+  justify-content: center;
 }
 
 .skill-card {
@@ -213,6 +230,11 @@ const highlightMatch = (text: string, query: string): string => {
   cursor: pointer;
   transition: all 0.2s ease;
   border: 2px solid transparent;
+  width: 300px;
+  min-height: 150px;
+  max-height: 200px;
+  overflow: auto;
+  box-sizing: border-box;
 }
 
 .skill-card:hover {
@@ -254,6 +276,8 @@ const highlightMatch = (text: string, query: string): string => {
   color: #ddd;
   font-size: 0.9rem;
   line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .no-character-message {
@@ -271,9 +295,15 @@ const highlightMatch = (text: string, query: string): string => {
   border-radius: 2px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .skills-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 300px);
+  }
+}
+
+@media (max-width: 650px) {
+  .skills-grid {
+    grid-template-columns: repeat(1, 300px);
   }
 }
 </style>

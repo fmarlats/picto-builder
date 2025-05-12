@@ -44,11 +44,11 @@ const selectedCharacter = computed(() => {
 <template>
   <div class="character-selector">
     <h2 class="section-title">Select a Character</h2>
-    
+
     <div class="characters-grid">
-      <div 
-        v-for="character in characters" 
-        :key="character.id" 
+      <div
+        v-for="character in characters"
+        :key="character.id"
         class="character-card"
         :class="{ 'selected': character.id === selectedCharacterId }"
         @click="selectCharacter(character.id)"
@@ -57,16 +57,16 @@ const selectedCharacter = computed(() => {
         <div class="character-skills-count">{{ character.skills.length }} Skills</div>
       </div>
     </div>
-    
-    <div v-if="selectedCharacter" class="selected-character-info">
-      <h3>Selected: {{ selectedCharacter.name }}</h3>
-    </div>
   </div>
 </template>
 
 <style scoped>
 .character-selector {
   margin-bottom: 24px;
+  width: 100%;
+  max-width: 1000px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .section-title {
@@ -78,9 +78,13 @@ const selectedCharacter = computed(() => {
 
 .characters-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-template-columns: repeat(6, 150px);
   gap: 16px;
   margin-bottom: 16px;
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+  justify-content: center;
 }
 
 .character-card {
@@ -118,31 +122,29 @@ const selectedCharacter = computed(() => {
   color: #aaa;
 }
 
-.selected-character-info {
-  margin-top: 16px;
-  padding: 12px;
-  background-color: rgba(33, 150, 243, 0.1);
-  border-radius: 8px;
-  border-left: 4px solid #2196F3;
-}
-
-.selected-character-info h3 {
-  margin: 0;
-  font-size: 1rem;
-  color: #2196F3;
+@media (max-width: 1000px) {
+  .characters-grid {
+    grid-template-columns: repeat(4, 150px);
+  }
 }
 
 @media (max-width: 768px) {
   .characters-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(3, 150px);
   }
-  
+
   .character-card {
     padding: 12px;
   }
-  
+
   .character-name {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .characters-grid {
+    grid-template-columns: repeat(2, 150px);
   }
 }
 </style>

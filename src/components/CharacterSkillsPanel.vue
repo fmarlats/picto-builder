@@ -9,11 +9,6 @@ const props = defineProps<{
   selectedSkillIds: number[];
 }>();
 
-// Define emits
-const emit = defineEmits<{
-  'remove-skill': [skillId: number];
-}>();
-
 // Haptic feedback utility
 const hapticFeedback = {
   // Check if vibration is supported
@@ -38,24 +33,13 @@ const selectedCharacter = computed(() => {
 // Computed property to get the selected skills
 const selectedSkills = computed(() => {
   if (!selectedCharacter.value) return [];
-  
+
   return props.selectedSkillIds
     .map(skillId => {
       return selectedCharacter.value?.skills.find(skill => skill.id === skillId);
     })
     .filter(skill => skill !== undefined) as SkillItem[];
 });
-
-// Computed property to calculate total cost of selected skills
-const totalCost = computed(() => {
-  return selectedSkills.value.reduce((total, skill) => total + skill.cost, 0);
-});
-
-// Function to remove a skill
-const removeSkill = (skillId: number) => {
-  emit('remove-skill', skillId);
-  hapticFeedback.shortVibration();
-};
 </script>
 
 <template>
@@ -63,33 +47,44 @@ const removeSkill = (skillId: number) => {
     <!-- Character Section -->
     <div class="panel-section">
       <h2 class="section-title">Character</h2>
-      
+
       <div v-if="selectedCharacter" class="selected-character">
         <div class="character-name">{{ selectedCharacter.name }}</div>
       </div>
-      
+
       <div v-else class="empty-message">
         <div class="empty-icon">👆</div>
         <div class="empty-title">No character selected</div>
         <div class="empty-instruction">Select a character to build your team.</div>
       </div>
     </div>
-    
+
     <!-- Skills Section -->
     <div class="panel-section">
       <h2 class="section-title">
-        Skills ({{ selectedSkills.length }})
-        <span class="total-cost">
-          Total Cost: <img src="../assets/lumina.png" alt="Lumina" class="lumina-icon" /> {{ totalCost }}
-        </span>
+        <div class="title-with-warning">
+          Skills ({{ selectedSkills.length }}/6)<span v-if="selectedSkills.length > 6" class="warning-icon" title="A maximum of 6 skills can be selected in-game">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <div class="warning-tooltip">
+              <div class="tooltip-title">Too many skills selected</div>
+              <div class="tooltip-content">
+                A maximum of 6 skills can be selected in-game.
+              </div>
+            </div>
+          </span>
+        </div>
       </h2>
-      
+
       <div v-if="selectedSkills.length === 0" class="empty-message">
         <div class="empty-icon">👆</div>
         <div class="empty-title">No skills selected</div>
         <div class="empty-instruction">Select skills for your character.</div>
       </div>
-      
+
       <div v-else class="selected-skills">
         <div v-for="skill in selectedSkills" :key="skill.id" class="skill-item">
           <div class="skill-header">
@@ -112,16 +107,11 @@ const removeSkill = (skillId: number) => {
               </a>
             </div>
             <div class="skill-cost">
-              <img src="../assets/lumina.png" alt="Lumina" class="lumina-icon" /> {{ skill.cost }}
+              {{ skill.cost }} AP
             </div>
           </div>
           <div class="skill-effect">{{ skill.effect }}</div>
-          <button class="remove-button" @click="removeSkill(skill.id)" title="Remove skill">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
+
         </div>
       </div>
     </div>
@@ -148,20 +138,71 @@ const removeSkill = (skillId: number) => {
   font-weight: 600;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
-.total-cost {
-  font-size: 0.9rem;
-  color: #ffcc00;
+.title-with-warning {
   display: flex;
   align-items: center;
-  gap: 4px;
 }
 
-.lumina-icon {
-  width: 16px;
-  height: 16px;
+.warning-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 4px;
+  margin-right: 0;
+  color: #ff9800;
+  position: relative;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.warning-tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  white-space: normal;
+  width: 250px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid #444;
+  margin-top: 8px;
+}
+
+.warning-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #444 transparent;
+}
+
+.tooltip-title {
+  color: #ff9800;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.tooltip-content {
+  line-height: 1.4;
+}
+
+.warning-icon:hover .warning-tooltip {
+  opacity: 1;
+  visibility: visible;
 }
 
 .empty-message {
@@ -243,37 +284,14 @@ const removeSkill = (skillId: number) => {
   gap: 4px;
   color: #ffcc00;
   font-weight: bold;
+  background-color: rgba(255, 204, 0, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
 .skill-effect {
   color: #ddd;
   font-size: 0.9rem;
   line-height: 1.4;
-}
-
-.remove-button {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: none;
-  border: none;
-  color: #ff5252;
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s, background-color 0.2s;
-}
-
-.skill-item:hover .remove-button {
-  opacity: 0.7;
-}
-
-.remove-button:hover {
-  opacity: 1 !important;
-  background-color: rgba(255, 82, 82, 0.1);
 }
 </style>

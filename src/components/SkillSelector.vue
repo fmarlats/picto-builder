@@ -59,13 +59,7 @@ const toggleSkill = (skillId: number) => {
     return;
   }
 
-  // If max skills are already selected, don't allow more
-  if (props.selectedSkillIds.length >= maxSkillsCount) {
-    alert(`You can only select up to ${maxSkillsCount} skills.`);
-    return;
-  }
-
-  // Otherwise, add the skill
+  // Even if max skills are already selected, still allow more (just with a warning)
   emit('toggle-skill', skillId);
   hapticFeedback.shortVibration();
 };
@@ -84,15 +78,24 @@ const highlightMatch = (text: string, query: string): string => {
     <div v-if="character" class="skill-selector-content">
       <h2 class="section-title">
         Select Skills for {{ character.name }}
-        <span class="skill-count">({{ selectedSkillIds.length }}/{{ maxSkillsCount }})</span>
-        <span v-if="selectedSkillIds.length > maxSkillsCount" class="warning-icon" :title="`Skill selected should not exceed ${maxSkillsCount}`">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-            <line x1="12" y1="9" x2="12" y2="13"></line>
-            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-          </svg>
-          <span class="warning-tooltip">Skill selected should not exceed {{ maxSkillsCount }}</span>
-        </span>
+        <div class="skill-count-container">
+          <span class="skill-count" :class="{ 'warning': selectedSkillIds.length > maxSkillsCount }">
+            ({{ selectedSkillIds.length }}/{{ maxSkillsCount }})
+          </span>
+          <span v-if="selectedSkillIds.length > maxSkillsCount" class="warning-icon" :title="`A maximum of ${maxSkillsCount} skills can be selected in-game`">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <div class="warning-tooltip">
+              <div class="tooltip-title">Too many skills selected</div>
+              <div class="tooltip-content">
+                A maximum of {{ maxSkillsCount }} skills can be selected in-game.
+              </div>
+            </div>
+          </span>
+        </div>
       </h2>
 
       <div class="search-container">
@@ -115,7 +118,7 @@ const highlightMatch = (text: string, query: string): string => {
           <div class="skill-header">
             <div class="skill-name" v-html="highlightMatch(skill.name, searchQuery)"></div>
             <div class="skill-cost">
-              <img src="../assets/lumina.png" alt="Lumina" class="lumina-icon" /> {{ skill.cost }}
+              {{ skill.cost }} AP
             </div>
           </div>
           <div class="skill-effect" v-html="highlightMatch(skill.effect, searchQuery)"></div>
@@ -155,17 +158,31 @@ const highlightMatch = (text: string, query: string): string => {
   gap: 8px;
 }
 
+.skill-count-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .skill-count {
   font-size: 0.9rem;
   color: #aaa;
   font-weight: normal;
+  transition: color 0.3s ease;
+}
+
+.skill-count.warning {
+  color: #ff9800;
+  font-weight: bold;
 }
 
 .warning-icon {
-  color: #ff9800;
-  cursor: help;
-  position: relative;
   display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+  color: #ff9800;
+  position: relative;
+  cursor: pointer;
 }
 
 .warning-tooltip {
@@ -175,15 +192,41 @@ const highlightMatch = (text: string, query: string): string => {
   transform: translateX(-50%);
   background-color: #333;
   color: #fff;
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  white-space: nowrap;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  white-space: normal;
+  width: 250px;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s, visibility 0.2s;
+  transition: opacity 0.3s, visibility 0.3s;
   z-index: 10;
   pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid #444;
+  margin-top: 8px;
+}
+
+.warning-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #444 transparent;
+}
+
+.tooltip-title {
+  color: #ff9800;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.tooltip-content {
+  line-height: 1.4;
 }
 
 .warning-icon:hover .warning-tooltip {
@@ -265,11 +308,9 @@ const highlightMatch = (text: string, query: string): string => {
   gap: 4px;
   color: #ffcc00;
   font-weight: bold;
-}
-
-.lumina-icon {
-  width: 16px;
-  height: 16px;
+  background-color: rgba(255, 204, 0, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
 .skill-effect {

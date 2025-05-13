@@ -592,7 +592,7 @@ const filteredPictos = computed(() => {
     <TabNavigation
       :activeTab="activeTab"
       :tabs="[
-        { id: 'character', label: 'Character', icon: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2 M12 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z' },
+        { id: 'character', label: 'Character', icon: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2 M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8z' },
         { id: 'picto', label: 'Pictos', icon: 'M4 3h16a2 2 0 0 1 2 2v6a10 10 0 0 1-10 10A10 10 0 0 1 2 11V5a2 2 0 0 1 2-2z M8 10h.01 M12 10h.01 M16 10h.01' },
         { id: 'summary', label: 'Summary', icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8' }
       ]"
@@ -715,7 +715,6 @@ const filteredPictos = computed(() => {
           :characters="allCharacters"
           :selectedCharacterId="selectedCharacterId"
           :selectedSkillIds="selectedSkillIds"
-          @remove-skill="toggleSkillSelection"
         />
       </div>
     </div>
@@ -920,10 +919,11 @@ h1 {
   max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 4px 0;
 }
 
 @keyframes fadeIn {

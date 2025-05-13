@@ -54,7 +54,7 @@ const changeTab = (tabId: string) => {
         @click="changeTab(tab.id)"
       >
         <div class="tab-content">
-          <svg v-if="tab.icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg v-if="tab.icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="overflow: visible;">
             <path :d="tab.icon"></path>
           </svg>
           <span class="tab-label">{{ tab.label }}</span>
@@ -104,6 +104,7 @@ const changeTab = (tabId: string) => {
   align-items: center;
   gap: 8px;
   justify-content: center;
+  padding: 4px 0;
 }
 
 .tab-button:hover {
@@ -133,7 +134,7 @@ const changeTab = (tabId: string) => {
   .tab-button {
     padding: 12px 8px;
   }
-  
+
   .tab-label {
     font-size: 0.9rem;
   }
@@ -144,7 +145,7 @@ const changeTab = (tabId: string) => {
     flex-direction: column;
     gap: 4px;
   }
-  
+
   .tab-label {
     font-size: 0.8rem;
   }

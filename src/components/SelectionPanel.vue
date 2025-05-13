@@ -426,13 +426,18 @@ const copyToClipboard = () => {
     <div class="panel-section">
       <h2 class="section-title">
         Picto Selected ({{ selectedPictos.length }})
-        <span v-if="selectedPictos.length > 3" class="warning-icon" title="Picto selected should not exceed 3">
+        <span v-if="selectedPictos.length > 3" class="warning-icon" title="A maximum of 3 pictos can be selected in-game">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
             <line x1="12" y1="9" x2="12" y2="13"></line>
             <line x1="12" y1="17" x2="12.01" y2="17"></line>
           </svg>
-          <span class="warning-tooltip">Picto selected should not exceed 3</span>
+          <div class="warning-tooltip">
+            <div class="tooltip-title">Too many pictos selected</div>
+            <div class="tooltip-content">
+              A maximum of 3 pictos can be selected in-game.
+            </div>
+          </div>
         </span>
       </h2>
 
@@ -921,18 +926,19 @@ const copyToClipboard = () => {
   transform: translateX(-50%);
   background-color: #333;
   color: #fff;
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  white-space: normal;
+  width: 250px;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s, visibility 0.2s;
+  transition: opacity 0.3s, visibility 0.3s;
   z-index: 10;
   pointer-events: none;
-  margin-top: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   border: 1px solid #444;
+  margin-top: 8px;
 }
 
 .warning-tooltip::before {
@@ -944,6 +950,17 @@ const copyToClipboard = () => {
   border-width: 6px;
   border-style: solid;
   border-color: transparent transparent #444 transparent;
+}
+
+.tooltip-title {
+  color: #ff9800;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.tooltip-content {
+  line-height: 1.4;
 }
 
 .warning-icon:hover .warning-tooltip {

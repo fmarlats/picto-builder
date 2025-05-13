@@ -66,7 +66,8 @@ const selectedCharacter = computed(() => {
   width: 100%;
   max-width: 1000px;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: visible;
+  padding: 4px 0;
 }
 
 .section-title {
@@ -83,8 +84,10 @@ const selectedCharacter = computed(() => {
   margin-bottom: 16px;
   width: 100%;
   max-width: 1000px;
-  overflow: hidden;
+  overflow: visible;
   justify-content: center;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .character-card {
@@ -99,11 +102,16 @@ const selectedCharacter = computed(() => {
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
+  top: 0;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .character-card:hover {
   background-color: #444;
-  transform: translateY(-2px);
+  top: -2px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .character-card.selected {

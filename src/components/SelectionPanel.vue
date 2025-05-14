@@ -424,7 +424,7 @@ const copyToClipboard = () => {
     </teleport>
     <!-- Picto Selected Section -->
     <div class="panel-section">
-      <h2 class="section-title">
+      <h2 class="section-title no-before">
         <div class="left-aligned-title">
           Picto Selected
           <span v-if="selectedPictos.length > 3" class="warning-icon" title="A maximum of 3 pictos can be selected in-game">
@@ -445,7 +445,6 @@ const copyToClipboard = () => {
       </h2>
 
       <div v-if="selectedPictos.length === 0" class="empty-message">
-        <div class="empty-icon">👆</div>
         <div class="empty-title">No pictos selected</div>
         <div class="empty-instruction">Press and hold (200ms) on a picto card to select it as a picto. This will remove it from the lumina list if it was there.</div>
       </div>
@@ -500,7 +499,7 @@ const copyToClipboard = () => {
 
     <!-- Lumina Selected Section -->
     <div class="panel-section">
-      <h2 class="section-title">
+      <h2 class="section-title no-before">
         <div class="left-aligned-title">
           Lumina Selected
           <span class="count-display">({{ selectedLuminas.length }})</span>
@@ -508,7 +507,6 @@ const copyToClipboard = () => {
       </h2>
 
       <div v-if="selectedLuminas.length === 0" class="empty-message">
-        <div class="empty-icon">👇</div>
         <div class="empty-title">No luminas selected</div>
         <div class="empty-instruction">Click on a picto card to select it as a lumina. A picto cannot be in both lists at the same time.</div>
       </div>
@@ -931,6 +929,10 @@ const copyToClipboard = () => {
   flex-shrink: 0;
 }
 
+.section-title.no-before::before {
+  display: none;
+}
+
 .warning-icon {
   display: inline-flex;
   align-items: center;
@@ -1063,7 +1065,7 @@ const copyToClipboard = () => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #aaa;
+  color: var(--primary-color);
   transition: color 0.2s ease;
 }
 
@@ -1128,7 +1130,6 @@ const copyToClipboard = () => {
 .total-section {
   margin-top: 16px;
   padding-top: 12px;
-  border-top: 1px solid #444;
 }
 
 .total-section h3 {
@@ -1141,6 +1142,7 @@ const copyToClipboard = () => {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  justify-content: center;
 }
 
 .total-attribute-item {

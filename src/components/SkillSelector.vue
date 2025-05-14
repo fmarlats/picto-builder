@@ -283,6 +283,7 @@ const highlightMatch = (text: string, query: string): string => {
   max-width: 1000px;
   overflow: hidden;
   justify-content: center;
+  padding-top: 5px;
 }
 
 .skill-card {

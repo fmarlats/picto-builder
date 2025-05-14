@@ -425,20 +425,23 @@ const copyToClipboard = () => {
     <!-- Picto Selected Section -->
     <div class="panel-section">
       <h2 class="section-title">
-        Picto Selected ({{ selectedPictos.length }})
-        <span v-if="selectedPictos.length > 3" class="warning-icon" title="A maximum of 3 pictos can be selected in-game">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-            <line x1="12" y1="9" x2="12" y2="13"></line>
-            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-          </svg>
-          <div class="warning-tooltip">
-            <div class="tooltip-title">Too many pictos selected</div>
-            <div class="tooltip-content">
-              A maximum of 3 pictos can be selected in-game.
+        <div class="left-aligned-title">
+          Picto Selected
+          <span v-if="selectedPictos.length > 3" class="warning-icon" title="A maximum of 3 pictos can be selected in-game">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <div class="warning-tooltip">
+              <div class="tooltip-title">Too many pictos selected</div>
+              <div class="tooltip-content">
+                A maximum of 3 pictos can be selected in-game.
+              </div>
             </div>
-          </div>
-        </span>
+          </span>
+          <span class="count-display" :class="{ 'warning': selectedPictos.length > 3 }">({{ selectedPictos.length }}/3)</span>
+        </div>
       </h2>
 
       <div v-if="selectedPictos.length === 0" class="empty-message">
@@ -497,7 +500,12 @@ const copyToClipboard = () => {
 
     <!-- Lumina Selected Section -->
     <div class="panel-section">
-      <h2 class="section-title">Lumina Selected ({{ selectedLuminas.length }})</h2>
+      <h2 class="section-title">
+        <div class="left-aligned-title">
+          Lumina Selected
+          <span class="count-display">({{ selectedLuminas.length }})</span>
+        </div>
+      </h2>
 
       <div v-if="selectedLuminas.length === 0" class="empty-message">
         <div class="empty-icon">👇</div>
@@ -895,6 +903,23 @@ const copyToClipboard = () => {
   align-items: center;
 }
 
+.left-aligned-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.count-display {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-left: 8px;
+}
+
+.count-display.warning {
+  color: #ff9800;
+  font-weight: bold;
+}
+
 .section-title::before {
   content: '';
   display: inline-block;
@@ -903,12 +928,14 @@ const copyToClipboard = () => {
   background-color: #555;
   margin-right: 8px;
   border-radius: 2px;
+  flex-shrink: 0;
 }
 
 .warning-icon {
   display: inline-flex;
   align-items: center;
   margin-left: 8px;
+  margin-right: 0;
   color: #ff9800;
   position: relative;
   cursor: pointer;

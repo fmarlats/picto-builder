@@ -77,23 +77,30 @@ const highlightMatch = (text: string, query: string): string => {
   <div class="skill-selector">
     <div v-if="character" class="skill-selector-content">
       <h2 class="section-title">
-        Select Skills for {{ character.name }}
-        <div class="skill-count-container">
-          <span class="skill-count" :class="{ 'warning': selectedSkillIds.length > maxSkillsCount }">
-            ({{ selectedSkillIds.length }}/{{ maxSkillsCount }})
-          </span>
-          <span v-if="selectedSkillIds.length > maxSkillsCount" class="warning-icon" :title="`A maximum of ${maxSkillsCount} skills can be selected in-game`">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-              <line x1="12" y1="9" x2="12" y2="13"></line>
-              <line x1="12" y1="17" x2="12.01" y2="17"></line>
-            </svg>
-            <div class="warning-tooltip">
-              <div class="tooltip-title">Too many skills selected</div>
-              <div class="tooltip-content">
-                A maximum of {{ maxSkillsCount }} skills can be selected in-game.
+        <div class="title-with-warning">
+          Select Skills for {{ character.name }}
+          <div v-if="selectedSkillIds.length > maxSkillsCount" class="warning-group">
+            <span class="warning-icon" :title="`A maximum of ${maxSkillsCount} skills can be selected in-game`">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              <div class="warning-tooltip">
+                <div class="tooltip-title">Too many skills selected</div>
+                <div class="tooltip-content">
+                  A maximum of {{ maxSkillsCount }} skills can be selected in-game.
+                </div>
               </div>
-            </div>
+            </span>
+            <span class="skill-count warning">
+              ({{ selectedSkillIds.length }}/{{ maxSkillsCount }})
+            </span>
+          </div>
+        </div>
+        <div v-if="selectedSkillIds.length <= maxSkillsCount" class="skill-count-container">
+          <span class="skill-count">
+            ({{ selectedSkillIds.length }}/{{ maxSkillsCount }})
           </span>
         </div>
       </h2>
@@ -156,6 +163,19 @@ const highlightMatch = (text: string, query: string): string => {
   display: flex;
   align-items: center;
   gap: 8px;
+  justify-content: space-between;
+}
+
+.title-with-warning {
+  display: flex;
+  align-items: center;
+}
+
+.warning-group {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  gap: 4px;
 }
 
 .skill-count-container {
@@ -179,7 +199,6 @@ const highlightMatch = (text: string, query: string): string => {
 .warning-icon {
   display: inline-flex;
   align-items: center;
-  margin-left: 8px;
   color: #ff9800;
   position: relative;
   cursor: pointer;

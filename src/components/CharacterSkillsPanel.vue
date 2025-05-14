@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { Character, SkillItem } from '../types';
+import WarningIcon from './WarningIcon.vue';
+import EmptyState from './EmptyState.vue';
 
 // Define props
 const props = defineProps<{
@@ -8,21 +10,6 @@ const props = defineProps<{
   selectedCharacterId?: number;
   selectedSkillIds: number[];
 }>();
-
-// Haptic feedback utility
-const hapticFeedback = {
-  // Check if vibration is supported
-  isSupported: () => {
-    return 'vibrate' in navigator;
-  },
-
-  // Short vibration for removal
-  shortVibration: () => {
-    if (hapticFeedback.isSupported()) {
-      navigator.vibrate(40);
-    }
-  }
-};
 
 // Computed property to get the selected character
 const selectedCharacter = computed(() => {
@@ -46,44 +33,46 @@ const selectedSkills = computed(() => {
   <div class="character-skills-panel">
     <!-- Character Section -->
     <div class="panel-section">
-      <h2 class="section-title">Character</h2>
+      <h2 class="section-title">
+        <div class="left-aligned-title">
+          Character
+        </div>
+      </h2>
 
       <div v-if="selectedCharacter" class="selected-character">
         <div class="character-name">{{ selectedCharacter.name }}</div>
       </div>
 
-      <div v-else class="empty-message">
-        <div class="empty-icon">👆</div>
-        <div class="empty-title">No character selected</div>
-        <div class="empty-instruction">Select a character to build your team.</div>
-      </div>
+      <EmptyState
+        v-else
+        title="No character selected"
+        instruction="Select a character to build your team."
+        icon="👆"
+      />
     </div>
 
     <!-- Skills Section -->
     <div class="panel-section">
       <h2 class="section-title">
-        <div class="title-with-warning">
-          Skills ({{ selectedSkills.length }}/6)<span v-if="selectedSkills.length > 6" class="warning-icon" title="A maximum of 6 skills can be selected in-game">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-              <line x1="12" y1="9" x2="12" y2="13"></line>
-              <line x1="12" y1="17" x2="12.01" y2="17"></line>
-            </svg>
-            <div class="warning-tooltip">
-              <div class="tooltip-title">Too many skills selected</div>
-              <div class="tooltip-content">
-                A maximum of 6 skills can be selected in-game.
-              </div>
-            </div>
+        <div class="left-aligned-title">
+          Skills
+          <WarningIcon
+            v-if="selectedSkills.length > 6"
+            message="A maximum of 6 skills can be selected in-game."
+            title="Too many skills selected"
+          />
+          <span class="count-display" :class="{ 'warning': selectedSkills.length > 6 }">
+            ({{ selectedSkills.length }}/6)
           </span>
         </div>
       </h2>
 
-      <div v-if="selectedSkills.length === 0" class="empty-message">
-        <div class="empty-icon">👆</div>
-        <div class="empty-title">No skills selected</div>
-        <div class="empty-instruction">Select skills for your character.</div>
-      </div>
+      <EmptyState
+        v-if="selectedSkills.length === 0"
+        title="No skills selected"
+        instruction="Select skills for your character."
+        icon="👆"
+      />
 
       <div v-else class="selected-skills">
         <div v-for="skill in selectedSkills" :key="skill.id" class="skill-item">
@@ -119,136 +108,60 @@ const selectedSkills = computed(() => {
 </template>
 
 <style scoped>
+/* Panel Layout */
 .character-skills-panel {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-}
-
-.panel-section {
-  background-color: #222;
-  border-radius: 8px;
-  padding: 16px;
+  gap: var(--spacing-xl);
 }
 
 .section-title {
-  font-size: 1.2rem;
-  margin-bottom: 16px;
-  color: #fff;
-  font-weight: 600;
   display: flex;
   align-items: center;
 }
 
-.title-with-warning {
+.left-aligned-title {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
-.warning-icon {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 4px;
-  margin-right: 0;
-  color: #ff9800;
-  position: relative;
-  cursor: pointer;
-  vertical-align: middle;
-}
-
-.warning-tooltip {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333;
-  color: #fff;
-  padding: 12px 16px;
-  border-radius: 6px;
+.count-display {
   font-size: 0.9rem;
-  white-space: normal;
-  width: 250px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
-  z-index: 10;
-  pointer-events: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  border: 1px solid #444;
-  margin-top: 8px;
+  color: var(--text-muted);
+  margin-left: 8px;
 }
 
-.warning-tooltip::before {
-  content: '';
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 6px;
-  border-style: solid;
-  border-color: transparent transparent #444 transparent;
-}
-
-.tooltip-title {
-  color: #ff9800;
+.count-display.warning {
+  color: var(--warning-color);
   font-weight: bold;
-  margin-bottom: 8px;
-  font-size: 1rem;
 }
 
-.tooltip-content {
-  line-height: 1.4;
-}
-
-.warning-icon:hover .warning-tooltip {
-  opacity: 1;
-  visibility: visible;
-}
-
-.empty-message {
-  text-align: center;
-  padding: 24px 16px;
-  color: #aaa;
-}
-
-.empty-icon {
-  font-size: 2rem;
-  margin-bottom: 8px;
-}
-
-.empty-title {
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #ddd;
-}
-
-.empty-instruction {
-  font-size: 0.9rem;
-}
-
+/* Character Display */
 .selected-character {
-  background-color: #333;
-  border-radius: 8px;
-  padding: 16px;
-  border-left: 4px solid #2196F3;
+  background-color: var(--bg-item);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  border-left: 4px solid var(--primary-color);
 }
 
 .character-name {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--text-color);
 }
 
+/* Skills Display */
 .selected-skills {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--spacing-md);
 }
 
 .skill-item {
-  background-color: #333;
-  border-radius: 8px;
-  padding: 16px;
+  background-color: var(--bg-item);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
   position: relative;
 }
 
@@ -256,20 +169,20 @@ const selectedSkills = computed(() => {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-sm);
 }
 
 .skill-name {
   font-weight: 600;
   font-size: 1.1rem;
-  color: #fff;
+  color: var(--text-color);
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
 .skill-link {
-  color: #2196F3;
+  color: var(--primary-color);
   opacity: 0.7;
   transition: opacity 0.2s;
 }
@@ -281,16 +194,16 @@ const selectedSkills = computed(() => {
 .skill-cost {
   display: flex;
   align-items: center;
-  gap: 4px;
-  color: #ffcc00;
+  gap: var(--spacing-xs);
+  color: var(--cost-color);
   font-weight: bold;
   background-color: rgba(255, 204, 0, 0.1);
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: var(--border-radius-sm);
 }
 
 .skill-effect {
-  color: #ddd;
+  color: var(--text-light);
   font-size: 0.9rem;
   line-height: 1.4;
 }

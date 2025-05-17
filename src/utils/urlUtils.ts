@@ -9,7 +9,7 @@
  */
 export function createSlug(text: string): string {
   if (!text) return '';
-  
+
   return text
     .toLowerCase()
     .trim()
@@ -20,32 +20,37 @@ export function createSlug(text: string): string {
 }
 
 /**
- * Extracts the slug from a URL path
- * @param path The URL path
- * @returns The extracted slug or empty string if no slug is found
+ * Extracts the build name from the URL query parameter
+ * @param url The full URL or just the query string
+ * @returns The extracted build name or empty string if no build name is found
  */
-export function extractSlugFromPath(path: string): string {
-  if (!path || path === '/') return '';
-  
-  // Remove leading slash and anything after a hash or query parameter
-  const cleanPath = path.replace(/^\//, '').split(/[#?]/)[0];
-  
-  // If there's no path segment, return empty string
-  if (!cleanPath) return '';
-  
-  return cleanPath;
+export function extractSlugFromPath(url: string): string {
+  if (!url) return '';
+
+  // Create a URL object to easily parse query parameters
+  // If the url doesn't have a protocol, add a dummy one to make URL parsing work
+  const fullUrl = url.startsWith('http') ? url : `http://dummy.com${url}`;
+
+  try {
+    const urlObj = new URL(fullUrl);
+    // Get the 'b' query parameter which contains the build name
+    return urlObj.searchParams.get('b') || '';
+  } catch (e) {
+    console.error('Error parsing URL:', e);
+    return '';
+  }
 }
 
 /**
- * Creates a URL with the slug and hash
- * @param slug The slug to include in the URL
+ * Creates a URL with the build name as a query parameter and hash
+ * @param buildName The build name to include as a query parameter
  * @param hash The hash part of the URL (without the # symbol)
- * @returns A complete URL with the slug and hash
+ * @returns A complete URL with the build name as a query parameter and hash
  */
-export function createUrlWithSlug(slug: string, hash: string): string {
+export function createUrlWithSlug(buildName: string, hash: string): string {
   const baseUrl = window.location.origin;
-  const pathWithSlug = slug ? `/${slug}` : '/';
+  const queryParam = buildName ? `?b=${encodeURIComponent(buildName)}` : '';
   const hashPart = hash ? `#${hash}` : '';
-  
-  return `${baseUrl}${pathWithSlug}${hashPart}`;
+
+  return `${baseUrl}${queryParam}${hashPart}`;
 }

@@ -4,6 +4,7 @@ import { highlightNamesInComment } from '../utils/commentHighlighter';
 import PictoPopover from './PictoPopover.vue';
 import SkillPopover from './SkillPopover.vue';
 import CharacterSkillsPanel from './CharacterSkillsPanel.vue';
+import EmptyState from './EmptyState.vue';
 import type { PictoItem, Character, SkillItem } from '../types';
 
 // Haptic feedback utility
@@ -520,10 +521,12 @@ const copyToClipboard = () => {
         </div>
       </h2>
 
-      <div v-if="selectedPictos.length === 0" class="empty-message">
-        <div class="empty-title">No pictos selected</div>
-        <div class="empty-instruction">Press and hold (200ms) on a picto card to select it as a picto. This will remove it from the lumina list if it was there.</div>
-      </div>
+      <EmptyState
+        v-if="selectedPictos.length === 0"
+        title="No pictos selected"
+        instruction="Press and hold (200ms) on a picto card to select it as a picto. This will remove it from the lumina list if it was there."
+        icon=""
+      />
 
       <div v-else>
         <!-- Selected Pictos List -->
@@ -582,10 +585,12 @@ const copyToClipboard = () => {
         </div>
       </h2>
 
-      <div v-if="selectedLuminas.length === 0" class="empty-message">
-        <div class="empty-title">No luminas selected</div>
-        <div class="empty-instruction">Click on a picto card to select it as a lumina. A picto cannot be in both lists at the same time.</div>
-      </div>
+      <EmptyState
+        v-if="selectedLuminas.length === 0"
+        title="No luminas selected"
+        instruction="Click on a picto card to select it as a lumina. A picto cannot be in both lists at the same time."
+        icon=""
+      />
 
       <div v-else>
         <!-- Selected Luminas List -->

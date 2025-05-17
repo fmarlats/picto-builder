@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <div class="empty-message">
-    <div class="empty-icon">{{ icon || '👆' }}</div>
+    <div class="empty-icon">{{ icon }}</div>
     <div class="empty-title">{{ title }}</div>
     <div class="empty-instruction">{{ instruction }}</div>
   </div>

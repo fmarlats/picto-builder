@@ -47,7 +47,7 @@ const selectedSkills = computed(() => {
         v-else
         title="No character selected"
         instruction="Select a character to build your team."
-        icon="👆"
+        icon=""
       />
     </div>
 
@@ -71,7 +71,7 @@ const selectedSkills = computed(() => {
         v-if="selectedSkills.length === 0"
         title="No skills selected"
         instruction="Select skills for your character."
-        icon="👆"
+        icon=""
       />
 
       <div v-else class="selected-skills">

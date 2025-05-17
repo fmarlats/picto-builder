@@ -3,12 +3,11 @@ import { ref, computed, onMounted, watch } from 'vue'
 import pictosList from './assets/pictos_list.json'
 import charactersList from './assets/characters.json'
 import Picto from './components/Picto.vue'
-import SelectionPanel from './components/SelectionPanel.vue'
 import PanelToggleButton from './components/PanelToggleButton.vue'
 import HowToUse from './components/HowToUse.vue'
 import CharacterSelector from './components/CharacterSelector.vue'
 import SkillSelector from './components/SkillSelector.vue'
-import CharacterSkillsPanel from './components/CharacterSkillsPanel.vue'
+import SummaryPanel from './components/SummaryPanel.vue'
 import TabNavigation from './components/TabNavigation.vue'
 import type { AppState, PictoItem, Character } from './types'
 
@@ -699,22 +698,18 @@ const filteredPictos = computed(() => {
     <!-- Summary Tab -->
     <div v-if="activeTab === 'summary'" class="tab-content summary-tab">
       <div class="summary-container">
-        <SelectionPanel
+        <SummaryPanel
           :allPictos="allPictos"
           :pictoSelectedPictos="pictoSelectedPictos"
           :luminaSelectedPictos="luminaSelectedPictos"
           :selectedLevels="selectedLevels"
           :comment="comment"
           :buildTitle="buildTitle"
-          @reset-all="resetAll"
-          @update-comment-and-title="updateCommentAndTitle"
-        />
-
-        <CharacterSkillsPanel
-          v-if="selectedCharacterId !== undefined"
           :characters="allCharacters"
           :selectedCharacterId="selectedCharacterId"
           :selectedSkillIds="selectedSkillIds"
+          @reset-all="resetAll"
+          @update-comment-and-title="updateCommentAndTitle"
         />
       </div>
     </div>

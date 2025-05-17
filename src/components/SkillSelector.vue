@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import type { Character, SkillItem } from '../types';
+import type { Character } from '../types';
 
 // Define props
 const props = defineProps<{

@@ -19,7 +19,6 @@ const calculatePosition = () => {
   const popover = popoverRef.value;
   const popoverRect = popover.getBoundingClientRect();
   const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
 
   // Default position is above the cursor
   let top = props.position.y - popoverRect.height - 10;

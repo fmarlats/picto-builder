@@ -56,6 +56,20 @@
   border-bottom-color: #64b5f6;
 }
 
+/* Styles for highlighted skill names */
+:deep(.skill-highlight) {
+  color: #4caf50;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 1px dotted #4caf50;
+  transition: all 0.2s ease;
+}
+
+:deep(.skill-highlight:hover) {
+  color: #81c784;
+  border-bottom-color: #81c784;
+}
+
 .reset-button {
   position: relative;
   display: flex;

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { highlightPictoNames } from '../utils/commentHighlighter';
+import { highlightNamesInComment } from '../utils/commentHighlighter';
 import PictoPopover from './PictoPopover.vue';
+import SkillPopover from './SkillPopover.vue';
 import CharacterSkillsPanel from './CharacterSkillsPanel.vue';
-import type { PictoItem, Character } from '../types';
+import type { PictoItem, Character, SkillItem } from '../types';
 
 // Haptic feedback utility
 const hapticFeedback = {
@@ -44,64 +45,122 @@ const props = defineProps<{
 const emit = defineEmits(['reset-all', 'update-comment-and-title']);
 
 // Popover state
-const showPopover = ref(false);
+const showPictoPopover = ref(false);
 const hoveredPicto = ref<PictoItem | null>(null);
+const showSkillPopover = ref(false);
+const hoveredSkill = ref<SkillItem | null>(null);
 const popoverPosition = ref({ x: 0, y: 0 });
 
-// Function to handle mouseover events on highlighted picto names
-const handlePictoNameHover = (event: MouseEvent) => {
-  // Check if we're hovering over a highlighted picto name
+// Function to handle mouseover events on highlighted names in the comment
+const handleNameHover = (event: MouseEvent) => {
+  // Check if we're hovering over a highlighted name
   let target = event.target as HTMLElement;
 
   // If the target itself isn't a highlight, check if any parent is
   // This handles cases where the highlight contains nested elements
-  while (target && !target.classList.contains('picto-highlight')) {
+  while (target && !target.classList.contains('picto-highlight') && !target.classList.contains('skill-highlight')) {
     if (target.parentElement === null || target.classList.contains('build-comment-text')) {
       // We've reached the comment container or the root without finding a highlight
-      showPopover.value = false;
+      showPictoPopover.value = false;
+      showSkillPopover.value = false;
       return;
     }
     target = target.parentElement;
   }
 
-  // If we didn't find a highlighted element, exit
-  if (!target || !target.classList.contains('picto-highlight')) {
-    showPopover.value = false;
+  // Handle picto highlight
+  if (target && target.classList.contains('picto-highlight')) {
+    // Hide skill popover if it was showing
+    showSkillPopover.value = false;
+
+    const pictoId = target.getAttribute('data-picto-id');
+    if (!pictoId) {
+      showPictoPopover.value = false;
+      return;
+    }
+
+    // Find the picto in the allPictos array
+    const picto = props.allPictos.find(p => p.id === pictoId);
+    if (!picto) {
+      showPictoPopover.value = false;
+      return;
+    }
+
+    // Set the hovered picto and show the popover
+    hoveredPicto.value = picto;
+    popoverPosition.value = {
+      x: event.clientX,
+      y: event.clientY
+    };
+    showPictoPopover.value = true;
     return;
   }
 
-  const pictoId = target.getAttribute('data-picto-id');
-  if (!pictoId) {
-    showPopover.value = false;
-    return;
-  }
+  // Handle skill highlight
+  if (target && target.classList.contains('skill-highlight')) {
+    // Hide picto popover if it was showing
+    showPictoPopover.value = false;
 
-  // Find the picto in the allPictos array
-  const picto = props.allPictos.find(p => p.id === pictoId);
-  if (!picto) {
-    showPopover.value = false;
-    return;
-  }
+    const skillId = target.getAttribute('data-skill-id');
+    if (!skillId) {
+      showSkillPopover.value = false;
+      return;
+    }
 
-  // Set the hovered picto and show the popover
-  hoveredPicto.value = picto;
-  popoverPosition.value = {
-    x: event.clientX,
-    y: event.clientY
-  };
-  showPopover.value = true;
+    // Find the skill in the selected character's skills
+    if (!selectedCharacter.value) {
+      showSkillPopover.value = false;
+      return;
+    }
+
+    const skill = selectedCharacter.value.skills.find(s => s.id === parseInt(skillId));
+    if (!skill) {
+      showSkillPopover.value = false;
+      return;
+    }
+
+    // Set the hovered skill and show the popover
+    hoveredSkill.value = skill;
+    popoverPosition.value = {
+      x: event.clientX,
+      y: event.clientY
+    };
+    showSkillPopover.value = true;
+  } else {
+    // If we didn't find any highlighted element, hide both popovers
+    showPictoPopover.value = false;
+    showSkillPopover.value = false;
+  }
 };
 
-// Function to handle mouse leave on highlighted picto name
-const handlePictoNameLeave = () => {
-  // Hide the popover immediately
-  showPopover.value = false;
+// Function to handle mouse leave on highlighted names
+const handleNameLeave = () => {
+  // Hide the popovers immediately
+  showPictoPopover.value = false;
+  showSkillPopover.value = false;
 };
 
-// Function to highlight picto names in comment text
+// Computed property to get the selected character
+const selectedCharacter = computed(() => {
+  if (!props.selectedCharacterId) return null;
+  return props.characters.find(character => character.id === props.selectedCharacterId) || null;
+});
+
+// Computed property to get the selected skills
+const selectedSkills = computed(() => {
+  if (!selectedCharacter.value) return [];
+
+  return props.selectedSkillIds
+    .map(skillId => {
+      return selectedCharacter.value?.skills.find(skill => skill.id === skillId);
+    })
+    .filter(skill => skill !== undefined) as SkillItem[];
+});
+
+// Function to highlight picto and skill names in comment text
 const highlightedComment = computed(() => {
   if (!props.comment) return '';
-  return highlightPictoNames(props.comment, props.allPictos);
+  return highlightNamesInComment(props.comment, props.allPictos, selectedSkills.value);
 });
 
 // Reset button state
@@ -410,8 +469,8 @@ const copyToClipboard = () => {
         v-if="props.comment"
         class="build-comment-text"
         v-html="highlightedComment"
-        @mouseover="handlePictoNameHover"
-        @mouseleave="handlePictoNameLeave"
+        @mouseover="handleNameHover"
+        @mouseleave="handleNameLeave"
       ></p>
     </div>
 
@@ -428,8 +487,17 @@ const copyToClipboard = () => {
     <!-- Picto Popover -->
     <teleport to="body">
       <PictoPopover
-        v-if="showPopover && hoveredPicto"
+        v-if="showPictoPopover && hoveredPicto"
         :picto="hoveredPicto"
+        :position="popoverPosition"
+      />
+    </teleport>
+
+    <!-- Skill Popover -->
+    <teleport to="body">
+      <SkillPopover
+        v-if="showSkillPopover && hoveredSkill"
+        :skill="hoveredSkill"
         :position="popoverPosition"
       />
     </teleport>

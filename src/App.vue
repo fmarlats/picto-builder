@@ -576,7 +576,7 @@ const filteredPictos = computed(() => {
   <div class="container">
     <header>
       <h1>Expedition 33 Builds</h1>
-      <p class="site-description">Create, customize, and share your Expedition 33 character builds with Pictos and Luminas</p>
+      <p class="site-description">Create, customize, and share your Expedition 33 character builds</p>
       <button class="how-to-use-button" @click="toggleHowToUse">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"></circle>

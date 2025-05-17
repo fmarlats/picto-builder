@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://expedition33.builds/sitemap.xml
+Sitemap: https://www.expedition33builds.com/sitemap.xml

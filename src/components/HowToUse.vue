@@ -5,41 +5,22 @@
 <template>
   <div class="how-to-use-container">
     <div class="section">
-      <h3>Selecting Pictos & Luminas</h3>
-      <ul>
-        <li><strong>Click</strong> on a picto to select it as a <strong>Lumina</strong></li>
-        <li><strong>Press and hold</strong> on a picto card to select it as a <strong>Picto</strong></li>
-        <li>Selected items appear in the right panel</li>
-        <li>Click on the <strong>level section</strong> at the bottom of a picto to change it</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h3>Navigation</h3>
-      <ul>
-        <li>Use the <strong>tabs</strong> at the top to switch between Character, Pictos, and Summary views</li>
-        <li>The <strong>Character</strong> tab lets you select a character and their skills</li>
-        <li>The <strong>Pictos</strong> tab lets you select pictos and luminas</li>
-        <li>The <strong>Summary</strong> tab shows your complete build with all selections</li>
-      </ul>
-    </div>
-
-    <div class="section">
       <h3>Character & Skills</h3>
       <ul>
         <li>Go to the <strong>Character</strong> tab to select a character</li>
         <li>Select a character to view their available skills</li>
         <li>Select up to <strong>6 skills</strong> for your character</li>
         <li>Selected character and skills appear in the Summary tab</li>
-        <li>Click on a skill to remove it</li>
       </ul>
     </div>
 
     <div class="section">
-      <h3>Filtering and Sorting</h3>
+      <h3>Selecting Pictos & Luminas</h3>
       <ul>
-        <li>Use the <strong>search box</strong> to filter pictos by name or effect</li>
-        <li>Additional filters and sorting options are available next to the search box</li>
+        <li><strong>Click</strong> on a picto to select it as a <strong>Lumina</strong></li>
+        <li><strong>Press and hold</strong> on a picto card to select it as a <strong>Picto</strong></li>
+        <li>Selected pictos and luminas appear in the right panel</li>
+        <li>Click on the <strong>level section</strong> at the bottom of a picto to change it</li>
       </ul>
     </div>
 

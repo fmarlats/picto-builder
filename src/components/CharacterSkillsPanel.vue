@@ -4,6 +4,24 @@ import type { Character, SkillItem } from '../types';
 import WarningIcon from './WarningIcon.vue';
 import EmptyState from './EmptyState.vue';
 
+// Import character images directly
+import gustaveImage from '../assets/gustave.avif';
+import maelleImage from '../assets/maelle.avif';
+import scielImage from '../assets/sciel.avif';
+import luneImage from '../assets/lune.avif';
+import monocoImage from '../assets/monoco.avif';
+import versoImage from '../assets/verso.avif';
+
+// Create a mapping of image filenames to their imported URLs
+const characterImageMap: Record<string, string> = {
+  'gustave.avif': gustaveImage,
+  'maelle.avif': maelleImage,
+  'sciel.avif': scielImage,
+  'lune.avif': luneImage,
+  'monoco.avif': monocoImage,
+  'verso.avif': versoImage
+};
+
 // Define props
 const props = defineProps<{
   characters: Character[];
@@ -40,7 +58,16 @@ const selectedSkills = computed(() => {
       </h2>
 
       <div v-if="selectedCharacter" class="selected-character">
-        <div class="character-name">{{ selectedCharacter.name }}</div>
+        <div class="character-info">
+          <div class="character-image-container" v-if="selectedCharacter.icon && characterImageMap[selectedCharacter.icon]">
+            <img
+              :src="characterImageMap[selectedCharacter.icon]"
+              :alt="`${selectedCharacter.name} portrait`"
+              class="character-image"
+            />
+          </div>
+          <div class="character-name">{{ selectedCharacter.name }}</div>
+        </div>
       </div>
 
       <EmptyState
@@ -143,6 +170,26 @@ const selectedSkills = computed(() => {
   border-radius: var(--border-radius);
   padding: var(--spacing-lg);
   border-left: 4px solid var(--primary-color);
+}
+
+.character-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.character-image-container {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.character-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .character-name {

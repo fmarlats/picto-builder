@@ -42,14 +42,6 @@
     </div>
 
     <div class="section">
-      <h3>Mobile View</h3>
-      <ul>
-        <li>Use the toggle button in the bottom-right to switch between the picto list and your selections</li>
-        <li>On smaller screens, the panel view and list view are separate</li>
-      </ul>
-    </div>
-
-    <div class="section">
       <h3>Resetting</h3>
       <ul>
         <li>Press and hold the <strong>Reset All Selections</strong> button to clear everything</li>

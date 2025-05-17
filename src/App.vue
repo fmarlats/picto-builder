@@ -10,6 +10,7 @@ import SkillSelector from './components/SkillSelector.vue'
 import SummaryPanel from './components/SummaryPanel.vue'
 import TabNavigation from './components/TabNavigation.vue'
 import type { AppState, PictoItem, Character } from './types'
+import { createSlug, extractSlugFromPath, createUrlWithSlug } from './utils/urlUtils'
 
 // URL handling utilities with compact encoding
 
@@ -172,12 +173,18 @@ const decodeStateFromURL = (): AppState => {
 // Update URL without page reload
 const updateURL = (state: AppState) => {
   const encodedState = encodeStateToURL(state);
+  const slug = state.buildTitle ? createSlug(state.buildTitle) : '';
+
   // Only update if there's something to encode
   if (encodedState) {
-    window.location.hash = encodedState;
-  } else if (window.location.hash) {
-    // Clear hash if no state
-    history.pushState('', document.title, window.location.pathname + window.location.search);
+    // Create a URL with the slug and hash
+    const newUrl = createUrlWithSlug(slug, encodedState);
+
+    // Update the URL without reloading the page
+    history.pushState({}, document.title, newUrl);
+  } else if (window.location.hash || window.location.pathname !== '/') {
+    // Clear hash and path if no state
+    history.pushState('', document.title, '/');
   }
 };
 
@@ -321,6 +328,20 @@ onMounted(() => {
   comment.value = savedState.comment || '';
   buildTitle.value = savedState.buildTitle || '';
 
+  // Extract slug from URL path and update build title if needed
+  const pathSlug = extractSlugFromPath(window.location.pathname);
+  if (pathSlug && !buildTitle.value) {
+    // If there's a slug in the URL but no build title in the state,
+    // convert the slug to a title (replace hyphens with spaces and capitalize words)
+    buildTitle.value = pathSlug
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+
+    // Update the state with the new build title
+    saveStateToURL();
+  }
+
   // Load character and skill selections if present
   if (savedState.selectedCharacterId !== undefined) {
     selectedCharacterId.value = savedState.selectedCharacterId;
@@ -331,6 +352,11 @@ onMounted(() => {
   if (savedState.selectedSkillIds && savedState.selectedSkillIds.length > 0) {
     selectedSkillIds.value = savedState.selectedSkillIds;
   }
+
+  // Set the document title with build name if available
+  document.title = buildTitle.value
+    ? `${buildTitle.value} - Expedition 33 Builds`
+    : 'Expedition 33 Builds';
 
   // Check if there are any selections
   const hasSelections = luminaSelectedPictos.value.length > 0 ||
@@ -370,15 +396,33 @@ const handleLevelSelect = (pictoId: string, level: string) => {
   saveStateToURL();
 };
 
-// Watch for changes in the URL hash
-watch(() => window.location.hash, () => {
+// Watch for changes in the URL path or hash
+watch([() => window.location.pathname, () => window.location.hash], () => {
   // Update all state when the URL hash changes
   const savedState = decodeStateFromURL();
   selectedLevels.value = savedState.selectedLevels;
   luminaSelectedPictos.value = savedState.luminaSelectedPictos;
   pictoSelectedPictos.value = savedState.pictoSelectedPictos;
   comment.value = savedState.comment || '';
-  buildTitle.value = savedState.buildTitle || '';
+
+  // Extract slug from URL path
+  const pathSlug = extractSlugFromPath(window.location.pathname);
+
+  // If there's a slug in the URL but no build title in the state,
+  // convert the slug to a title
+  if (pathSlug && !savedState.buildTitle) {
+    buildTitle.value = pathSlug
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  } else {
+    buildTitle.value = savedState.buildTitle || '';
+  }
+
+  // Update document title
+  document.title = buildTitle.value
+    ? `${buildTitle.value} - Expedition 33 Builds`
+    : 'Expedition 33 Builds';
 
   // Update character and skill selections
   selectedCharacterId.value = savedState.selectedCharacterId;

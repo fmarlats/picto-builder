@@ -161,7 +161,7 @@
 
 .panel-section {
   border-bottom: 1px solid #444;
-  padding-bottom: 20px;
+  padding-bottom: 16px;
   display: flex;
   flex-direction: column;
   min-height: min-content; /* Ensure sections take at least their content height */
@@ -172,10 +172,14 @@
   padding-bottom: 20px; /* Add padding to ensure total cost is visible */
 }
 
+.first-after-separator {
+  padding-top: 0;
+}
+
 .character-section-separator {
   height: 1px;
   background-color: #444;
-  margin: 16px 0 24px 0;
+  margin: 16px 0 4px 0;
   width: 100%;
   position: relative;
 }
@@ -197,11 +201,26 @@
 
 .section-title {
   font-size: 1.1rem;
-  margin-bottom: 16px;
-  color: #ddd;
+  margin-bottom: 8px;
+  color: #fff; /* Use white for all section titles */
   font-weight: 600;
   display: flex;
   align-items: center;
+  text-transform: none; /* Ensure no text transformation */
+  letter-spacing: normal; /* Ensure normal letter spacing */
+}
+
+.first-after-separator .section-title {
+  margin-top: 4px;
+}
+
+/* Ensure consistent styling for all section titles in the summary tab */
+.summary-panel .section-title,
+.character-skills-panel .section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff; /* Use white for all section titles */
+  margin-bottom: 8px;
 }
 
 .left-aligned-title {

@@ -435,7 +435,7 @@ const copyToClipboard = () => {
     </teleport>
 
     <!-- Picto Selected Section -->
-    <div class="panel-section">
+    <div class="panel-section first-after-separator">
       <h2 class="section-title no-before">
         <div class="left-aligned-title">
           Pictos

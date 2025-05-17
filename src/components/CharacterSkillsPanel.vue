@@ -50,8 +50,8 @@ const selectedSkills = computed(() => {
 <template>
   <div class="character-skills-panel">
     <!-- Character Section -->
-    <div class="panel-section">
-      <h2 class="section-title">
+    <div class="panel-section character-section">
+      <h2 class="section-title no-before">
         <div class="left-aligned-title">
           Character
         </div>
@@ -79,8 +79,8 @@ const selectedSkills = computed(() => {
     </div>
 
     <!-- Skills Section -->
-    <div class="panel-section">
-      <h2 class="section-title">
+    <div class="panel-section skills-section">
+      <h2 class="section-title no-before">
         <div class="left-aligned-title">
           Skills
           <WarningIcon
@@ -139,13 +139,27 @@ const selectedSkills = computed(() => {
 .character-skills-panel {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: 0; /* Remove the gap between panels */
+}
+
+/* Character and Skills Section specific styling */
+.character-section {
+  padding-bottom: 8px; /* Reduce bottom padding of character section */
+  border-bottom: none; /* Remove the border between sections */
+}
+
+.skills-section {
+  margin-top: 0; /* No gap between character and skills */
+  padding-top: 0; /* No padding at the top of skills section */
+  border-top: none; /* No border at the top */
 }
 
 .section-title {
   display: flex;
   align-items: center;
 }
+
+/* Removed custom margin for character section title to maintain consistency */
 
 .left-aligned-title {
   display: flex;

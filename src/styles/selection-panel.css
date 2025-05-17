@@ -333,28 +333,7 @@
   visibility: visible;
 }
 
-.empty-message {
-  color: #aaa;
-  text-align: center;
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.empty-title {
-  font-weight: 600;
-  color: #ddd;
-  font-size: 1.1rem;
-}
-
-.empty-instruction {
-  font-style: italic;
-  font-size: 0.9rem;
-  max-width: 80%;
-  line-height: 1.4;
-}
+/* Empty message styles are now defined in the global style.css */
 
 .selected-items {
   display: flex;

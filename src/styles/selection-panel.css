@@ -423,7 +423,7 @@
 .total-section {
   margin-top: 16px;
   padding-top: 12px;
-  border-top: 1px solid #444;
+  /* border-top: 1px solid #444; */
 }
 
 .total-section h3 {

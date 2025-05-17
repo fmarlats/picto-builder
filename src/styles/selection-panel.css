@@ -172,6 +172,29 @@
   padding-bottom: 20px; /* Add padding to ensure total cost is visible */
 }
 
+.character-section-separator {
+  height: 1px;
+  background-color: #444;
+  margin: 16px 0 24px 0;
+  width: 100%;
+  position: relative;
+}
+
+.character-section-separator::after {
+  content: 'Pictos & Luminas';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #222;
+  padding: 0 16px;
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 .section-title {
   font-size: 1.1rem;
   margin-bottom: 16px;

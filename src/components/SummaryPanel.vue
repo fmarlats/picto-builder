@@ -146,21 +146,17 @@ const selectedCharacter = computed(() => {
   return props.characters.find(character => character.id === props.selectedCharacterId) || null;
 });
 
-// Computed property to get the selected skills
-const selectedSkills = computed(() => {
+// Computed property to get all skills from the selected character
+const allCharacterSkills = computed(() => {
   if (!selectedCharacter.value) return [];
-
-  return props.selectedSkillIds
-    .map(skillId => {
-      return selectedCharacter.value?.skills.find(skill => skill.id === skillId);
-    })
-    .filter(skill => skill !== undefined) as SkillItem[];
+  return selectedCharacter.value.skills;
 });
 
 // Function to highlight picto and skill names in comment text
 const highlightedComment = computed(() => {
   if (!props.comment) return '';
-  return highlightNamesInComment(props.comment, props.allPictos, selectedSkills.value);
+  // Use all character skills for highlighting, not just selected ones
+  return highlightNamesInComment(props.comment, props.allPictos, allCharacterSkills.value);
 });
 
 // Reset button state

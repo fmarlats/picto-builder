@@ -422,6 +422,9 @@ const copyToClipboard = () => {
       :selectedSkillIds="selectedSkillIds"
     />
 
+    <!-- Separator between Character/Skills and Pictos/Luminas -->
+    <div class="character-section-separator"></div>
+
     <!-- Picto Popover -->
     <teleport to="body">
       <PictoPopover

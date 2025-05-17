@@ -1,6 +1,7 @@
 [
     {
         "name": "Gustave",
+        "icon": "gustave.avif",
         "id": 1,
         "skills": [
             {
@@ -63,6 +64,7 @@
     },
     {
         "name": "Maelle",
+        "icon": "maelle.avif",
         "id": 2,
         "skills": [
             {
@@ -258,6 +260,7 @@
     },
     {
         "name": "Sciel",
+        "icon": "sciel.avif",
         "id": 3,
         "skills": [
             {
@@ -446,6 +449,7 @@
     },
     {
         "name": "Lune",
+        "icon": "lune.avif",
         "id": 4,
         "skills": [
             {
@@ -627,6 +631,7 @@
     },
     {
         "name": "Monoco",
+        "icon": "monoco.avif",
         "id": 5,
         "skills": [
             {
@@ -976,6 +981,7 @@
     },
     {
         "name": "Verso",
+        "icon": "verso.avif",
         "id": 6,
         "skills": [
             {

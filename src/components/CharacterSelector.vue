@@ -1,9 +1,26 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
 import type { Character } from '../types';
 
+// Import character images directly
+import gustaveImage from '../assets/gustave.avif';
+import maelleImage from '../assets/maelle.avif';
+import scielImage from '../assets/sciel.avif';
+import luneImage from '../assets/lune.avif';
+import monocoImage from '../assets/monoco.avif';
+import versoImage from '../assets/verso.avif';
+
+// Create a mapping of image filenames to their imported URLs
+const characterImageMap: Record<string, string> = {
+  'gustave.avif': gustaveImage,
+  'maelle.avif': maelleImage,
+  'sciel.avif': scielImage,
+  'lune.avif': luneImage,
+  'monoco.avif': monocoImage,
+  'verso.avif': versoImage
+};
+
 // Define props
-const props = defineProps<{
+defineProps<{
   characters: Character[];
   selectedCharacterId?: number;
 }>();
@@ -33,12 +50,6 @@ const selectCharacter = (characterId: number) => {
   emit('select-character', characterId);
   hapticFeedback.shortVibration();
 };
-
-// Computed property to get the selected character
-const selectedCharacter = computed(() => {
-  if (!props.selectedCharacterId) return null;
-  return props.characters.find(character => character.id === props.selectedCharacterId) || null;
-});
 </script>
 
 <template>
@@ -53,6 +64,14 @@ const selectedCharacter = computed(() => {
         :class="{ 'selected': character.id === selectedCharacterId }"
         @click="selectCharacter(character.id)"
       >
+        <div class="character-image-container">
+          <img
+            v-if="character.icon && characterImageMap[character.icon]"
+            :src="characterImageMap[character.icon]"
+            :alt="`${character.name} portrait`"
+            class="character-image"
+          />
+        </div>
         <div class="character-name">{{ character.name }}</div>
         <div class="character-skills-count">{{ character.skills.length }} Skills</div>
       </div>
@@ -119,6 +138,26 @@ const selectedCharacter = computed(() => {
   background-color: rgba(33, 150, 243, 0.2);
 }
 
+.character-image-container {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.character-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.character-card:hover .character-image {
+  transform: scale(1.05);
+}
+
 .character-name {
   font-weight: 600;
   font-size: 1.1rem;
@@ -145,6 +184,11 @@ const selectedCharacter = computed(() => {
     padding: 12px;
   }
 
+  .character-image-container {
+    width: 80px;
+    height: 80px;
+  }
+
   .character-name {
     font-size: 1rem;
   }
@@ -153,6 +197,11 @@ const selectedCharacter = computed(() => {
 @media (max-width: 500px) {
   .characters-grid {
     grid-template-columns: repeat(2, 150px);
+  }
+
+  .character-image-container {
+    width: 70px;
+    height: 70px;
   }
 }
 </style>

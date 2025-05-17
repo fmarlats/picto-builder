@@ -36,6 +36,7 @@ export interface SkillItem {
 export interface Character {
   name: string;
   id: number;
+  icon?: string; // Path to character icon image
   skills: SkillItem[];
 }
 

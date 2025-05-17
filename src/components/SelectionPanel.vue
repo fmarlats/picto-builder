@@ -576,7 +576,7 @@ const copyToClipboard = () => {
                 id="build-comment"
                 v-model="commentText"
                 class="comment-textarea"
-                placeholder="Which character is it for... which weapon to use..."
+                placeholder="Which weapon to use..."
                 rows="5"
               ></textarea>
             </div>

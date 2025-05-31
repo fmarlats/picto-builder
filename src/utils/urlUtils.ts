@@ -42,15 +42,49 @@ export function extractSlugFromPath(url: string): string {
 }
 
 /**
+ * Checks if the summary tab should be shown based on URL query parameter
+ * @param url The full URL or just the query string
+ * @returns True if the summary parameter is set to 'true', false otherwise
+ */
+export function shouldShowSummaryTab(url: string): boolean {
+  if (!url) return false;
+
+  // Create a URL object to easily parse query parameters
+  // If the url doesn't have a protocol, add a dummy one to make URL parsing work
+  const fullUrl = url.startsWith('http') ? url : `http://dummy.com${url}`;
+
+  try {
+    const urlObj = new URL(fullUrl);
+    // Get the 'summary' query parameter
+    const summaryParam = urlObj.searchParams.get('summary');
+    return summaryParam === 'true';
+  } catch (e) {
+    console.error('Error parsing URL:', e);
+    return false;
+  }
+}
+
+/**
  * Creates a URL with the build name as a query parameter and hash
  * @param buildName The build name to include as a query parameter
  * @param hash The hash part of the URL (without the # symbol)
+ * @param showSummary Whether to show the summary tab when the URL is loaded
  * @returns A complete URL with the build name as a query parameter and hash
  */
-export function createUrlWithSlug(buildName: string, hash: string): string {
+export function createUrlWithSlug(buildName: string, hash: string, showSummary: boolean = true): string {
   const baseUrl = window.location.origin;
-  const queryParam = buildName ? `?b=${encodeURIComponent(buildName)}` : '';
+
+  // Start with build name parameter if it exists
+  let queryParams = buildName ? `?b=${encodeURIComponent(buildName)}` : '?';
+
+  // If there's no build name, start the query string, otherwise add the summary parameter
+  if (buildName) {
+    queryParams += `&summary=${showSummary ? 'true' : 'false'}`;
+  } else {
+    queryParams = `?summary=${showSummary ? 'true' : 'false'}`;
+  }
+
   const hashPart = hash ? `#${hash}` : '';
 
-  return `${baseUrl}${queryParam}${hashPart}`;
+  return `${baseUrl}${queryParams}${hashPart}`;
 }

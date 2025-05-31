@@ -10,7 +10,7 @@ import SkillSelector from './components/SkillSelector.vue'
 import SummaryPanel from './components/SummaryPanel.vue'
 import TabNavigation from './components/TabNavigation.vue'
 import type { AppState, PictoItem, Character } from './types'
-import { extractSlugFromPath, createUrlWithSlug } from './utils/urlUtils'
+import { extractSlugFromPath, createUrlWithSlug, shouldShowSummaryTab } from './utils/urlUtils'
 
 // URL handling utilities with compact encoding
 
@@ -178,7 +178,8 @@ const updateURL = (state: AppState) => {
   // Only update if there's something to encode
   if (encodedState) {
     // Create a URL with the build name as query parameter and hash
-    const newUrl = createUrlWithSlug(buildName, encodedState);
+    // Always include summary=true to ensure the summary tab is shown when shared
+    const newUrl = createUrlWithSlug(buildName, encodedState, true);
 
     // Update the URL without reloading the page
     history.pushState({}, document.title, newUrl);
@@ -361,7 +362,13 @@ onMounted(() => {
                         selectedCharacterId.value !== undefined ||
                         selectedSkillIds.value.length > 0;
 
-  if (hasSelections) {
+  // Check if the summary parameter is set to true in the URL
+  const shouldShowSummary = shouldShowSummaryTab(window.location.search);
+
+  if (shouldShowSummary) {
+    // If summary parameter is true, show the summary tab regardless of selections
+    activeTab.value = 'summary';
+  } else if (hasSelections) {
     // Set the active tab based on what's selected
     if (selectedCharacterId.value !== undefined) {
       activeTab.value = 'character';
@@ -370,14 +377,14 @@ onMounted(() => {
     } else {
       activeTab.value = 'summary';
     }
+  }
 
-    // Check if we're on mobile (screen width <= 768px)
-    const isMobile = window.innerWidth <= 768;
+  // Check if we're on mobile (screen width <= 768px)
+  const isMobile = window.innerWidth <= 768;
 
-    if (isMobile && activeTab.value === 'picto') {
-      // Show the panel view on mobile only in picto tab
-      isPanelVisible.value = true;
-    }
+  if (isMobile && activeTab.value === 'picto') {
+    // Show the panel view on mobile only in picto tab
+    isPanelVisible.value = true;
   }
 })
 
@@ -422,8 +429,13 @@ watch([() => window.location.search, () => window.location.hash], () => {
   selectedCharacterId.value = savedState.selectedCharacterId;
   selectedSkillIds.value = savedState.selectedSkillIds || [];
 
-  // Set active tab based on selections
-  if (savedState.selectedCharacterId !== undefined) {
+  // Check if the summary parameter is set to true in the URL
+  const shouldShowSummary = shouldShowSummaryTab(window.location.search);
+
+  if (shouldShowSummary) {
+    // If summary parameter is true, show the summary tab regardless of selections
+    activeTab.value = 'summary';
+  } else if (savedState.selectedCharacterId !== undefined) {
     activeTab.value = 'character';
   } else if (luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0) {
     activeTab.value = 'picto';

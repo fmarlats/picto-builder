@@ -52,3 +52,16 @@ export interface AppState {
   selectedCharacterId?: number; // ID of the selected character
   selectedSkillIds?: number[]; // IDs of the selected skills
 }
+
+/**
+ * Interface for a popular build
+ */
+export interface PopularBuild {
+  id: string; // Unique identifier for the build
+  title: string; // Build title
+  description?: string; // Optional description
+  author?: string; // Optional author name
+  encodedBuild: string; // The encoded build string (same format as URL hash)
+  tags?: string[]; // Optional tags for categorization
+  createdAt?: string; // Optional creation date
+}

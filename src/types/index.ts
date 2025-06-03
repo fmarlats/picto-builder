@@ -64,4 +64,5 @@ export interface PopularBuild {
   encodedBuild: string; // The encoded build string (same format as URL hash)
   tags?: string[]; // Optional tags for categorization
   createdAt?: string; // Optional creation date
+  source?: string; // Optional source URL (e.g., YouTube video, forum post, etc.)
 }

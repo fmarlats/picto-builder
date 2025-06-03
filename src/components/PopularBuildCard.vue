@@ -1,6 +1,25 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import type { PopularBuild } from '../types'
+import type { PopularBuild, Character } from '../types'
+import charactersList from '../assets/characters.json'
+
+// Import character images directly
+import gustaveImage from '../assets/gustave.avif'
+import maelleImage from '../assets/maelle.avif'
+import scielImage from '../assets/sciel.avif'
+import luneImage from '../assets/lune.avif'
+import monocoImage from '../assets/monoco.avif'
+import versoImage from '../assets/verso.avif'
+
+// Create a mapping of image filenames to their imported URLs
+const characterImageMap: Record<string, string> = {
+  'gustave.avif': gustaveImage,
+  'maelle.avif': maelleImage,
+  'sciel.avif': scielImage,
+  'lune.avif': luneImage,
+  'monoco.avif': monocoImage,
+  'verso.avif': versoImage
+}
 
 // Props
 const props = defineProps<{
@@ -12,6 +31,27 @@ const emit = defineEmits<{
   select: [build: PopularBuild]
 }>()
 
+// Function to decode character ID from encoded build
+const decodeCharacterFromBuild = (encodedBuild: string): number | null => {
+  try {
+    // Decode from base64
+    const jsonString = atob(encodedBuild)
+
+    // Parse the JSON
+    const stateObj = JSON.parse(jsonString)
+
+    // Return character ID if present
+    if (stateObj.ch !== undefined) {
+      return Number(stateObj.ch)
+    }
+
+    return null
+  } catch (error) {
+    console.error('Error decoding character from build:', error)
+    return null
+  }
+}
+
 // Computed properties
 const formattedDate = computed(() => {
   if (!props.build.createdAt) return null
@@ -21,6 +61,20 @@ const formattedDate = computed(() => {
 const displayTags = computed(() => {
   if (!props.build.tags || props.build.tags.length === 0) return []
   return props.build.tags.slice(0, 3) // Show max 3 tags
+})
+
+const characterId = computed(() => {
+  return decodeCharacterFromBuild(props.build.encodedBuild)
+})
+
+const character = computed(() => {
+  if (!characterId.value) return null
+  return (charactersList as Character[]).find(char => char.id === characterId.value) || null
+})
+
+const characterImage = computed(() => {
+  if (!character.value?.icon) return null
+  return characterImageMap[character.value.icon] || null
 })
 
 // Function to handle card click
@@ -69,7 +123,19 @@ const handleSourceMouseLeave = () => {
 <template>
   <div class="build-card" :class="{ 'source-hovered': isSourceHovered }" @click="handleCardSelect">
     <div class="build-card-header">
-      <h3 class="build-title">{{ build.title }}</h3>
+      <div class="build-title-section">
+        <h3 class="build-title">{{ build.title }}</h3>
+        <div v-if="character" class="character-info">
+          <span class="character-name">{{ character.name }}</span>
+        </div>
+      </div>
+      <div v-if="characterImage" class="character-portrait">
+        <img
+          :src="characterImage"
+          :alt="`${character?.name} portrait`"
+          class="character-image"
+        />
+      </div>
     </div>
 
     <div v-if="build.description" class="build-description">
@@ -160,16 +226,55 @@ const handleSourceMouseLeave = () => {
 }
 
 .build-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.build-title-section {
+  flex: 1;
+  min-width: 0; /* Allow text to shrink */
 }
 
 .build-title {
   font-size: 1.25rem;
   font-weight: 600;
   color: #fff;
-  margin: 0;
+  margin: 0 0 0.25rem 0;
   line-height: 1.3;
-  flex: 1;
+}
+
+.character-info {
+  margin-top: 0.25rem;
+}
+
+.character-name {
+  font-size: 0.9rem;
+  color: #2196F3;
+  font-weight: 500;
+}
+
+.character-portrait {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #333;
+  transition: border-color 0.2s ease;
+}
+
+.build-card:hover .character-portrait {
+  border-color: #2196F3;
+}
+
+.character-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .build-description {
@@ -269,6 +374,23 @@ const handleSourceMouseLeave = () => {
 @media (max-width: 768px) {
   .build-card {
     padding: 1rem;
+  }
+
+  .build-card-header {
+    gap: 0.75rem;
+  }
+
+  .character-portrait {
+    width: 50px;
+    height: 50px;
+  }
+
+  .build-title {
+    font-size: 1.1rem;
+  }
+
+  .character-name {
+    font-size: 0.85rem;
   }
 
   .build-footer {

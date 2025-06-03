@@ -2,5 +2,32 @@
 User-agent: *
 Allow: /
 
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block access to development and build files
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /.git/
+Disallow: /dist/
+Disallow: /*.log
+Disallow: /package*.json
+Disallow: /vite.config.*
+Disallow: /tsconfig.*
+
 # Sitemap location
 Sitemap: https://www.expedition33builds.com/sitemap.xml
+
+# Additional information
+# Website: https://www.expedition33builds.com
+# Contact: expedition33builds@outlook.com

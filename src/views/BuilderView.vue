@@ -292,11 +292,82 @@ const resetAll = () => {
   console.log('All selections, levels, comments, and build title have been reset');
 };
 
+// Function to update meta tags dynamically
+const updateMetaTags = () => {
+  const selectedCharacter = selectedCharacterId.value !== undefined
+    ? allCharacters.value.find(char => char.id === selectedCharacterId.value)
+    : undefined;
+
+  // Update page title
+  document.title = buildTitle.value
+    ? `${buildTitle.value} - Expedition 33 Builds`
+    : 'Expedition 33 Builds';
+
+  // Update meta description
+  let description = 'Create, customize, and share your Expedition 33 character builds with this interactive tool.';
+  if (buildTitle.value) {
+    description = `${buildTitle.value} - `;
+  }
+  if (selectedCharacter) {
+    description += `Character build for ${selectedCharacter.name} in Expedition 33. `;
+  }
+  if (luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0) {
+    description += `Features ${luminaSelectedPictos.value.length + pictoSelectedPictos.value.length} selected Pictos and Luminas. `;
+  }
+  description += 'Select characters, skills, Pictos, and Luminas to optimize your gameplay.';
+
+  // Update meta description tag
+  const metaDescription = document.querySelector('meta[name="description"]');
+  if (metaDescription) {
+    metaDescription.setAttribute('content', description);
+  }
+
+  // Update Open Graph title
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) {
+    ogTitle.setAttribute('content', document.title);
+  }
+
+  // Update Open Graph description
+  const ogDescription = document.querySelector('meta[property="og:description"]');
+  if (ogDescription) {
+    ogDescription.setAttribute('content', description);
+  }
+
+  // Update Twitter title
+  const twitterTitle = document.querySelector('meta[property="twitter:title"]');
+  if (twitterTitle) {
+    twitterTitle.setAttribute('content', document.title);
+  }
+
+  // Update Twitter description
+  const twitterDescription = document.querySelector('meta[property="twitter:description"]');
+  if (twitterDescription) {
+    twitterDescription.setAttribute('content', description);
+  }
+
+  // Update canonical URL
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) {
+    canonical.setAttribute('href', window.location.href);
+  }
+
+  // Update keywords with character name if selected
+  if (selectedCharacter) {
+    const keywords = document.querySelector('meta[name="keywords"]');
+    if (keywords) {
+      const baseKeywords = 'Expedition 33, Character Selection, Character Skills, Picto Builder, Lumina, Character Builds, Gaming, RPG, Pictos, Build Sharing, Clair Obscur, Expedition 33 Builds, Character Planner, Build Calculator, Gaming Tools';
+      keywords.setAttribute('content', `${baseKeywords}, ${selectedCharacter.name}, ${selectedCharacter.name} Build`);
+    }
+  }
+};
+
 // Function to update the comment and build title
 const updateCommentAndTitle = (newComment: string, newBuildTitle: string) => {
   comment.value = newComment;
   buildTitle.value = newBuildTitle;
   saveStateToURL();
+  updateMetaTags();
 };
 
 // Load data on component mount
@@ -349,10 +420,8 @@ onMounted(() => {
     selectedSkillIds.value = savedState.selectedSkillIds;
   }
 
-  // Set the document title with build name if available
-  document.title = buildTitle.value
-    ? `${buildTitle.value} - Expedition 33 Builds`
-    : 'Expedition 33 Builds';
+  // Set the document title and update meta tags
+  updateMetaTags();
 
   // Check if there are any selections
   const hasSelections = luminaSelectedPictos.value.length > 0 ||
@@ -398,6 +467,11 @@ const handleLevelSelect = (pictoId: string, level: string) => {
   saveStateToURL();
 };
 
+// Watch for changes that should update SEO
+watch([selectedCharacterId, luminaSelectedPictos, pictoSelectedPictos, buildTitle], () => {
+  updateMetaTags();
+}, { deep: true });
+
 // Watch for changes in the URL query parameters or hash
 watch([() => window.location.search, () => window.location.hash], () => {
   // Update all state when the URL hash changes
@@ -418,10 +492,8 @@ watch([() => window.location.search, () => window.location.hash], () => {
     buildTitle.value = savedState.buildTitle || '';
   }
 
-  // Update document title
-  document.title = buildTitle.value
-    ? `${buildTitle.value} - Expedition 33 Builds`
-    : 'Expedition 33 Builds';
+  // Update document title and meta tags
+  updateMetaTags();
 
   // Update character and skill selections
   selectedCharacterId.value = savedState.selectedCharacterId;

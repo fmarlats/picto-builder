@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import type { PopularBuild } from '../types'
 
 // Props
@@ -43,10 +43,31 @@ const handleCardSelect = () => {
   hapticFeedback.shortVibration()
   handleCardClick()
 }
+
+// Reactive state for source button hover
+const isSourceHovered = ref(false)
+
+// Function to handle source link click
+const handleSourceClick = (event: MouseEvent) => {
+  event.stopPropagation() // Prevent card selection when clicking source link
+  event.preventDefault() // Prevent any default behavior
+  if (props.build.source) {
+    window.open(props.build.source, '_blank', 'noopener,noreferrer')
+  }
+}
+
+// Functions to handle source button hover state
+const handleSourceMouseEnter = () => {
+  isSourceHovered.value = true
+}
+
+const handleSourceMouseLeave = () => {
+  isSourceHovered.value = false
+}
 </script>
 
 <template>
-  <div class="build-card" @click="handleCardSelect">
+  <div class="build-card" :class="{ 'source-hovered': isSourceHovered }" @click="handleCardSelect">
     <div class="build-card-header">
       <h3 class="build-title">{{ build.title }}</h3>
     </div>
@@ -62,25 +83,34 @@ const handleCardSelect = () => {
     </div>
 
     <div class="build-footer">
-      <div v-if="build.author" class="build-author">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
-        {{ build.author }}
+      <div class="build-footer-left">
+        <div v-if="build.author" class="build-author">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          {{ build.author }}
+        </div>
+        <div v-if="formattedDate" class="build-date">
+          {{ formattedDate }}
+        </div>
       </div>
-      <div v-if="formattedDate" class="build-date">
-        {{ formattedDate }}
-      </div>
-    </div>
-
-    <div class="build-card-overlay">
-      <div class="overlay-content">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/>
-          <path d="M21 21l-4.35-4.35"/>
-        </svg>
-        <span>View Build</span>
+      <div v-if="build.source" class="build-source">
+        <button
+          @click.stop="handleSourceClick"
+          @mousedown.stop
+          @mouseenter="handleSourceMouseEnter"
+          @mouseleave="handleSourceMouseLeave"
+          class="source-link"
+          title="View Source"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15,3 21,3 21,9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          <span class="source-text">Source</span>
+        </button>
       </div>
     </div>
   </div>
@@ -100,12 +130,33 @@ const handleCardSelect = () => {
 
 .build-card:hover {
   border-color: #2196F3;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(33, 150, 243, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(33, 150, 243, 0.2);
 }
 
-.build-card:hover .build-card-overlay {
-  opacity: 1;
+.build-card:hover .build-title {
+  color: #2196F3;
+}
+
+.build-card:hover .build-tags .build-tag {
+  border-color: #2196F3;
+  background-color: rgba(33, 150, 243, 0.1);
+}
+
+/* Disable card hover effects when hovering over source button */
+.build-card.source-hovered {
+  border-color: #333 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.build-card.source-hovered .build-title {
+  color: #fff !important;
+}
+
+.build-card.source-hovered .build-tags .build-tag {
+  border-color: #444 !important;
+  background-color: #333 !important;
 }
 
 .build-card-header {
@@ -158,6 +209,12 @@ const handleCardSelect = () => {
   margin-top: auto;
 }
 
+.build-footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .build-author {
   display: flex;
   align-items: center;
@@ -168,28 +225,45 @@ const handleCardSelect = () => {
   color: #666;
 }
 
-.build-card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(33, 150, 243, 0.9);
+.build-source {
+  display: flex;
+  align-items: center;
+}
+
+.source-link {
+  background: rgba(33, 150, 243, 0.1);
+  border: 1px solid #2196F3;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  color: #2196F3;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  backdrop-filter: blur(2px);
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 10; /* Ensure it's above the card click area */
 }
 
-.overlay-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: white;
-  font-weight: 600;
+.source-link:hover {
+  border-color: #1976D2;
+  color: #1976D2;
+  background-color: rgba(25, 118, 210, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+}
+
+.source-link:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(33, 150, 243, 0.2);
+}
+
+.source-text {
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {
@@ -200,7 +274,24 @@ const handleCardSelect = () => {
   .build-footer {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 0.75rem;
+  }
+
+  .build-footer-left {
+    width: 100%;
+  }
+
+  .build-source {
+    align-self: flex-end;
+  }
+
+  .source-link {
+    padding: 0.75rem 1rem; /* Larger touch target on mobile */
+    font-size: 0.85rem;
+  }
+
+  .source-text {
+    font-size: 0.85rem;
   }
 }
 </style>

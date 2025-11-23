@@ -14,6 +14,9 @@ Expedition 33 Builds provides an interactive interface to plan and communicate i
 - **Share builds via URL encoding**: the entire build (selected items, levels, title, and comments) is encoded into the URL so others can open it and see exactly the same configuration.
 
 The production site is available at: https://www.expedition33builds.com
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
+
 
 ## 2. Data Files
 
@@ -74,13 +77,12 @@ If you introduce a dedicated Lumina data file in the future, it will likely live
 
 ## 3. Installation and Running
 
-This project is a Vue 3 + TypeScript + Vite application. It can be developed and built locally using Node.js and the standard npm scripts defined in `package.json`. Docker and Make are not required.
+This project is a Vue 3 + TypeScript + Vite application. It can be developed and built locally using Node.js and the standard npm scripts defined in `package.json`.
 
 ### 3.1 Prerequisites
 
 - **Node.js** 20 LTS or newer (matches the CI configuration).
 - **npm** (comes with Node.js).
-- (Optional) **Yarn** – if you prefer, but the examples below use npm.
 
 ### 3.2 Install dependencies
 
@@ -90,8 +92,6 @@ From the project root:
 npm install
 ```
 
-This installs all project dependencies into `node_modules/` using the `package-lock.json` file.
-
 ### 3.3 Run the development server
 
 To start the Vite development server:
@@ -100,11 +100,11 @@ To start the Vite development server:
 npm run dev
 ```
 
-By default this starts Vite on `http://localhost:5174` (as configured in `vite.config.ts`). Open that URL in your browser to use the app.
+By default this starts Vite on `http://localhost:5174` (as configured in `vite.config.ts`).
 
 ### 3.4 Build for production
 
-To create an optimized production build:
+To create a production build:
 
 ```bash
 npm run build

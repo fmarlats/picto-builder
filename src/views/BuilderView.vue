@@ -855,10 +855,36 @@ const filteredPictos = computed(() => {
       <p>Made in Paris "la Ville Lumière", France 🇫🇷</p>
       <p class="error-report">
         Found an error? Contact
-        <a href="mailto:jepepa.official@gmail.com?subject=Error%20Report%20-%20Picto%20Builder&body=I%20found%20an%20error%20on%20the%20Picto%20Builder%20website%3A%0A%0ADescription%20of%20the%20error%3A%0A%0ASteps%20to%20reproduce%3A%0A%0ABrowser%20and%20device%3A" target="_blank" rel="noopener noreferrer">
+        <a
+          href="mailto:jepepa.official@gmail.com?subject=Error%20Report%20-%20Picto%20Builder&body=I%20found%20an%20error%20on%20the%20Picto%20Builder%20website%3A%0A%0ADescription%20of%20the%20error%3A%0A%0ASteps%20to%20reproduce%3A%0A%0ABrowser%20and%20device%3A"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           jepepa.official@gmail.com
         </a>
       </p>
+      <div class="footer-links">
+        <a
+          href="https://github.com/ChickenVacuum/picto-builder"
+          class="github-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              fill="currentColor"
+              d="M12 0.5C5.65 0.5 0.5 5.65 0.5 12c0 5.08 3.29 9.38 7.86 10.9.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.29-1.72-1.29-1.72-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.45-2.27 1.19-3.07-.12-.29-.52-1.45.11-3.03 0 0 .97-.31 3.18 1.17.92-.26 1.9-.39 2.88-.39.98 0 1.96.13 2.88.39 2.2-1.48 3.17-1.17 3.17-1.17.63 1.58.23 2.74.11 3.03.74.8 1.18 1.82 1.18 3.07 0 4.39-2.69 5.35-5.25 5.63.41.36.77 1.07.77 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35 0.5 12 0.5Z"
+            />
+          </svg>
+          <span>View project on GitHub</span>
+        </a>
+      </div>
     </footer>
 
     <!-- How To Use Modal -->
@@ -1034,6 +1060,48 @@ h1 {
 
 .site-footer p {
   margin: 5px 0;
+}
+
+.footer-links {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #888;
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.github-link svg {
+  flex-shrink: 0;
+}
+
+.github-link span {
+  white-space: nowrap;
+}
+
+.github-link:hover {
+  background: rgba(33, 150, 243, 0.12);
+  border-color: rgba(33, 150, 243, 0.6);
+  color: #e3f2fd;
+  transform: translateY(-1px);
+}
+
+.github-link:active {
+  transform: translateY(0);
 }
 
 .error-report {

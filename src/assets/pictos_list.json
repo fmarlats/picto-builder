@@ -50930,5 +50930,290 @@
       }
     ],
     "id": 216
+  },
+  {
+    "name": "AP Discount",
+    "full_url": "https://expedition33.wiki.fextralife.com/AP+Discount",
+    "effect": "Skills cost 1 less AP.",
+    "type": "Support",
+    "cost": "30",
+    "attributes": [
+      {
+        "level": "30",
+        "attributes": {
+          "Speed": "1055"
+        }
+      }
+    ],
+    "id": 217
+  },
+  {
+    "name": "Alternating Critical",
+    "full_url": "https://expedition33.wiki.fextralife.com/Alternating+Critical",
+    "effect": "On critical hit, next non‑critical hit deals increased damage.",
+    "type": "Offensive",
+    "cost": 10,
+    "attributes": [
+      {
+        "level": "29",
+        "attributes": {
+          "Speed": "293",
+          "Critical Rate": "50%"
+        }
+      }
+    ],
+    "id": 218
+  },
+  {
+    "name": "Consuming Attack",
+    "full_url": "https://expedition33.wiki.fextralife.com/Consuming+Attack",
+    "effect": "Base attack consumes Burns to deal more damage.",
+    "type": "Offensive",
+    "cost": 10,
+    "attributes": [
+      {
+        "level": "29",
+        "attributes": {
+          "Speed": "836",
+          "Critical Rate": "16%"
+        }
+      }
+    ],
+    "id": 219
+  },
+  {
+    "name": "Damage Share",
+    "full_url": "https://expedition33.wiki.fextralife.com/Damage+Share",
+    "effect": "50% damage taken is redirected to allies (if possible).",
+    "type": "Defensive",
+    "cost": 30,
+    "attributes": [
+      {
+        "level": "30",
+        "attributes": {
+          "Health": "2612",
+          "Defense": "1489"
+        }
+      }
+    ],
+    "id": 220
+  },
+  {
+    "name": "Double Third",
+    "full_url": "https://expedition33.wiki.fextralife.com/Double+Third",
+    "effect": "Every third hit of a skill deals double damage.",
+    "type": "Offensive",
+    "cost": 10,
+    "attributes": [
+      {
+        "level": "29",
+        "attributes": {
+          "Health": "2757",
+          "Speed": "279",
+          "Critical Rate": "16%"
+        }
+      }
+    ],
+    "id": 221
+  },
+  {
+    "name": "Empowered Healer",
+    "full_url": "https://expedition33.wiki.fextralife.com/Empowered+Healer",
+    "effect": "Using a healing skill gives 50% more damage for 1 turn.",
+    "type": "Support",
+    "cost": 10,
+    "attributes": [
+      {
+        "level": "30",
+        "attributes": {
+          "Health": "2757",
+          "Critical Rate": "32%"
+        }
+      }
+    ],
+    "id": 222
+  },
+  {
+    "name": "Empowering Jumps",
+    "full_url": "https://expedition33.wiki.fextralife.com/Empowering+Jumps",
+    "effect": "Counters deal more damage for each successful Jump Counter this turn.",
+    "type": "Support",
+    "cost": 5,
+    "attributes": [
+      {
+        "level": "30",
+        "attributes": {
+          "Defense": "1654",
+          "Critical Rate": "33%"
+        }
+      }
+    ],
+    "id": 223
+  },
+  {
+    "name": "Feint",
+    "full_url": "https://expedition33.wiki.fextralife.com/Feint",
+    "effect": "Start each turn with barbapapa stacks; every 5th skill hit deals 600% damage.",
+    "type": "Offensive",
+    "cost": 15,
+    "attributes": [
+      {
+        "level": "30",
+        "attributes": {
+          "Critical Rate": "66%"
+        }
+      }
+    ],
+    "id": 224
+  },
+  {
+    "name": "Frenzy",
+    "full_url": "https://expedition33.wiki.fextralife.com/Frenzy",
+    "effect": "Each successive skill hit deals 10% more damage.",
+    "type": "Offensive",
+    "cost": 20,
+    "attributes": [
+      {
+        "level": "29",
+        "attributes": {
+          "Defense": "1572",
+          "Speed": "557"
+        }
+      }
+    ],
+    "id": 225
+  },
+  {
+    "name": "Gradient Overcharge",
+    "full_url": "https://expedition33.wiki.fextralife.com/Gradient+Overcharge",
+    "effect": "Consume 3 Gradient Charges at turn start to deal 200% more damage.",
+    "type": "Offensive",
+    "cost": 5,
+    "attributes": [
+      {
+        "level": "29",
+        "attributes": {
+          "Health": "5514"
+        }
+      }
+    ],
+    "id": 226
+  },
+  {
+    "name": "Gradient Parry",
+    "full_url": "https://expedition33.wiki.fextralife.com/Gradient+Parry",
+    "effect": "Gain extra Gradient Charge on a successful Parry.",
+    "type": "Support",
+    "cost": 10,
+    "attributes": [
+      {
+        "level": "29",
+        "attributes": {
+          "Speed": "557",
+          "Critical Rate": "32%"
+        }
+      }
+    ]
+    "id": 227
+  },
+  {
+    "name": "Longer Break",
+    "full_url": "https://expedition33.wiki.fextralife.com/Longer+Break",
+    "effect": "Break effects last 1 more turn, but can’t be broken consecutively.",
+    "type": "Offensive",
+    "cost": 10,
+    "attributes": [
+      {
+        "level": "29",
+        "attributes": {
+          "Health": "2757",
+          "Defense": "786",
+          "Speed": "279"
+        }
+      }
+    ],
+    "id": 228
+  },
+  {
+    "name": "SOS Healing Tint",
+    "full_url": "https://expedition33.wiki.fextralife.com/SOS+Healing+Tint",
+    "effect": "Automatically consumes a Healing Tint when below 50% health.",
+    "type": "Defensive",
+    "cost": 10,
+    "attributes": [
+      {
+        "level": "30",
+        "attributes": {
+          "Defense": "1572"
+        }
+      }
+    ],
+    "id": 229
+  },
+  {
+    "name": "Slowing Attack",
+    "full_url": "https://expedition33.wiki.fextralife.com/Slowing+Attack",
+    "type": "Support",
+    "cost": 10,
+    "effect": "Base attack applies Slow for 1 turn.",
+    "attributes": [
+      {
+        "level": "30",
+        "attributes": {
+          "Health": "2757",
+          "Speed": "557"
+        }
+      }
+    ]
+    "id": 230
+  },
+  {
+    "name": "Trigger Happy",
+    "full_url": "https://expedition33.wiki.fextralife.com/Trigger-Happy",
+    "type": "Offensive",
+    "cost": 20,
+    "effect": "After shooting 10 times in one turn, gain +2 AP once and bonus shot damage this turn.",
+    "attributes": [
+      {
+        "level": "29",
+        "attributes": {
+          "Speed": "1114"
+        }
+      }
+    ],
+    "id": 231
+  },
+  {
+    "name": "Clea’s Death",
+    "full_url": "https://expedition33.wiki.fextralife.com/Clea%27s+Death",
+    "type": "Offensive",
+    "cost": 15,
+    "effect": "Upon death, allies gain +25% damage until they die.",
+    "attributes": [
+      {
+        "level": "33",
+        "attributes": {
+          "Speed": "726",
+          "Critical Rate": "37%"
+        }
+      }
+    ],
+    "id": 232
+  },
+  {
+    "name": "First Life",
+    "full_url": "https://expedition33.wiki.fextralife.com/First+Life",
+    "type": "Offensive",
+    "cost": 15,
+    "effect": "Increased damage until death once; reduced damage after death.",
+    "attributes": [
+      {
+        "level": "33",
+        "attributes": {
+          "Defense": "4722"
+        }
+      }
+    ],
+    "id": 233
   }
 ]

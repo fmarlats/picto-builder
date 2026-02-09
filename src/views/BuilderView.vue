@@ -304,7 +304,7 @@ const updateMetaTags = () => {
     : 'Expedition 33 Builds';
 
   // Update meta description
-  let description = 'Create, customize, and share your Expedition 33 character builds with this interactive tool.';
+  let description = 'Create, customize, and share your Expedition 33 character builds with this interactive tool. Now updated with DLC pictos!';
   if (buildTitle.value) {
     description = `${buildTitle.value} - `;
   }

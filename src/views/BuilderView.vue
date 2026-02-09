@@ -878,30 +878,13 @@ const filteredPictos = computed(() => {
       <p class="error-report">
         Found an error? Contact
         <a
-          href="mailto:jepepa.official@gmail.com?subject=Error%20Report%20-%20Picto%20Builder&body=I%20found%20an%20error%20on%20the%20Picto%20Builder%20website%3A%0A%0ADescription%20of%20the%20error%3A%0A%0ASteps%20to%20reproduce%3A%0A%0ABrowser%20and%20device%3A"
+          href="mailto:github@marlats.com?subject=Error%20Report%20-%20Picto%20Builder&body=I%20found%20an%20error%20on%20the%20Picto%20Builder%20website%3A%0A%0ADescription%20of%20the%20error%3A%0A%0ASteps%20to%20reproduce%3A%0A%0ABrowser%20and%20device%3A"
           target="_blank"
           rel="noopener noreferrer"
         >
-          jepepa.official@gmail.com
+          github@marlats.com
         </a>
       </p>
-      <div class="footer-separator" aria-hidden="true"></div>
-      <div class="site-footer-layout">
-        <div class="jepepa-projects">
-          <div class="jepepa-projects-header">Other projects by Jepepa</div>
-          <ul class="jepepa-projects-list">
-            <li>
-              <a
-                href="https://eats.jepepa.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                🔗 Uber Eats Stats &mdash; analyze trends from your Uber Eats orders
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </footer>
 
     <!-- How To Use Modal -->
@@ -1073,44 +1056,6 @@ h1 {
   gap: 16px;
   justify-content: center;
   align-items: stretch;
-}
-
-.jepepa-projects {
-  min-width: 260px;
-  max-width: 360px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(0, 0, 0, 0.25);
-  text-align: left;
-}
-
-.jepepa-projects-header {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-
-.jepepa-projects-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.85rem;
-}
-
-.jepepa-projects-list a {
-  color: #ccc;
-  text-decoration: none;
-}
-
-.jepepa-projects-list a:hover {
-  text-decoration: underline;
 }
 
 .site-footer {

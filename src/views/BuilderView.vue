@@ -852,7 +852,7 @@ const filteredPictos = computed(() => {
     <footer class="site-footer">
       <div class="footer-links">
         <a
-          href="https://github.com/ChickenVacuum/picto-builder"
+          href="https://github.com/fmarlats/picto-builder"
           class="github-link"
           target="_blank"
           rel="noopener noreferrer"

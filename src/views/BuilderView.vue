@@ -715,6 +715,12 @@ const filteredPictos = computed(() => {
       </div>
     </header>
 
+    <!-- Announcement Banner -->
+    <div class="announcement-banner">
+      <span class="banner-icon">🎉</span>
+      <span class="banner-text">Updated with DLC pictos!</span>
+    </div>
+
     <!-- Tab Navigation -->
     <TabNavigation
       :activeTab="activeTab"
@@ -928,6 +934,40 @@ h1 {
   font-size: 1.1rem;
   margin-top: 0;
   margin-bottom: 24px;
+}
+
+/* Announcement Banner */
+.announcement-banner {
+  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+  animation: bannerPulse 2s ease-in-out infinite;
+}
+
+.banner-icon {
+  font-size: 1.2rem;
+}
+
+.banner-text {
+  letter-spacing: 0.3px;
+}
+
+@keyframes bannerPulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+  }
+  50% {
+    box-shadow: 0 2px 16px rgba(76, 175, 80, 0.5);
+  }
 }
 
 .header-actions {

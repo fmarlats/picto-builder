@@ -127,7 +127,7 @@ const handleBuildSelect = (build: PopularBuild) => {
 <style scoped>
 .popular-builds-container {
   min-height: 100vh;
-  background-color: #1a1a1a;
+  background-color: #222;
   color: #fff;
 }
 

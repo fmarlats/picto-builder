@@ -35,6 +35,16 @@ const popularBuilds: PopularBuild[] = [
     tags: ['DPS'],
     source: 'https://maxroll.gg/clair-obscur-expedition-33/planner?profile=1mdgb0jr',
     createdAt: '2024-05-19'
+  },
+  {
+    id: '4',
+    title: 'Monoco Shielder/Buffer/Healer/AP Battery',
+    description: 'Support build focused on applying a lot of buffs & shield to the party.',
+    author: 'shinyz',
+    encodedBuild: 'eyJjaCI6NSwic2siOiI5MSwxMTcsMTAyLDEyNiwxMzUsMTA5IiwibHMiOiIxNjYsMTg1LDE4OCwxMzcsMTMyLDEzMywxMzUsMTAwLDEwMiw5OSw1NCw5NCwxMjAiLCJwcyI6IiIsInQiOiJNb25vY28gU2hpZWxkZXIvQnVmZmVyL0hlYWxlci9BUCBCYXR0ZXJ5IiwiYyI6IlN1cHBvcnQgYnVpbGQgZm9jdXNlZCBvbiBhcHBseWluZyBTaGVsbCwgUnVzaCwgYW5kIFBvd2VyZnVsIGJ1ZmZzIHRvIGFsbGllcyB3aGlsZSBnZW5lcmF0aW5nIEFQIHRocm91Z2ggdmFyaW91cyBFbmVyZ2lzaW5nIHBpY3Rvcy4gVXNlIENoZWF0ZXIgdG8gcGxheSB0d2ljZSBpbiBhIHJvdyBmb3IgbWF4aW11bSBidWZmIHVwdGltZS4ifQ==',
+    tags: ['Support', 'Buffer', 'Healer', 'Tank'],
+    source: 'https://maxroll.gg/clair-obscur-expedition-33/planner/gz7fk0gy',
+    createdAt: '2026-02-13'
   }
 ]
 

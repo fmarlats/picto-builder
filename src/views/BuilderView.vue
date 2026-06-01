@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
+import { useHead } from '@unhead/vue'
 import pictosList from '../assets/pictos_list.json'
 import charactersList from '../assets/characters.json'
 import Picto from '../components/Picto.vue'
@@ -207,6 +208,59 @@ const buildTitle = ref('') // Title for the build
 const showHowToUse = ref(false) // Track if the how to use modal is visible
 const activeTab = ref('character') // Track the active tab: 'character', 'picto', or 'summary'
 
+// Load the static catalog data synchronously (runs on both server and client) so
+// the default Character tab is pre-rendered during SSG. URL-derived state is still
+// applied client-side in onMounted.
+const loadedPictos = JSON.parse(JSON.stringify(pictosList))
+allPictos.value = loadedPictos.map((picto: any) => {
+  const numericId = picto.id
+  return {
+    ...picto,
+    numeric_id: numericId,
+    id: `picto-${numericId}`
+  }
+})
+allCharacters.value = JSON.parse(JSON.stringify(charactersList))
+
+// Per-route SEO baked into the static HTML via useHead, reactive to the current build
+const selectedCharacter = computed(() =>
+  selectedCharacterId.value !== undefined
+    ? allCharacters.value.find(char => char.id === selectedCharacterId.value)
+    : undefined
+)
+
+const pageTitle = computed(() =>
+  buildTitle.value ? `${buildTitle.value} - Expedition 33 Builds` : 'Expedition 33 Builds'
+)
+
+const pageDescription = computed(() => {
+  let description = buildTitle.value
+    ? `${buildTitle.value} - `
+    : 'Create, customize, and share your Expedition 33 character builds with this interactive tool. Now updated with DLC pictos! '
+  if (selectedCharacter.value) {
+    description += `Character build for ${selectedCharacter.value.name} in Expedition 33. `
+  }
+  if (luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0) {
+    description += `Features ${luminaSelectedPictos.value.length + pictoSelectedPictos.value.length} selected Pictos and Luminas. `
+  }
+  description += 'Select characters, skills, Pictos, and Luminas to optimize your gameplay.'
+  return description
+})
+
+useHead({
+  title: pageTitle,
+  meta: [
+    { name: 'description', content: pageDescription },
+    { property: 'og:title', content: pageTitle },
+    { property: 'og:description', content: pageDescription },
+    { property: 'twitter:title', content: pageTitle },
+    { property: 'twitter:description', content: pageDescription },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://www.expedition33builds.com/' },
+  ],
+})
+
 // Function to toggle the panel visibility on mobile
 const togglePanelVisibility = () => {
   isPanelVisible.value = !isPanelVisible.value;
@@ -292,104 +346,15 @@ const resetAll = () => {
   console.log('All selections, levels, comments, and build title have been reset');
 };
 
-// Function to update meta tags dynamically
-const updateMetaTags = () => {
-  const selectedCharacter = selectedCharacterId.value !== undefined
-    ? allCharacters.value.find(char => char.id === selectedCharacterId.value)
-    : undefined;
-
-  // Update page title
-  document.title = buildTitle.value
-    ? `${buildTitle.value} - Expedition 33 Builds`
-    : 'Expedition 33 Builds';
-
-  // Update meta description
-  let description = 'Create, customize, and share your Expedition 33 character builds with this interactive tool. Now updated with DLC pictos!';
-  if (buildTitle.value) {
-    description = `${buildTitle.value} - `;
-  }
-  if (selectedCharacter) {
-    description += `Character build for ${selectedCharacter.name} in Expedition 33. `;
-  }
-  if (luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0) {
-    description += `Features ${luminaSelectedPictos.value.length + pictoSelectedPictos.value.length} selected Pictos and Luminas. `;
-  }
-  description += 'Select characters, skills, Pictos, and Luminas to optimize your gameplay.';
-
-  // Update meta description tag
-  const metaDescription = document.querySelector('meta[name="description"]');
-  if (metaDescription) {
-    metaDescription.setAttribute('content', description);
-  }
-
-  // Update Open Graph title
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) {
-    ogTitle.setAttribute('content', document.title);
-  }
-
-  // Update Open Graph description
-  const ogDescription = document.querySelector('meta[property="og:description"]');
-  if (ogDescription) {
-    ogDescription.setAttribute('content', description);
-  }
-
-  // Update Twitter title
-  const twitterTitle = document.querySelector('meta[property="twitter:title"]');
-  if (twitterTitle) {
-    twitterTitle.setAttribute('content', document.title);
-  }
-
-  // Update Twitter description
-  const twitterDescription = document.querySelector('meta[property="twitter:description"]');
-  if (twitterDescription) {
-    twitterDescription.setAttribute('content', description);
-  }
-
-  // Update canonical URL
-  const canonical = document.querySelector('link[rel="canonical"]');
-  if (canonical) {
-    canonical.setAttribute('href', window.location.href);
-  }
-
-  // Update keywords with character name if selected
-  if (selectedCharacter) {
-    const keywords = document.querySelector('meta[name="keywords"]');
-    if (keywords) {
-      const baseKeywords = 'Expedition 33, Character Selection, Character Skills, Picto Builder, Lumina, Character Builds, Gaming, RPG, Pictos, Build Sharing, Clair Obscur, Expedition 33 Builds, Character Planner, Build Calculator, Gaming Tools';
-      keywords.setAttribute('content', `${baseKeywords}, ${selectedCharacter.name}, ${selectedCharacter.name} Build`);
-    }
-  }
-};
-
 // Function to update the comment and build title
 const updateCommentAndTitle = (newComment: string, newBuildTitle: string) => {
   comment.value = newComment;
   buildTitle.value = newBuildTitle;
   saveStateToURL();
-  updateMetaTags();
 };
 
-// Load data on component mount
+// Apply URL-derived state on mount (client-only; catalog data is loaded in setup for SSG)
 onMounted(() => {
-  // Make a deep copy of the pictos data to avoid reference issues
-  const pictos = JSON.parse(JSON.stringify(pictosList))
-
-  // Use the existing IDs from the JSON file
-  allPictos.value = pictos.map((picto: any) => {
-    // Store the numeric ID from the JSON file
-    const numericId = picto.id;
-
-    return {
-      ...picto,
-      numeric_id: numericId, // Store the numeric ID
-      id: `picto-${numericId}` // Create the string ID for UI references
-    };
-  })
-
-  // Load characters data
-  allCharacters.value = JSON.parse(JSON.stringify(charactersList));
-
   // Load any saved state from URL
   const savedState = decodeStateFromURL();
   selectedLevels.value = savedState.selectedLevels;
@@ -419,9 +384,6 @@ onMounted(() => {
   if (savedState.selectedSkillIds && savedState.selectedSkillIds.length > 0) {
     selectedSkillIds.value = savedState.selectedSkillIds;
   }
-
-  // Set the document title and update meta tags
-  updateMetaTags();
 
   // Check if there are any selections
   const hasSelections = luminaSelectedPictos.value.length > 0 ||
@@ -453,6 +415,66 @@ onMounted(() => {
     // Show the panel view on mobile only in picto tab
     isPanelVisible.value = true;
   }
+
+  // Watch for changes in the URL query parameters or hash. Registered here (not at
+  // setup top-level) because the source getters read window.location, which is
+  // undefined during SSG and would crash the build render.
+  watch([() => window.location.search, () => window.location.hash], () => {
+    // Update all state when the URL hash changes
+    const savedState = decodeStateFromURL();
+    selectedLevels.value = savedState.selectedLevels;
+    luminaSelectedPictos.value = savedState.luminaSelectedPictos;
+    pictoSelectedPictos.value = savedState.pictoSelectedPictos;
+    comment.value = savedState.comment || '';
+
+    // Extract build name from URL query parameter
+    const buildNameFromUrl = extractSlugFromPath(window.location.search);
+
+    // If there's a build name in the URL but no build title in the state,
+    // use it directly
+    if (buildNameFromUrl && !savedState.buildTitle) {
+      buildTitle.value = buildNameFromUrl;
+    } else {
+      buildTitle.value = savedState.buildTitle || '';
+    }
+
+    // Update character and skill selections
+    selectedCharacterId.value = savedState.selectedCharacterId;
+    selectedSkillIds.value = savedState.selectedSkillIds || [];
+
+    // Check if the summary parameter is set to true in the URL
+    const shouldShowSummary = shouldShowSummaryTab(window.location.search);
+
+    if (shouldShowSummary) {
+      // If summary parameter is true, show the summary tab regardless of selections
+      activeTab.value = 'summary';
+    } else if (savedState.selectedCharacterId !== undefined) {
+      activeTab.value = 'character';
+    } else if (luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0) {
+      activeTab.value = 'picto';
+    } else {
+      activeTab.value = 'summary';
+    }
+
+    // Check if there are any selections
+    const hasSelectionsOnChange = luminaSelectedPictos.value.length > 0 ||
+                          pictoSelectedPictos.value.length > 0 ||
+                          selectedCharacterId.value !== undefined ||
+                          selectedSkillIds.value.length > 0;
+
+    if (hasSelectionsOnChange) {
+      // Check if we're on mobile (screen width <= 768px)
+      const isMobileOnChange = window.innerWidth <= 768;
+
+      if (isMobileOnChange && activeTab.value === 'picto') {
+        // Show the panel view on mobile only in picto tab
+        isPanelVisible.value = true;
+      }
+    } else {
+      // If there are no selections, reset to default views
+      isPanelVisible.value = false;
+    }
+  });
 })
 
 // Function to handle level selection from a picto
@@ -466,72 +488,6 @@ const handleLevelSelect = (pictoId: string, level: string) => {
   // Update the URL with the new state
   saveStateToURL();
 };
-
-// Watch for changes that should update SEO
-watch([selectedCharacterId, luminaSelectedPictos, pictoSelectedPictos, buildTitle], () => {
-  updateMetaTags();
-}, { deep: true });
-
-// Watch for changes in the URL query parameters or hash
-watch([() => window.location.search, () => window.location.hash], () => {
-  // Update all state when the URL hash changes
-  const savedState = decodeStateFromURL();
-  selectedLevels.value = savedState.selectedLevels;
-  luminaSelectedPictos.value = savedState.luminaSelectedPictos;
-  pictoSelectedPictos.value = savedState.pictoSelectedPictos;
-  comment.value = savedState.comment || '';
-
-  // Extract build name from URL query parameter
-  const buildNameFromUrl = extractSlugFromPath(window.location.search);
-
-  // If there's a build name in the URL but no build title in the state,
-  // use it directly
-  if (buildNameFromUrl && !savedState.buildTitle) {
-    buildTitle.value = buildNameFromUrl;
-  } else {
-    buildTitle.value = savedState.buildTitle || '';
-  }
-
-  // Update document title and meta tags
-  updateMetaTags();
-
-  // Update character and skill selections
-  selectedCharacterId.value = savedState.selectedCharacterId;
-  selectedSkillIds.value = savedState.selectedSkillIds || [];
-
-  // Check if the summary parameter is set to true in the URL
-  const shouldShowSummary = shouldShowSummaryTab(window.location.search);
-
-  if (shouldShowSummary) {
-    // If summary parameter is true, show the summary tab regardless of selections
-    activeTab.value = 'summary';
-  } else if (savedState.selectedCharacterId !== undefined) {
-    activeTab.value = 'character';
-  } else if (luminaSelectedPictos.value.length > 0 || pictoSelectedPictos.value.length > 0) {
-    activeTab.value = 'picto';
-  } else {
-    activeTab.value = 'summary';
-  }
-
-  // Check if there are any selections
-  const hasSelections = luminaSelectedPictos.value.length > 0 ||
-                        pictoSelectedPictos.value.length > 0 ||
-                        selectedCharacterId.value !== undefined ||
-                        selectedSkillIds.value.length > 0;
-
-  if (hasSelections) {
-    // Check if we're on mobile (screen width <= 768px)
-    const isMobile = window.innerWidth <= 768;
-
-    if (isMobile && activeTab.value === 'picto') {
-      // Show the panel view on mobile only in picto tab
-      isPanelVisible.value = true;
-    }
-  } else {
-    // If there are no selections, reset to default views
-    isPanelVisible.value = false;
-  }
-});
 
 // Function to handle picto selection for lumina
 const toggleLuminaSelection = (pictoId: string) => {

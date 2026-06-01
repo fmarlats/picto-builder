@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, inject } from 'vue'
+import { computed, inject } from 'vue'
+import { useHead } from '@unhead/vue'
 import PopularBuildCard from '../components/PopularBuildCard.vue'
 import type { PopularBuild } from '../types'
 
@@ -11,67 +12,27 @@ const props = defineProps<{
   popularBuilds?: PopularBuild[]
 }>()
 
-// Reactive reference for builds
-const builds = ref<PopularBuild[]>([])
+// Builds resolved synchronously so the cards are pre-rendered during SSG
+const builds = computed<PopularBuild[]>(() =>
+  injectedBuilds.length > 0 ? injectedBuilds : (props.popularBuilds || [])
+)
 
-// Function to update SEO for popular builds page
-const updatePopularBuildsSEO = () => {
-  // Update page title
-  document.title = 'Popular Builds - Expedition 33 Builds';
+// Per-route SEO, baked into the static HTML via useHead
+const title = 'Popular Builds - Expedition 33 Builds'
+const description = 'Discover the most popular and effective Expedition 33 character builds created by the community. Find inspiration for your next character build with proven strategies and combinations.'
 
-  // Update meta description
-  const description = 'Discover the most popular and effective Expedition 33 character builds created by the community. Find inspiration for your next character build with proven strategies and combinations.';
-
-  // Update meta description tag
-  const metaDescription = document.querySelector('meta[name="description"]');
-  if (metaDescription) {
-    metaDescription.setAttribute('content', description);
-  }
-
-  // Update Open Graph title
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) {
-    ogTitle.setAttribute('content', document.title);
-  }
-
-  // Update Open Graph description
-  const ogDescription = document.querySelector('meta[property="og:description"]');
-  if (ogDescription) {
-    ogDescription.setAttribute('content', description);
-  }
-
-  // Update Twitter title
-  const twitterTitle = document.querySelector('meta[property="twitter:title"]');
-  if (twitterTitle) {
-    twitterTitle.setAttribute('content', document.title);
-  }
-
-  // Update Twitter description
-  const twitterDescription = document.querySelector('meta[property="twitter:description"]');
-  if (twitterDescription) {
-    twitterDescription.setAttribute('content', description);
-  }
-
-  // Update canonical URL
-  const canonical = document.querySelector('link[rel="canonical"]');
-  if (canonical) {
-    canonical.setAttribute('href', window.location.href);
-  }
-
-  // Update keywords
-  const keywords = document.querySelector('meta[name="keywords"]');
-  if (keywords) {
-    keywords.setAttribute('content', 'Expedition 33, Popular Builds, Community Builds, Character Builds, Gaming, RPG, Pictos, Lumina, Clair Obscur, Best Builds, Top Builds');
-  }
-};
-
-// Load builds on mount
-onMounted(() => {
-  // Use injected builds, then props, then default empty array
-  builds.value = injectedBuilds.length > 0 ? injectedBuilds : (props.popularBuilds || [])
-
-  // Update SEO for popular builds page
-  updatePopularBuildsSEO();
+useHead({
+  title,
+  meta: [
+    { name: 'description', content: description },
+    { property: 'og:title', content: title },
+    { property: 'og:description', content: description },
+    { property: 'twitter:title', content: title },
+    { property: 'twitter:description', content: description },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://www.expedition33builds.com/popular/' },
+  ],
 })
 
 // Function to handle build selection

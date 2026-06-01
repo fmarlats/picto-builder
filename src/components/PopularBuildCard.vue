@@ -55,7 +55,8 @@ const decodeCharacterFromBuild = (encodedBuild: string): number | null => {
 // Computed properties
 const formattedDate = computed(() => {
   if (!props.build.createdAt) return null
-  return new Date(props.build.createdAt).toLocaleDateString()
+  // Pin the locale so SSG (Node) and the client render identical text (avoids a hydration mismatch)
+  return new Date(props.build.createdAt).toLocaleDateString('en-US')
 })
 
 const displayTags = computed(() => {

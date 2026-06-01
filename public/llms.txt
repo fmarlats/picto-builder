@@ -1,0 +1,27 @@
+# Expedition 33 Builds
+
+> A free, fan-made web tool to plan, customize, and share character builds for the
+> RPG *Clair Obscur: Expedition 33* (Sandfall Interactive). Users pick one of the
+> game's characters, choose their skills, Pictos, and Luminas, then share the
+> complete build via a single URL.
+
+## Key pages
+- [Build planner](https://www.expedition33builds.com/): the main interactive builder.
+- [Popular builds](https://www.expedition33builds.com/popular): community-curated builds.
+
+## Concepts
+- **Characters & Skills**: choose one of 6 characters (Gustave, Maelle, Sciel, Lune,
+  Monoco, Verso) and their skills. Each skill has an AP cost; the tool flags the
+  in-game maximum of 6 equipped skills.
+- **Pictos**: equippable items with a type (Offensive, Defensive, Support, or a
+  hybrid), an effect, a Lumina cost, and level-dependent attributes (e.g. Speed,
+  Critical Rate, Health, or Defense, scaling per level).
+- **Luminas**: Pictos selected in "Lumina" mode; their costs sum to a total Lumina
+  cost shown in the build summary. A Picto cannot be in both the Picto and Lumina
+  lists at the same time.
+- **Build sharing**: the full build state (character, skills, Pictos, Luminas, levels,
+  title, and comment) is encoded as base64 JSON in the share URL.
+
+## Notes
+- Fan-made and unofficial; not affiliated with Sandfall Interactive.
+- Free to use. Source: https://github.com/fmarlats/picto-builder

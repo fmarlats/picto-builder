@@ -4,7 +4,6 @@ import { useHead } from '@unhead/vue'
 import pictosList from '../assets/pictos_list.json'
 import charactersList from '../assets/characters.json'
 import Picto from '../components/Picto.vue'
-import PanelToggleButton from '../components/PanelToggleButton.vue'
 import HowToUse from '../components/HowToUse.vue'
 import CharacterSelector from '../components/CharacterSelector.vue'
 import SkillSelector from '../components/SkillSelector.vue'
@@ -201,7 +200,6 @@ const luminaSelectedPictos = ref<string[]>([]) // Array of picto IDs selected fo
 const pictoSelectedPictos = ref<string[]>([]) // Array of picto IDs selected as pictos
 const selectedCharacterId = ref<number | undefined>(undefined) // ID of the selected character
 const selectedSkillIds = ref<number[]>([]) // Array of skill IDs selected for the character
-const isPanelVisible = ref(false) // Track if the side panel is visible on mobile
 const showOnlySelected = ref(false) // Track if we should show only selected elements
 const comment = ref('') // Comment about the build
 const buildTitle = ref('') // Title for the build
@@ -236,7 +234,7 @@ const pageTitle = computed(() =>
 const pageDescription = computed(() => {
   let description = buildTitle.value
     ? `${buildTitle.value} - `
-    : 'Create, customize, and share your Expedition 33 character builds with this interactive tool. Now updated with DLC pictos! '
+    : 'Create, customize, and share your Expedition 33 character builds with this interactive tool. Includes all DLC pictos. '
   if (selectedCharacter.value) {
     description += `Character build for ${selectedCharacter.value.name} in Expedition 33. `
   }
@@ -260,11 +258,6 @@ useHead({
     { rel: 'canonical', href: 'https://www.expedition33builds.com/' },
   ],
 })
-
-// Function to toggle the panel visibility on mobile
-const togglePanelVisibility = () => {
-  isPanelVisible.value = !isPanelVisible.value;
-}
 
 // Function to toggle the how to use modal
 const toggleHowToUse = () => {
@@ -408,14 +401,6 @@ onMounted(() => {
     }
   }
 
-  // Check if we're on mobile (screen width <= 768px)
-  const isMobile = window.innerWidth <= 768;
-
-  if (isMobile && activeTab.value === 'picto') {
-    // Show the panel view on mobile only in picto tab
-    isPanelVisible.value = true;
-  }
-
   // Watch for changes in the URL query parameters or hash. Registered here (not at
   // setup top-level) because the source getters read window.location, which is
   // undefined during SSG and would crash the build render.
@@ -456,24 +441,6 @@ onMounted(() => {
       activeTab.value = 'summary';
     }
 
-    // Check if there are any selections
-    const hasSelectionsOnChange = luminaSelectedPictos.value.length > 0 ||
-                          pictoSelectedPictos.value.length > 0 ||
-                          selectedCharacterId.value !== undefined ||
-                          selectedSkillIds.value.length > 0;
-
-    if (hasSelectionsOnChange) {
-      // Check if we're on mobile (screen width <= 768px)
-      const isMobileOnChange = window.innerWidth <= 768;
-
-      if (isMobileOnChange && activeTab.value === 'picto') {
-        // Show the panel view on mobile only in picto tab
-        isPanelVisible.value = true;
-      }
-    } else {
-      // If there are no selections, reset to default views
-      isPanelVisible.value = false;
-    }
   });
 })
 
@@ -651,6 +618,10 @@ const filteredPictos = computed(() => {
 <template>
   <div class="container">
     <header>
+      <div class="dlc-badge" role="img" aria-label="DLC pictos included">
+        <span class="dlc-badge-main">DLC<br>Pictos</span>
+        <span class="dlc-badge-sub">included</span>
+      </div>
       <h1>Expedition 33 Builds</h1>
       <p class="site-description">Create, customize, and share your Expedition 33 character builds</p>
       <div class="header-actions">
@@ -671,19 +642,13 @@ const filteredPictos = computed(() => {
       </div>
     </header>
 
-    <!-- Announcement Banner -->
-    <div class="announcement-banner">
-      <span class="banner-icon">🎉</span>
-      <span class="banner-text">Updated with DLC pictos!</span>
-    </div>
-
     <!-- Tab Navigation -->
     <TabNavigation
       :activeTab="activeTab"
       :tabs="[
-        { id: 'character', label: 'Character & Skills', icon: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2 M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8z' },
-        { id: 'picto', label: 'Pictos', icon: 'M4 3h16a2 2 0 0 1 2 2v6a10 10 0 0 1-10 10A10 10 0 0 1 2 11V5a2 2 0 0 1 2-2z M8 10h.01 M12 10h.01 M16 10h.01' },
-        { id: 'summary', label: 'Summary', icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8' }
+        { id: 'character', label: 'Character & Skills', hint: 'Pick your character' },
+        { id: 'picto', label: 'Pictos & Lumina', hint: 'Build your loadout' },
+        { id: 'summary', label: 'Summary', hint: 'Review & share' }
       ]"
       @change-tab="handleTabChange"
     />
@@ -706,7 +671,7 @@ const filteredPictos = computed(() => {
 
     <!-- Picto Tab -->
     <div v-if="activeTab === 'picto'" class="tab-content picto-tab">
-      <nav class="filters-container" :class="{ 'hidden-on-mobile': isPanelVisible }" aria-label="Picto filters">
+      <nav class="filters-container" aria-label="Picto filters">
         <div class="search-container">
           <input
             type="text"
@@ -754,7 +719,7 @@ const filteredPictos = computed(() => {
         </div>
       </nav>
 
-      <div class="results-info" :class="{ 'hidden-on-mobile': isPanelVisible }">
+      <div class="results-info">
         <span v-if="showOnlySelected">
           Showing {{ filteredPictos.length }} selected pictos
           <span class="selected-count">
@@ -769,7 +734,7 @@ const filteredPictos = computed(() => {
         </span>
       </div>
 
-      <div class="pictos-grid" :class="{ 'hidden-on-mobile': isPanelVisible }" aria-label="Picto cards">
+      <div class="pictos-grid" aria-label="Picto cards">
         <Picto
           v-for="picto in filteredPictos"
           :key="picto.id"
@@ -803,13 +768,6 @@ const filteredPictos = computed(() => {
         />
       </div>
     </div>
-
-    <!-- Mobile Panel Toggle Button (only visible on picto tab) -->
-    <PanelToggleButton
-      v-if="activeTab === 'picto'"
-      :isPanelVisible="isPanelVisible"
-      @toggle-panel="togglePanelVisibility"
-    />
 
     <footer class="site-footer">
       <div class="footer-links">
@@ -892,38 +850,51 @@ h1 {
   margin-bottom: 24px;
 }
 
-/* Announcement Banner */
-.announcement-banner {
-  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
+/* DLC Badge (round, tilted sticker in the header's top-left corner) */
+.dlc-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  z-index: 5;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 24px;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
-  animation: bannerPulse 2s ease-in-out infinite;
+  gap: 1px;
+  background: linear-gradient(135deg, #ffe066 0%, #e0a800 100%);
+  color: #1f1a00;
+  text-align: center;
+  line-height: 1.05;
+  transform: rotate(-12deg);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.35);
 }
 
-.banner-icon {
-  font-size: 1.2rem;
+.dlc-badge-main {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.banner-text {
-  letter-spacing: 0.3px;
+.dlc-badge-sub {
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(31, 26, 0, 0.75);
 }
 
-@keyframes bannerPulse {
-  0%, 100% {
-    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
-  }
-  50% {
-    box-shadow: 0 2px 16px rgba(76, 175, 80, 0.5);
-  }
+/* Below ~900px the centered title/description reach the corner, so give the
+   header top room and shrink the badge to avoid overlapping the text. */
+@media (max-width: 900px) {
+  header { padding-top: 80px; }
+  .dlc-badge { width: 70px; height: 70px; gap: 0; }
+  .dlc-badge-main { font-size: 0.58rem; }
+  .dlc-badge-sub { font-size: 0.44rem; }
 }
 
 .header-actions {
@@ -1359,10 +1330,6 @@ h1 {
   margin-top: 16px;
 }
 
-.hidden-on-mobile {
-  display: none !important;
-}
-
 /* Responsive styles */
 @media (max-width: 1200px) {
   .pictos-grid {
@@ -1411,10 +1378,6 @@ h1 {
 
   .pictos-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .hidden-on-mobile {
-    display: none !important;
   }
 }
 

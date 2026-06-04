@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 // Define props
 const props = defineProps<{
   activeTab: string;
   tabs: Array<{
     id: string;
     label: string;
-    icon?: string;
+    hint?: string;
   }>;
 }>();
 
@@ -13,6 +15,18 @@ const props = defineProps<{
 const emit = defineEmits<{
   'change-tab': [tabId: string];
 }>();
+
+// Index of the active step; drives positional done/active/upcoming states.
+const activeIndex = computed(() =>
+  props.tabs.findIndex(tab => tab.id === props.activeTab)
+);
+
+// Desktop grid columns derived from the number of steps, so the layout isn't
+// pinned to exactly 3 tabs: 1fr step, then a 0.6fr connector before each
+// subsequent step (step | connector | step | … | step).
+const trackColumns = computed(() =>
+  props.tabs.map((_, i) => (i === 0 ? '1fr' : '0.6fr 1fr')).join(' ')
+);
 
 // Haptic feedback utility
 const hapticFeedback = {
@@ -39,113 +53,228 @@ const changeTab = (tabId: string) => {
 </script>
 
 <template>
-  <nav class="tab-navigation" role="tablist" aria-label="Main navigation">
-    <div class="tabs-container">
-      <button
-        v-for="tab in tabs"
-        :key="tab.id"
-        class="tab-button"
-        :class="{ 'active': activeTab === tab.id }"
-        role="tab"
-        :aria-selected="activeTab === tab.id"
-        :aria-controls="`${tab.id}-panel`"
-        @click="changeTab(tab.id)"
-      >
-        <div class="tab-content">
-          <svg v-if="tab.icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="overflow: visible;">
-            <path :d="tab.icon"></path>
-          </svg>
-          <span class="tab-label">{{ tab.label }}</span>
-        </div>
-        <div class="tab-indicator"></div>
-      </button>
+  <nav class="step-nav" role="tablist" aria-label="Build steps">
+    <div class="track" :style="{ gridTemplateColumns: trackColumns }">
+      <template v-for="(tab, i) in tabs" :key="tab.id">
+        <button
+          class="step"
+          :class="{ done: i < activeIndex, active: i === activeIndex }"
+          role="tab"
+          :aria-selected="activeTab === tab.id"
+          :aria-controls="`${tab.id}-panel`"
+          :aria-label="`Step ${i + 1} of ${tabs.length}: ${tab.label}`"
+          @click="changeTab(tab.id)"
+        >
+          <span class="dot">{{ i + 1 }}</span>
+          <span class="text">
+            <span class="label">{{ tab.label }}</span>
+            <span v-if="tab.hint" class="hint">{{ tab.hint }}</span>
+          </span>
+        </button>
+        <span
+          v-if="i < tabs.length - 1"
+          class="line"
+          :class="{ done: i < activeIndex }"
+        ></span>
+      </template>
     </div>
   </nav>
 </template>
 
 <style scoped>
-.tab-navigation {
+.step-nav {
   width: 100%;
-  background-color: #222;
-  border-radius: 8px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: var(--bg-panel);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-xl);
   position: sticky;
   top: 0;
   z-index: 10;
+  padding: 18px 24px;
 }
 
-.tabs-container {
+.track {
+  display: grid;
+  /* grid-template-columns is set inline from the tab count (see trackColumns):
+     equal-width 1fr steps with 0.6fr connectors between them */
+  align-items: stretch;
+}
+
+.step {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #2c2c2c;
+  border: 1px solid #3a3a3a;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
 }
 
-.tab-button {
-  flex: 1;
-  background: none;
-  border: none;
-  color: #aaa;
-  padding: 16px 8px;
+.dot {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
   font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.2s ease;
+  border: 2px solid var(--border-color);
+  color: var(--text-muted);
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+.text {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  line-height: 1.2;
+  text-align: left;
 }
 
-.tab-content {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: center;
-  padding: 4px 0;
+.label {
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--text-light);
+  transition: color 0.2s ease;
 }
 
-.tab-button:hover {
+.hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  transition: color 0.2s ease;
+}
+
+.line {
+  height: 2px;
+  min-width: 0;
+  margin: 0 12px;
+  align-self: center;
+  border-radius: 2px;
+  background: var(--border-color);
+  transition: background 0.3s ease;
+}
+
+.line.done {
+  background: var(--primary-color);
+}
+
+/* Hover */
+.step:hover {
+  background: #343434;
+  border-color: #4a4a4a;
+  transform: translateY(-1px);
+}
+
+.step:hover .label {
+  color: var(--text-color);
+}
+
+.step:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Completed step */
+.step.done .dot {
+  background: rgba(33, 150, 243, 0.15);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.step.done .label {
+  color: var(--text-light);
+}
+
+/* Current step */
+.step.active {
+  background: rgba(33, 150, 243, 0.12);
+  border-color: rgba(33, 150, 243, 0.55);
+}
+
+.step.active .dot {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
   color: #fff;
-  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.25);
 }
 
-.tab-button.active {
-  color: #2196F3;
+.step.active .label {
+  color: var(--text-color);
 }
 
-.tab-indicator {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: transparent;
-  transition: background-color 0.2s ease;
+.step.active .hint {
+  color: var(--primary-color);
 }
 
-.tab-button.active .tab-indicator {
-  background-color: #2196F3;
-}
-
-@media (max-width: 768px) {
-  .tab-button {
-    padding: 12px 8px;
+/* Narrow/medium: stack dot over wrapped label before the horizontal row
+   gets too cramped to fit the labels on one or two tidy lines. */
+@media (max-width: 640px) {
+  .step-nav {
+    padding: 14px 10px;
   }
 
-  .tab-label {
-    font-size: 0.9rem;
+  .track {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    position: relative;
   }
-}
 
-@media (max-width: 480px) {
-  .tab-content {
+  /* connector drawn behind the chips so it never affects layout width;
+     endpoints sit at each end dot's centre (chip width 84 / 2 = 42px) */
+  .track::before {
+    content: "";
+    position: absolute;
+    top: 26px;
+    left: 42px;
+    right: 42px;
+    height: 2px;
+    background: var(--border-color);
+    z-index: 0;
+  }
+
+  .step {
     flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    /* fixed width + no shrink so the end dots stay at 42px and the connector
+       stays aligned even at the 320px min width */
+    width: 84px;
+    flex-shrink: 0;
+    z-index: 1;
   }
 
-  .tab-label {
-    font-size: 0.8rem;
+  .text {
+    text-align: center;
+    align-items: center;
+  }
+
+  .label {
+    font-size: 0.72rem;
+    line-height: 1.15;
+  }
+
+  .hint {
+    display: none;
+  }
+
+  .dot {
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
+  }
+
+  .line {
+    display: none;
   }
 }
 </style>

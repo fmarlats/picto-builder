@@ -651,6 +651,10 @@ const filteredPictos = computed(() => {
 <template>
   <div class="container">
     <header>
+      <div class="dlc-badge" role="img" aria-label="DLC pictos included">
+        <span class="dlc-badge-main">DLC<br>Pictos</span>
+        <span class="dlc-badge-sub">included</span>
+      </div>
       <h1>Expedition 33 Builds</h1>
       <p class="site-description">Create, customize, and share your Expedition 33 character builds</p>
       <div class="header-actions">
@@ -670,12 +674,6 @@ const filteredPictos = computed(() => {
         </button>
       </div>
     </header>
-
-    <!-- Announcement Banner -->
-    <div class="announcement-banner">
-      <span class="banner-icon">🎉</span>
-      <span class="banner-text">Updated with DLC pictos!</span>
-    </div>
 
     <!-- Tab Navigation -->
     <TabNavigation
@@ -892,38 +890,61 @@ h1 {
   margin-bottom: 24px;
 }
 
-/* Announcement Banner */
-.announcement-banner {
-  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
+/* DLC Badge (round, tilted sticker in the header's top-left corner) */
+.dlc-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  z-index: 5;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 24px;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
-  animation: bannerPulse 2s ease-in-out infinite;
+  gap: 1px;
+  background: linear-gradient(135deg, #ffe066 0%, #e0a800 100%);
+  color: #1f1a00;
+  text-align: center;
+  line-height: 1.05;
+  transform: rotate(-12deg);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  animation: badgePop 2.4s ease-in-out infinite;
 }
 
-.banner-icon {
-  font-size: 1.2rem;
+.dlc-badge-main {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.banner-text {
-  letter-spacing: 0.3px;
+.dlc-badge-sub {
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(31, 26, 0, 0.75);
 }
 
-@keyframes bannerPulse {
-  0%, 100% {
-    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
-  }
-  50% {
-    box-shadow: 0 2px 16px rgba(76, 175, 80, 0.5);
-  }
+@keyframes badgePop {
+  0%, 100% { transform: rotate(-12deg) scale(1); }
+  50% { transform: rotate(-12deg) scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dlc-badge { animation: none; }
+}
+
+/* Below ~900px the centered title/description reach the corner, so give the
+   header top room and shrink the badge to avoid overlapping the text. */
+@media (max-width: 900px) {
+  header { padding-top: 80px; }
+  .dlc-badge { width: 70px; height: 70px; gap: 0; }
+  .dlc-badge-main { font-size: 0.58rem; }
+  .dlc-badge-sub { font-size: 0.44rem; }
 }
 
 .header-actions {

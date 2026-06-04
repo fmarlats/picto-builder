@@ -4,7 +4,6 @@ import { useHead } from '@unhead/vue'
 import pictosList from '../assets/pictos_list.json'
 import charactersList from '../assets/characters.json'
 import Picto from '../components/Picto.vue'
-import PanelToggleButton from '../components/PanelToggleButton.vue'
 import HowToUse from '../components/HowToUse.vue'
 import CharacterSelector from '../components/CharacterSelector.vue'
 import SkillSelector from '../components/SkillSelector.vue'
@@ -201,7 +200,6 @@ const luminaSelectedPictos = ref<string[]>([]) // Array of picto IDs selected fo
 const pictoSelectedPictos = ref<string[]>([]) // Array of picto IDs selected as pictos
 const selectedCharacterId = ref<number | undefined>(undefined) // ID of the selected character
 const selectedSkillIds = ref<number[]>([]) // Array of skill IDs selected for the character
-const isPanelVisible = ref(false) // Track if the side panel is visible on mobile
 const showOnlySelected = ref(false) // Track if we should show only selected elements
 const comment = ref('') // Comment about the build
 const buildTitle = ref('') // Title for the build
@@ -260,11 +258,6 @@ useHead({
     { rel: 'canonical', href: 'https://www.expedition33builds.com/' },
   ],
 })
-
-// Function to toggle the panel visibility on mobile
-const togglePanelVisibility = () => {
-  isPanelVisible.value = !isPanelVisible.value;
-}
 
 // Function to toggle the how to use modal
 const toggleHowToUse = () => {
@@ -408,14 +401,6 @@ onMounted(() => {
     }
   }
 
-  // Check if we're on mobile (screen width <= 768px)
-  const isMobile = window.innerWidth <= 768;
-
-  if (isMobile && activeTab.value === 'picto') {
-    // Show the panel view on mobile only in picto tab
-    isPanelVisible.value = true;
-  }
-
   // Watch for changes in the URL query parameters or hash. Registered here (not at
   // setup top-level) because the source getters read window.location, which is
   // undefined during SSG and would crash the build render.
@@ -456,24 +441,6 @@ onMounted(() => {
       activeTab.value = 'summary';
     }
 
-    // Check if there are any selections
-    const hasSelectionsOnChange = luminaSelectedPictos.value.length > 0 ||
-                          pictoSelectedPictos.value.length > 0 ||
-                          selectedCharacterId.value !== undefined ||
-                          selectedSkillIds.value.length > 0;
-
-    if (hasSelectionsOnChange) {
-      // Check if we're on mobile (screen width <= 768px)
-      const isMobileOnChange = window.innerWidth <= 768;
-
-      if (isMobileOnChange && activeTab.value === 'picto') {
-        // Show the panel view on mobile only in picto tab
-        isPanelVisible.value = true;
-      }
-    } else {
-      // If there are no selections, reset to default views
-      isPanelVisible.value = false;
-    }
   });
 })
 
@@ -704,7 +671,7 @@ const filteredPictos = computed(() => {
 
     <!-- Picto Tab -->
     <div v-if="activeTab === 'picto'" class="tab-content picto-tab">
-      <nav class="filters-container" :class="{ 'hidden-on-mobile': isPanelVisible }" aria-label="Picto filters">
+      <nav class="filters-container" aria-label="Picto filters">
         <div class="search-container">
           <input
             type="text"
@@ -752,7 +719,7 @@ const filteredPictos = computed(() => {
         </div>
       </nav>
 
-      <div class="results-info" :class="{ 'hidden-on-mobile': isPanelVisible }">
+      <div class="results-info">
         <span v-if="showOnlySelected">
           Showing {{ filteredPictos.length }} selected pictos
           <span class="selected-count">
@@ -767,7 +734,7 @@ const filteredPictos = computed(() => {
         </span>
       </div>
 
-      <div class="pictos-grid" :class="{ 'hidden-on-mobile': isPanelVisible }" aria-label="Picto cards">
+      <div class="pictos-grid" aria-label="Picto cards">
         <Picto
           v-for="picto in filteredPictos"
           :key="picto.id"
@@ -801,13 +768,6 @@ const filteredPictos = computed(() => {
         />
       </div>
     </div>
-
-    <!-- Mobile Panel Toggle Button (only visible on picto tab) -->
-    <PanelToggleButton
-      v-if="activeTab === 'picto'"
-      :isPanelVisible="isPanelVisible"
-      @toggle-panel="togglePanelVisibility"
-    />
 
     <footer class="site-footer">
       <div class="footer-links">
@@ -1370,10 +1330,6 @@ h1 {
   margin-top: 16px;
 }
 
-.hidden-on-mobile {
-  display: none !important;
-}
-
 /* Responsive styles */
 @media (max-width: 1200px) {
   .pictos-grid {
@@ -1422,10 +1378,6 @@ h1 {
 
   .pictos-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .hidden-on-mobile {
-    display: none !important;
   }
 }
 

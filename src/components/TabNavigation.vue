@@ -92,13 +92,15 @@ const changeTab = (tabId: string) => {
 
 .track {
   display: grid;
-  grid-template-columns: auto 1fr auto 1fr auto;
+  /* equal-width step columns (1fr) with proportional connectors (0.6fr) */
+  grid-template-columns: 1fr 0.6fr 1fr 0.6fr 1fr;
   align-items: stretch;
 }
 
 .step {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: #2c2c2c;
   border: 1px solid #3a3a3a;
@@ -209,8 +211,9 @@ const changeTab = (tabId: string) => {
   color: var(--primary-color);
 }
 
-/* Mobile: stack dot over wrapped label, connector becomes a background bar */
-@media (max-width: 560px) {
+/* Narrow/medium: stack dot over wrapped label before the horizontal row
+   gets too cramped to fit the labels on one or two tidy lines. */
+@media (max-width: 640px) {
   .step-nav {
     padding: 14px 10px;
   }
@@ -237,6 +240,7 @@ const changeTab = (tabId: string) => {
   .step {
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     gap: 6px;
     width: 92px;
     z-index: 1;

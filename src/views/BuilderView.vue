@@ -234,7 +234,7 @@ const pageTitle = computed(() =>
 const pageDescription = computed(() => {
   let description = buildTitle.value
     ? `${buildTitle.value} - `
-    : 'Create, customize, and share your Expedition 33 character builds with this interactive tool. Now updated with DLC pictos! '
+    : 'Create, customize, and share your Expedition 33 character builds with this interactive tool. Includes all DLC pictos. '
   if (selectedCharacter.value) {
     description += `Character build for ${selectedCharacter.value.name} in Expedition 33. `
   }

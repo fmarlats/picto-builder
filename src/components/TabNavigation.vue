@@ -21,6 +21,13 @@ const activeIndex = computed(() =>
   props.tabs.findIndex(tab => tab.id === props.activeTab)
 );
 
+// Desktop grid columns derived from the number of steps, so the layout isn't
+// pinned to exactly 3 tabs: 1fr step, then a 0.6fr connector before each
+// subsequent step (step | connector | step | … | step).
+const trackColumns = computed(() =>
+  props.tabs.map((_, i) => (i === 0 ? '1fr' : '0.6fr 1fr')).join(' ')
+);
+
 // Haptic feedback utility
 const hapticFeedback = {
   // Check if vibration is supported
@@ -47,7 +54,7 @@ const changeTab = (tabId: string) => {
 
 <template>
   <nav class="step-nav" role="tablist" aria-label="Build steps">
-    <div class="track">
+    <div class="track" :style="{ gridTemplateColumns: trackColumns }">
       <template v-for="(tab, i) in tabs" :key="tab.id">
         <button
           class="step"
@@ -88,8 +95,8 @@ const changeTab = (tabId: string) => {
 
 .track {
   display: grid;
-  /* equal-width step columns (1fr) with proportional connectors (0.6fr) */
-  grid-template-columns: 1fr 0.6fr 1fr 0.6fr 1fr;
+  /* grid-template-columns is set inline from the tab count (see trackColumns):
+     equal-width 1fr steps with 0.6fr connectors between them */
   align-items: stretch;
 }
 
@@ -139,7 +146,7 @@ const changeTab = (tabId: string) => {
 
 .hint {
   font-size: 0.72rem;
-  color: #666;
+  color: var(--text-muted);
   margin-top: 2px;
   transition: color 0.2s ease;
 }
@@ -221,13 +228,14 @@ const changeTab = (tabId: string) => {
     position: relative;
   }
 
-  /* connector drawn behind the chips so it never affects layout width */
+  /* connector drawn behind the chips so it never affects layout width;
+     endpoints sit at each end dot's centre (chip width 84 / 2 = 42px) */
   .track::before {
     content: "";
     position: absolute;
     top: 26px;
-    left: 46px;
-    right: 46px;
+    left: 42px;
+    right: 42px;
     height: 2px;
     background: var(--border-color);
     z-index: 0;
@@ -238,7 +246,10 @@ const changeTab = (tabId: string) => {
     align-items: center;
     justify-content: flex-start;
     gap: 6px;
-    width: 92px;
+    /* fixed width + no shrink so the end dots stay at 42px and the connector
+       stays aligned even at the 320px min width */
+    width: 84px;
+    flex-shrink: 0;
     z-index: 1;
   }
 

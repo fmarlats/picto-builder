@@ -911,7 +911,6 @@ h1 {
   transform: rotate(-12deg);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
   border: 2px solid rgba(255, 255, 255, 0.35);
-  animation: badgePop 2.4s ease-in-out infinite;
 }
 
 .dlc-badge-main {
@@ -927,15 +926,6 @@ h1 {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(31, 26, 0, 0.75);
-}
-
-@keyframes badgePop {
-  0%, 100% { transform: rotate(-12deg) scale(1); }
-  50% { transform: rotate(-12deg) scale(1.05); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .dlc-badge { animation: none; }
 }
 
 /* Below ~900px the centered title/description reach the corner, so give the

@@ -58,10 +58,7 @@ const changeTab = (tabId: string) => {
           :aria-label="`Step ${i + 1} of ${tabs.length}: ${tab.label}`"
           @click="changeTab(tab.id)"
         >
-          <span class="dot">
-            <svg v-if="i < activeIndex" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-            <template v-else>{{ i + 1 }}</template>
-          </span>
+          <span class="dot">{{ i + 1 }}</span>
           <span class="text">
             <span class="label">{{ tab.label }}</span>
             <span v-if="tab.hint" class="hint">{{ tab.hint }}</span>

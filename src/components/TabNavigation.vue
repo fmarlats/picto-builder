@@ -100,12 +100,13 @@ const changeTab = (tabId: string) => {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: none;
-  border: none;
-  padding: 0;
+  background: #2c2c2c;
+  border: 1px solid #3a3a3a;
+  padding: 8px 12px;
+  border-radius: 10px;
   cursor: pointer;
   font-family: inherit;
-  transition: opacity 0.2s ease;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
 }
 
 .dot {
@@ -134,7 +135,7 @@ const changeTab = (tabId: string) => {
 .label {
   font-weight: 600;
   font-size: 0.98rem;
-  color: var(--text-muted);
+  color: var(--text-light);
   transition: color 0.2s ease;
 }
 
@@ -148,7 +149,7 @@ const changeTab = (tabId: string) => {
 .line {
   height: 2px;
   min-width: 0;
-  margin: 0 16px;
+  margin: 0 12px;
   border-radius: 2px;
   background: var(--border-color);
   transition: background 0.3s ease;
@@ -158,9 +159,15 @@ const changeTab = (tabId: string) => {
   background: var(--primary-color);
 }
 
-/* Hover (any non-active step) */
+/* Hover */
+.step:hover {
+  background: #343434;
+  border-color: #4a4a4a;
+  transform: translateY(-1px);
+}
+
 .step:hover .label {
-  color: var(--text-light);
+  color: var(--text-color);
 }
 
 .step:focus-visible {
@@ -181,6 +188,11 @@ const changeTab = (tabId: string) => {
 }
 
 /* Current step */
+.step.active {
+  background: rgba(33, 150, 243, 0.12);
+  border-color: rgba(33, 150, 243, 0.55);
+}
+
 .step.active .dot {
   background: var(--primary-color);
   border-color: var(--primary-color);
@@ -199,7 +211,7 @@ const changeTab = (tabId: string) => {
 /* Mobile: stack dot over wrapped label, connector becomes a background bar */
 @media (max-width: 560px) {
   .step-nav {
-    padding: 14px 12px;
+    padding: 14px 10px;
   }
 
   .track {
@@ -209,13 +221,13 @@ const changeTab = (tabId: string) => {
     position: relative;
   }
 
-  /* connector drawn behind the dots so it never affects layout width */
+  /* connector drawn behind the chips so it never affects layout width */
   .track::before {
     content: "";
     position: absolute;
-    top: 16px;
-    left: 42px;
-    right: 42px;
+    top: 26px;
+    left: 46px;
+    right: 46px;
     height: 2px;
     background: var(--border-color);
     z-index: 0;
@@ -225,7 +237,7 @@ const changeTab = (tabId: string) => {
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    width: 88px;
+    width: 92px;
     z-index: 1;
   }
 
@@ -247,15 +259,6 @@ const changeTab = (tabId: string) => {
     width: 34px;
     height: 34px;
     font-size: 0.95rem;
-    background: var(--bg-panel);
-  }
-
-  .step.done .dot {
-    background: rgba(33, 150, 243, 0.15);
-  }
-
-  .step.active .dot {
-    background: var(--primary-color);
   }
 
   .line {

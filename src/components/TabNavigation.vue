@@ -93,7 +93,7 @@ const changeTab = (tabId: string) => {
 .track {
   display: grid;
   grid-template-columns: auto 1fr auto 1fr auto;
-  align-items: center;
+  align-items: stretch;
 }
 
 .step {
@@ -150,6 +150,7 @@ const changeTab = (tabId: string) => {
   height: 2px;
   min-width: 0;
   margin: 0 12px;
+  align-self: center;
   border-radius: 2px;
   background: var(--border-color);
   transition: background 0.3s ease;
@@ -217,7 +218,7 @@ const changeTab = (tabId: string) => {
   .track {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: stretch;
     position: relative;
   }
 

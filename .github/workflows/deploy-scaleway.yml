@@ -31,39 +31,61 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      # 3) Install project dependencies (from package.json / package-lock.json)
+      # 3) Install project dependencies reproducibly from package-lock.json.
+      #    npm ci (not npm install) guarantees the exact locked dependency tree, so
+      #    builds don't gratuitously rotate asset hashes between deploys.
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       # 4) Run the production build (this will generate the dist/ directory)
       - name: Build application
         run: npm run build
 
-      # 5) Sync the built files in dist/ to Scaleway Object Storage
-      #    This uses the jakejarvis/s3-sync-action, which wraps the AWS CLI
-      #    and supports custom S3-compatible endpoints (like Scaleway).
+      # 5) Sync dist/ to Scaleway Object Storage with cache headers matched to each
+      #    file's mutability. This is done in two passes to avoid the failure mode
+      #    where a deploy leaves the live site pointing at JS/CSS that no longer exist:
+      #
+      #    Pass 1 — content-hashed assets in assets/ (the filename changes whenever the
+      #    content does). Cache them forever as `immutable`, upload them FIRST, and
+      #    never --delete them. That way any older index.html still cached by the CDN
+      #    keeps resolving its assets, so a deploy can't break the live site.
+      #    (Trade-off: superseded asset versions linger in the bucket; prune manually
+      #    once in a while if storage ever matters.)
+      #
+      #    Pass 2 — index.html and the other stable-named root files (manifest, robots,
+      #    sitemap, llms.txt, icons, og-image). Serve these `no-cache` so the CDN and
+      #    browsers revalidate every request (cheap 304s) and a new deploy is reflected
+      #    immediately — never serving HTML that references deleted assets. --delete
+      #    here prunes removed root files; assets/ is excluded so pass 1 stays authoritative.
       - name: Upload dist/ to Scaleway Object Storage
-        uses: jakejarvis/s3-sync-action@v0.5.1
-        with:
-          # Recommended defaults for static website hosting:
-          # --acl public-read      -> make objects publicly readable (bucket must allow it)
-          # --follow-symlinks      -> handle any symlinks safely
-          # --delete               -> remove remote files that no longer exist in dist/
-          args: --acl public-read --follow-symlinks --delete
         env:
-          # Name of your Scaleway Object Storage bucket
-          AWS_S3_BUCKET: ${{ secrets.SCALEWAY_S3_BUCKET }}
-
-          # Scaleway access key pair with permissions to write to the bucket
           AWS_ACCESS_KEY_ID: ${{ secrets.SCALEWAY_S3_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SCALEWAY_S3_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.SCALEWAY_S3_REGION }}
+          S3_BUCKET: ${{ secrets.SCALEWAY_S3_BUCKET }}
+          S3_ENDPOINT: ${{ secrets.SCALEWAY_S3_ENDPOINT }}
+        run: |
+          set -euo pipefail
 
-          # Scaleway region of the bucket, e.g. "fr-par" or "nl-ams"
-          AWS_REGION: ${{ secrets.SCALEWAY_S3_REGION }}
+          # Guard: never run the destructive --delete sync against an empty/partial
+          # build (e.g. a silent prerender failure) — abort if index.html is missing.
+          test -f "${BUILD_DIR}/index.html" || { echo "::error::build produced no ${BUILD_DIR}/index.html; aborting deploy"; exit 1; }
 
-          # Scaleway S3-compatible endpoint, e.g. "https://s3.fr-par.scw.cloud"
-          AWS_S3_ENDPOINT: ${{ secrets.SCALEWAY_S3_ENDPOINT }}
+          # Drop vite's internal SSR manifest so it isn't published; pass 2's --delete
+          # then also purges any copy already in the bucket.
+          rm -rf "${BUILD_DIR}/.vite"
 
-          # Local directory to upload (the Vite build output)
-          SOURCE_DIR: ${{ env.BUILD_DIR }}
+          # Pass 1: immutable, content-hashed assets (uploaded first, never deleted).
+          aws s3 sync "${BUILD_DIR}/assets/" "s3://${S3_BUCKET}/assets/" \
+            --endpoint-url "${S3_ENDPOINT}" \
+            --acl public-read \
+            --cache-control "public, max-age=31536000, immutable"
+
+          # Pass 2: HTML + stable-named root files, always revalidated (no-cache).
+          aws s3 sync "${BUILD_DIR}/" "s3://${S3_BUCKET}/" \
+            --endpoint-url "${S3_ENDPOINT}" \
+            --acl public-read \
+            --exclude "assets/*" \
+            --cache-control "no-cache" \
+            --delete
 

@@ -45,6 +45,16 @@ const popularBuilds: PopularBuild[] = [
     tags: ['Support', 'Buffer', 'Healer', 'Tank'],
     source: 'https://maxroll.gg/clair-obscur-expedition-33/planner/gz7fk0gy',
     createdAt: '2026-02-13'
+  },
+  {
+    id: '5',
+    title: 'Maelle Allrounder',
+    description: 'Rotatable all-rounder Maelle build for Expert difficulty / NG+. Burn-stacking nuker.',
+    author: 'Tenkiei',
+    encodedBuild: 'eyJscyI6IjU0LDExMSwxNTUsMTQ3LDIxLDIwOCwzOCwxNDgsMTAsMTY4LDEyNSwxNSwxOCwxNiwyMDAsMTk5LDEzMywxMzIsNzAsNjgsMTA1LDE5NiwxMjAsMTI3LDEwNCwzMiIsInBzIjoiMjA2LDYwLDExMCIsImNoIjoyLCJzayI6IjE1LDMyLDEwLDI2LDksMzMiLCJjIjoiVXNlIFlldmVydW0gd2VhcG9uLiBBdHRyaWJ1dGVzOiBEZWZlbnNlIDk5LCBBZ2lsaXR5IDk5LCBNaWdodCA1MCwgTHVjayA1LlxuXG5CdXJuaW5nIENhbnZhcyBudWtlcyBlbmVtaWVzIGJhc2VkIG9uIHRoZWlyIGJ1cm4gc3RhY2tzLiBQaGFudG9tIFN0cmlrZSBmb3IgQW9FLCBTdGVuZGhhbCBhcyBsYXN0LXJlc29ydCBjbGVhbnVwLCBCcmVha2luZyBSdWxlcyB0byBjbGVhciBzaGllbGRzLiBGbGV1cmV0IEZ1cnkgdG8gc3RheSBpbiBWaXJ0dW9zZSBTdGFuY2UsIFN3aWZ0IFN0cmlkZSB0byByZS1lbnRlci4iLCJ0IjoiTWFlbGxlIEFsbHJvdW5kZXIifQ==',
+    tags: ['DPS', 'Burn'],
+    source: 'https://maxroll.gg/clair-obscur-expedition-33/planner/lq2me08y',
+    createdAt: '2025-05-10'
   }
 ]
 

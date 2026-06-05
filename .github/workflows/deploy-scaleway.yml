@@ -67,6 +67,14 @@ jobs:
         run: |
           set -euo pipefail
 
+          # Guard: never run the destructive --delete sync against an empty/partial
+          # build (e.g. a silent prerender failure) — abort if index.html is missing.
+          test -f "${BUILD_DIR}/index.html" || { echo "::error::build produced no ${BUILD_DIR}/index.html; aborting deploy"; exit 1; }
+
+          # Drop vite's internal SSR manifest so it isn't published; pass 2's --delete
+          # then also purges any copy already in the bucket.
+          rm -rf "${BUILD_DIR}/.vite"
+
           # Pass 1: immutable, content-hashed assets (uploaded first, never deleted).
           aws s3 sync "${BUILD_DIR}/assets/" "s3://${S3_BUCKET}/assets/" \
             --endpoint-url "${S3_ENDPOINT}" \

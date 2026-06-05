@@ -55,6 +55,19 @@
   border-bottom-color: #64b5f6;
 }
 
+:deep(.skill-highlight) {
+  color: #2196f3;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 1px dotted #2196f3;
+  transition: all 0.2s ease;
+}
+
+:deep(.skill-highlight:hover) {
+  color: #64b5f6;
+  border-bottom-color: #64b5f6;
+}
+
 .reset-button {
   position: relative;
   display: flex;

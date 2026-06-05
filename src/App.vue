@@ -55,6 +55,16 @@ const popularBuilds: PopularBuild[] = [
     tags: ['DPS', 'Burn'],
     source: 'https://maxroll.gg/clair-obscur-expedition-33/planner/lq2me08y',
     createdAt: '2025-05-10'
+  },
+  {
+    id: '6',
+    title: 'Lune Allrounder',
+    description: 'Rotatable all-rounder Lune build for Expert difficulty / NG+. Dark Stain generation.',
+    author: 'Tenkiei',
+    encodedBuild: 'eyJscyI6IjU0LDE1NSwxNDcsMTIwLDU3LDE1LDIxNSw1OCwxNiwxOCwxMywzOCwxOTQsNzksMTE2LDE1MSwxMzEsNDMsMjA2LDE0OCIsInBzIjoiMTExLDU2LDEzMiIsImNoIjo0LCJzayI6IjY3LDY2LDczLDc3LDYyLDcwIiwiYyI6IlVzZSBTY2F2ZXJpbSB3ZWFwb24uIEF0dHJpYnV0ZXM6IFZpdGFsaXR5IDk5LCBBZ2lsaXR5IDk5LCBMdWNrIDQzLCBNaWdodCAxMi5cblxuT3BlbiB3aXRoIEZyZWUgQWltIFNob3QgZm9yIFNuaXBlciwgRWxlbWVudGFsIFRyaWNrIGludG8gRWxlbWVudGFsIEdlbmVzaXMgdG8gZ2VuZXJhdGUgRGFyayBTdGFpbnMsIHRoZW4gYmFsYW5jZSBTdGFpbiBnZW5lcmF0aW9uIGFuZCBjb25zdW1wdGlvbiB3aXRoIGJhc2ljIGF0dGFja3Mgb3Igb3RoZXIgc2tpbGxzLiIsInQiOiJMdW5lIEFsbHJvdW5kZXIifQ==',
+    tags: ['DPS'],
+    source: 'https://maxroll.gg/clair-obscur-expedition-33/planner/lq2me08y',
+    createdAt: '2025-05-10'
   }
 ]
 
